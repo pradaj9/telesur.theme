@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script src="../Scripts/swfobject_modified.js" type="text/javascript"></script>
+<script src="../js/jquery.tools.min.js"></script>
+<head>
+<title>jQuery Tools standalone demo</title>
+<!-- include the Tools -->
+
+
+</head>
+<body>
+<!-- main navigator -->
+<ul id="main_navi">
+	<li class="active">
+  	<img src="../img/iconos/multimedia/video.png" width="25" height="25" />Videos
+    <ul>
+    	<li class="subnavi">Ultimos videos</li>
+        <li class="subnavi">Ultimoss videos</li>
+        <li class="subnavi">Más vitos</li>
+    </ul>
+  </li>
+  <li>
+  	<img src="../img/iconos/multimedia/foto.png" width="25" height="25" />Fotos
+  	<ul>
+    	<li class="subnavi">Ultimas fotografías</li>
+        <li class="subnavi">Ultimas noticias</li>
+        <li class="subnavi">Más vistas</li>
+    </ul>	
+  </li>
+  <li>
+  	<img src="../img/iconos/multimedia/audio.png" width="25" height="25" />Audios
+    <ul>
+    	<li class="subnavi">Ultimas fotografías</li>
+        <li class="subnavi">Ultimas noticias</li>
+        <li class="subnavi">Más vistas</li>
+    </ul>
+  </li>
+</ul>
+<!-- root element for the main scrollable -->
+<div id="main">
+  <!-- root element for pages -->
+  <div id="pages">
+    <!-- page #1 -->
+    <div class="page">
+      <!-- sub navigator #1 -->
+      <div class="navi"></div>
+      <!-- inner scrollable #1 -->
+      <div class="scrollable">
+        <!-- root element for scrollable items -->
+        <div class="items">
+          <!-- items  -->
+          <div class="item">
+          	<h1>Lorem ipsum dolor sit amet istel, consectetur adipiscing elit. </h1>
+            <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="display:block; border:solid 1px #666; padding:5px; margin:10px 5px 15px 40px;">
+              <param name="movie" value="../swf/flowplayer-3.2.7.swf">
+              <param name="quality" value="high">
+              <param name="wmode" value="opaque">
+              <param name="swfversion" value="6.0.65.0">
+              <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
+              <param name="expressinstall" value="../Scripts/expressInstall.swf">
+              <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
+              <!--[if !IE]>-->
+              <object type="application/x-shockwave-flash" data="../swf/flowplayer-3.2.7.swf" width="362" height="247">
+                <!--<![endif]-->
+                <param name="quality" value="high">
+                <param name="wmode" value="opaque">
+                <param name="swfversion" value="6.0.65.0">
+                <param name="expressinstall" value="../Scripts/expressInstall.swf">
+                <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
+                <div>
+                  <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
+                  <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" width="112" height="33" /></a></p>
+                </div>
+                <!--[if !IE]>-->
+              </object>
+              <!--<![endif]-->
+            </object>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla augue eros, rutrum id varius vel, imperdiet et ante. Mauris vitae massa elit, nec placerat nulla. Nullam velit magna, facilisis vel varius ultrices, auctor ut sapien. Sed vel commodo dolor. Proin id nisi nulla. Aliquam aliquam odio vitae quam suscipit ac placerat erat facilisis. Sed dapibus pretium sapien nec placerat. </p>
+            <div id="compartir">
+            	<ul>
+                	<li><a href="#" title="descargar video"><img src="../img/iconos/descargar/descarga.png" width="16" height="17" alt="descargar"></a></li>
+                    <li><a href="#" title="descargar audio"><img src="../img/iconos/descargar/descarga-audio.png" width="16" height="17" align="descargar audio" /></a></li>
+                    <li><a href="#" title="enviar por correo"><img src="../img/iconos/descargar/email.png" width="16" height="17" alt="enviar por correo"></a></li>
+                    <li><a href="#" title="imprimir nota"><img src="../img/iconos/descargar/imprimir.png" width="16" height="17" alt="imprimir"></a></li>
+                    <li><a href="#" title="me gusta (facebook)"><img src="../img/iconos/descargar/facebook-like.png" width="16" height="17" alt="me gusta"></a></li>
+                    <li><a href="#" title="twitter"><img src="../img/iconos/descargar/twitter.png" width="16" height="17" alt="twitter"></a></li>
+                    <li><a href="#" title="+1"><img src="../img/iconos/descargar/google-plus-1.png"  width="16" height="17" alt="+1"></a></li>
+                </ul>
+            </div>
+            <div class="ver-todos" style="float:right; margin:5px;"><a href="#" title="ver todos los videos"></a></div>
+          </div>
+          <div class="item">este sería el video num 2 con la misma esturctura </div>
+          <div class="item">este sería el video numero 3 con la misma estructura </div>
+        </div>
+      </div>
+    </div>
+    <!-- page #2 -->
+    <div class="page">
+      <div class="navi"></div>
+      <!-- inner scrollable #2 -->
+      <div class="scrollable">
+        <!-- root element for scrollable items -->
+        <div class="items">
+          <!-- items on the second page -->
+          <div class="item">
+          	<h1>Ut libero tellus, condimentum id iaculis vitae, consectetur enim. </h1>
+          </div>
+          <div class="item">esta sería la foto numero 2, misma estructura </div>
+          <div class="item">esta sería la foto numero 3, misma estructura </div>
+        </div>
+      </div>
+    </div>
+    <!-- page #3 -->
+    <div class="page">
+      <div class="navi"></div>
+      <!-- inner scrollable #3 -->
+      <div class="scrollable">
+        <!-- root element for scrollable items -->
+        <div class="items">
+          <!-- items on the first page -->
+          <div class="item"> 
+          	<h1>Quisque nec erat turpis, in tempor ante.</h1>
+            asdf
+          </div>
+          <div class="item">este sería el audio numero 2, misma estructura </div>
+          <div class="item">este sería el audio numero 3, misma estructura </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// What is $(document).ready ? See: http://flowplayer.org/tools/documentation/basics.html#document_ready
+$(document).ready(function() {
+
+
+
+// main vertical scroll
+$("#main").scrollable({
+
+	// basic settings
+	vertical: true,
+
+	// up/down keys will always control this scrollable
+	keyboard: 'static',
+
+	// assign left/right keys to the actively viewed scrollable
+	onSeek: function(event, i) {
+		horizontal.eq(i).data("scrollable").focus();
+	}
+
+// main navigator (thumbnail images)
+}).navigator("#main_navi");
+
+// horizontal scrollables. each one is circular and has its own navigator instance
+var horizontal = $(".scrollable").scrollable({ circular: true }).navigator(".navi");
+
+
+// when page loads setup keyboard focus on the first horzontal scrollable
+horizontal.eq(0).data("scrollable").focus();
+
+});
+swfobject.registerObject("FlashID");
+</script>
+</body>
+</html>

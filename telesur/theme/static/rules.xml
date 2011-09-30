@@ -1,0 +1,68 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <rules css:if-content="#visual-portal-wrapper">
+        <rules if-path="/">
+            <theme href="telesur.theme/index.html" />
+            <replace css:theme-children="#telesur-index-listing"
+                css:content-children="#portal-column-content" />
+        </rules>
+
+        <rules css:if-content="body.template-folder_summary_view,
+                                body.portaltype-folder,
+                                body.portaltype-topic">
+            <theme href="telesur.theme/seccion.html" />
+            <replace css:theme-children="#telesur-seccion-listing"
+                css:content-children="#portal-column-content" />
+        </rules>
+
+        <theme href="telesur.theme/nota.html" />
+        <notheme css:if-content="body.template-login_form" />
+
+        <replace theme="/html/head/base"
+            content="/html/head/base" />
+        <drop theme="/html/head/meta" />
+        <after content="/html/head/meta"
+            theme-children="/html/head" />
+        <before
+            content="/html/head/style | /html/head/script | /html/head/link"
+            theme-children="/html/head"
+            />
+        <replace theme="/html/head/title"
+            content="html/head/title" />
+        <copy attributes="*"
+            css:theme="body"
+            css:content="body" />
+
+        <copy attributes="href accesskey title"
+            css:theme="#logo-telesur > a"
+            css:content="#portal-logo" />
+        <after css:theme="#logo-telesur"
+            css:content="#portal-personaltools-wrapper" />
+        <replace css:theme-children="#menu"
+            css:content-children="#portal-globalnav" />
+        <drop css:theme="#telesur-left-content p" />
+        <before css:theme="#telesur-left-content > h1"
+            css:content="#edit-bar" />
+        <replace css:theme="#telesur-left-content > h1"
+            css:content="#portal-column-content h1.documentFirstHeading" />
+        <rules css:if-content="#content #media-counter">
+            <replace 
+                css:theme-children="#telesur-left-content #nota-detail"
+                css:content="#content #media-counter" />
+            <after css:theme-children="#telesur-left-content #nota-detail"
+                css:content="#content div.newsview" />
+        </rules>
+        <after css:theme="#telesur-left-content #nota-detail"
+            css:content="#parent-fieldname-text" />
+        <replace css:theme-children="#telesur-left-content #byline" 
+            css:content-children="#content p.nitfByline" />
+        <replace css:theme="#telesur-left-content div#notas-relacionadas ul"
+            css:content="#related-items span" />
+        <drop css:theme="#telesur-left-content div.comentario-individual" />
+        <after css:theme="#telesur-left-content #comentarios-nota > h2"
+            css:content="#viewlet-below-content div.discusion" />
+    </rules>
+</rules>

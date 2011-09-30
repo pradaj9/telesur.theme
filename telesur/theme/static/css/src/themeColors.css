@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+/*==============================
+HOMEPAGE COLOR STYLES (Orange)
+
+#990066 Dark tone 100%
+#C266A3 Meddium tone 60%
+#EBCCE0 Light tone 20%
+==============================*/
+#webportal #userPanelSlider {
+	background: #990066; /* Dark*/
+	border-top: 1px solid #990066;  /* Dark*/
+}
+#webportal .userPanelTab-collapsed {
+	background: url("../../img/userPanelTabCollapsedBackground_homepage.gif") no-repeat right bottom;
+}
+#webportal .userPanelTab-expanded {
+	background: url("../../img/userPanelTabExpandedBackground_homepage.gif") no-repeat right bottom;
+}
+
+#webportal #topNavigation {
+	background:#990066 url("../../img/topNavigationBackground.png") repeat-x top;  /* Dark*/
+}
+/*#webportal #headerLogo {
+  background: #fff url("../../img/logoBbmundoHeader_homepage.gif") no-repeat left top;
+}*/
+#logoLink {
+    background: #990066 url("../../img/bbmundoLogo.png") no-repeat left top;
+}
+#logoLink:hover {
+    background: #C266A3 url("../../img/bbmundoLogo.png") no-repeat left top;
+}
+
+#webportal #headerToolBox {
+	background: #EBCCE0 url("../../img/headerToolBoxBackground_banorte.gif") no-repeat right top; /* Light */
+}
+#webportal #headerToolBox a:link, #webportal #headerToolBox a:visited {
+	color: #990066; /* Dark */
+}
+#webportal #headerToolBox a:hover, #webportal #headerToolBox a:active {
+	color: #990066; /* Dark */
+}
+
+#webportal #headerToolBox #searchContainer {
+	background: url("../../img/searchContainerBackground_banorte.gif") no-repeat center center;
+}
+#webportal #headerToolBox #searchContainer #searchButton {
+	background: #990066;
+}
+
+#webportal #breadcrumbs a:link, #webportal #breadcrumbs a:visited {
+	color: #C266A3; /* Meddium */
+}
+#webportal #breadcrumbs a:active, #webportal #breadcrumbs a:hover {
+	color: #990066; /* Dark */
+}
+
+#webportal #navigation {
+	background: #EBCCE0; /* Light */
+}
+#webportal #navigation ul {
+/*	background: #C266A3;  Meddium */
+}
+#webportal ul#mainMenu li a {
+	color: #fff;
+	background: #C266A3; /* Meddium */
+}
+#webportal ul#mainMenu .current a, #webportal ul#mainMenu li:hover > a {
+	color: #fff;
+	background: #990066; /* Dark */
+}
+#webportal ul#mainMenu li:hover > ul {
+	background: #EBCCE0; /* Light */
+}
+#webportal ul#mainMenu li:hover > ul li a {
+	color: #990066; /* Dark */
+	background: #EBCCE0; /* Light */
+}
+#webportal ul#mainMenu li:hover > ul li a:hover {
+	color: #fff;
+	background: #C266A3; /* Meddium */
+}
+
+#webportal #homeCover #featured li.ui-tabs-nav-item a {
+	background: #EBCCE0; /* Light */
+}
+#webportal #homeCover #featured li.ui-tabs-nav-item a:hover {
+	background: #C266A3; /* Meddium */
+	color: #fff;
+}
+#webportal #homeCover #featured ul.ui-tabs-nav li.ui-tabs-selected a {
+	background: #C266A3; /* Meddium */
+}
+
+#webportal #middle {
+	border-top: solid 3px #990066; /* Dark */
+}
+
+#webportal h2#postListTitle {
+	color: #C266A3; /* Meddium */
+	border-bottom: 1px solid #C266A3; /* Meddium*/
+}
+#webportal h2#postListTitle a:link, #webportal h2#postListTitle a:visited {
+	color: #C266A3; /* Meddium */
+}
+#webportal h2#postListTitle a:hover, #webportal h2#postListTitle a:active {
+	color: #990066; /* Dark */
+}
+
+a.postReadMoreButton {
+	background: transparent url("../../img/postReadMoreButtonBackground.png") no-repeat scroll 0px 0px !important;
+}
+a.postReadMoreButton:hover {
+	background: transparent url("../../img/postReadMoreButtonBackground.png") no-repeat scroll 0px -32px !important;
+}
+a.postReadMoreButton:active {
+	background: transparent url("../../img/postReadMoreButtonBackground.png") no-repeat scroll 0px -64px !important;
+	color: #990066 !important;
+}
+
+#postSocialTools {
+	background: #EBCCE0;
+}
+#postSocialTools h4 {
+	border-bottom: solid 1px #990066;
+	color: #990066;
+}
+#relatedArticles {
+	background: #EBCCE0;
+}
+#relatedArticles h4 {
+	border-bottom: solid 1px #990066;
+	color: #990066;
+}
+#relatedArticles li {
+	color: #990066;
+}
+#articleRating {
+	background: #EBCCE0;
+}
+#articleRating h5 {
+	color: #990066;
+	border-bottom: solid 1px #990066;
+}
+
+#webportal #pagination .active {
+	color: #990066; /* Dark */
+}
+#webportal #subfooter {
+	border-top: solid 3px #990066; /* Dark */
+}
+
+#webportal #footer {
+	background: #C266A3 url("../../img/footerBackground.png") no-repeat top center; /* Meddium */
+}
+
+#webportal #coyrightBox {
+	border-top: solid 3px #990066; /* Dark */
+}

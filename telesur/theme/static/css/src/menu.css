@@ -1,0 +1,146 @@
+#telesur-subheader #menu {
+	margin : 0;
+	padding-bottom : 19px;
+	padding-left:0;
+	margin:0 20px;
+	width:920px;
+	
+}
+#telesur-subheader #menu ul, #telesur-subheader #menu li {
+	display : inline;
+	list-style-type : none;
+	margin : 0;
+	padding : 0;
+}
+#telesur-subheader #menu a:link, #telesur-subheader #menu a:visited {
+	background : #CCCCCC;
+	color : #535353;
+	float : left;
+	line-height : 35px;
+	margin-right : 8px;
+	padding : 2px 16px;
+	text-decoration : none;
+	height:33px;
+	font-size:14px;
+	font-weight:bold;
+}
+#telesur-subheader #menu .selected a:link, #telesur-subheader #menu .selected a:visited {
+	background : #AC1206;
+	color : #fff;
+}
+#telesur-subheader #menu a:hover {
+	background : #AC1206;
+	color : #fff;
+}
+body.section-1 #telesur-subheader #menu li#nav-1 a, body.section-2 #telesur-subheader #menu li#nav-2 a, body.section-3 #telesur-subheader #menu li#nav-3 a, body.section-4 #telesur-subheader #menu li#nav-4 a, body.section-5 #telesur-subheader #menu li#nav-5 a, body.section-6 #telesur-subheader #menu li#nav-6 a, body.section-7 #telesur-subheader #menu li#nav-7 a {
+	background : #fff;
+	color : #000;
+}
+#telesur-subheader #menu li#nav-8 a, #telesur-subheader #menu li#nav-9 a {
+	background: url("../../img/img_vivo.png") no-repeat scroll 0 0 transparent;
+    color: #FFFFFF;
+    float: left;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 14px;
+    margin: 0 3px;
+    padding: 4px 0 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 73px;
+}
+#telesur-subheader #menu li#nav-8 a:hover, #telesur-subheader #menu li#nav-9 a:hover {
+	color:#ddd;
+	text-shadow:2px 2px 2px #666;
+}
+#telesur-subheader #menu #subnav-1, #telesur-subheader #menu #subnav-2, #telesur-subheader #menu #subnav-3, #telesur-subheader #menu #subnav-4, #telesur-subheader #menu #subnav-5, #telesur-subheader #menu #subnav-6, #telesur-subheader #menu #subnav-7 {
+	display : none;
+	width: 90%;
+}
+body.section-1 #telesur-subheader #menu ul#subnav-1, body.section-2 #telesur-subheader #menu ul#subnav-2, body.section-3 #telesur-subheader #menu ul#subnav-3, body.section-4 #telesur-subheader #menu ul#subnav-4, body.section-5 #telesur-subheader #menu ul#subnav-5, body.section-6 #telesur-subheader #menu ul#subnav-6, body.section-7 #telesur-subheader #menu ul#subnav-7 {
+	display : inline;
+	left : 10px;
+	position : absolute;
+	top : 95px;
+}
+body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-subheader #menu ul#subnav-2 a, body.section-3 #telesur-subheader #menu ul#subnav-3 a, body.section-4 #telesur-subheader #menu ul#subnav-4 a {
+	background : #fff;
+	border : none;
+	border-left : 1px solid #ccc;
+	color : #999;
+	font-size : smaller;
+	font-weight : bold;
+	line-height : 10px;
+	margin-right : 4px;
+	padding : 2px 10px 2px 10px;
+	text-decoration : none;
+}
+#telesur-subheader #menu ul a:hover {
+	color : #f00 !important;
+}
+#telesur-subheader #contents {
+	background : #AC1206;
+	border-top : none;
+	clear : both;
+	margin : 0px;
+	padding:4px 0;
+	width:960px;
+	min-height:41px;
+}
+#telesur-subheader #contents p {
+	width:800px;
+	float:left;
+}
+#telesur-subheader ul.idiomas  {
+	width:175px;
+	height:42px;
+	background:#EDEDED;
+	margin:0;
+	padding:0;	
+	list-style:none;
+	float:right;
+	margin-right:48px;
+	font-size:11px;
+	text-transform:uppercase;
+	padding-top:3px;
+}
+#telesur-subheader ul.idiomas li a:link{
+	color:#666;
+	text-decoration:none;
+	display:block;
+	margin:0;
+}
+#telesur-subheader ul.idiomas li a:active, #telesur-subheader ul.idiomas li a:hover {
+	color:#AC1206;
+	text-decoration:none;
+	font-weight:bold;
+}
+#telesur-subheader #avances {
+	width:960px;
+	height:30px;
+	color:#666;
+	font-size:12px;
+	margin:10px 0;
+	background:#ccc;
+	color:#666;
+	line-height:28px;
+}
+#telesur-subheader #avances .avances-titulo {
+	font-size:14px;
+	color:#fff;
+	width:80px;
+	height:30px;
+	display:block;
+	text-transform:uppercase;
+	background:#AC1206;
+	padding-left: 5px;
+	float:left;
+}
+#telesur-subheader #avances p a {
+	padding-left:5px;
+	text-decoration:none;
+	color:#666;
+}
+#telesur-subheader #avances p a:hover {
+	text-decoration:underline;
+}

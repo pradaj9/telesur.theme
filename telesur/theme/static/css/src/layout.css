@@ -1,0 +1,609 @@
+@charset "UTF-8";
+/* -------------------------------------------------------------- 
+   style.css [Main Stylesheet]
+   Imports every style sheet in site.
+
+	Developerd by Diego Herrera Ojeda
+	Website: http://www.diegoherrera.com
+	E-Mail: diegoherrerao@gmail.com
+	April 2011
+-------------------------------------------------------------------*/
+
+/* -------------------------------------------------------------- 
+   layout.css
+   * Sets up general layout styling.
+-------------------------------------------------------------- */
+a, img, object {
+	border:none;
+	outline:none;
+}
+/* GENERAL STYLES */
+html, body, div {	/* Eliminar todo el bloque */
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+body div {	 /* Eliminar todo el bloque */
+	color:  #666;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+/* COMMON LAYOUT */
+#telesur-container {
+	background: #fff;	/* Modificar */
+	margin: 0 auto;
+	overflow: auto;
+	padding: 0;
+	width: 960px;
+}
+#telesur-header {
+	margin: 0 0 5px 0;
+	padding: 0;
+	min-height:129px;
+}
+#telesur-header #logo-telesur a {
+	width:296px;
+	height:129px;
+	float:left;
+	background:url(../../img/logo_telesur.png) no-repeat;
+	display:block;
+}
+#telesur-subheader {
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+#telesur-middle {
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+#telesur-subfooter {
+	clear: both;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+#telesur-footer {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+
+/* FULL WIDTH ONE COLUMN */
+#telesur-full-column, .telesur-full-column {
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0;
+	padding: 0;
+}
+#telesur-full-column #especiales, .telesur-full-column #especiales {
+	width:960px;
+	height:80px;
+	margin:5px 0 15px 0;
+	padding:0;
+}
+#telesur-full-column #especiales #especial, .telesur-full-column #especiales #especial {
+	width:230px;
+	height:70px;
+	display:block;
+	border:solid 1px #666;
+	margin:0 4px;
+	float:left;
+}
+
+
+/* LEFT SIDEBAR, RIGHT CONTENT */
+#telesur-left-sidebar {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 0;
+	padding: 0;
+	width: 180px;
+}
+#telesur-right-content {
+	display: inline;
+	float: right;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 10px;
+	padding: 0;
+	width: 720px;
+}
+
+/* LEFT CONTENT, RIGHT SIDEBAR */
+#telesur-left-content, .telesur-left-content {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 5px 5px 0;
+	padding: 0;
+	width: 620px;
+}
+#telesur-left-content #nota-titular {
+	width:620px;
+	min-height:355px;
+	display:block;
+	background:#ddd;
+	margin:0 10px 15px 5px;
+	padding-left:8px;
+	clear:both;
+}
+#telesur-left-content #nota-titular p {
+	float:left;
+	width:200px;
+	margin:0;
+	line-height:20px;
+	color:#666;
+	padding-bottom:10px;
+	border-bottom:dashed 1px #666;
+}
+#telesur-right-sidebar, .telesur-right-sidebar {
+	float: right;
+	display: inline;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 5px;
+	padding: 0;
+	width: 310px;
+}
+
+/* SIDEBARS IN LEFT AND RIGHT, CENTER CONTENT */
+#telesur-first-sidebar {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 0;
+	padding: 0;
+	width: 180px;
+}
+#telesur-center-content {
+	display: inline;
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 10px;
+	padding: 0;
+	width: 520px;
+}
+#telesur-second-sidebar {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 10px;
+	padding: 0;
+	width: 180px;
+}
+
+/* TWO COLUMNS */
+#telesur-left-half {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 0;
+	padding: 0;
+	width: 450px;
+}
+#telesur-right-half {
+	display: inline;
+	float: right;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 10px;
+	padding: 0;
+	width: 450px;
+}
+
+/* THREE COLUMNS */
+#telesur-left-third {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 0;
+	padding: 0;
+	width: 293px;
+}
+#telesur-center-third {
+	display: inline;
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 10px;
+	padding: 0;
+	width: 293px;
+}
+#telesur-right-third {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 10px;
+	padding: 0;
+	width: 293px;
+}
+
+/* FOUR COLUMNS */
+#telesur-first-column {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 0;
+	padding: 0;
+	width: 215px;
+}
+#telesur-second-column {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 10px;
+	padding: 0;
+	width: 215px;
+}
+#telesur-third-column {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 10px 5px 10px;
+	padding: 0;
+	width: 215px;
+}
+#telesur-fourth-column {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 10px;
+	padding: 0;
+	width: 215px;
+}
+#senal-en-vivo a {
+	width:300px;
+	height:59px;
+	display:block;
+	background:url(../../img/img-en-vivo-back.png) repeat-x;
+	float:left;
+	font-size:18px;
+	text-transform:uppercase;
+	color:#AC1206;
+	font-weight:bold;
+	text-align:center;
+	padding:5px 0 5px 0;
+	text-decoration:none;
+	text-shadow:2px 2px 2px #666;
+}
+#senal-en-vivo p {
+	width:190px;
+	height:30px;
+	color:#666;
+	text-align:left;
+	text-decoration:none;
+	text-transform:none;
+	font-weight:normal;
+	margin:0;
+	padding:0 0 0 60px;
+	font-size:11px;
+	text-shadow:none;
+}
+#mapa-interactivo {
+	width:300px;
+	height:274px;
+	display:block;
+	float:left;
+	background:url(../../img/img-mapa.png) no-repeat;
+	margin-bottom:10px;
+	font-size:21px;
+	color:#AC1206;
+	text-align:center;
+}
+.nota-home-simple {
+	width:620px;
+	height:auto;
+	float:left;
+	border-bottom:solid 1px #AC1206;
+	margin-bottom:10px;
+}
+.nota-home-simple .imagen-nota-simple {
+	width:216px;
+	height:144px;
+	display:block;
+	float: left;
+	background:#CCC;
+	margin:0 5px 10px 0;
+}
+.nota-home-simple .titulo-nota-home {
+	font-size:18px;
+	color:#666;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin:0 0 5px 0;
+}
+.nota-home-simple p{
+	line-height:20px;
+	font-size:12px;
+	display:block;
+	border-bottom:dashed 1px #999;
+}
+#ultimos-videos {
+	width:295px;
+	height:240px;
+	float:left;
+	border:solid 1px #666;
+	margin-bottom:10px;
+	padding:5px 0 0 5px;
+}
+
+#telesur-al-dia a {
+	width:300px;
+	height:40px;
+	float:left;
+	margin-bottom:10px;
+	display:block;
+	background:#4C4C4C;
+	color:#fff;
+	font-size:32px;
+	text-decoration:none;
+	text-align:center;
+	clear:both;
+}
+#ultimos-programas {
+	width:295px;
+	height:240px;
+	float:left;
+	border:solid 1px #666;
+	margin-bottom:10px;
+	padding:5px 0 0 5px;
+}
+#ultimos-videos-relacionados {
+	width:300px;
+	height:230px;
+	display:block;
+	border:solid 1px #666;
+	margin-bottom:10px;
+	padding:5px 0 0 5px;
+	float:left;
+	text-transform:uppercase;
+	font-size:11px;
+}
+#lo-mas {
+	width:300px;
+	height:170px;
+	display:block;
+	float:left;
+	margin:5px 0 0 10px;
+}
+#compartir {
+	width:220px;
+	height:30px;
+	display:block;
+	float:left;
+	margin:10px 5px;
+}
+#compartir ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#compartir ul li a {
+	width:18px;
+	height:18px;
+	float:left;
+	margin:0 2px;
+}
+.hide {
+	visibility:hidden;
+}
+#categoria-multimedia {
+	width:840px;
+	height:auto;
+	display:block;
+	float:left;
+	clear:both;
+	margin:0 0 20px 0;
+}
+#scroller-seccion {
+	width:960px;
+	height:90px;
+	float:left;
+	display:block; 
+	clear:both;
+}
+#scroller-seccion h1 {
+	width:110px;
+	height:80px;
+	display:block;
+	text-transform:uppercase;
+	font-size:11px;
+	text-align:center;
+	float:left;
+}
+.video-section {
+	width:205px;
+	height:80px;
+	display:block;
+	float:left;
+	margin:0 3px;
+}
+.image-video {
+	width:100px;
+	height:67px;
+	display:block;
+	background:#ddd;
+	float:left;
+	clear:both;
+	margin:0 4px;
+}
+.video-section p {
+	text-transform:none;
+	display:block;
+	float:left;
+	width:94px;
+	height:55px;
+	display:block;
+}
+.notas-seccion, #telesur-seccion-listing .tileItem  {
+	width:290px;
+	height:auto;
+	float:left;
+	display:block;
+	border-bottom: solid 2px #AC1206;
+	border-right:solid 2px #AC1206;
+	margin:3px 0 0 10px;
+}
+.notas-seccion .nota-seccion-thumb {
+	width:144px;
+	height:96px;
+	background:#CCC;
+	display:block;
+	float:left;
+	margin:0 5px 5px 0;
+}
+.notas-seccion  p {
+	width:130px;
+	height:auto;
+	line-height:18px;
+	font-size:12px;
+	float:left;
+}
+#videos-categoria {
+	width:960px;
+	height:auto;
+	float:left;
+} 
+#videos-categoria #scroller-contienente {
+	width:202px;
+	height:400px;
+	float:left;
+}
+#videos-categoria #scroller-contienente ul{
+	width:210px;
+	height:375px;
+	display:block;
+	font-size:13px;
+	text-transform:uppercase;
+	margin:0;
+	padding:0;
+	list-style:none;
+	overflow:auto;
+	color:#333;
+	float:left;
+}
+#videos-categoria #scroller-contienente ul li a{
+	text-decoration:none;
+	color:#333;
+	width:200px;
+	height:auto;
+	line-height:20px;
+	margin:2px;
+	padding-left:5px;
+}
+#videos-categoria #scroller-contienente li {
+	display: block;
+}
+#videos-categoria #scroller-contienente img {
+	margin-right:3px;
+}
+#videos-categoria #scroller-contienente #buscador-videos-seccion {
+	display:block;
+	font-size:12px;
+	width:137px;
+	float:left;
+}
+#videos-categoria #video-detail {
+	width:450px;
+	height:420px;
+	float:left;
+	display:block;
+	margin: 0 10px 10px 20px;
+}
+#videos-categoria #scroll-thumbs-video {
+	width:275px;
+	height:420px;
+	float:left;
+}
+#mas-titulares {
+	width:930px;
+	height:auto;
+	float:left;
+}
+#mas-titulares .titular-individual {
+	width:218px;
+	height:194px;
+	display:block;
+	border:solid 1px #666;
+	float:left;
+	margin:0 3px;
+	padding:3px;
+}
+#mas-titulares .titulo-seccion {
+	width:218px;
+	height:30px;
+	float:left;
+	margin-bottom:3px;
+	padding:3px 0 0 0;
+	border-bottom:solid 1px #666;
+}
+#mas-titulares ul {
+	width:215px;
+	height:auto;
+	margin:0;
+	padding:0;
+	text-decoration:none;
+	font-size:12px;
+	list-style:inside;
+}
+#mas-titulares li a {
+	width:215px;
+	height:auto;
+	line-height:16px;
+	text-decoration:none;
+	color:#666;
+	padding:3px 0 0 0;
+}
+#nota-detail {
+	width:205px;
+	display:block;
+	border:solid 1px #666;
+	float:left;
+	margin:10px 0;
+    padding: 8px 5px;
+}
+#notas-relacionadas {
+	width:620px;
+	height:auto;
+	display:block;
+	clear:both;
+}
+#notas-relacionadas ul {
+	width:610px;
+	height:auto;
+	float:left;
+	margin-bottom:20px;
+	padding:0;
+	list-style:none;
+	border-top: solid 2px #AC1206;
+	border-bottom: solid 2px #AC1206;
+}
+#notas-relacionadas li a {
+	width:610px;
+	height:auto;
+	line-height:32px;
+	color:#666;
+	text-decoration:none;
+	font-size:12px;
+}
+#comentarios-nota {
+	width:620px;
+	height:auto;
+	float:left;
+}
+#comentarios-nota .comentario-individual {
+	width:620px;
+	min-height:120px;
+	float:left;
+	display:block;
+	padding:5px;
+	background:url(../../img/iconos/nota-detail/comentario-nota-back.png) no-repeat;
+	margin-bottom:10px;
+}
+#comentarios-nota .comentario-individual .titulo-comentario {
+	font-size:11px;
+	margin:5px 3px;
+}
+#comentarios-nota .comentario-individual .titulo-comentario a {
+	font-size:11px;
+	text-decoration:none;
+	font-weight:bold;
+	color:#666;
+}
+#comentarios-nota .comentario-individual p {
+	width:570px;
+	color:#999;
+	margin-left:15px;
+}
+#comentarios-nota .comentario-individual .img-usuario {
+	background:url(../../img/iconos/nota-detail/user.png) no-repeat;
+	width:40px;
+	height:40px;
+	display:block;
+	margin:0 8px  8px 0;
+	float:left;
+}

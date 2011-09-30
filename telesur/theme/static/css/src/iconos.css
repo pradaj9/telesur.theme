@@ -1,0 +1,179 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.ico-audio {
+	background:url(../../img/iconos/generales/audio.png)no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-video {
+	background:url(../../img/iconos/generales/video.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-foto {
+	background:url(../../img/iconos/generales/foto.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-nota {
+	background:url(../../img/iconos/generales/nota.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-calendario {
+	background:url(../../img/iconos/generales/calendario.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-facebook {
+	background:url(../../img/iconos/generales/facebook.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-twitter {
+	background:url(../../img/iconos/generales/twitter.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-soyreportero {
+	background:url(../../img/iconos/generales/soyreportero.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-youtube {
+	background:url(../../img/iconos/generales/youtube.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.ico-plus1 {
+	background:url(../../img/iconos/generales/plus1.png) no-repeat;
+	display:block;
+	width:15px;
+	height:15px;
+	margin:7px 4px 3px 4px;
+	float:left;
+	clear:both;
+}
+.btn-flecha-derecha a {
+	width:10px;
+	height:17px;
+	display:block;
+	background:url(../../img/iconos/flecha-derecha.png) no-repeat;
+	float:right;
+	margin:85px 0 0 0 ;
+	text-indent:-9999px;
+}
+.btn-flecha-izquierda a {
+	width:10px;
+	height:17px;
+	display:block;
+	background:url(../../img/iconos/flecha-izquierda.png) no-repeat;
+	float:left;
+	margin:85px 7px 0 0;
+	text-indent:-9999px;
+}
+.btn-seguir-leyendo a {
+	width:14px;
+	height:14px;
+	display:block;
+	background:url(../../img/iconos/btn-continuar.png) no-repeat;
+	float:right;
+	text-indent:-99999px;
+}
+.ico-nota-foto a {
+	width:45px;
+	height:20px;
+	display:block;
+	background:url(../../img/iconos/nota-detail/foto.png) no-repeat;
+	float:left;
+	margin:8px 0 0 5px;
+	color:#999;
+	text-align:center;
+	padding:25px 0 0 0;
+	text-decoration:none;
+	font-size:11px;
+}
+.ico-nota-audio a {
+	width:45px;
+	height:20px;
+	display:block;
+	background:url(../../img/iconos/nota-detail/audio.png) no-repeat;
+	float:left;
+	margin:8px 0 0 5px;
+	color:#999;
+	text-align:center;
+	padding:25px 0 0 0;
+	text-decoration:none;
+	font-size:11px;
+}
+.ico-nota-comentarios  a{
+	width:45px;
+	height:20px;
+	display:block;
+	background:url(../../img/iconos/nota-detail/comentarios.png) no-repeat;
+	float:left;
+	margin:8px 0 0 0;
+	color:#999;
+	text-align:center;
+	padding:25px 0 0 0;
+	text-decoration:none;
+	font-size:11px;
+}
+.ico-nota-video a {
+	width:45px;
+	height:20px;
+	display:block;
+	background:url(../../img/iconos/nota-detail/video.png) no-repeat;
+	float:left;
+	margin:8px 0 0 5px;
+	color:#999;
+	text-align:center;
+	padding:25px 0 0 0;
+	text-decoration:none;
+	font-size:11px;
+}
+.ico-comentarios {
+	width:18px;
+	height:16px;
+	display:block;
+	float:left;
+	margin:0 5px 0 0;
+	background:url(../../img/iconos/nota-detail/nota-relacionada.png) no-repeat;
+}

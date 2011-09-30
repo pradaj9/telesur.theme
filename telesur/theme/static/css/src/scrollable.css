@@ -1,0 +1,183 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* DEPRECATED FILE */
+
+
+
+
+/* this makes it possible to add next button beside scrollable */
+.scrollable {
+	float:left;
+}
+
+/* prev, next, prevPage and nextPage buttons */
+a.prev, a.next, a.prevPage, a.nextPage {
+	display:block;
+	width:18px;
+	height:18px;
+	background:url(../img/scrollable/arrow/left.png) no-repeat;
+	float:left;
+	margin:43px 10px;
+	cursor:pointer;
+	font-size:1px;
+}
+
+/* mouseover state */
+a.prev:hover, a.next:hover, a.prevPage:hover, a.nextPage:hover {
+	background-position:0px -18px;		
+}
+
+/* disabled navigational button */
+a.disabled {
+	visibility:hidden !important;		
+}
+
+/* next button uses another background image */
+a.next, a.nextPage {
+	background-image:url(../img/scrollable/arrow/right.png);
+	clear:right;	
+}
+
+
+
+/*********** navigator ***********/
+
+
+/* position and dimensions of the navigator */
+.navi {
+	margin-left:328px;
+	width:85px;
+	height:20px;
+}
+
+
+/* items inside navigator */
+.navi a {
+	width:8px;
+	height:8px;
+	float:left;
+	margin:3px;
+	background:url(../../img/navigator.png) 0 0 no-repeat;
+	display:block;
+	font-size:1px;
+}
+
+/* mouseover state */
+.navi a:hover {
+	background-position:0 -8px;      
+}
+
+/* active state (current page state) */
+.navi a.active {
+	background-position:0 -16px;     
+} 	
+
+/* main vertical scroll */
+	#main {
+	position:relative;
+	overflow:hidden;
+	height: 500px;
+	margin:0 0 30px 0;
+	padding:0;
+}
+
+/* root element for pages */
+	#pages {
+	position:absolute;
+	height:20000em;
+}
+
+/* single page */
+	.page {
+	padding:10px;
+	height: 478px;
+	background:#fff;
+	border:solid 1px #666;
+	width:435px;
+}
+
+/* root element for horizontal scrollables */
+	.scrollable {
+	position:relative;
+	overflow:hidden;
+	width: 435px;
+	height: 450px;
+}
+
+/* root element for scrollable items */
+	.scrollable .items {
+	width:20000em;
+	position:absolute;
+	clear:both;
+}
+
+/* single scrollable item */
+	.item {
+	float:left;
+	cursor:pointer;
+	width:420px;
+	height:450px;
+	padding:10px;
+	font-weight:normal;
+	font-size:12px;
+}
+
+/* main navigator */
+	#main_navi {
+	float:left;
+	padding:0px !important;
+	margin:0px !important;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#main_navi li {
+	background-color:#ddd;
+	border-top:1px solid #666;
+	clear:both;
+	color:#666;
+	height:auto;
+	list-style-type:none;
+	padding:10px 10px 10px 3px;
+	width:150px;
+	cursor:pointer;
+	font-size:22px;
+	font-weight:bold;
+}
+
+#main_navi li:hover {
+	background-color:#CCC;
+	color:#333;
+}
+
+#main_navi li.active {
+	background-color:#fff;
+	color:#333;
+}
+#main_navi li.subnavi {
+	font-size:12px;
+	height:14px;
+	background:none;
+	width:110px;
+}
+
+#main_navi img {
+	float:left;
+	margin-right:10px;
+}
+
+#main_navi strong {
+	display:block;
+}
+
+#main div.navi {
+	margin:0 auto;
+	cursor:pointer;
+}
+#main .navi-foto {
+	background:url(../img/iconos/fotografia.png) no-repeat #666;
+	width:26px;
+	height:22px;
+	float:left;
+	margin:0 10px 0 10px;
+}

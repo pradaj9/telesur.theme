@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* -------------------------------------------------------------- 
+   style.css [Main Stylesheet]
+   Imports every style sheet in site.
+
+	Developerd by Diego Herrera Ojeda
+	Website: http://www.diegoherrera.com
+	E-Mail: diegoherrerao@gmail.com
+	April 2011
+-------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------
+   tables.css
+   * Sets up some default styling for tables.
+-------------------------------------------------------------- */
+
+/* Tables still need 'cellspacing="0"' in the markup. */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	font-weight: normal;
+	text-align: left;
+}
+table, td, th {
+	vertical-align: middle;
+}

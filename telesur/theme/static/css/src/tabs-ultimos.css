@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+.panes-ultimos div {
+	display:none;
+	padding:15px 10px;
+	border:1px solid #999;
+	border-top:0;
+	height:130px;
+	font-size:14px;
+	background-color:#fff;
+	width:280px;
+}
+/* root element for tabs-ultimos  */
+.tabs-ultimos {
+	width:302px;
+}
+ul.tabs-ultimos {
+	list-style:none;
+	margin:0 !important;
+	padding:0;
+	border-bottom:1px solid #666;
+	height:32px;
+}
+
+/* single tab */
+ul.tabs-ultimos li {
+	float:left;
+	text-indent:0;
+	padding:0;
+	margin:0 !important;
+	list-style-image:none !important;
+}
+
+/* link inside the tab. uses a background image */
+ul.tabs-ultimos a {
+	background:url(../../img/pestana-ultimos.png) no-repeat;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	text-align:center;
+	display:block;
+	height: 31px;
+	line-height:13px;
+	width: 87px;
+	text-align:center;
+	text-decoration:none;
+	color:#333;
+	padding:3px 0 0 0px;
+	margin:0 3px;
+	position:relative;
+	top:1px;
+}
+
+ul.tabs-ultimos a:active {
+	outline:none;
+}
+
+/* when mouse enters the tab move the background image */
+ul.tabs-ultimos a:hover {
+	color:#000;
+	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
+}
+
+/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+ul.tabs-ultimos a.current, ul.tabs-ultimos a.current:hover, ul.tabs-ultimos li.current a {
+	cursor:default !important;
+	color:#000 !important;
+	background-color:#fff;
+	height:32px;
+}

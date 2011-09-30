@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<!--
+	This is a jQuery Tools standalone demo. Feel free to copy/paste.
+	                                                         
+	http://flowplayer.org/tools/demos/
+	
+	Do *not* reference CSS files and images from flowplayer.org when in production  
+
+	Enjoy!
+-->
+<head>
+<title>jQuery Tools standalone demo</title>
+<!-- include the Tools -->
+<script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- the tabs-opinion -->
+<ul class="tabs-opinion">
+  <li class="active"><a href="#">Artículo</a></li>
+  <li><a href="#">Contexto</a></li>
+  <li><a href="#">Entrevista</a></li>
+  <li><a href="#">Encuesta</a></li>
+</ul>
+<!-- tab "panes-opinion" -->
+<div class="panes-opinion">
+  <div>First tab content. Tab contents are called "panes-opinion"</div>
+  <div>Second tab content</div>
+  <div>Third tab content</div>
+</div>
+<!-- This JavaScript snippet activates those tabs-opinion -->
+<script>
+
+// perform JavaScript after the document is scriptable.
+$(function() {
+	// setup ul.tabs-opinion to work as tabs-opinion for each div directly under div.panes-opinion
+	$("ul.tabs-opinion").tabs("div.panes-opinion > div");
+});
+</script>
+</body>
+</html>

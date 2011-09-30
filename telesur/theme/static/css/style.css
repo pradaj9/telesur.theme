@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* -------------------------------------------------------------- 
+   style.css [Main Stylesheet]
+   Imports every style sheet in site.
+
+	Developerd by Diego Herrera Ojeda
+	Website: http://www.diegoherrera.com
+	E-Mail: diegoherrerao@gmail.com
+	April 2011
+-------------------------------------------------------------------*/
+
+/* -------------------------------------------------------------- 
+   style.css
+   * Import style sheets for layout and content elements
+-------------------------------------------------------------- */
+@import "src/content.css";
+@import "src/forms.css";
+@import "src/layout.css";
+@import "src/tables.css";
+@import "src/iconos.css";
+@import "src/menu.css";
+@import "src/scrollable.css";
+@import "src/tabs-ultimos.css";
+@import "src/tabs-categorias-multimedia.css";
+@import "src/tabs-social.css";
+@import "src/tabs-opinion.css";
+@import "src/tabs-redesociales.css";
