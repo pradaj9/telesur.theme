@@ -2,10 +2,10 @@
     xmlns="http://namespaces.plone.org/diazo"
     xmlns:css="http://namespaces.plone.org/diazo/css"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
+    
     <rules css:if-content="#visual-portal-wrapper">
         <rules if-path="/">
-            <theme href="telesur.theme/index.html" />
+            <theme href="index.html" />
             <replace css:theme-children="#telesur-index-listing"
                 css:content-children="#portal-column-content" />
         </rules>
@@ -13,21 +13,20 @@
         <rules css:if-content="body.template-folder_summary_view,
                                 body.portaltype-folder,
                                 body.portaltype-topic">
-            <theme href="telesur.theme/seccion.html" />
+            <theme href="seccion.html" />
             <replace css:theme-children="#telesur-seccion-listing"
                 css:content-children="#portal-column-content" />
         </rules>
 
-        <theme href="telesur.theme/nota.html" />
-        <notheme css:if-content="body.template-login_form" />
+        <theme href="nota.html" />
+        <notheme if="$ajax_load" />
 
         <replace theme="/html/head/base"
             content="/html/head/base" />
         <drop theme="/html/head/meta" />
         <after content="/html/head/meta"
             theme-children="/html/head" />
-        <before
-            content="/html/head/style | /html/head/script | /html/head/link"
+        <before content="/html/head/style | /html/head/script | /html/head/link"
             theme-children="/html/head"
             />
         <replace theme="/html/head/title"
@@ -35,7 +34,6 @@
         <copy attributes="*"
             css:theme="body"
             css:content="body" />
-
         <copy attributes="href accesskey title"
             css:theme="#logo-telesur > a"
             css:content="#portal-logo" />
