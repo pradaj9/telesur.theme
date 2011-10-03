@@ -607,3 +607,11 @@ body div {	 /* Eliminar todo el bloque */
 	margin:0 8px  8px 0;
 	float:left;
 }
+
+#video-porgramacion {
+	width:620px;
+	height:429px;
+	display:block;
+	border: solid 2px #666;
+	float:left;	
+}
