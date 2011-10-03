@@ -220,3 +220,24 @@ td {
 	text-indent:-99999px;
 	margin:3px;
 }
+.space {
+	margin:10px 0 0 0;
+	display:block;
+}
+.banner-vertical {
+	width:120px;
+	height:240px;
+	display:block;
+	background:#666;
+	margin-bottom:20px;
+	color:#CCC;
+	float: right;
+}
+.banner-skycraper {
+	width:160px;
+	height:600px;
+	display:block;
+	background:#999;
+	margin:5px;
+	float:right;
+}
