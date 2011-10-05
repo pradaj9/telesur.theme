@@ -141,6 +141,118 @@ body div {	 /* Eliminar todo el bloque */
 	padding: 0;
 	width: 310px;
 }
+#especiales-vertical {
+	width:245px;
+	height:360px;
+	display:block;
+	background:#EDEDED;
+	padding:5px 0 0 5px;
+}
+
+/* RIGHT SIDEBAR SMALL */
+
+#telesur-left-content-big {
+	float: left;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 5px 5px 0;
+	padding: 0;
+	width: 700px;
+}
+#telesur-left-content-big #video-scroll-home {
+	width:690px;
+	height:550px;
+	display:block;
+	border:solid 1px #666;
+	margin:0 0 15px 0;
+}
+#telesur-left-content-big #video-scroll-home h1 {
+	font-size:24px;
+	margin:5px 0;
+}
+#telesur-left-content-big #video-scroll-home p {
+	border-bottom:solid 1px #ccc;
+	width:220px;
+	float:left;
+	padding-left:10px;
+	margin-bottom:5px;
+}
+#telesur-left-content-big ul {
+	width:200px;
+	height:auto;
+	float:left;
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#telesur-left-content-big ul li a {
+	color:#AC1206;
+	text-decoration:none;
+	display:block;
+	padding-bottom:15px;
+	font-size:10px;
+}
+#telesur-left-content-big #scroller-video-home {
+	width:670px;
+	height:155px;
+	display:block;
+	float:left;
+	margin:5px;
+	border-top:solid 1px #666;
+	padding:5px;
+}
+#telesur-left-content-big #scroller-video-home #video-thumb-home {
+	width:140px;
+	height:184px;
+	display:block;
+	float:left; margin:8px 10px;
+	background:#CCC;
+}
+#telesur-left-content-big #scroller-video-home #video-thumb-home img {
+	width:140px;
+	height:94px;
+	display:block;
+	float:left;
+	background:#999;
+	margin-bottom:5px;
+}
+#telesur-left-content-big #scroller-video-home #video-thumb-home a p {
+	width:120px;
+	border:none;
+	font-size:11px;
+}
+#notas-sencilla-grande  {
+	width:340px;
+	height:auto;
+	float:left;
+	display:block;
+	border-bottom: solid 2px #AC1206;
+	border-right:solid 2px #AC1206;
+	margin:3px 0 0 5px;
+}
+#notas-sencilla-grande .nota-sencilla-grande-thumb {
+	width:144px;
+	height:96px;
+	background:#CCC;
+	display:block;
+	float:left;
+	margin:0 5px 5px 0;
+}
+#notas-sencilla-grande  p {
+	width:130px;
+	height:auto;
+	line-height:18px;
+	font-size:12px;
+	float:left;
+}
+#telesur-right-sidebar-small {
+	float: right;
+	display: inline;
+	height: auto; /* Puede cambiar a altura fija en pixeles */
+	margin: 0 0 5px 5px;
+	padding: 0;
+	width: 250px;
+}
+
 
 /* SIDEBARS IN LEFT AND RIGHT, CENTER CONTENT */
 #telesur-first-sidebar {
@@ -252,6 +364,35 @@ body div {	 /* Eliminar todo el bloque */
 	text-shadow:2px 2px 2px #666;
 }
 #senal-en-vivo p {
+	width:190px;
+	height:30px;
+	color:#666;
+	text-align:left;
+	text-decoration:none;
+	text-transform:none;
+	font-weight:normal;
+	margin:0;
+	padding:0 0 0 60px;
+	font-size:11px;
+	text-shadow:none;
+}
+#senal-en-vivo-small a {
+	width:250px;
+	height:59px;
+	display:block;
+	background:url(../../img/img-en-vivo-back.png) repeat-x;
+	float:left;
+	font-size:18px;
+	text-transform:uppercase;
+	color:#AC1206;
+	font-weight:bold;
+	text-align:center;
+	padding:5px 0 5px 0;
+	margin:10px 0;
+	text-decoration:none;
+	text-shadow:2px 2px 2px #666;
+}
+#senal-en-vivo-small p {
 	width:190px;
 	height:30px;
 	color:#666;
@@ -607,39 +748,28 @@ body div {	 /* Eliminar todo el bloque */
 	margin:0 8px  8px 0;
 	float:left;
 }
-
-#video-porgramacion {
-	width:620px;
-	height:429px;
+#entrevista-home {
+	width:465px;
+	height:308px;
 	display:block;
-	border: solid 2px #666;
-	float:left;	
+	float:left;
+	border-right:solid 2px #AC1206;
+	border-bottom:solid 2px #AC1206;
+	padding:0 5px 15px 0;
 }
-#video-porgramacion #titular-videoEnvivo {
-	width:620px;
-	height:50px; 
-	display:block;
-	background:#BA3B31;
-}
-#video-porgramacion #titular-videoEnvivo p {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:18px;
-	color:#fff;
-	padding-top:4px;
-	margin:0;
-}
-#video-porgramacion #titular-videoEnvivo .horario {
-	font-size:12px;
-	float: left;
-	margin:0;
-	padding:0;
-}
-#video-porgramacion #titular-videoEnvivo img {
-	width:80px;
-	height:33px;
+#entrevista-home img {
+	width:220px;
+	height:146px;
 	display:block;
 	background:#999;
 	float:left;
-	margin: 5px 10px;
-	font-size:9px;
+	margin:10px 15px 5px 0;
 }
+#entrevista-home h4 {
+	color:#AC1206;
+	margin:0 0 5px 0;
+	padding:0;
+	font-weight:normal;
+	font-size:14px;
+}
+
