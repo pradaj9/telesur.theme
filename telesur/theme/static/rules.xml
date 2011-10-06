@@ -41,6 +41,14 @@
             css:content="#portal-personaltools-wrapper" />
         <replace css:theme-children="#menu"
             css:content-children="#portal-globalnav" />
+
+        <drop css:content="#ticker-wrapper" />
+        <replace
+            css:theme="#avances"
+            css:content="#ticker-wrapper"
+            method="raw"
+            />
+
         <drop css:theme="#telesur-left-content p" />
         <before css:theme="#telesur-left-content > h1"
             css:content="#edit-bar" />
