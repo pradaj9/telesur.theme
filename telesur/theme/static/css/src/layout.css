@@ -562,7 +562,7 @@ body div {	 /* Eliminar todo el bloque */
 }
 .notas-seccion, #telesur-seccion-listing .tileItem  {
 	width:290px;
-	height:auto;
+	height:244px;
 	float:left;
 	display:block;
 	border-bottom: solid 2px #AC1206;
