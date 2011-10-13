@@ -7,6 +7,7 @@
 }
 #telesur-subheader #envivo  {
     float: right;
+	margin:0 10px;
 }
 #telesur-subheader #menu ul, #telesur-subheader #menu li,
 #telesur-subheader #envivo ul, #telesur-subheader #envivo li {

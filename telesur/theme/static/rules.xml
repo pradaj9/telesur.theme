@@ -5,9 +5,13 @@
     
     <rules css:if-content="#visual-portal-wrapper">
         <rules if-path="/">
-            <theme href="index.html" />
-            <replace css:theme-children="#telesur-index-listing"
-                css:content-children="#portal-column-content" />
+            <theme href="home-scroll.html" />
+            <drop css:theme="div.notas-sencilla-grande" />
+            <after css:theme="#video-scroll-home">
+                <xsl:for-each css:select="div.notas-seccion">
+                    <div><xsl:copy-of select="current()" /></div>
+                </xsl:for-each>
+            </after>
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
