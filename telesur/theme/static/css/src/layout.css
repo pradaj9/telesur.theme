@@ -220,7 +220,7 @@ body div {	 /* Eliminar todo el bloque */
 	border:none;
 	font-size:11px;
 }
-#notas-sencilla-grande  {
+.notas-sencilla-grande  {
 	width:340px;
 	height:auto;
 	float:left;
@@ -229,7 +229,7 @@ body div {	 /* Eliminar todo el bloque */
 	border-right:solid 2px #AC1206;
 	margin:3px 0 0 5px;
 }
-#notas-sencilla-grande .nota-sencilla-grande-thumb {
+.notas-sencilla-grande .nota-sencilla-grande-thumb {
 	width:144px;
 	height:96px;
 	background:#CCC;
@@ -237,7 +237,7 @@ body div {	 /* Eliminar todo el bloque */
 	float:left;
 	margin:0 5px 5px 0;
 }
-#notas-sencilla-grande  p {
+.notas-sencilla-grande  p {
 	width:130px;
 	height:auto;
 	line-height:18px;
@@ -572,10 +572,11 @@ body div {	 /* Eliminar todo el bloque */
 .notas-seccion .nota-seccion-thumb {
 	width:144px;
 	height:96px;
-	background:#CCC;
-	display:block;
+	display: table-cell;
 	float:left;
 	margin:0 5px 5px 0;
+    text-align: center;
+    vertical-align: middle;
 }
 .notas-seccion  p {
 	width:130px;
