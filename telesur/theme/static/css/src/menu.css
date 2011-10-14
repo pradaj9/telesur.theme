@@ -89,7 +89,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	clear : both;
 	margin : 0px;
 	padding:4px 0;
-	width:960px;
+	width:1024px;
 	min-height:41px;
 }
 #telesur-subheader #contents p {
@@ -121,7 +121,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	font-weight:bold;
 }
 #telesur-subheader #avances {
-	width:960px;
+	width:1024px;
 	height:30px;
 	color:#666;
 	font-size:12px;
