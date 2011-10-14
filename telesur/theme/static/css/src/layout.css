@@ -81,13 +81,13 @@ body div {	 /* Eliminar todo el bloque */
 	margin:5px 0 15px 0;
 	padding:0;
 }
-#telesur-full-column #especiales #especial, .telesur-full-column #especiales #especial {
+#telesur-full-column #especiales .especial, .telesur-full-column #especiales .especial {
 	width:230px;
 	height:70px;
 	display:block;
-	border:solid 1px #666;
 	margin:0 4px;
 	float:left;
+    text-align: center;
 }
 
 
