@@ -252,6 +252,10 @@ body div {	 /* Eliminar todo el bloque */
 	font-size:12px;
 	float:left;
 }
+#telesur-right-sidebar-small > div {
+    margin: 0 auto;
+    display: block;
+}
 #telesur-right-sidebar-small {
 	float: right;
 	display: inline;
@@ -389,14 +393,13 @@ body div {	 /* Eliminar todo el bloque */
 	height:59px;
 	display:block;
 	background:url(../../img/img-en-vivo-back.png) repeat-x;
-	float:left;
 	font-size:18px;
 	text-transform:uppercase;
 	color:#AC1206;
 	font-weight:bold;
 	text-align:center;
 	padding:5px 0 5px 0;
-	margin:10px 0;
+	margin:10px auto;
 	text-decoration:none;
 	text-shadow:2px 2px 2px #666;
 }
