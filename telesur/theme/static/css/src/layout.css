@@ -146,6 +146,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 	width:245px;
 	padding:5px 0 0 5px;
+    margin: 0 auto;
 	/*
     height:360px;
 	background:#EDEDED;
