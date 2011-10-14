@@ -97,10 +97,12 @@
       </ul>
     </li>
     <li id="nav-7"><a href="#7">Programación</a></li>
-    <li id="nav-8"><a href="#8"><span class="ico-audio"></span>Audio <br />
-      en vivo</a></li>
-    <li id="nav-9"><a href="#9"><span class="ico-video"></span>Señal <br />
-      en vivo</a></li>
+  </ul>
+  <ul id="envivo">
+        <li id="nav-8" style="display:none;"><a href="#8"><span class="ico-audio"></span>Audio <br />
+            en vivo</a></li>
+        <li id="nav-9"><a href="http://www.telesurtv.net/secciones/canal/senalenvivo.php"><span class="ico-video"></span>Señal <br />
+            en vivo</a></li>
   </ul>
   <div id="contents">
     <ul class="idiomas">
@@ -124,20 +126,20 @@
 <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
 <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
 <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:10px;">
-  <param name="movie" value="/static/swf/flowplayer-3.2.7.swf" />
+  <param name="movie" value="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" />
   <param name="quality" value="high" />
   <param name="wmode" value="opaque" />
   <param name="swfversion" value="6.0.65.0" />
   <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don't want users to see the prompt. -->
-  <param name="expressinstall" value="/static/Scripts/expressInstall.swf" />
+  <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
   <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
   <!--[if !IE]>-->
-  <object type="application/x-shockwave-flash" data="/static/swf/flowplayer-3.2.7.swf" width="362" height="247">
+  <object type="application/x-shockwave-flash" data="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" width="362" height="247">
     <!--<![endif]-->
     <param name="quality" value="high" />
     <param name="wmode" value="opaque" />
     <param name="swfversion" value="6.0.65.0" />
-    <param name="expressinstall" value="/static/Scripts/expressInstall.swf" />
+    <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
     <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
     <div>
       <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
@@ -205,12 +207,20 @@
 <!-- Begin Right Sidebar -->
 <div id="telesur-right-sidebar">
   <div style="width:300px; height:250px; background:#999; display:block; margin:30px 0;"> Banner publicitario 300 x 250 </div>
-  <div id="ultimos-videos">
-    <h2>Últimos videos</h2>
-  </div>
-  <div id="ultimos-programas">
-    <h2>Últimos programas</h2>
-  </div>
+  <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
+      height="175" width="308" style="border: none; margin: 5px auto;">
+          <p>Tu navegador no puede ver este contenido.</p>
+      </iframe>
+  <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
+      height="500" width="308" style="border: none; margin: 5px auto;">
+          <p>Tu navegador no puede ver este contenido.</p>
+      </iframe>
+<!--div id="ultimos-videos">
+  <h2>Ultimos videos</h2>
+</div>
+<div id="ultimos-programas">
+  <h2>Últimos programas</h2>
+</div-->
   <div id="redes-sociales">
     <ul class="tabs-redesociales">
       <li class="active"><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
@@ -276,20 +286,20 @@
   <div id="video-detail">
     <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
     <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:0 8px 5px 20px; display:block; clear:both;">
-      <param name="movie" value="swf/flowplayer-3.2.7.swf" />
+      <param name="movie" value="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" />
       <param name="quality" value="high" />
       <param name="wmode" value="opaque" />
       <param name="swfversion" value="6.0.65.0" />
       <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
-      <param name="expressinstall" value="Scripts/expressInstall.swf" />
+      <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
       <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
       <!--[if !IE]>-->
-      <object type="application/x-shockwave-flash" data="swf/flowplayer-3.2.7.swf" width="362" height="247">
+      <object type="application/x-shockwave-flash" data="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" width="362" height="247">
         <!--<![endif]-->
         <param name="quality" value="high" />
         <param name="wmode" value="opaque" />
         <param name="swfversion" value="6.0.65.0" />
-        <param name="expressinstall" value="Scripts/expressInstall.swf" />
+        <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
         <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
         <div>
           <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>

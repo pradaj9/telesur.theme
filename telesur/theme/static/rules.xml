@@ -19,7 +19,7 @@
                                 body.portaltype-topic">
             <theme href="seccion.html" />
             <replace css:theme-children="#telesur-seccion-listing"
-                css:content-children="#portal-column-content" />
+                css:content-children="#content-core" />
         </rules>
 
         <theme href="nota.html" />

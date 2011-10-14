@@ -99,11 +99,13 @@
       </ul>
     </li>
     <li id="nav-7"><a href="#7">Programación</a></li>
-    <li id="nav-8"><a href="#8"><span class="ico-audio"></span>Audio <br />
-      en vivo</a></li>
-    <li id="nav-9"><a href="#9"><span class="ico-video"></span>Señal <br />
-      en vivo</a></li>
-  </ul>
+    </ul>
+    <ul id="envivo">
+        <li id="nav-8" style="display:none;"><a href="#8"><span class="ico-audio"></span>Audio <br />
+            en vivo</a></li>
+        <li id="nav-9"><a href="http://www.telesurtv.net/secciones/canal/senalenvivo.php"><span class="ico-video"></span>Señal <br />
+            en vivo</a></li>
+    </ul>
   <div id="contents">
     <ul class="idiomas">
       <img src="img/img_idiomas.png" width="29" height="28" alt="selección de idioma" style="margin:6px 15px 0 15px; float:left;" />
@@ -285,15 +287,20 @@
   <!-- End Left Content -->
   <!-- Begin Right Sidebar -->
   <div class="telesur-right-sidebar">
-      <iframe src="http://multimedia.telesurtv.net/media/cmswidgets/scroller/scroller.html" height="175">
+      <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
+          height="175" width="308" style="border: none; margin: 5px auto;">
+          <p>Tu navegador no puede ver este contenido.</p>
+      </iframe>
+      <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
+          height="500" width="308" style="border: none; margin: 5px auto;">
           <p>Tu navegador no puede ver este contenido.</p>
       </iframe>
     <!--div id="ultimos-videos">
       <h2>Ultimos videos</h2>
-    </div-->
+    </div>
     <div id="ultimos-programas">
       <h2>Últimos programas</h2>
-    </div>
+    </div-->
   </div>
   <!-- End Right Sidebar -->
   <!-- Full column -->

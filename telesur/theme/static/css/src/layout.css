@@ -39,7 +39,8 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-header {
 	margin: 0 0 5px 0;
 	padding: 0;
-	min-height:129px;
+	height:205px;
+    background:url(../../mundo.png) no-repeat;
 }
 #telesur-header #logo-telesur a {
 	width:296px;
@@ -49,7 +50,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 }
 #telesur-subheader {
-	margin: 0 0 5px 0;
+	margin: -60px 0 5px 0;
 	padding: 0;
 }
 
