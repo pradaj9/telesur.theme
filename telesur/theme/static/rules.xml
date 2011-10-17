@@ -60,6 +60,8 @@
             css:if-content="body.template-atct_edit,
                             body.template-login_form,
                             body.template-logged_out,
+                            body.template-search,
+                            body.template-search_form,
                             body.template-overview-controlpanel">
             <replace css:theme="#telesur-middle"
                 css:content="#content" />
