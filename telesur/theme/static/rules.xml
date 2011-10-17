@@ -20,17 +20,25 @@
             <theme href="seccion.html" />
             <replace css:theme-children="#telesur-seccion-listing"
                 css:content-children="#content-core" />
-            <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
-            <replace css:theme="#mapa-interactivo">
+            <drop css:content="#ultimas-noticias a > img" />
+            <replace css:theme="div.telesur-right-sidebar #mapa-interactivo"
+                css:content="dl.portlet-collection-ultimas-noticias" />
+                <!--
                 <div id="ultimas-noticias">
                     <div class="breadcumb-categoria">Últimas Noticias</div>
                     <div>
                         <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                            <xsl:copy-of select="node()" />
+                            <a>
+                                <xsl:copy-of select="a/node()" />
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="a/@href" />
+                                </xsl:attribute>
+                            </a>
                         </xsl:for-each>
                     </div>
                 </div>
             </replace>
+            -->
         </rules>
 
         <rules css:if-content="body.portaltype-collective-nitf-content">
