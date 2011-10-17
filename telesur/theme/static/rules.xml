@@ -74,6 +74,8 @@
             css:content="#portal-logo" />
         <after css:theme="#logo-telesur"
             css:content="#portal-personaltools-wrapper" />
+        <after css:theme-children="#telesur-header"
+            css:content="#portal-searchbox" />
         <replace css:theme-children="#menu"
             css:content-children="#portal-globalnav" />
 
