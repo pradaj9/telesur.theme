@@ -7,38 +7,35 @@
         <rules if-path="/">
             <theme href="home-scroll.html" />
             <drop css:theme="div.notas-sencilla-grande" />
-            <after css:theme="#video-scroll-home">
-                <xsl:for-each css:select="div.notas-seccion">
-                    <div><xsl:copy-of select="current()" /></div>
-                </xsl:for-each>
-            </after>
+            <replace
+                css:theme-children="#video-scroll-home h1"
+                css:content-children="#video-scroll-home h3.tileHeadline" />
+            <replace
+                css:theme-children="#video-scroll-home > p"
+                css:content-children="#video-scroll-home p.nota-descripcion" />
+            <after css:theme="#video-scroll-home"
+                css:content="div.notas-seccion" />
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
                                body.portaltype-folder,
                                body.portaltype-topic">
             <theme href="seccion.html" />
+            <replace
+                css:theme-children="#nota-titular h1"
+                css:content-children="#video-scroll-home h3.tileHeadline" />
+            <replace
+                css:theme-children="#nota-titular > p"
+                css:content-children="#video-scroll-home p.nota-descripcion" />
             <replace css:theme-children="#telesur-seccion-listing"
-                css:content-children="#content-core" />
+                css:content-children="div.notas-seccion" />
+            <copy attributes="href class"
+                css:theme="#nota-titular div.sigue-leyendo > a"
+                css:content="#video-scroll-home p.tileFooter > a" />
+
             <drop css:content="#ultimas-noticias a > img" />
             <replace css:theme="div.telesur-right-sidebar #mapa-interactivo"
                 css:content="dl.portlet-collection-ultimas-noticias" />
-                <!--
-                <div id="ultimas-noticias">
-                    <div class="breadcumb-categoria">Últimas Noticias</div>
-                    <div>
-                        <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                            <a>
-                                <xsl:copy-of select="a/node()" />
-                                <xsl:attribute name="href">
-                                    <xsl:value-of select="a/@href" />
-                                </xsl:attribute>
-                            </a>
-                        </xsl:for-each>
-                    </div>
-                </div>
-            </replace>
-            -->
         </rules>
 
         <rules css:if-content="body.portaltype-collective-nitf-content">
