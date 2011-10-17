@@ -15,11 +15,37 @@
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
-                                body.portaltype-folder,
-                                body.portaltype-topic">
+                               body.portaltype-folder,
+                               body.portaltype-topic">
             <theme href="seccion.html" />
             <replace css:theme-children="#telesur-seccion-listing"
                 css:content-children="#content-core" />
+            <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
+            <replace css:theme="#mapa-interactivo">
+                <div id="ultimas-noticias">
+                    <div class="breadcumb-categoria">Últimas Noticias</div>
+                    <div>
+                        <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
+                            <xsl:copy-of select="node()" />
+                        </xsl:for-each>
+                    </div>
+                </div>
+            </replace>
+        </rules>
+
+        <rules css:if-content="body.portaltype-collective-nitf-content">
+            <theme href="nota.html" />
+            <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
+            <after theme="//*[@id='telesur-right-sidebar']/div">
+                <div id="ultimas-noticias">
+                    <div class="breadcumb-categoria">Últimas Noticias</div>
+                    <div>
+                        <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
+                            <xsl:copy-of select="node()" />
+                        </xsl:for-each>
+                    </div>
+                </div>
+            </after>
         </rules>
 
         <theme href="nota.html" />
@@ -74,5 +100,20 @@
         <drop css:theme="#telesur-left-content div.comentario-individual" />
         <after css:theme="#telesur-left-content #comentarios-nota > h2"
             css:content="#viewlet-below-content div.discusion" />
+
+        <replace css:theme="#ultimos-videos">
+            <xsl:copy-of css:select="dl.portlet-static-ultimos-videos > dd > p" />
+        </replace>
+        <replace css:theme="#ultimos-programas">
+            <xsl:copy-of css:select="dl.portlet-static-ultimos-programas > dd > p" />
+        </replace>
+            <!--
+            <div id="ultimas-noticias">
+                <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias > dd.portletItem">
+                    <xsl:copy-of select="a/node()" />
+                </xsl:for-each>
+            </div>
+        </replace>
+        -->
     </rules>
 </rules>

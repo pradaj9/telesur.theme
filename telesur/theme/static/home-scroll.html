@@ -46,7 +46,7 @@
         <![endif]-->
         <script src="/++theme++telesur.theme/Scripts/swfobject_modified.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body class="main-home">
         <!-- Begin Container -->
         <div id="telesur-container">
             <!-- Begin Header -->
@@ -291,6 +291,13 @@
                                 señal en vivo
                             </a>
                         </div>
+                        <div id="ultimos-videos">
+                            <h2>Ultimos videos</h2>
+                        </div>
+                        <div id="ultimos-programas">
+                            <h2>Últimos programas</h2>
+                        </div>
+                        <!--
                         <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
                             height="175" width="308" style="border: none; margin: 5px auto;">
                             <p>Tu navegador no puede ver este contenido.</p>
@@ -299,23 +306,19 @@
                             height="500" width="308" style="border: none; margin: 5px auto;">
                             <p>Tu navegador no puede ver este contenido.</p>
                         </iframe>
-                        <!--div id="ultimos-videos">
-                        <h2>Ultimos videos</h2>
-                    </div>
-                    <div id="ultimos-programas">
-                        <h2>Últimos programas</h2>
-                        </div-->
                         <div style="margin:40px 0 0  50px">
                             <div class="banner-skycraper">
                                 banner skycraper 1
                             </div>
                         </div>
+                        -->
                     </div>
                     <!-- End right sidebar-->
                 </div>
                 <div style="clear:both;">&nbsp;</div>
                 <!--Full column -->
                 <div id="telesur-full-column">
+                    <div style="clear:both; border-top: solid 2px #ac1206;"> &nbsp;</div>
                     <div style="display:block; float:left; width:340px; ">
                         <!-- mapa interactivo -->
                         <div class="breadcumb-categoria">Mapa Interactivo</div>
@@ -335,51 +338,56 @@
                         <p>Aenean interdum facilisis purus, sit amet ornare risus auctor at. </p>
                         <div class="ver-todos" style="float:right;"><a href="#">ver todos</a></div>
                     </div>
-                    <div class="banner-vertical" style=" margin-left:5px;">
-                        banner vertical 1
-                    </div>
-                    <div style="clear:both; border-top: solid 2px #fff;"> &nbsp;</div>
-                    <div class="breadcumb-categoria">más titulares </div>
-                    <span class="btn-flecha-izquierda"><a href="#" title="ver anteriores">&nsub;</a></span>
-                    <div id="mas-titulares">
-                        <div class="titular-individual">
-                            <div class="titulo-seccion">seccion</div>
-                            <ul>
-                                <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-                            </ul>
-                        </div>
-                        <div class="titular-individual">
-                            <div class="titulo-seccion">seccion</div>
-                            <ul>
-                                <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-                            </ul>
-                        </div>
-                        <div class="titular-individual">
-                            <div class="titulo-seccion">seccion</div>
-                            <ul>
-                                <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-                            </ul>
-                        </div>
-                        <div class="titular-individual">
-                            <div class="titulo-seccion">seccion</div>
-                            <ul>
-                                <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                                <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-                            </ul>
+                    <div style="margin:40px 0 0  50px">
+                        <div class="banner-skycraper">
+                            banner skycraper 1
                         </div>
                     </div>
-                    <span class="btn-flecha-derecha"><a href="#" title="ver siguientes">&nsub;</a></span>
+                    <div id="caja-titulares">
+                        <div class="breadcumb-categoria">más titulares </div>
+                        <span class="btn-flecha-izquierda"><a href="#" title="ver anteriores">&nsub;</a></span>
+                        <div id="mas-titulares">
+                            <div class="titular-individual">
+                                <div class="titulo-seccion">seccion</div>
+                                <ul>
+                                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                                </ul>
+                            </div>
+                            <div class="titular-individual">
+                                <div class="titulo-seccion">seccion</div>
+                                <ul>
+                                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                                </ul>
+                            </div>
+                            <div class="titular-individual">
+                                <div class="titulo-seccion">seccion</div>
+                                <ul>
+                                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                                </ul>
+                            </div>
+                            <!--
+                            <div class="titular-individual">
+                                <div class="titulo-seccion">seccion</div>
+                                <ul>
+                                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                                </ul>
+                            </div>
+                            -->
+                        </div>
+                        <span class="btn-flecha-derecha"><a href="#" title="ver siguientes">&nsub;</a></span>
+                    </div>
                 </div>
                 <div style="clear:both; border-bottom: solid 2px #AC1206; margin:5px 0; "> &nbsp;</div>
 

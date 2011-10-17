@@ -652,8 +652,12 @@ body div {	 /* Eliminar todo el bloque */
 	height:420px;
 	float:left;
 }
+#caja-titulares {
+    clear:left;
+    display:block;
+	width:730px;
+}
 #mas-titulares {
-	width:930px;
 	height:auto;
 	float:left;
 }
