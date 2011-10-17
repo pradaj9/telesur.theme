@@ -33,15 +33,12 @@
                 css:theme="#nota-titular div.sigue-leyendo > a"
                 css:content="#video-scroll-home p.tileFooter > a" />
 
-            <drop css:content="#ultimas-noticias a > img" />
-            <replace css:theme="div.telesur-right-sidebar #mapa-interactivo"
-                css:content="dl.portlet-collection-ultimas-noticias" />
         </rules>
 
         <rules css:if-content="body.portaltype-collective-nitf-content">
             <theme href="nota.html" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
-            <after theme="//*[@id='telesur-right-sidebar']/div">
+            <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
                     <div class="breadcumb-categoria">Últimas Noticias</div>
                     <div>
@@ -52,6 +49,9 @@
                 </div>
             </after>
         </rules>
+            <drop css:content="#ultimas-noticias a > img" />
+            <replace css:theme="div.telesur-right-sidebar #mapa-interactivo"
+                css:content="dl.portlet-collection-ultimas-noticias" />
 
         <theme href="nota.html" />
         <notheme if="$ajax_load" />
