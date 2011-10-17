@@ -56,6 +56,14 @@
         <theme href="nota.html" />
         <notheme if="$ajax_load" />
 
+        <rules
+            css:if-content="body.template-atct_edit,
+                            body.template-login_form,
+                            body.template-logged_out,
+                            body.template-overview-controlpanel">
+            <replace css:theme="#telesur-middle"
+                css:content="#content" />
+        </rules>
         <replace theme="/html/head/base"
             content="/html/head/base" />
         <drop theme="/html/head/meta" />
