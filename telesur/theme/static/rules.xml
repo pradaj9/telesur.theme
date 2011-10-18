@@ -2,7 +2,7 @@
     xmlns="http://namespaces.plone.org/diazo"
     xmlns:css="http://namespaces.plone.org/diazo/css"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    
+
     <rules css:if-content="#visual-portal-wrapper">
         <rules if-path="/">
             <theme href="home-scroll.html" />
@@ -32,8 +32,8 @@
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
-                               body.portaltype-folder,
-                               body.portaltype-topic">
+            body.portaltype-folder,
+            body.portaltype-topic">
             <theme href="seccion.html" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#video-scroll-home > div.breadcumb" />
@@ -73,28 +73,35 @@
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
                     <div class="breadcumb-categoria">Últimas Noticias</div>
-                    <div>
+                    <div class="ultima-noticia">
                         <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                            <xsl:copy-of select="node()" />
+                            <xsl:copy-of select="a" /> 
                         </xsl:for-each>
                     </div>
                 </div>
             </after>
         </rules>
-            <drop css:content="#ultimas-noticias a > img" />
-            <replace css:theme="div.telesur-right-sidebar #mapa-interactivo"
-                css:content="dl.portlet-collection-ultimas-noticias" />
+        <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
+            <div id="ultimas-noticias">
+                <div class="breadcumb-categoria">Últimas Noticias</div>
+                <div class="ultima-noticia">
+                    <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
+                        <xsl:copy-of select="a" /> 
+                    </xsl:for-each>
+                </div>
+            </div>
+        </replace>
 
         <theme href="nota.html" />
         <notheme if="$ajax_load" />
 
         <rules
             css:if-content="body.template-atct_edit,
-                            body.template-login_form,
-                            body.template-logged_out,
-                            body.template-search,
-                            body.template-search_form,
-                            body.template-overview-controlpanel">
+            body.template-login_form,
+            body.template-logged_out,
+            body.template-search,
+            body.template-search_form,
+            body.template-overview-controlpanel">
             <replace css:theme="#telesur-middle"
                 css:content="#content" />
         </rules>
@@ -156,7 +163,7 @@
         <replace css:theme="#ultimos-programas">
             <xsl:copy-of css:select="dl.portlet-static-ultimos-programas > dd > p" />
         </replace>
-            <!--
+        <!--
             <div id="ultimas-noticias">
                 <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias > dd.portletItem">
                     <xsl:copy-of select="a/node()" />
