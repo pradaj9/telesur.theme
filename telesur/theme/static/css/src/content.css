@@ -35,7 +35,7 @@ h1 {
 	padding:0;
 }
 h2 {
-	color:#AC1206;
+	color:#B40200;
 	font-size:21px;
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
@@ -192,14 +192,14 @@ td {
 }
 .breadcumb-categoria {
 	font-size:16px;
-	color:#AC1206;
+	color:#B40200;
 	font-family:Arial, Helvetica, sans-serif;
 	text-decoration:none;
 	margin:0 0 5px 0;
 	text-transform:uppercase;
 }
 .breadcumb-categoria a {
-	color:#AC1206;
+	color:#B40200;
 	text-decoration:none;
 }
 .sigue-leyendo a {

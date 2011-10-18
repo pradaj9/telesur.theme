@@ -24,7 +24,7 @@ html, body, div {	/* Eliminar todo el bloque */
 	padding: 0;
 }
 body div {	 /* Eliminar todo el bloque */
-	color:  #666;
+	color:  #000;
 	font-family:Arial, Helvetica, sans-serif;
 }
 
@@ -396,7 +396,7 @@ body div {	 /* Eliminar todo el bloque */
 	float:left;
 	font-size:18px;
 	text-transform:uppercase;
-	color:#AC1206;
+	color:#B40200;
 	font-weight:bold;
 	text-align:center;
 	padding:5px 0 5px 0;
@@ -452,14 +452,14 @@ body div {	 /* Eliminar todo el bloque */
 	background:url(../../img/img-mapa.png) no-repeat;
 	margin-bottom:10px;
 	font-size:21px;
-	color:#AC1206;
+	color:#B40200;
 	text-align:center;
 }
 .nota-home-simple {
 	width:620px;
 	height:auto;
 	float:left;
-	border-bottom:solid 1px #AC1206;
+	border-bottom:solid 1px #B40200;
 	margin-bottom:10px;
 }
 .nota-home-simple .imagen-nota-simple {
@@ -604,8 +604,8 @@ body div {	 /* Eliminar todo el bloque */
 	height:244px;
 	float:left;
 	display:block;
-	border-bottom: solid 2px #AC1206;
-	border-right:solid 2px #AC1206;
+	border-bottom: solid 2px #B40200;
+	border-right:solid 2px #B40200;
 	margin:3px 0 0 10px;
 }
 .notas-seccion .nota-seccion-thumb {
@@ -744,8 +744,8 @@ body div {	 /* Eliminar todo el bloque */
 	margin-bottom:20px;
 	padding:0;
 	list-style:none;
-	border-top: solid 2px #AC1206;
-	border-bottom: solid 2px #AC1206;
+	border-top: solid 2px #B40200;
+	border-bottom: solid 2px #B40200;
 }
 #notas-relacionadas li a {
 	width:610px;
