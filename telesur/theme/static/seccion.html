@@ -25,7 +25,7 @@
 <script src="Scripts/swfobject_modified.js" type="text/javascript"></script>
 <script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
 </head>
-<body>
+<body class="main-seccion">
 <!-- Begin Container -->
 <div id="telesur-container">
 <!-- Begin Header -->
@@ -99,11 +99,13 @@
       </ul>
     </li>
     <li id="nav-7"><a href="#7">Programación</a></li>
-    <li id="nav-8"><a href="#8"><span class="ico-audio"></span>Audio <br />
-      en vivo</a></li>
-    <li id="nav-9"><a href="#9"><span class="ico-video"></span>Señal <br />
-      en vivo</a></li>
-  </ul>
+    </ul>
+    <ul id="envivo">
+        <li id="nav-8" style="display:none;"><a href="#8"><span class="ico-audio"></span>Audio <br />
+            en vivo</a></li>
+        <li id="nav-9"><a href="http://multimedia.telesurtv.net/vivo/"><span class="ico-video"></span>Señal <br />
+            en vivo</a></li>
+    </ul>
   <div id="contents">
     <ul class="idiomas">
       <img src="img/img_idiomas.png" width="29" height="28" alt="selección de idioma" style="margin:6px 15px 0 15px; float:left;" />
@@ -123,10 +125,10 @@
   <!-- Full Column -->
   <div class="telesur-full-column">
     <div id="especiales">
-      <div id="especial">especial1</div>
-      <div id="especial">especial2</div>
-      <div id="especial">especial3</div>
-      <div id="especial">especial4</div>
+        <div class="especial"><img src="especial1.jpg" /></div>
+        <div class="especial"><img src="especial2.jpg" /></div>
+        <div class="especial"><img src="especial3.jpg" /></div>
+        <div class="especial"><img src="especial4.jpg" /></div>
     </div>
   </div>
   <!-- Full Column -->
@@ -137,20 +139,20 @@
       <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
       <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
       <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:0 8px 0 0;">
-        <param name="movie" value="/static/swf/flowplayer-3.2.7.swf" />
+        <param name="movie" value="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" />
         <param name="quality" value="high" />
         <param name="wmode" value="opaque" />
         <param name="swfversion" value="6.0.65.0" />
         <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don't want users to see the prompt. -->
-        <param name="expressinstall" value="/static/Scripts/expressInstall.swf" />
+        <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
         <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
         <!--[if !IE]>-->
-        <object type="application/x-shockwave-flash" data="/static/swf/flowplayer-3.2.7.swf" width="362" height="247">
+        <object type="application/x-shockwave-flash" data="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" width="362" height="247">
           <!--<![endif]-->
           <param name="quality" value="high" />
           <param name="wmode" value="opaque" />
           <param name="swfversion" value="6.0.65.0" />
-          <param name="expressinstall" value="/static/Scripts/expressInstall.swf" />
+          <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
           <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
           <div>
             <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
@@ -169,7 +171,7 @@
   <!-- Begin Right Sidebar -->
   <div class="telesur-right-sidebar">
     <!--SEÑAL EN VIVO -->
-    <div id="senal-en-vivo" style="margin:28px 0 10px 0;"> <a href="#" title="SEÑAL EN VIVO"> Señal en vivo
+    <div id="senal-en-vivo"> <a href="http://multimedia.telesurtv.net/vivo/" title="SEÑAL EN VIVO"> Señal en vivo
       <p> nombre del programa y el conductor que se está transimitiendo ahora</p>
       </a> </div>
     <!-- Señal en vivo -->
@@ -285,100 +287,29 @@
   <!-- End Left Content -->
   <!-- Begin Right Sidebar -->
   <div class="telesur-right-sidebar">
-    <div id="ultimos-videos">
+      <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
+          height="175" width="308" style="border: none; margin: 5px auto;">
+          <p>Tu navegador no puede ver este contenido.</p>
+      </iframe>
+      <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
+          height="500" width="308" style="border: none; margin: 5px auto;">
+          <p>Tu navegador no puede ver este contenido.</p>
+      </iframe>
+    <!--div id="ultimos-videos">
       <h2>Ultimos videos</h2>
     </div>
     <div id="ultimos-programas">
       <h2>Últimos programas</h2>
-    </div>
+    </div-->
   </div>
   <!-- End Right Sidebar -->
   <!-- Full column -->
   <div class="telesur-full-column">
-    <div class="breadcumb-categoria">Videos | Sección</div>
+      <!--
+      <div class="breadcumb-categoria">Videos | Sección</div>
+      -->
     <!-- Videos por categoria -->
     <div id="videos-categoria">
-      <div id="scroller-contienente">
-        <ul>
-          <li><a href="#"><img src="img/banderas/ar.png">Argentina</a></li>
-          <li><a href="#"><img src="img/banderas/bz.png">Belice</a></li>
-          <li><a href="#"><img src="img/banderas/br.png">Bermudas</a></li>
-          <li><a href="#"><img src="img/banderas/bo.png">Bolivia</a></li>
-          <li><a href="#"><img src="img/banderas/br.png">Brasil</a></li>
-          <li><a href="#"><img src="img/banderas/cl.png">Chile</a></li>
-          <li><a href="#"><img src="img/banderas/co.png">Colombia</a></li>
-          <li><a href="#"><img src="img/banderas/cr.png">Costa Rica</a></li>
-          <li><a href="#"><img src="img/banderas/cu.png">Cuba</a></li>
-          <li><a href="#"><img src="img/banderas/ec.png">Ecuador</a></li>
-          <li><a href="#"><img src="img/banderas/sv.png">El Salvador</a></li>
-          <li><a href="#"><img src="img/banderas/gt.png">Guatemala</a></li>
-          <li><a href="#"><img src="img/banderas/gy.png">Guyana</a></li>
-          <li><a href="#"><img src="img/banderas/ht.png">Haití</a></li>
-          <li><a href="#"><img src="img/banderas/hn.png">Honduras</a></li>
-          <li><a href="#"><img src="img/banderas/jm.png">Jamaica</a></li>
-          <li><a href="#"><img src="img/banderas/mx.png">México</a></li>
-          <li><a href="#"><img src="img/banderas/ni.png">Nicaragua</a></li>
-          <li><a href="#"><img src="img/banderas/pa.png">Panama</a></li>
-          <li><a href="#"><img src="img/banderas/py.png">Paraguay</a></li>
-          <li><a href="#"><img src="img/banderas/pe.png">Perú</a></li>
-          <li><a href="#"><img src="img/banderas/pr.png">Puerto Rico</a></li>
-          <li><a href="#"><img src="img/banderas/do.png">República Dominicana</a></li>
-          <li><a href="#"><img src="img/banderas/uy.png">Uruguay</a></li>
-          <li><a href="#"><img src="img/banderas/ve.png">Venezuela</a></li>
-        </ul>
-        <div id="buscador-videos-seccion">
-          <input name="buscador-video" type="text" maxlength="50" style="background:url(img/buscador-back.png) no-repeat; border:none; outline:none; height: 23px; padding-left: 25px;" title="buscador de videos" /></div>
-        </div>
-        <!-- Videos por categoria -->
-        <div id="video-detail"> 
-        	<!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
-            <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:0 8px 5px 20px; display:block; clear:both;">
-              <param name="movie" value="swf/flowplayer-3.2.7.swf" />
-              <param name="quality" value="high" />
-              <param name="wmode" value="opaque" />
-              <param name="swfversion" value="6.0.65.0" />
-              <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
-              <param name="expressinstall" value="Scripts/expressInstall.swf" />
-              <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. --> 
-              <!--[if !IE]>-->
-              <object type="application/x-shockwave-flash" data="swf/flowplayer-3.2.7.swf" width="362" height="247">
-                <!--<![endif]-->
-                <param name="quality" value="high" />
-                <param name="wmode" value="opaque" />
-                <param name="swfversion" value="6.0.65.0" />
-                <param name="expressinstall" value="Scripts/expressInstall.swf" />
-                <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
-                <div>
-                  <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
-                  <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" width="112" height="33" /></a></p>
-                  <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS --> 
-                </div>
-                <!--[if !IE]>-->
-              </object>
-              <!--<![endif]-->
-            </object>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet, justo sit amet luctus mollis, nisi justo condimentum risus, quis viverra libero justo eget leo. Nulla tristique facilisis pulvinar. Sed eget sapien a quam placerat condimentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-        </div>
-        <!-- Videos Thumbnails -->
-        <div id="scroll-thumbs-video">
-        	<div class="video-section">
-           		<div class="image-video">thumbnail del video</div>
-       			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="video-section">
-            	<div class="image-video">thumbnail del video</div>
-       			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="video-section">
-            	<div class="image-video">thumbnail del video</div>
-       			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="video-section">
-           		<div class="image-video">thumbnail del video</div>
-       			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-        </div>
         <!-- Videos Thumbnails -->
         <div style="clear:both; border-top: solid 2px #AC1206;"> &nbsp;</div>
         <div class="breadcumb-categoria">más titulares </div>

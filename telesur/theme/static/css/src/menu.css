@@ -1,12 +1,16 @@
-#telesur-subheader #menu {
+#telesur-subheader #menu,
+#telesur-subheader #envivo  {
 	margin : 0;
-	padding-bottom : 19px;
 	padding-left:0;
 	margin:0 20px;
-	width:920px;
 	
 }
-#telesur-subheader #menu ul, #telesur-subheader #menu li {
+#telesur-subheader #envivo  {
+    float: right;
+	margin:0 10px;
+}
+#telesur-subheader #menu ul, #telesur-subheader #menu li,
+#telesur-subheader #envivo ul, #telesur-subheader #envivo li {
 	display : inline;
 	list-style-type : none;
 	margin : 0;
@@ -25,18 +29,26 @@
 	font-weight:bold;
 }
 #telesur-subheader #menu .selected a:link, #telesur-subheader #menu .selected a:visited {
+<<<<<<< HEAD
 	background : #B40200;
 	color : #fff;
 }
 #telesur-subheader #menu a:hover {
 	background : #B40200;
+=======
+	background : #ac1206;
+	color : #fff;
+}
+#telesur-subheader #menu a:hover {
+	background : #ac1206;
+>>>>>>> 081829b87fae390fb17728c2aee6838492e36281
 	color : #fff;
 }
 body.section-1 #telesur-subheader #menu li#nav-1 a, body.section-2 #telesur-subheader #menu li#nav-2 a, body.section-3 #telesur-subheader #menu li#nav-3 a, body.section-4 #telesur-subheader #menu li#nav-4 a, body.section-5 #telesur-subheader #menu li#nav-5 a, body.section-6 #telesur-subheader #menu li#nav-6 a, body.section-7 #telesur-subheader #menu li#nav-7 a {
 	background : #fff;
 	color : #000;
 }
-#telesur-subheader #menu li#nav-8 a, #telesur-subheader #menu li#nav-9 a {
+#telesur-subheader #envivo li#nav-8 a, #telesur-subheader #envivo li#nav-9 a {
 	background: url("../../img/img_vivo.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     float: left;
@@ -47,9 +59,10 @@ body.section-1 #telesur-subheader #menu li#nav-1 a, body.section-2 #telesur-subh
     padding: 4px 0 0 10px;
     text-align: center;
     text-transform: uppercase;
+    height: 33px;
     width: 73px;
 }
-#telesur-subheader #menu li#nav-8 a:hover, #telesur-subheader #menu li#nav-9 a:hover {
+#telesur-subheader #envivo li#nav-8 a:hover, #telesur-subheader #envivo li#nav-9 a:hover {
 	color:#ddd;
 	text-shadow:2px 2px 2px #666;
 }
@@ -79,12 +92,16 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	color : #f00 !important;
 }
 #telesur-subheader #contents {
+<<<<<<< HEAD
 	background : #B40200;
+=======
+	background : #ac1206;
+>>>>>>> 081829b87fae390fb17728c2aee6838492e36281
 	border-top : none;
 	clear : both;
 	margin : 0px;
 	padding:4px 0;
-	width:960px;
+	width:1024px;
 	min-height:41px;
 }
 #telesur-subheader #contents p {
@@ -116,7 +133,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	font-weight:bold;
 }
 #telesur-subheader #avances {
-	width:960px;
+	width:1024px;
 	height:30px;
 	color:#666;
 	font-size:12px;
@@ -132,7 +149,11 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	height:30px;
 	display:block;
 	text-transform:uppercase;
+<<<<<<< HEAD
 	background:#B40200;
+=======
+	background:#ac1206;
+>>>>>>> 081829b87fae390fb17728c2aee6838492e36281
 	padding-left: 5px;
 	float:left;
 }
@@ -143,4 +164,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 }
 #telesur-subheader #avances p a:hover {
 	text-decoration:underline;
+}
+#ticker-title {
+    background-color: #ac1206;
 }

@@ -34,12 +34,13 @@ body div {	 /* Eliminar todo el bloque */
 	margin: 0 auto;
 	overflow: auto;
 	padding: 0;
-	width: 960px;
+	width: 1024px;
 }
 #telesur-header {
 	margin: 0 0 5px 0;
 	padding: 0;
-	min-height:129px;
+	height:205px;
+    background:url(../../mundo.png) center right no-repeat;
 }
 #telesur-header #logo-telesur a {
 	width:296px;
@@ -49,7 +50,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 }
 #telesur-subheader {
-	margin: 0 0 5px 0;
+	margin: -60px 0 5px 0;
 	padding: 0;
 }
 
@@ -75,18 +76,18 @@ body div {	 /* Eliminar todo el bloque */
 	padding: 0;
 }
 #telesur-full-column #especiales, .telesur-full-column #especiales {
-	width:960px;
+	width:1024px;
 	height:80px;
 	margin:5px 0 15px 0;
 	padding:0;
 }
-#telesur-full-column #especiales #especial, .telesur-full-column #especiales #especial {
+#telesur-full-column #especiales .especial, .telesur-full-column #especiales .especial {
 	width:230px;
 	height:70px;
 	display:block;
-	border:solid 1px #666;
 	margin:0 4px;
 	float:left;
+    text-align: center;
 }
 
 
@@ -113,7 +114,7 @@ body div {	 /* Eliminar todo el bloque */
 	height: auto; /* Puede cambiar a altura fija en pixeles */
 	margin: 0 5px 5px 0;
 	padding: 0;
-	width: 620px;
+	width: 700px;
 }
 #telesur-left-content #nota-titular {
 	width:620px;
@@ -142,11 +143,18 @@ body div {	 /* Eliminar todo el bloque */
 	width: 310px;
 }
 #especiales-vertical {
-	width:245px;
-	height:360px;
 	display:block;
-	background:#EDEDED;
+	width:245px;
 	padding:5px 0 0 5px;
+    margin: 0 auto;
+	/*
+    height:360px;
+	background:#EDEDED;
+     */
+}
+#especiales-vertical .especial {
+    padding: 5px;
+    text-align: center;
 }
 
 /* RIGHT SIDEBAR SMALL */
@@ -220,29 +228,35 @@ body div {	 /* Eliminar todo el bloque */
 	border:none;
 	font-size:11px;
 }
-#notas-sencilla-grande  {
+.notas-sencilla-grande  {
 	width:340px;
-	height:auto;
+	height:245px;
 	float:left;
 	display:block;
 	border-bottom: solid 2px #AC1206;
 	border-right:solid 2px #AC1206;
 	margin:3px 0 0 5px;
 }
-#notas-sencilla-grande .nota-sencilla-grande-thumb {
+.notas-sencilla-grande .nota-sencilla-grande-thumb {
+    /*
 	width:144px;
 	height:96px;
+    */
 	background:#CCC;
 	display:block;
 	float:left;
 	margin:0 5px 5px 0;
 }
-#notas-sencilla-grande  p {
+.notas-sencilla-grande  p {
 	width:130px;
 	height:auto;
 	line-height:18px;
 	font-size:12px;
 	float:left;
+}
+#telesur-right-sidebar-small > div {
+    margin: 0 auto;
+    display: block;
 }
 #telesur-right-sidebar-small {
 	float: right;
@@ -250,7 +264,7 @@ body div {	 /* Eliminar todo el bloque */
 	height: auto; /* Puede cambiar a altura fija en pixeles */
 	margin: 0 0 5px 5px;
 	padding: 0;
-	width: 250px;
+	width: 310px;
 }
 
 
@@ -348,10 +362,15 @@ body div {	 /* Eliminar todo el bloque */
 	padding: 0;
 	width: 215px;
 }
+#senal-en-vivo {
+	display:block;
+	width:300px;
+	height:59px;
+    margin: 28px auto 10px;
+}
 #senal-en-vivo a {
 	width:300px;
 	height:59px;
-	display:block;
 	background:url(../../img/img-en-vivo-back.png) repeat-x;
 	float:left;
 	font-size:18px;
@@ -381,14 +400,13 @@ body div {	 /* Eliminar todo el bloque */
 	height:59px;
 	display:block;
 	background:url(../../img/img-en-vivo-back.png) repeat-x;
-	float:left;
 	font-size:18px;
 	text-transform:uppercase;
 	color:#AC1206;
 	font-weight:bold;
 	text-align:center;
 	padding:5px 0 5px 0;
-	margin:10px 0;
+	margin:10px auto;
 	text-decoration:none;
 	text-shadow:2px 2px 2px #666;
 }
@@ -521,7 +539,7 @@ body div {	 /* Eliminar todo el bloque */
 	margin:0 0 20px 0;
 }
 #scroller-seccion {
-	width:960px;
+	width:1024px;
 	height:90px;
 	float:left;
 	display:block; 
@@ -572,10 +590,11 @@ body div {	 /* Eliminar todo el bloque */
 .notas-seccion .nota-seccion-thumb {
 	width:144px;
 	height:96px;
-	background:#CCC;
-	display:block;
+	display: table-cell;
 	float:left;
 	margin:0 5px 5px 0;
+    text-align: center;
+    vertical-align: middle;
 }
 .notas-seccion  p {
 	width:130px;
@@ -585,7 +604,7 @@ body div {	 /* Eliminar todo el bloque */
 	float:left;
 }
 #videos-categoria {
-	width:960px;
+	width:1024px;
 	height:auto;
 	float:left;
 } 
@@ -640,8 +659,12 @@ body div {	 /* Eliminar todo el bloque */
 	height:420px;
 	float:left;
 }
+#caja-titulares {
+    clear:left;
+    display:block;
+	width:730px;
+}
 #mas-titulares {
-	width:930px;
 	height:auto;
 	float:left;
 }
@@ -772,4 +795,14 @@ body div {	 /* Eliminar todo el bloque */
 	font-weight:normal;
 	font-size:14px;
 }
-
+#ultimas-noticias {
+    margin: 15px auto;
+    padding: 10px 0;
+    width: 300px;
+}
+.ultima-noticia {
+    font-size: 13px;
+}
+.ultima-noticia a.tile > img {
+    display: none;
+}
