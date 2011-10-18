@@ -15,8 +15,20 @@
             <replace
                 css:theme-children="#video-scroll-home > p"
                 css:content-children="#video-scroll-home p.nota-descripcion" />
-            <after css:theme="#video-scroll-home"
-                css:content="div.notas-seccion" />
+            <after css:theme="#video-scroll-home">
+                <xsl:for-each css:select="div.notas-seccion">
+                    <div class="notas-sencilla-grande visualIEFloatFix">
+                        <xsl:copy-of select="h3" />
+                        <div class="nota-sencilla-grande-thumb">
+                            <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
+                        </div>
+                        <xsl:copy-of select="p[@class='nota-descripcion']" />
+                        <div class="sigue-leyendo">
+                            <xsl:copy-of select="p[@class='tileFooter']/node()" />
+                        </div>
+                    </div>
+                </xsl:for-each>
+            </after>
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
