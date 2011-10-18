@@ -43,6 +43,9 @@
             <replace
                 css:theme-children="#nota-titular > p"
                 css:content-children="#video-scroll-home p.nota-descripcion" />
+            <replace
+                css:theme-children="#nota-titular > div.sigue-leyendo"
+                css:content-children="#video-scroll-home p.tileFooter" />
             <replace css:theme-children="#telesur-seccion-listing">
                 <xsl:for-each css:select="div.notas-seccion">
                     <div class="notas-sencilla-grande visualIEFloatFix">
