@@ -109,6 +109,22 @@ body div {	 /* Eliminar todo el bloque */
 }
 
 /* LEFT CONTENT, RIGHT SIDEBAR */
+#telesur-left-content a, #telesur-left-content a:visited,
+.telesur-left-content a, .telesur-left-content a:visited,
+#telesur-left-content-big a, #telesur-left-content-big a:visited,
+.telesur-left-content-big a, .telesur-left-content-big a:visited,
+#telesur-right-sidebar a, .telesur-right-sidebar a:visited,
+.telesur-right-sidebar a, .telesur-right-sidebar a:visited {
+    color: #666666;
+}
+#telesur-left-content a:hover,
+.telesur-left-content a:hover,
+#telesur-right-sidebar a:hover,
+.telesur-right-sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* LEFT CONTENT, RIGHT SIDEBAR */
 #telesur-left-content, .telesur-left-content {
 	float: left;
 	height: auto; /* Puede cambiar a altura fija en pixeles */
@@ -175,6 +191,7 @@ body div {	 /* Eliminar todo el bloque */
 }
 #telesur-left-content-big #video-scroll-home h1 {
 	font-size:24px;
+    line-height: 24px;
 	margin:5px 0;
 }
 #telesur-left-content-big #video-scroll-home p {
@@ -253,6 +270,10 @@ body div {	 /* Eliminar todo el bloque */
 	line-height:18px;
 	font-size:12px;
 	float:left;
+}
+.notas-sencilla-grande h3 {
+    line-height: 18px;
+    font-size: 18px;
 }
 #telesur-right-sidebar-small > div {
     margin: 0 auto;
