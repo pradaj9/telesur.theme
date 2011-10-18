@@ -256,13 +256,18 @@ body div {	 /* Eliminar todo el bloque */
 }
 .notas-sencilla-grande .nota-sencilla-grande-thumb {
     /*
+    */
 	width:144px;
 	height:96px;
-    */
-	background:#CCC;
+	background:#fff;
 	display:block;
 	float:left;
 	margin:0 5px 5px 0;
+    text-align: center;
+}
+.notas-sencilla-grande  p.nota-descripcion {
+	width:130px;
+	height:126px;
 }
 .notas-sencilla-grande  p {
 	width:130px;
@@ -274,6 +279,7 @@ body div {	 /* Eliminar todo el bloque */
 .notas-sencilla-grande h3 {
     line-height: 18px;
     font-size: 18px;
+    height: 36px;
 }
 #telesur-right-sidebar-small > div {
     margin: 0 auto;
