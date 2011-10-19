@@ -29,19 +29,11 @@
 	font-weight:bold;
 }
 #telesur-subheader #menu .selected a:link, #telesur-subheader #menu .selected a:visited {
-<<<<<<< HEAD
-	background : #B40200;
+	background : #b40200;
 	color : #fff;
 }
 #telesur-subheader #menu a:hover {
-	background : #B40200;
-=======
-	background : #ac1206;
-	color : #fff;
-}
-#telesur-subheader #menu a:hover {
-	background : #ac1206;
->>>>>>> 081829b87fae390fb17728c2aee6838492e36281
+	background : #b40200;
 	color : #fff;
 }
 body.section-1 #telesur-subheader #menu li#nav-1 a, body.section-2 #telesur-subheader #menu li#nav-2 a, body.section-3 #telesur-subheader #menu li#nav-3 a, body.section-4 #telesur-subheader #menu li#nav-4 a, body.section-5 #telesur-subheader #menu li#nav-5 a, body.section-6 #telesur-subheader #menu li#nav-6 a, body.section-7 #telesur-subheader #menu li#nav-7 a {
@@ -92,11 +84,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	color : #f00 !important;
 }
 #telesur-subheader #contents {
-<<<<<<< HEAD
-	background : #B40200;
-=======
-	background : #ac1206;
->>>>>>> 081829b87fae390fb17728c2aee6838492e36281
+	background : #b40200;
 	border-top : none;
 	clear : both;
 	margin : 0px;
@@ -149,11 +137,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	height:30px;
 	display:block;
 	text-transform:uppercase;
-<<<<<<< HEAD
-	background:#B40200;
-=======
-	background:#ac1206;
->>>>>>> 081829b87fae390fb17728c2aee6838492e36281
+	background:#b40200;
 	padding-left: 5px;
 	float:left;
 }
