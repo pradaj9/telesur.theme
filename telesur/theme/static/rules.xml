@@ -174,5 +174,8 @@
             </div>
         </replace>
         -->
+        <replace css:if-content="#mas-titulares"
+            css:theme="#mas-titulares"
+            css:content="#mas-titulares" />
     </rules>
 </rules>
