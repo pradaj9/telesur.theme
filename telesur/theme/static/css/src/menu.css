@@ -83,7 +83,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 #telesur-subheader #menu ul a:hover {
 	color : #f00 !important;
 }
-#telesur-subheader #contents {
+#telesur-subheader #nav-contents {
 	background : #b40200;
 	border-top : none;
 	clear : both;
@@ -92,7 +92,7 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	width:1024px;
 	min-height:41px;
 }
-#telesur-subheader #contents p {
+#telesur-subheader #nav-contents p {
 	width:800px;
 	float:left;
 }
