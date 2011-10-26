@@ -734,7 +734,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 	border:solid 1px #666;
 	float:left;
-	margin:10px 0;
+	margin:10px 10px 0 0;
     padding: 8px 5px;
 }
 #notas-relacionadas {
@@ -832,4 +832,9 @@ body div {	 /* Eliminar todo el bloque */
 }
 .ultima-noticia a.tile > img {
     display: none;
+}
+
+div.video-widget {
+    float: left;
+    margin-right: 10px;
 }
