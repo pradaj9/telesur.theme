@@ -10,7 +10,8 @@
 	margin:0 10px;
 }
 #telesur-subheader #menu ul, #telesur-subheader #menu li,
-#telesur-subheader #envivo ul, #telesur-subheader #envivo li {
+#telesur-subheader #envivo ul, #telesur-subheader #envivo li,
+ul#globalnav, #globalnav li {
 	display : inline;
 	list-style-type : none;
 	margin : 0;
@@ -19,6 +20,18 @@
 #telesur-subheader #menu a:link, #telesur-subheader #menu a:visited {
 	background : #CCCCCC;
 	color : #535353;
+	float : left;
+	line-height : 35px;
+	margin-right : 8px;
+	padding : 2px 16px;
+	text-decoration : none;
+	height:33px;
+	font-size:14px;
+	font-weight:bold;
+}
+#globalnav a:link, #globalnav a:visited {
+	background : none;
+	color : #ffffff;
 	float : left;
 	line-height : 35px;
 	margin-right : 8px;
@@ -88,9 +101,11 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	border-top : none;
 	clear : both;
 	margin : 0px;
-	padding:4px 0;
 	width:1024px;
-	min-height:41px;
+	min-height:42px;
+	/*
+	padding:4px 0;
+    */
 }
 #telesur-subheader #nav-contents p {
 	width:800px;
@@ -104,10 +119,12 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	padding:0;	
 	list-style:none;
 	float:right;
-	margin-right:48px;
 	font-size:11px;
 	text-transform:uppercase;
+	/*
+    margin-right:48px;
 	padding-top:3px;
+    */
 }
 #telesur-subheader ul.idiomas li a:link{
 	color:#666;
