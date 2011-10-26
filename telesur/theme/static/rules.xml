@@ -72,6 +72,8 @@
 
         <rules css:if-content="body.portaltype-collective-nitf-content">
             <theme href="nota.html" />
+            <replace theme="//*[@id='telesur-left-content']/object"
+                content="//*[@id='nitf-content-listing']/div[@class='video-widget'][1]" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
