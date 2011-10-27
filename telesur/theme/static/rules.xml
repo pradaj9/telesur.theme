@@ -82,7 +82,9 @@
         <rules css:if-content="body.portaltype-collective-nitf-content">
             <theme href="nota.html" />
             <replace theme="//*[@id='telesur-left-content']/object"
-                content="//*[@id='nitf-content-listing']/div[1][@class='video-widget']" />
+                css:content="#nitf-content-listing div.video-widget.principal" />
+            <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
+                css:content-children="#content-core > div.breadcumb" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
@@ -167,6 +169,11 @@
                 css:content="#content #media-counter" />
             <after css:theme-children="#telesur-left-content #nota-detail"
                 css:content="#content div.newsview" />
+            <drop attributes="id"
+                css:theme="#telesur-left-content #nota-detail" />
+        </rules>
+        <rules css:if-content="#nitf-content-listing div.video-widget.principal">
+            <drop css:theme="#telesur-left-content #nota-detail" />
         </rules>
         <after css:theme="#telesur-left-content #nota-detail"
             css:content="#parent-fieldname-text" />
