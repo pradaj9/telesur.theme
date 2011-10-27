@@ -140,8 +140,15 @@
             css:content="#portal-personaltools-wrapper" />
         <after css:theme-children="#telesur-header"
             css:content="#portal-searchbox" />
+        <drop css:content="#portaltab-index_html, #portaltab-noticias" />
         <replace css:theme-children="#globalnav"
             css:content-children="#portal-globalnav" />
+        <replace css:theme="#menu #nav-1"
+            css:content="#portaltab-index_html"
+            method="raw" />
+        <replace css:theme="#menu #nav-2"
+            css:content="#portaltab-noticias"
+            method="raw" />
         <drop css:content="#ticker-wrapper" />
         <replace
             css:theme="#avances"
