@@ -693,6 +693,7 @@ body div {	 /* Eliminar todo el bloque */
     clear:left;
     display:block;
 	width:730px;
+    height: 230px;
 }
 #mas-titulares {
 	height:230px;
