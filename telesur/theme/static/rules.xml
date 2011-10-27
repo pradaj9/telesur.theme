@@ -172,9 +172,6 @@
             <drop attributes="id"
                 css:theme="#telesur-left-content #nota-detail" />
         </rules>
-        <rules css:if-content="#nitf-content-listing div.video-widget.principal">
-            <drop css:theme="#telesur-left-content #nota-detail" />
-        </rules>
         <after css:theme="#telesur-left-content #nota-detail"
             css:content="#parent-fieldname-text" />
         <replace css:theme-children="#telesur-left-content #byline" 
