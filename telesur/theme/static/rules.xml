@@ -32,6 +32,8 @@
                     </div>
                 </xsl:for-each>
             </after>
+            <after css:theme-children="#telesur-right-sidebar-small"
+                css:content="#lo-mas" />
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
@@ -65,6 +67,8 @@
                     </div>
                 </xsl:for-each>
             </replace>
+            <after css:theme-children="#ultimos-sidebar"
+                css:content="#lo-mas" />
             <!--
             <replace css:theme-children="#telesur-seccion-listing"
                 css:content="div.notas-seccion" />
@@ -78,7 +82,7 @@
         <rules css:if-content="body.portaltype-collective-nitf-content">
             <theme href="nota.html" />
             <replace theme="//*[@id='telesur-left-content']/object"
-                content="//*[@id='nitf-content-listing']/div[@class='video-widget'][1]" />
+                content="//*[@id='nitf-content-listing']/div[1][@class='video-widget']" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
@@ -91,6 +95,7 @@
                 </div>
             </after>
         </rules>
+
         <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
             <div id="ultimas-noticias">
                 <div class="breadcumb-categoria">Últimas Noticias</div>
@@ -172,8 +177,6 @@
         <replace css:theme="#ultimos-programas">
             <xsl:copy-of css:select="dl.portlet-static-ultimos-programas > dd > p" />
         </replace>
-        <after css:theme-children="#telesur-right-sidebar"
-            css:content="#lo-mas" />
         <replace css:if-content="#caja-titulares"
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
