@@ -843,4 +843,5 @@ div.video-widget {
 }
 body.portaltype-collective-nitf-content #parent-fieldname-text {
     clear: both;
+    padding: 25px 0 0 0;
 }

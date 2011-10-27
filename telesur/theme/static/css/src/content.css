@@ -87,6 +87,8 @@ object {
 }
 #telesur-left-content p {
 	line-height:18px;
+    color: #000000;
+    font-size: 14px;
 }
 iframe {
 
