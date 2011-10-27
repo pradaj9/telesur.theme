@@ -695,15 +695,25 @@ body div {	 /* Eliminar todo el bloque */
 	width:730px;
 }
 #mas-titulares {
-	height:auto;
+	height:230px;
+    position:relative;
+    overflow:hidden;
+    width: 700px;
+    /*
 	float:left;
+    */
+}
+#mas-titulares .titulares {
+    width: 20000em;
+    position:absolute;
+    clear:both;
 }
 #mas-titulares .titular-individual {
+	display:block;
+	float:left;
 	width:218px;
 	height:194px;
-	display:block;
 	border:solid 1px #666;
-	float:left;
 	margin:0 3px;
 	padding:3px;
 }
