@@ -696,7 +696,7 @@ body div {	 /* Eliminar todo el bloque */
 }
 #mas-titulares {
 	height:230px;
-    position:relative;
+    position:absolute;
     overflow:hidden;
     width: 700px;
     /*
@@ -711,7 +711,7 @@ body div {	 /* Eliminar todo el bloque */
 #mas-titulares .titular-individual {
 	display:block;
 	float:left;
-	width:218px;
+	width:220px;
 	height:194px;
 	border:solid 1px #666;
 	margin:0 3px;
@@ -725,6 +725,58 @@ body div {	 /* Eliminar todo el bloque */
 	padding:3px 0 0 0;
 	border-bottom:solid 1px #666;
 }
+
+/********/
+
+
+/* prev, next, prevPage and nextPage buttons */
+.btn-seguir-leyendo a.browse {
+    background:url(../img/scrollable/arrow/hori_large.png) no-repeat;
+    display:block;
+    width:30px;
+    height:30px;
+    float:left;
+    margin:40px 10px;
+    cursor:pointer;
+    font-size:1px;
+}
+
+/* right */
+.btn-seguir-leyendo a.right { background-position: 0 -30px; clear:right; margin-right: 0px;}
+.btn-seguir-leyendo a.right:hover       { background-position:-30px -30px; }
+.btn-seguir-leyendo a.right:active  { background-position:-60px -30px; } 
+
+
+/* left */
+.btn-seguir-leyendo a.left              { margin-left: 0px; } 
+.btn-seguir-leyendo a.left:hover        { background-position:-30px 0; }
+.btn-seguir-leyendo a.left:active   { background-position:-60px 0; }
+
+/* up and down */
+.btn-seguir-leyendo a.up,
+.btn-seguir-leyendo a.down        { 
+    background:url(../img/scrollable/arrow/vert_large.png) no-repeat; 
+    float: none;
+    margin: 10px 50px;
+}
+
+/* up */
+.btn-seguir-leyendo a.up:hover          { background-position:-30px 0; }
+.btn-seguir-leyendo a.up:active         { background-position:-60px 0; }
+
+/* down */
+.btn-seguir-leyendo a.down              { background-position: 0 -30px; }
+.btn-seguir-leyendo a.down:hover        { background-position:-30px -30px; }
+.btn-seguir-leyendo a.down:active   { background-position:-60px -30px; } 
+
+
+/* disabled navigational button */
+.btn-seguir-leyendo a.disabled {
+    visibility:hidden !important;       
+}   
+
+/********/
+
 #mas-titulares ul {
 	width:215px;
 	height:auto;
