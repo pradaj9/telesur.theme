@@ -836,5 +836,5 @@ body div {	 /* Eliminar todo el bloque */
 
 div.video-widget {
     float: left;
-    margin-right: 10px;
+    margin: 10px;
 }
