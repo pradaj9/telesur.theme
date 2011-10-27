@@ -172,7 +172,9 @@
             <drop attributes="id"
                 css:theme="#telesur-left-content #nota-detail" />
         </rules>
-        <after css:theme="#telesur-left-content #nota-detail"
+        <!--after css:theme="#telesur-left-content #nota-detail"
+            css:content="#parent-fieldname-text" /-->
+        <after css:theme="#telesur-left-content #autor-temp"
             css:content="#parent-fieldname-text" />
         <replace css:theme-children="#telesur-left-content #byline" 
             css:content-children="#content p.nitfByline" />

@@ -75,13 +75,13 @@ body div {	 /* Eliminar todo el bloque */
 	margin: 0;
 	padding: 0;
 }
-#telesur-full-column #especiales, .telesur-full-column #especiales {
+#especiales {
 	width:1024px;
 	height:80px;
 	margin:5px 0 15px 0;
 	padding:0;
 }
-#telesur-full-column #especiales .especial, .telesur-full-column #especiales .especial {
+#especiales .especial, #especiales .especial {
 	width:230px;
 	height:70px;
 	display:block;
@@ -843,5 +843,5 @@ div.video-widget {
 }
 body.portaltype-collective-nitf-content #parent-fieldname-text {
     clear: both;
-    padding: 25px 0 0 0;
+    padding: 15px 0 0 0;
 }
