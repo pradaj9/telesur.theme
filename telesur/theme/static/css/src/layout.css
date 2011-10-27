@@ -605,6 +605,9 @@ body div {	 /* Eliminar todo el bloque */
 	height:55px;
 	display:block;
 }
+#telesur-seccion-listing.telesur-left-content {
+    min-height: 650px;
+}
 .notas-seccion, #telesur-seccion-listing .tileItem  {
 	width:290px;
 	height:244px;
