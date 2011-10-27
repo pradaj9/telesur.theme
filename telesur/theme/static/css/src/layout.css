@@ -841,3 +841,6 @@ div.video-widget {
     float: left;
     margin: 10px;
 }
+body.portaltype-collective-nitf-content #parent-fieldname-text {
+    clear: both;
+}
