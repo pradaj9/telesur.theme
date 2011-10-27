@@ -4,11 +4,14 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <rules css:if-content="#visual-portal-wrapper">
+
         <rules if-path="/">
             <theme href="home-scroll.html" />
             <drop css:theme="div.notas-sencilla-grande" />
             <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
                 css:content-children="#video-scroll-home > div.breadcumb" />
+            <replace css:theme="#video-scroll-home > object"
+                css:content="#video-scroll-home div.video-widget" />
             <replace
                 css:theme-children="#video-scroll-home h1"
                 css:content-children="#video-scroll-home h3.tileHeadline" />
@@ -32,11 +35,13 @@
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
-            body.portaltype-folder,
-            body.portaltype-topic">
+                               body.portaltype-folder,
+                               body.portaltype-topic">
             <theme href="seccion.html" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#video-scroll-home > div.breadcumb" />
+            <replace css:theme="#nota-titular > object"
+                css:content="#video-scroll-home div.video-widget" />
             <replace
                 css:theme-children="#nota-titular h1"
                 css:content-children="#video-scroll-home h3.tileHeadline" />
