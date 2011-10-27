@@ -181,6 +181,8 @@
             css:content-children="#content p.nitfByline" />
         <replace css:theme="#telesur-left-content div#notas-relacionadas ul"
             css:content="#related-items span" />
+        <drop if-content="not(//*[@id='related-items']/span)"
+            css:theme="#notas-relacionadas" />
         <drop css:theme="#telesur-left-content div.comentario-individual" />
         <after css:theme="#telesur-left-content #comentarios-nota > h2"
             css:content="#viewlet-below-content div.discusion" />
