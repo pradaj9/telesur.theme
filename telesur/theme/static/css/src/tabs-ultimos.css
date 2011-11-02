@@ -4,13 +4,16 @@
 
 .panes-ultimos div {
 	display:none;
-	padding:15px 10px;
+	/*
+    padding:15px 10px;
 	border:1px solid #999;
+    */
+	padding:0;
 	border-top:0;
-	height:130px;
+	height:186px;
 	font-size:14px;
 	background-color:#fff;
-	width:280px;
+	width:305px;
 }
 /* root element for tabs-ultimos  */
 .tabs-ultimos {
@@ -20,8 +23,10 @@ ul.tabs-ultimos {
 	list-style:none;
 	margin:0 !important;
 	padding:0;
+    /*
 	border-bottom:1px solid #666;
 	height:32px;
+    */
 }
 
 /* single tab */
@@ -46,7 +51,9 @@ ul.tabs-ultimos a {
 	text-align:center;
 	text-decoration:none;
 	color:#333;
+    /*
 	padding:3px 0 0 0px;
+    */
 	margin:0 3px;
 	position:relative;
 	top:1px;

@@ -36,19 +36,19 @@
 <!-- Begin Subheader -->
 <div id="telesur-subheader">
   <ul id="menu">
-    <li id="nav-1"><a href="#1" class="active">Inicio</a>
+    <li id="nav-1"><a href="/" class="active">Inicio</a>
       <ul id="subnav-1">
-        <li><a href="#2">Latinoamérica</a></li>
-        <li><a href="#2">Vuelta al Mundo</a></li>
-        <li><a href="#2">Deportes</a></li>
-        <li><a href="#2">Cultura</a></li>
-        <li><a href="#2">Salud</a></li>
-        <li><a href="#2">Ciencia</a></li>
-        <li><a href="#2">Tecnología</a></li>
-        <li><a href="#2">Coberturas Especiales</a></li>
+        <li><a href="/">Latinoamérica</a></li>
+        <li><a href="/">Vuelta al Mundo</a></li>
+        <li><a href="/">Deportes</a></li>
+        <li><a href="">Cultura</a></li>
+        <li><a href="">Salud</a></li>
+        <li><a href="">Ciencia</a></li>
+        <li><a href="">Tecnología</a></li>
+        <li><a href="">Coberturas Especiales</a></li>
       </ul>
     </li>
-    <li id="nav-2"><a href="#2" >Noticias</a>
+    <li id="nav-2" class="selected"><a href="/" >Noticias</a>
       <ul id="subnav-2">
         <li><a href="#2">Latinoamérica</a></li>
         <li><a href="#2">Vuelta al Mundo</a></li>
@@ -60,7 +60,7 @@
         <li><a href="#2">Coberturas Especiales</a></li>
       </ul>
     </li>
-    <li id="nav-3"><a href="#3">Opinión</a>
+    <li id="nav-3"><a href="/">Opinión</a>
       <ul id="subnav-3">
         <li><a href="#3">Opinión</a></li>
         <li><a href="#3">Artículo</a></li>
@@ -69,7 +69,7 @@
         <li><a href="#3">Encuesta</a></li>
       </ul>
     </li>
-    <li id="nav-4"><a href="#4">Programas</a>
+    <li id="nav-4"><a href="/">Programas</a>
       <ul id="subnav-4">
         <li><a href="#4">teleSUR Noticias</a></li>
         <li><a href="#4">Deportes teleSUR</a></li>
@@ -84,21 +84,21 @@
         <li><a href="#4">Realidades</a></li>
       </ul>
     </li>
-    <li id="nav-5"><a href="#5">Multimedia</a>
+    <li id="nav-5"><a href="/">Multimedia</a>
       <ul id="subnav-5">
         <li><a href="#5">Fotografía</a></li>
         <li><a href="#5">Video</a></li>
         <li><a href="#5">Audio</a></li>
       </ul>
     </li>
-    <li id="nav-6"><a href="#6">El canal</a>
+    <li id="nav-6"><a href="/">El canal</a>
       <ul id="subnav-6">
         <li><a href="#6">teleSUR es...</a></li>
         <li><a href="#6">Contáctenos</a></li>
         <li><a href="#6">Contratciones Públicas</a></li>
       </ul>
     </li>
-    <li id="nav-7"><a href="#7">Programación</a></li>
+    <li id="nav-7"><a href="/">Programación</a></li>
     </ul>
     <ul id="envivo">
         <li id="nav-8" style="display:none;"><a href="#8"><span class="ico-audio"></span>Audio <br />
@@ -106,7 +106,17 @@
         <li id="nav-9"><a href="http://multimedia.telesurtv.net/vivo/"><span class="ico-video"></span>Señal <br />
             en vivo</a></li>
     </ul>
-  <div id="contents">
+  <div id="nav-contents">
+      <ul id="globalnav">
+          <li><a href="#2">Latinoamérica</a></li>
+          <li><a href="#2">Vuelta al Mundo</a></li>
+          <li><a href="#2">Deportes</a></li>
+          <li><a href="#2">Cultura</a></li>
+          <li><a href="#2">Salud</a></li>
+          <li><a href="#2">Ciencia</a></li>
+          <li><a href="#2">Tecnología</a></li>
+          <li><a href="#2">Coberturas Especiales</a></li>
+      </ul>
     <ul class="idiomas">
       <img src="img/img_idiomas.png" width="29" height="28" alt="selección de idioma" style="margin:6px 15px 0 15px; float:left;" />
       <li><a href="#" class="active">Español</a></li>
@@ -286,7 +296,7 @@
   </div>
   <!-- End Left Content -->
   <!-- Begin Right Sidebar -->
-  <div class="telesur-right-sidebar">
+  <div id="ultimos-sidebar" class="telesur-right-sidebar">
       <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
           height="175" width="308" style="border: none; margin: 5px auto;">
           <p>Tu navegador no puede ver este contenido.</p>
@@ -304,57 +314,64 @@
   </div>
   <!-- End Right Sidebar -->
   <!-- Full column -->
-  <div class="telesur-full-column">
+  <div class="telesur-left-content">
       <!--
       <div class="breadcumb-categoria">Videos | Sección</div>
       -->
     <!-- Videos por categoria -->
     <div id="videos-categoria">
         <!-- Videos Thumbnails -->
-        <div style="clear:both; border-top: solid 2px #AC1206;"> &nbsp;</div>
-        <div class="breadcumb-categoria">más titulares </div>
-        <span class="btn-flecha-izquierda"><a href="#" title="ver anteriores">&nsub;</a></span>
-        <div id="mas-titulares">
-            <div class="titular-individual">
-            	<div class="titulo-seccion">seccion</div>
-                	<ul>
-                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-               	</ul>
+        <div style="clear:both; border-top: solid 2px #AC1206; width: 700px;"> &nbsp;</div>
+        <div id="caja-titulares">
+            <div class="breadcumb-categoria">más titulares </div>
+            <span class="btn-flecha-izquierda"><a href="#" title="ver anteriores">&nsub;</a></span>
+            <div id="mas-titulares">
+                <div class="titular-individual">
+                    <div class="titulo-seccion">seccion</div>
+                        <ul>
+                        <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                    </ul>
+                </div>
+                <div class="titular-individual">
+                    <div class="titulo-seccion">seccion</div>
+                        <ul>
+                        <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                    </ul>
+                </div>
+                <div class="titular-individual">
+                    <div class="titulo-seccion">seccion</div>
+                        <ul>
+                        <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                    </ul>
+                </div>
+                <div class="titular-individual">
+                    <div class="titulo-seccion">seccion</div>
+                        <ul>
+                        <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
+                        <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
+                    </ul>
+                </div>
             </div>
-            <div class="titular-individual">
-            	<div class="titulo-seccion">seccion</div>
-                	<ul>
-                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-               	</ul>
-            </div>
-            <div class="titular-individual">
-            	<div class="titulo-seccion">seccion</div>
-                	<ul>
-                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-               	</ul>
-            </div>
-            <div class="titular-individual">
-            	<div class="titulo-seccion">seccion</div>
-                	<ul>
-                    <li><a href="#"><div class="image-video">&nbsp;</div>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                    <div class="btn-seguir-leyendo"><a href="#" title="más sobre la sección">&nbsp;</a></div>
-               	</ul>
-            </div>
+            <span class="btn-flecha-derecha"><a href="#" title="ver siguientes">&nsub;</a></span>
         </div>
-        <span class="btn-flecha-derecha"><a href="#" title="ver siguientes">&nsub;</a></span>
     </div>
-    <div style="clear:both; border-bottom: solid 2px #AC1206; margin:5px 0; "> &nbsp;</div>
+  </div>
+  <div class="telesur-full-column">
+      <div style="clear:both; border-bottom: solid 2px #AC1206; margin:5px 0; "> &nbsp;</div>
+      <div style="display:block;width:700px;height:460px;margin: 0 auto;">
+          <iframe width="700" height="460" src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mapa_corresponsales&amp;width=700"></iframe>
+      </div>
     <!-- Full Column -->
      <!-- Begin Left Half -->
      <div id="telesur-left-half">

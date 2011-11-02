@@ -4,11 +4,14 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <rules css:if-content="#visual-portal-wrapper">
+
         <rules if-path="/">
             <theme href="home-scroll.html" />
             <drop css:theme="div.notas-sencilla-grande" />
             <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
                 css:content-children="#video-scroll-home > div.breadcumb" />
+            <replace css:theme="#video-scroll-home > object"
+                css:content="#video-scroll-home div.video-widget" />
             <replace
                 css:theme-children="#video-scroll-home h1"
                 css:content-children="#video-scroll-home h3.tileHeadline" />
@@ -29,14 +32,18 @@
                     </div>
                 </xsl:for-each>
             </after>
+            <after css:theme-children="#telesur-right-sidebar-small"
+                css:content="#lo-mas" />
         </rules>
 
         <rules css:if-content="body.template-folder_summary_view,
-            body.portaltype-folder,
-            body.portaltype-topic">
+                               body.portaltype-folder,
+                               body.portaltype-topic">
             <theme href="seccion.html" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#video-scroll-home > div.breadcumb" />
+            <replace css:theme="#nota-titular > object"
+                css:content="#video-scroll-home div.video-widget" />
             <replace
                 css:theme-children="#nota-titular h1"
                 css:content-children="#video-scroll-home h3.tileHeadline" />
@@ -60,6 +67,8 @@
                     </div>
                 </xsl:for-each>
             </replace>
+            <after css:theme-children="#ultimos-sidebar"
+                css:content="#lo-mas" />
             <!--
             <replace css:theme-children="#telesur-seccion-listing"
                 css:content="div.notas-seccion" />
@@ -72,6 +81,10 @@
 
         <rules css:if-content="body.portaltype-collective-nitf-content">
             <theme href="nota.html" />
+            <replace theme="//*[@id='telesur-left-content']/object"
+                css:content="#nitf-content-listing div.video-widget.principal" />
+            <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
+                css:content-children="#content-core > div.breadcumb" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
@@ -84,6 +97,7 @@
                 </div>
             </after>
         </rules>
+
         <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
             <div id="ultimas-noticias">
                 <div class="breadcumb-categoria">Últimas Noticias</div>
@@ -128,9 +142,15 @@
             css:content="#portal-personaltools-wrapper" />
         <after css:theme-children="#telesur-header"
             css:content="#portal-searchbox" />
-        <replace css:theme-children="#menu"
+        <drop css:content="#portaltab-index_html, #portaltab-noticias" />
+        <replace css:theme-children="#globalnav"
             css:content-children="#portal-globalnav" />
-
+        <replace css:theme="#menu #nav-1"
+            css:content="#portaltab-index_html"
+            method="raw" />
+        <replace css:theme="#menu #nav-2"
+            css:content="#portaltab-noticias"
+            method="raw" />
         <drop css:content="#ticker-wrapper" />
         <replace
             css:theme="#avances"
@@ -149,13 +169,19 @@
                 css:content="#content #media-counter" />
             <after css:theme-children="#telesur-left-content #nota-detail"
                 css:content="#content div.newsview" />
+            <drop attributes="id"
+                css:theme="#telesur-left-content #nota-detail" />
         </rules>
-        <after css:theme="#telesur-left-content #nota-detail"
+        <!--after css:theme="#telesur-left-content #nota-detail"
+            css:content="#parent-fieldname-text" /-->
+        <after css:theme="#telesur-left-content #autor-temp"
             css:content="#parent-fieldname-text" />
         <replace css:theme-children="#telesur-left-content #byline" 
             css:content-children="#content p.nitfByline" />
         <replace css:theme="#telesur-left-content div#notas-relacionadas ul"
             css:content="#related-items span" />
+        <drop if-content="not(//*[@id='related-items']/span)"
+            css:theme="#notas-relacionadas" />
         <drop css:theme="#telesur-left-content div.comentario-individual" />
         <after css:theme="#telesur-left-content #comentarios-nota > h2"
             css:content="#viewlet-below-content div.discusion" />
@@ -166,6 +192,9 @@
         <replace css:theme="#ultimos-programas">
             <xsl:copy-of css:select="dl.portlet-static-ultimos-programas > dd > p" />
         </replace>
+        <replace css:if-content="#caja-titulares"
+            css:theme="#caja-titulares"
+            css:content="#caja-titulares" />
         <!--
             <div id="ultimas-noticias">
                 <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias > dd.portletItem">
