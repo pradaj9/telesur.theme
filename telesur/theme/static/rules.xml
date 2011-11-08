@@ -26,6 +26,9 @@
         <notheme if="$ajax_load" />
 
         <rules css:if-content="body.portaltype-plone-site,
+                               body.template-atct_edit,
+                               body.template-edit,
+                               body.template-login_success,
                                body.template-telesur_helper">
             <replace css:theme="#telesur-middle"
                 css:content="#content" />
