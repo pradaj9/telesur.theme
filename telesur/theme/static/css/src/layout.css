@@ -40,7 +40,10 @@ body div {	 /* Eliminar todo el bloque */
 	margin: 0 0 5px 0;
 	padding: 0;
 	height:205px;
+    background-color: #3C608C;
+    /*
     background:url(../../mundo.png) center right no-repeat #3C608C;
+    */
 }
 #telesur-header #logo-telesur a {
 	width:296px;
