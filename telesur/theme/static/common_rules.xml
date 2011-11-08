@@ -1,0 +1,45 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <replace theme="/html/head/base"
+        content="/html/head/base" />
+    <drop theme="/html/head/meta" />
+    <after content="/html/head/meta"
+        theme-children="/html/head" />
+    <before content="/html/head/style | /html/head/script | /html/head/link"
+        theme-children="/html/head"
+        />
+    <replace theme="/html/head/title"
+        content="html/head/title" />
+    <copy attributes="*"
+        css:theme="body"
+        css:content="body" />
+    <copy attributes="href accesskey title"
+        css:theme="#logo-telesur > a"
+        css:content="#portal-logo" />
+    <drop css:if-content="#anon-personalbar"
+        css:content="#portal-personaltools-wrapper" />
+    <after css:theme="#logo-telesur"
+        css:content="#portal-personaltools-wrapper" />
+    <after css:theme-children="#telesur-header"
+        css:content="#portal-searchbox" />
+    <drop css:content="#portaltab-index_html, #portaltab-noticias" />
+    <replace css:theme-children="#globalnav"
+        css:content-children="#portal-globalnav" />
+    <replace css:theme="#menu #nav-1"
+        css:content="#portaltab-index_html"
+        method="raw" />
+    <replace css:theme="#menu #nav-2"
+        css:content="#portaltab-noticias"
+        method="raw" />
+    <drop css:content="#ticker-wrapper" />
+    <replace
+        css:theme="#avances"
+        css:content="#ticker-wrapper"
+        method="raw"
+        />
+
+</rules>

@@ -6,6 +6,7 @@
 
     <rules css:if-content="#visual-portal-wrapper">
 
+        <xi:include href="common_rules.xml" />
         <xi:include href="home_rules.xml" />
         <xi:include href="seccion_rules.xml" />
         <xi:include href="nota_rules.xml" />
@@ -24,59 +25,16 @@
         <theme href="nota.html" />
         <notheme if="$ajax_load" />
 
-        <rules
-            css:if-content="body.template-atct_edit,
-            body.template-telesur_helper,
-            body.template-login_form,
-            body.template-logged_out,
-            body.template-search,
-            body.template-search_form,
-            body.template-overview-controlpanel">
+        <rules css:if-content="body.portaltype-plone-site,
+                               body.template-telesur_helper">
             <replace css:theme="#telesur-middle"
                 css:content="#content" />
         </rules>
-        <replace theme="/html/head/base"
-            content="/html/head/base" />
-        <drop theme="/html/head/meta" />
-        <after content="/html/head/meta"
-            theme-children="/html/head" />
-        <before content="/html/head/style | /html/head/script | /html/head/link"
-            theme-children="/html/head"
-            />
-        <replace theme="/html/head/title"
-            content="html/head/title" />
-        <copy attributes="*"
-            css:theme="body"
-            css:content="body" />
-        <copy attributes="href accesskey title"
-            css:theme="#logo-telesur > a"
-            css:content="#portal-logo" />
-        <after css:theme="#logo-telesur"
-            css:content="#portal-personaltools-wrapper" />
-        <after css:theme-children="#telesur-header"
-            css:content="#portal-searchbox" />
-        <drop css:content="#portaltab-index_html, #portaltab-noticias" />
-        <replace css:theme-children="#globalnav"
-            css:content-children="#portal-globalnav" />
-        <replace css:theme="#menu #nav-1"
-            css:content="#portaltab-index_html"
-            method="raw" />
-        <replace css:theme="#menu #nav-2"
-            css:content="#portaltab-noticias"
-            method="raw" />
-        <drop css:content="#ticker-wrapper" />
-        <replace
-            css:theme="#avances"
-            css:content="#ticker-wrapper"
-            method="raw"
-            />
         <drop css:theme="#telesur-left-content p" />
         <before css:theme="#telesur-left-content > h1"
             css:content="#edit-bar" />
         <replace css:theme="#telesur-left-content > h1"
             css:content="#portal-column-content h1.documentFirstHeading" />
-        <!--after css:theme="#telesur-left-content #nota-detail"
-            css:content="#parent-fieldname-text" /-->
         <after css:theme="#telesur-left-content #autor-temp"
             css:content="#parent-fieldname-text" />
         <replace css:theme-children="#telesur-left-content #byline" 
@@ -98,13 +56,5 @@
         <replace
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
-        <!--
-            <div id="ultimas-noticias">
-                <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias > dd.portletItem">
-                    <xsl:copy-of select="a/node()" />
-                </xsl:for-each>
-            </div>
-        </replace>
-        -->
     </rules>
 </rules>
