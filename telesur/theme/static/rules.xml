@@ -26,6 +26,7 @@
 
         <rules
             css:if-content="body.template-atct_edit,
+            body.template-telesur_helper,
             body.template-login_form,
             body.template-logged_out,
             body.template-search,
