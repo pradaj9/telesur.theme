@@ -1,102 +1,14 @@
 <rules
     xmlns="http://namespaces.plone.org/diazo"
     xmlns:css="http://namespaces.plone.org/diazo/css"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <rules css:if-content="#visual-portal-wrapper">
 
-        <rules if-path="/">
-            <theme href="home-scroll.html" />
-            <drop css:theme="div.notas-sencilla-grande" />
-            <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
-                css:content-children="#video-scroll-home > div.breadcumb" />
-            <replace css:theme="#video-scroll-home > object"
-                css:content="#video-scroll-home div.video-widget" />
-            <replace
-                css:theme-children="#video-scroll-home h1"
-                css:content-children="#video-scroll-home h3.tileHeadline" />
-            <replace
-                css:theme-children="#video-scroll-home > p"
-                css:content-children="#video-scroll-home p.nota-descripcion" />
-            <after css:theme="#video-scroll-home">
-                <xsl:for-each css:select="div.notas-seccion">
-                    <div class="notas-sencilla-grande visualIEFloatFix">
-                        <xsl:copy-of select="h3" />
-                        <div class="nota-sencilla-grande-thumb">
-                            <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
-                        </div>
-                        <xsl:copy-of select="p[@class='nota-descripcion']" />
-                        <div class="sigue-leyendo">
-                            <xsl:copy-of select="p[@class='tileFooter']/node()" />
-                        </div>
-                    </div>
-                </xsl:for-each>
-            </after>
-            <after css:theme-children="#telesur-right-sidebar-small"
-                css:content="#lo-mas" />
-        </rules>
-
-        <rules css:if-content="body.template-folder_summary_view,
-                               body.portaltype-folder,
-                               body.portaltype-topic">
-            <theme href="seccion.html" />
-            <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
-                css:content-children="#video-scroll-home > div.breadcumb" />
-            <replace css:theme="#nota-titular > object"
-                css:content="#video-scroll-home div.video-widget" />
-            <replace
-                css:theme-children="#nota-titular h1"
-                css:content-children="#video-scroll-home h3.tileHeadline" />
-            <replace
-                css:theme-children="#nota-titular > p"
-                css:content-children="#video-scroll-home p.nota-descripcion" />
-            <replace
-                css:theme-children="#nota-titular > div.sigue-leyendo"
-                css:content-children="#video-scroll-home p.tileFooter" />
-            <replace css:theme-children="#telesur-seccion-listing">
-                <xsl:for-each css:select="div.notas-seccion">
-                    <div class="notas-sencilla-grande visualIEFloatFix">
-                        <xsl:copy-of select="h3" />
-                        <div class="nota-sencilla-grande-thumb">
-                            <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
-                        </div>
-                        <xsl:copy-of select="p[@class='nota-descripcion']" />
-                        <div class="sigue-leyendo">
-                            <xsl:copy-of select="p[@class='tileFooter']/node()" />
-                        </div>
-                    </div>
-                </xsl:for-each>
-            </replace>
-            <after css:theme-children="#ultimos-sidebar"
-                css:content="#lo-mas" />
-            <!--
-            <replace css:theme-children="#telesur-seccion-listing"
-                css:content="div.notas-seccion" />
-            <copy attributes="href class"
-                css:theme="#nota-titular div.sigue-leyendo > a"
-                css:content="#video-scroll-home p.tileFooter > a" />
-                -->
-
-        </rules>
-
-        <rules css:if-content="body.portaltype-collective-nitf-content">
-            <theme href="nota.html" />
-            <replace theme="//*[@id='telesur-left-content']/object"
-                css:content="#nitf-content-listing div.video-widget.principal" />
-            <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
-                css:content-children="#content-core > div.breadcumb" />
-            <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
-            <after theme="//*[@id='telesur-right-sidebar']/div[1]">
-                <div id="ultimas-noticias">
-                    <div class="breadcumb-categoria">Últimas Noticias</div>
-                    <div class="ultima-noticia">
-                        <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                            <xsl:copy-of select="a" /> 
-                        </xsl:for-each>
-                    </div>
-                </div>
-            </after>
-        </rules>
+        <xi:include href="home_rules.xml" />
+        <xi:include href="seccion_rules.xml" />
+        <xi:include href="nota_rules.xml" />
 
         <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
             <div id="ultimas-noticias">
@@ -157,21 +69,11 @@
             css:content="#ticker-wrapper"
             method="raw"
             />
-
         <drop css:theme="#telesur-left-content p" />
         <before css:theme="#telesur-left-content > h1"
             css:content="#edit-bar" />
         <replace css:theme="#telesur-left-content > h1"
             css:content="#portal-column-content h1.documentFirstHeading" />
-        <rules css:if-content="#content #media-counter">
-            <replace 
-                css:theme-children="#telesur-left-content #nota-detail"
-                css:content="#content #media-counter" />
-            <after css:theme-children="#telesur-left-content #nota-detail"
-                css:content="#content div.newsview" />
-            <drop attributes="id"
-                css:theme="#telesur-left-content #nota-detail" />
-        </rules>
         <!--after css:theme="#telesur-left-content #nota-detail"
             css:content="#parent-fieldname-text" /-->
         <after css:theme="#telesur-left-content #autor-temp"
@@ -192,7 +94,7 @@
         <replace css:theme="#ultimos-programas">
             <xsl:copy-of css:select="dl.portlet-static-ultimos-programas > dd > p" />
         </replace>
-        <replace css:if-content="#caja-titulares"
+        <replace
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
         <!--

@@ -1,0 +1,35 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content="body.portaltype-collective-nitf-content">
+        <theme href="nota.html" />
+        <replace theme="//*[@id='telesur-left-content']/object"
+            css:content="#nitf-content-listing div.video-widget.principal" />
+        <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
+            css:content-children="#content-core > div.breadcumb" />
+        <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
+        <after theme="//*[@id='telesur-right-sidebar']/div[1]">
+            <div id="ultimas-noticias">
+                <div class="breadcumb-categoria">Últimas Noticias</div>
+                <div class="ultima-noticia">
+                    <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
+                        <xsl:copy-of select="a" /> 
+                    </xsl:for-each>
+                </div>
+            </div>
+        </after>
+        <rules css:if-content="#content #media-counter">
+            <replace 
+                css:theme-children="#telesur-left-content #nota-detail"
+                css:content="#content #media-counter" />
+            <after css:theme-children="#telesur-left-content #nota-detail"
+                css:content="#content div.newsview" />
+            <drop attributes="id"
+                css:theme="#telesur-left-content #nota-detail" />
+        </rules>
+    </rules>
+
+</rules>
