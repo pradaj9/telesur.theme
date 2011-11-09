@@ -9,7 +9,13 @@
                            body.portaltype-topic,
                            body.template-manage-content-rules.portaltype-plone-site">
         <theme href="seccion.html" />
-        <rules css:if-content="div.notas-seccion">
+        <rules css:if-content="body:not([class*='template-folder_summary_view'])">
+            <replace
+                css:theme-children="#telesur-seccion-main"
+                css:content="#portal-column-content div.documentEditable" />
+            <drop css:theme="#telesur-seccion-listing" />
+        </rules>
+        <rules css:if-content="#video-scroll-home">
             <before css:theme-children="#telesur-seccion-main"
                 css:content="#edit-bar" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
@@ -40,21 +46,8 @@
                 </xsl:for-each>
             </replace>
         </rules>
-        <rules css:if-content="div:not(.notas-seccion)">
-            <replace
-                css:theme-children="#telesur-seccion-main"
-                css:content="#portal-column-content div.documentEditable" />
-        </rules>
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
-        <!--
-        <replace css:theme-children="#telesur-seccion-listing"
-            css:content="div.notas-seccion" />
-        <copy attributes="href class"
-            css:theme="#nota-titular div.sigue-leyendo > a"
-            css:content="#video-scroll-home p.tileFooter > a" />
-            -->
-
     </rules>
 
 </rules>

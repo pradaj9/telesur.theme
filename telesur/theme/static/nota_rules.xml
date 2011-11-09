@@ -32,7 +32,7 @@
                     css:theme="#telesur-left-content #nota-detail" />
             </rules>
         </rules>
-        <rules css:if-content="div:not(#nitf-content-listing)">
+        <rules css:if-content="body:not([class*='template-nota'])">
             <replace 
                 css:theme-children="#telesur-left-content"
                 css:content="#portal-column-content div.documentEditable" />

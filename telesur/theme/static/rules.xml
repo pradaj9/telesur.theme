@@ -4,6 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
+    <notheme if="$ajax_load" />
     <rules css:if-content="#visual-portal-wrapper">
 
         <xi:include href="common_rules.xml" />
@@ -23,11 +24,8 @@
         </replace>
 
         <theme href="nota.html" />
-        <notheme if="$ajax_load" />
 
         <rules css:if-content="body.portaltype-plone-site:not(.template-manage-content-rules),
-                               body.template-atct_edit,
-                               body.template-edit,
                                body.template-login_success,
                                body.template-telesur_helper">
             <replace css:theme="#telesur-middle"
