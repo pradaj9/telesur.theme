@@ -7,6 +7,8 @@
     <rules if-path="/">
         <theme href="home-scroll.html" />
         <drop css:theme="div.notas-sencilla-grande" />
+        <before css:theme-children="#telesur-middle"
+            css:content="#edit-bar" />
         <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
             css:content-children="#video-scroll-home > div.breadcumb" />
         <replace css:theme="#video-scroll-home > object"

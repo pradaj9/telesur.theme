@@ -8,6 +8,8 @@
                            body.portaltype-folder,
                            body.portaltype-topic">
         <theme href="seccion.html" />
+        <before css:theme-children="#telesur-seccion-main"
+            css:content="#edit-bar" />
         <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
             css:content-children="#video-scroll-home > div.breadcumb" />
         <replace css:theme="#nota-titular > object"
