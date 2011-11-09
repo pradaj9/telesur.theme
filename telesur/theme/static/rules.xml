@@ -25,7 +25,7 @@
         <theme href="nota.html" />
         <notheme if="$ajax_load" />
 
-        <rules css:if-content="body.portaltype-plone-site,
+        <rules css:if-content="body.portaltype-plone-site:not(.template-manage-content-rules),
                                body.template-atct_edit,
                                body.template-edit,
                                body.template-login_success,
