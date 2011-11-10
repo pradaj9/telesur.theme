@@ -33,8 +33,12 @@
             </rules>
         </rules>
         <rules css:if-content="body:not([class*='template-nota'])">
+            <replace css:if-content="body.template-edit,
+                                     body.template-atct_edit"
+                css:theme-children="#telesur-middle #telesur-left-content"
+                css:content-children="#portal-column-content" />
             <replace 
-                css:theme-children="#telesur-left-content"
+                css:theme-children="#telesur-middle #telesur-left-content"
                 css:content="#portal-column-content div.documentEditable" />
         </rules>
     </rules>
