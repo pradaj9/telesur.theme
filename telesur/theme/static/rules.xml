@@ -26,6 +26,7 @@
         <theme href="nota.html" />
 
         <rules css:if-content="body.template-edit,
+                               body[class*='template-collective.nitf.content'],
                                body.template-atct_edit">
             <replace css:theme-children="#telesur-middle #telesur-left-content"
                 css:content-children="#portal-column-content" />

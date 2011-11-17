@@ -11,6 +11,7 @@
         <theme href="seccion.html" />
         <rules css:if-content="body:not([class*='template-folder_summary_view'])">
             <replace css:if-content="body.template-edit,
+                                     body[class*='template-collective.nitf.content'],
                                      body.template-atct_edit"
                 css:theme-children="#telesur-seccion-main"
                 css:content-children="#portal-column-content" />
