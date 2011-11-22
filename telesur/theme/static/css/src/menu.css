@@ -1,13 +1,14 @@
-#telesur-subheader #menu,
-#telesur-subheader #envivo  {
-	margin : 0;
-	padding-left:0;
-	margin:0 20px;
-	
+#telesur-subheader #menu {
+    float:left;
+    margin:0px;
+    height:34px;
 }
 #telesur-subheader #envivo  {
     float: right;
 	margin:0 10px;
+	position:absolute;
+	right:0px;
+	top:-32px;
 }
 #telesur-subheader #menu ul, #telesur-subheader #menu li,
 #telesur-subheader #envivo ul, #telesur-subheader #envivo li,
@@ -18,59 +19,100 @@ ul#globalnav, #globalnav li {
 	padding : 0;
 }
 #telesur-subheader #menu a:link, #telesur-subheader #menu a:visited {
-	background : #CCCCCC;
-	color : #535353;
+	background : url("../../img/menu-sep.png") no-repeat scroll right center transparent;
+	color : #FFF;
 	float : left;
-	line-height : 35px;
-	margin-right : 8px;
-	padding : 2px 16px;
+	line-height : 34px;
+	margin-right : -2px;
+	padding : 0px 16px;
 	text-decoration : none;
-	height:33px;
-	font-size:14px;
+	height:34px;
+	font-size:16px;
 	font-weight:bold;
 }
 #globalnav a:link, #globalnav a:visited {
-	background : none;
-	color : #ffffff;
+	background : url("../../img/subtab-sep.png") no-repeat scroll right center transparent;
+	color : #444;
 	float : left;
 	line-height : 35px;
-	margin-right : 8px;
-	padding : 2px 16px;
+	margin-right : -1px;
+	padding : 0px 16px;
 	text-decoration : none;
 	height:33px;
 	font-size:14px;
-	font-weight:bold;
+	font-weight:normal;
 }
-#telesur-subheader #menu .selected a:link, #telesur-subheader #menu .selected a:visited {
-	background : #b40200;
-	color : #fff;
+#globalnav a:hover {
+	color : #FFF;
+	/*css3 radial gradient*/
+    /* fallback */ 
+    background-color: #222; 
+    background-image: url(images/radial_bg.png); 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    /* Safari 4-5, Chrome 1-9 */ 
+    /* Can't specify a percentage size? Laaaaaame. */ 
+    background: -webkit-gradient(radial, center center, 0, center center, 460, from(#494949), to(#222)); 
+    /* Safari 5.1+, Chrome 10+ */ 
+    background: -webkit-radial-gradient(circle, #494949, #222); 
+    /* Firefox 3.6+ */ 
+    background: -moz-radial-gradient(circle, #494949, #222); 
+    /* IE 10 */ 
+    background: -ms-radial-gradient(circle, #494949, #222); /* Opera cannot do radial gradients yet */
 }
+#telesur-subheader #menu .selected a:link, #telesur-subheader #menu .selected a:visited,
 #telesur-subheader #menu a:hover {
-	background : #b40200;
-	color : #fff;
+	color : #000;
+	/*css3 radial gradient*/
+    /* fallback */ 
+    background-color: #e4e4e4; 
+    background-image: url(images/radial_bg.png); 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    /* Safari 4-5, Chrome 1-9 */ 
+    /* Can't specify a percentage size? Laaaaaame. */ 
+    background: -webkit-gradient(radial, center center, 0, center center, 460, from(#e4e4e4), to(#b3b7b8)); 
+    /* Safari 5.1+, Chrome 10+ */ 
+    background: -webkit-radial-gradient(circle, #e4e4e4, #b3b7b8); 
+    /* Firefox 3.6+ */ 
+    background: -moz-radial-gradient(circle, #e4e4e4, #b3b7b8); 
+    /* IE 10 */ 
+    background: -ms-radial-gradient(circle, #e4e4e4, #b3b7b8); /* Opera cannot do radial gradients yet */	
 }
 body.section-1 #telesur-subheader #menu li#nav-1 a, body.section-2 #telesur-subheader #menu li#nav-2 a, body.section-3 #telesur-subheader #menu li#nav-3 a, body.section-4 #telesur-subheader #menu li#nav-4 a, body.section-5 #telesur-subheader #menu li#nav-5 a, body.section-6 #telesur-subheader #menu li#nav-6 a, body.section-7 #telesur-subheader #menu li#nav-7 a {
 	background : #fff;
 	color : #000;
 }
-#telesur-subheader #envivo li#nav-8 a, #telesur-subheader #envivo li#nav-9 a {
-	background: url("../../img/img_vivo.png") no-repeat scroll 0 0 transparent;
+#telesur-subheader #envivo li a, #telesur-subheader #envivo li a {
+	background: url("../../img/en-vivo-tab-bg.png") no-repeat scroll 0 0 transparent;
     color: #FFFFFF;
     float: left;
-    font-size: 11px;
+    font-size: 9px;
+	font-family:"Helvetica", Arial, sans-serif;
     font-weight: normal;
     line-height: 14px;
-    margin: 0 3px;
-    padding: 4px 0 0 10px;
+    margin: 0;
+    padding: 0;
     text-align: center;
     text-transform: uppercase;
     height: 33px;
-    width: 73px;
+    width: 77px;
 }
 #telesur-subheader #envivo li#nav-8 a:hover, #telesur-subheader #envivo li#nav-9 a:hover {
 	color:#ddd;
 	text-shadow:2px 2px 2px #666;
 }
+#telesur-subheader #envivo li a .type {
+    display:none;
+}
+#telesur-subheader #envivo li a.audio-vivo-tab {
+	background: url("../../img/tab-audio.png") no-repeat scroll 0 0 transparent;
+}
+#telesur-subheader #envivo li a.video-vivo-tab {
+	background: url("../../img/tab-video.png") no-repeat scroll 0 0 transparent;
+}
+
+
 #telesur-subheader #menu #subnav-1, #telesur-subheader #menu #subnav-2, #telesur-subheader #menu #subnav-3, #telesur-subheader #menu #subnav-4, #telesur-subheader #menu #subnav-5, #telesur-subheader #menu #subnav-6, #telesur-subheader #menu #subnav-7 {
 	display : none;
 	width: 90%;
@@ -97,12 +139,12 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	color : #f00 !important;
 }
 #telesur-subheader #nav-contents {
-	background : #b40200;
+	background : none repeat scroll 0 0 #E8E8E8;
 	border-top : none;
 	clear : both;
 	margin : 0px;
 	width:1024px;
-	min-height:42px;
+	min-height:34px;
 	/*
 	padding:4px 0;
     */
@@ -111,31 +153,27 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	width:800px;
 	float:left;
 }
-#telesur-subheader ul.idiomas  {
-	width:175px;
-	height:42px;
-	background:#EDEDED;
+#telesur-header .idiomas  {
 	margin:0;
-	padding:0;	
+	padding:0;
 	list-style:none;
-	float:right;
-	font-size:11px;
+	font-size:10px;
 	text-transform:uppercase;
-	/*
-    margin-right:48px;
-	padding-top:3px;
-    */
+    top:10px;
+    left:10px;
+    position:absolute;
 }
-#telesur-subheader ul.idiomas li a:link{
-	color:#666;
-	text-decoration:none;
-	display:block;
-	margin:0;
+#telesur-header .idiomas span {
+    float:left;
+    padding-right:3px;
 }
-#telesur-subheader ul.idiomas li a:active, #telesur-subheader ul.idiomas li a:hover {
-	color:#B40200;
-	text-decoration:none;
-	font-weight:bold;
+#telesur-header .idiomas ul {
+    float:left;
+}
+#telesur-header .idiomas a {
+	text-decoration:underline;
+    color:#c90a08;
+    padding-right:3px;
 }
 #telesur-subheader #avances {
 	width:1024px;

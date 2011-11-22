@@ -37,24 +37,56 @@ body div {	 /* Eliminar todo el bloque */
 	width: 1024px;
 }
 #telesur-header {
-	margin: 0 0 5px 0;
+	margin: 0
 	padding: 0;
-	height:205px;
+	height:151px;
     background-color: #3C608C;
-    /*
-    background:url(../../mundo.png) center right no-repeat #3C608C;
-    */
+    background:url("../../img/header-bg.png") no-repeat scroll right top #3C608C;
+    position:relative;
 }
 #telesur-header #logo-telesur a {
-	width:296px;
-	height:129px;
-	float:left;
-	background:url(../../img/logo_3d.png) no-repeat;
-	display:block;
+    background: url("../../img/logo.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 102px;
+    width: 338px;
+}
+
+/*social icons*/
+#telesur-header .social-links {
+    float:right;
+    padding-top:10px;
+}
+#telesur-header .social-links span {
+    display:none;
+}
+#telesur-header .social-links a {
+    height:26px;
+    padding-left:30px;
+    float:left;
+}
+#telesur-header .social-links .facebook-icon {
+    background:url("../../img/facebook-icon.png") no-repeat scroll 0 0 transparent;
+}
+#telesur-header .social-links .twitter-icon {
+    background:url("../../img/twitter-icon.png") no-repeat scroll 0 0 transparent;
+}
+#telesur-header .social-links .youtube-icon {
+    background:url("../../img/youtube-icon.png") no-repeat scroll 0 0 transparent;
+}
+#telesur-header .social-links .rss-icon {
+    background:url("../../img/rss-icon.png") no-repeat scroll 0 0 transparent;
+}
+#logo-telesur {
+    float:left;
+    margin-top:30px;
+    margin-left:11px;
 }
 #telesur-subheader {
-	margin: -60px 0 5px 0;
+	margin: 0;
 	padding: 0;
+    background: url("../../img/menu-bg.png") repeat-x scroll 0 0 #cf0c0a;
+    position:relative;
 }
 
 #telesur-middle {
