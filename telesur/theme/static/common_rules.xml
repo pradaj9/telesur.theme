@@ -26,9 +26,14 @@
         css:content="#portal-personaltools-wrapper" />
     <after css:theme-children="#telesur-header"
         css:content="#portal-searchbox" />
-    <drop css:content="#portaltab-index_html, #portaltab-noticias" />
-    <replace css:theme-children="#globalnav"
+    <!--<drop css:content="#portaltab-index_html, #portaltab-noticias" />-->
+    <!-- MENU -->
+    <replace css:theme-children="#menu"
         css:content-children="#portal-globalnav" />
+    <!-- SUBMENU ITEMS -->
+    <replace css:theme-children="#globalnav"
+        css:content-children="#portal-subglobalnav" />   
+             
     <replace css:theme="#menu #nav-1"
         css:content="#portaltab-index_html"
         method="raw" />

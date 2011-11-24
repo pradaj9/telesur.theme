@@ -42,7 +42,7 @@ ul#globalnav, #globalnav li {
 	font-size:14px;
 	font-weight:normal;
 }
-#globalnav a:hover {
+#globalnav a:hover, #globalnav a.selected {
 	color : #FFF;
 	/*css3 radial gradient*/
     /* fallback */ 
