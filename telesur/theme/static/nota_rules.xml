@@ -6,7 +6,7 @@
 
     <rules css:if-content="body.portaltype-collective-nitf-content">
         <theme href="nota.html" />
-        <rules css:if-content="#nitf-content-listing">
+        <rules>
             <replace theme="//*[@id='telesur-left-content']/object"
                 css:content="#nitf-content-listing div.video-widget.principal" />
             <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
@@ -30,6 +30,10 @@
                     css:content="#content div.newsview" />
                 <drop attributes="id"
                     css:theme="#telesur-left-content #nota-detail" />
+                <before css:theme="#autor-temp">
+                    <a href="./#disqus_thread">Disqus count</a>
+                </before>
+
             </rules>
         </rules>
         <after css:theme="#telesur-left-content #comentarios-nota > h2">
