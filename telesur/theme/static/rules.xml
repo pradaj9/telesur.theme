@@ -53,6 +53,10 @@
             css:content="#portal-column-content h1.documentFirstHeading" />
         <after css:theme="#telesur-left-content #autor-temp"
             css:content="#parent-fieldname-text" />
+        <!--
+        <before css:theme="#telesur-left-content #compartir"
+            css:content="div.documentContributors" />
+            -->
         <replace css:theme-children="#telesur-left-content #byline" 
             css:content-children="#content p.nitfByline" />
         <replace css:theme="#telesur-left-content div#notas-relacionadas ul"

@@ -30,10 +30,6 @@
                     css:content="#content div.newsview" />
                 <drop attributes="id"
                     css:theme="#telesur-left-content #nota-detail" />
-                <before css:theme="#autor-temp">
-                    <a href="./#disqus_thread">Disqus count</a>
-                </before>
-
             </rules>
         </rules>
         <after css:theme="#telesur-left-content #comentarios-nota > h2">
