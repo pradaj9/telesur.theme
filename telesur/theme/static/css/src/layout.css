@@ -940,11 +940,37 @@ body div {	 /* Eliminar todo el bloque */
     display: none;
 }
 
-div.video-widget {
-    float: left;
-    margin: 10px;
-}
 body.portaltype-collective-nitf-content #parent-fieldname-text {
     clear: both;
     padding: 15px 0 0 0;
+}
+
+
+
+
+
+/**
+    CUSTOM CODE by Quimera
+**/
+/*NOTA LAYOUT*/
+.width-video {
+    width:390px;
+}
+.position-video {
+    margin-left:-700px;
+}
+.width-counter {
+    width:207px;
+} 
+.position-counter {
+    margin-left:-310px;
+}
+
+.video-widget {
+    border: 1px solid #9B9B9B;
+    margin: 0 10px;
+    padding: 14px;
+}
+.video-widget .newsImage {
+    width:340px;
 }

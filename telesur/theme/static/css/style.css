@@ -25,3 +25,30 @@
 @import "src/tabs-social.css";
 @import "src/tabs-opinion.css";
 @import "src/tabs-redesociales.css";
+
+
+/***
+* NOTA
+***/
+#media-data {
+    overflow:hidden;
+}
+#media-counter .counter-element {
+    float:left;
+}
+#media-counter .counter {
+    width:50px;
+    display:block;
+    text-align:center;
+    font-size:13px;
+    padding:28px 0 5px 0;
+}
+#media-counter .image-counter .counter{
+    background: url("../img/iconos/nota-detail/foto.png") no-repeat scroll center 0 transparent;
+}
+#media-counter .comment-counter .counter{
+    background: url("../img/iconos/nota-detail/comentarios.png") no-repeat scroll center 0 transparent;
+}
+#media-counter .video-counter .counter{
+    background: url("../img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
+}

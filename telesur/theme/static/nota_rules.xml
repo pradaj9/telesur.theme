@@ -22,14 +22,19 @@
                     </div>
                 </div>
             </after>
-            <rules css:if-content="#content #media-counter">
+            <rules css:if-content="#content #media-container">
+                <!-- nota counters (video, comments, images, audio)-->
                 <replace 
-                    css:theme-children="#telesur-left-content #nota-detail"
-                    css:content="#content #media-counter" />
-                <after css:theme-children="#telesur-left-content #nota-detail"
+                    css:theme="#media-counter #nota-detail"
+                    css:content-children="#content #media-counter" />
+                <!-- image gallery code -->
+                <after css:theme="#telesur-left-content #media-container"
                     css:content="#content div.newsview" />
-                <drop attributes="id"
-                    css:theme="#telesur-left-content #nota-detail" />
+                
+                <!-- media data, principal video or image -->
+                <replace 
+                    css:theme-children="#telesur-left-content #media-data"
+                    css:content="#content .video-widget.principal" />
             </rules>
         </rules>
         <after css:theme="#telesur-left-content #comentarios-nota > h2">
