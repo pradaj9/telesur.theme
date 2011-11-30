@@ -31,8 +31,9 @@
     <replace css:theme-children="#menu"
         css:content-children="#portal-globalnav" />
     <!-- SUBMENU ITEMS -->
-    <replace css:theme-children="#globalnav"
-        css:content-children="#portal-subglobalnav" />   
+    <replace css:if-content="#portal-subglobalnav > li" css:theme-children="#globalnav"
+        css:content-children="#portal-subglobalnav" />
+    <drop if-content="not(//*[@id='portal-subglobalnav']/li)" css:theme="#nav-contents"/>
              
     <replace css:theme="#menu #nav-1"
         css:content="#portaltab-index_html"

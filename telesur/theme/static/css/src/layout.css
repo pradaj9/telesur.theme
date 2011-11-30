@@ -87,11 +87,16 @@ body div {	 /* Eliminar todo el bloque */
 	padding: 0;
     background: url("../../img/menu-bg.png") repeat-x scroll 0 0 #cf0c0a;
     position:relative;
+    width:1024px;
+    clear:both;
+    float:left;
 }
 
 #telesur-middle {
 	margin: 0 0 5px 0;
 	padding: 0;
+	float:left;
+	clear:both;
 }
 #telesur-subfooter {
 	clear: both;
