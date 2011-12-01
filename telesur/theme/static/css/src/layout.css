@@ -114,6 +114,7 @@ body div {	 /* Eliminar todo el bloque */
 	height: auto; /* Puede cambiar a altura fija en pixeles */
 	margin: 0;
 	padding: 0;
+	clear:both;
 }
 #especiales {
 	width:1024px;
@@ -959,17 +960,27 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
 .position-video {
     margin-left:-700px;
 }
-.width-counter {
-    width:207px;
+.width-metadata {
+    width:310px;
 } 
-.position-counter {
+.position-metadata {
     margin-left:-310px;
+}
+
+#media-counter {
+    border: 1px solid #9B9B9B;
+    clear: both;
+    float: left;
+    width: 207px;
+    padding:8px 0;
 }
 
 .video-widget {
     border: 1px solid #9B9B9B;
     margin: 0 10px;
     padding: 14px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 .video-widget .newsImage {
     width:340px;

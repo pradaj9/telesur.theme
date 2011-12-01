@@ -8,7 +8,7 @@
         <theme href="nota.html" />
         <rules>
             <replace theme="//*[@id='telesur-left-content']/object"
-                css:content="#nitf-content-listing div.video-widget.principal" />
+                css:content=".nitf-content-listing div.video-widget.principal" />
             <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#content-core > div.breadcumb" />
             <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
@@ -35,6 +35,16 @@
                 <replace 
                     css:theme-children="#telesur-left-content #media-data"
                     css:content="#content .video-widget.principal" />
+
+                <!-- if videos, then copy those to a gallery div -->
+                <replace css:if-content=".nitf-content-listing .video-widget"
+                    css:theme-children="#video-galery-container"
+                    css:content=".nitf-content-listing .video-widget" />
+
+                <!-- nota description -->
+                <replace css:if-content="#telesur-left-content .article-description" 
+                    css:theme-children="#telesur-left-content .article-description"
+                    css:content="#content .article-description" />
             </rules>
         </rules>
         <after css:theme="#telesur-left-content #comentarios-nota > h2">

@@ -28,6 +28,29 @@
 
 
 /***
+* TICKER STYLE
+***/
+#telesur-container #ticker-wrapper {
+    clear: both;
+    float: left;
+    margin: 10px 0;
+}
+#telesur-container #ticker-content {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 32px;
+    padding: 0 9px;
+}
+
+
+/*GENERAL*/
+.separator {
+    clear:both; 
+    border-bottom: solid 2px #AC1206; 
+    margin:15px 0;
+}
+/***
 * NOTA
 ***/
 #media-data {
@@ -35,6 +58,8 @@
 }
 #media-counter .counter-element {
     float:left;
+    height:45px;
+    overflow:hidden;
 }
 #media-counter .counter {
     width:50px;
@@ -51,4 +76,16 @@
 }
 #media-counter .video-counter .counter{
     background: url("../img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
+}
+#media-container .article-description {
+    clear:both;
+    width:310px;
+    padding:10px 0;
+}
+#media-container .article-description p {
+    font-size:13px;
+}
+/*video gallery*/
+#video-galery-container {
+    display:none;
 }
