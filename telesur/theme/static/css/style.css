@@ -88,4 +88,84 @@
 /*video gallery*/
 #video-galery-container {
     display:none;
+    background-color:#FFF;
+    padding:10px 20px;
+    border:1px solid #D9D9D9;
+}
+#video-galery-container .video-widget {
+    border:medium none;
+    padding:0px;
+    margin:0px;
+}
+.videos-wrapper {
+    /* dimensions */
+    width:558px;
+    margin:15px 0 15px 0;
+    padding:15px 0;
+
+    /* centered */
+    text-align:center;
+
+    /* some "skinning" */
+    background-color:#efefef;
+    border:2px solid #fff;
+    outline:1px solid #ddd;
+    -moz-ouline-radius:4px;
+}
+/*close, right and left*/
+#video-galery-container a.close {
+    background-image: url(../img/pb_close.png);
+    position: absolute;
+    left: -14px;
+    top: -14px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px
+}
+#video-galery-container a.browse {
+    background: url("../img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 30px;
+    margin: 25px 10px;
+    width: 30px;
+}
+#video-galery-container a.right {
+    background-position: 0 -30px;
+    clear: right;
+    margin-right: 0;
+}
+#video-galery-container a.right:hover {
+    background-position: -30px -30px;
+}
+#video-galery-container a.right:active {
+    background-position: -60px -30px;
+}
+#video-galery-container a.left {
+    margin-left: 0;
+}
+#video-galery-container a.left:hover {
+    background-position: -30px 0;
+}
+#video-galery-container a.left:active {
+    background-position: -60px 0;
+}
+
+.scrollable-video-galery {
+    float:left;
+    border: 1px solid #CCCCCC;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+    width: 474px;    
+}
+.scrollable-video-galery .thumb-image {
+    margin:10px 0 10px 10px;
+    border:1px solid #CCCCCC;
+    padding:2px;
+}
+.scrollable-video-galery .active {
+    border:1px solid #000000;
 }

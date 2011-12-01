@@ -38,8 +38,8 @@
 
                 <!-- if videos, then copy those to a gallery div -->
                 <replace css:if-content=".nitf-content-listing .video-widget"
-                    css:theme-children="#video-galery-container"
-                    css:content=".nitf-content-listing .video-widget" />
+                    css:theme-children="#video-galery-container .scrollable-video-galery"
+                    css:content=".nitf-content-listing .video-widget.not-principal" />
 
                 <!-- nota description -->
                 <replace css:if-content="#telesur-left-content .article-description" 
@@ -65,7 +65,6 @@
                     s.type = 'text/javascript';
                     s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
                     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-
                 })();
 
             </script>
