@@ -43,6 +43,9 @@
     padding: 0 9px;
 }
 
+#telesur-container #ticker {
+    width:700px;
+}
 
 /*GENERAL*/
 .separator {
@@ -109,7 +112,6 @@
     /* some "skinning" */
     background-color:#efefef;
     border:2px solid #fff;
-    outline:1px solid #ddd;
     -moz-ouline-radius:4px;
 }
 /*close, right and left*/
@@ -169,3 +171,54 @@
 .scrollable-video-galery .active {
     border:1px solid #000000;
 }
+
+/***
+    Portlet "mas vistos"
+***/
+#mas-vistos {
+    width:310px;
+}
+.tabs-masvistos {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0;
+    border-bottom: 1px solid #666;
+    height: 32px;
+}
+.tabs-masvistos li {
+    float: left;
+    text-indent: 0;
+    padding: 0 0 0 3px;
+    margin: 0 !important;
+    list-style-image: none !important;
+}
+.tabs-masvistos a.current, .tabs-masvistos a.current:hover, .tabs-masvistos li.current a {
+    cursor: default !important;
+    color: black !important;
+    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    height: 38px;
+    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+}
+.tabs-masvistos a {
+    background: url(../img/pestana-ultimos.png) no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    width: 87px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding:0;
+    margin: 0;
+    position: relative;
+    top: 0;
+}
+.panes-masvistos {
+    border: 1px solid #999;
+    border-top: 0;
+}
+
+

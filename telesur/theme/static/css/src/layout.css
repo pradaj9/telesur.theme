@@ -229,6 +229,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 	border:solid 1px #666;
 	margin:0 0 15px 0;
+    clear:both;
 }
 #telesur-left-content-big #video-scroll-home h1 {
 	font-size:24px;
@@ -265,6 +266,7 @@ body div {	 /* Eliminar todo el bloque */
 	margin:5px;
 	border-top:solid 1px #666;
 	padding:5px;
+    clear:both;
 }
 #telesur-left-content-big #scroller-video-home #video-thumb-home {
 	width:140px;

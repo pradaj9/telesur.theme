@@ -151,6 +151,46 @@
       height="175" width="308" style="border: none; margin: 5px auto;">
       <p>Tu navegador no puede ver este contenido.</p>
   </iframe>
+
+  <div id="mas-vistos">
+    <ul class="tabs-masvistos">
+      <li class="active"><a href="#">D&iacute;a</a></li>
+      <li><a href="#"></span>Semana</a></li>
+      <li><a href="#"></span>mes</a></li>
+    </ul>
+    <!-- tab "panes-ultimos" -->
+    <div class="panes-masvistos">
+      <div>
+          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=dia"
+          height="175" width="308">
+              <p>Tu navegador no puede ver este contenido.</p>
+          </iframe>
+      </div>
+      <div>
+          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=semana"
+          height="175" width="308">
+              <p>Tu navegador no puede ver este contenido.</p>
+          </iframe>
+      </div>
+      <div>
+          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=mes"
+          height="175" width="308">
+              <p>Tu navegador no puede ver este contenido.</p>
+          </iframe>
+      </div>
+    </div>
+    <!-- This JavaScript snippet activates those tabs-ultimos -->
+    <script>
+            
+            // perform JavaScript after the document is scriptable.
+            $(function() {
+                // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+                $("#mas-vistos ul.tabs-masvistos").tabs("div.panes-masvistos > div");
+            });
+            </script>
+  </div>
+
+  
   <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
       height="500" width="308" style="border: none; margin: 5px auto;">
       <p>Tu navegador no puede ver este contenido.</p>
