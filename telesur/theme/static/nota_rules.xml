@@ -42,9 +42,11 @@
                     css:content=".nitf-content-listing .video-widget.not-principal" />
 
                 <!-- nota description -->
-                <replace css:if-content="#telesur-left-content .article-description" 
+                <replace css:if-content="#content .article-description" 
                     css:theme-children="#telesur-left-content .article-description"
-                    css:content="#content .article-description" />
+                    css:content="#content .article-description"
+                    method="raw" />
+                <drop css:content="#content .article-description" />
             </rules>
         </rules>
         <after css:theme="#telesur-left-content #comentarios-nota > h2">
