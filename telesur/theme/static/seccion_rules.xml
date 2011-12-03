@@ -54,7 +54,8 @@
           <!-- esto modifica la lista de ultimos videos de seccion si y solo si
                la vista encontro un id de seccion valido -->
           <rules css:if-content="#video-scroll-home .section-id-ultimos-videos">
-            <copy attributes="src" css:content="#video-scroll-home .section-id-ultimos-videos" css:theme="#scroller-seccion .most_viewed"/>
+            <copy attributes="src" css:content="#video-scroll-home .section-id-ultimos-videos" css:theme="#scroller-seccion .most_viewed" method="raw"/>
+            <drop css:content="#video-scroll-home .section-id-ultimos-videos"/>
           </rules>
         </rules>
         <after css:theme-children="#ultimos-sidebar"

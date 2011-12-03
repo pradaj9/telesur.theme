@@ -114,8 +114,9 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-full-column, .telesur-full-column {
 	height: auto; /* Puede cambiar a altura fija en pixeles */
 	margin: 0;
-	padding: 0;
+	padding: 10px 0 10px 0;
 	clear:both;
+	float:left;
 }
 #especiales {
 	width:1024px;
@@ -453,7 +454,7 @@ body div {	 /* Eliminar todo el bloque */
 	text-decoration:none;
 	text-shadow:2px 2px 2px #666;
 }
-#senal-en-vivo p {
+#senal-en-vivo span {
 	width:190px;
 	height:30px;
 	color:#666;
@@ -465,6 +466,7 @@ body div {	 /* Eliminar todo el bloque */
 	padding:0 0 0 60px;
 	font-size:11px;
 	text-shadow:none;
+	display:block;
 }
 #senal-en-vivo-small a {
 	width:250px;

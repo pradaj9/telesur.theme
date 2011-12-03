@@ -23,7 +23,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/print.css" type="text/css" media="print" />
 <script src="Scripts/swfobject_modified.js" type="text/javascript"></script>
-<script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js" type="text/javascript"></script>
 </head>
 <body class="main-seccion">
 <!-- Begin Container -->
@@ -111,9 +111,12 @@
   <!-- Begin Right Sidebar -->
   <div class="telesur-right-sidebar">
     <!--SEÑAL EN VIVO -->
-    <div id="senal-en-vivo"> <a href="http://multimedia.telesurtv.net/vivo/" title="SEÑAL EN VIVO"> Señal en vivo
-      <p> nombre del programa y el conductor que se está transimitiendo ahora</p>
-      </a> </div>
+    <div id="senal-en-vivo">
+        <a href="http://multimedia.telesurtv.net/vivo/" title="SEÑAL EN VIVO"> 
+            Señal en vivo
+            <span> nombre del programa y el conductor que se est&aacute; transimitiendo ahora</span>
+        </a>
+    </div>
     <!-- Señal en vivo -->
     <!-- mapa interactivo -->
     <div id="mapa-interactivo">
@@ -123,7 +126,7 @@
     <!-- mapa interactivo -->
   </div>
   <!-- End Right Sidebar -->
-  <div style="clear:both; border-top:solid 2px #AC1206">&nbsp;</div>
+  <!-- <div style="clear:both; border-top:solid 2px #AC1206">&nbsp;</div> -->
   <!-- Full Column -->
   <div class="telesur-full-column">
     <div id="scroller-seccion">
@@ -136,7 +139,7 @@
     </div>
   </div>
   <!-- Full Column -->
-  <div style="clear:both; border-top:solid 2px #AC1206">&nbsp;</div>
+  <!--<div style="clear:both; border-top:solid 2px #AC1206">&nbsp;</div>-->
   <!-- Begin Left Content -->
   <div id="telesur-seccion-listing" class="telesur-left-content">
     <div class="notas-seccion">
@@ -236,14 +239,13 @@
       </div>
     </div>
     <!-- This JavaScript snippet activates those tabs-ultimos -->
-    <script>
-            
-            // perform JavaScript after the document is scriptable.
-            $(function() {
-                // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
-                $("#mas-vistos ul.tabs-masvistos").tabs("div.panes-masvistos > div");
-            });
-            </script>
+    <script type="text/javascript">            
+        // perform JavaScript after the document is scriptable.
+        $(function() {
+            // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+            $("#mas-vistos ul.tabs-masvistos").tabs("div.panes-masvistos > div");
+        });
+    </script>
   </div>
       
       <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
@@ -315,10 +317,10 @@
       <div class="separator"></div>  
       <h2>ESPECIALES</h2>
       <div id="especiales">
-          <div class="especial"><img src="especial1.jpg" /></div>
-          <div class="especial"><img src="especial2.jpg" /></div>
-          <div class="especial"><img src="especial3.jpg" /></div>
-          <div class="especial"><img src="especial4.jpg" /></div>
+          <div class="especial"><img src="especial1.jpg" alt="especial1"/></div>
+          <div class="especial"><img src="especial2.jpg" alt="especial2"/></div>
+          <div class="especial"><img src="especial3.jpg" alt="especial3"/></div>
+          <div class="especial"><img src="especial4.jpg" alt="especial4"/></div>
       </div>
       <div class="separator"></div>
       <!--<div style="display:block;width:700px;height:460px;margin: 0 auto;">
@@ -342,13 +344,12 @@
               <div>Forth tab content</div>
             </div>
             <!-- This JavaScript snippet activates those tabs-ultimos -->
-            <script>
-            
-            // perform JavaScript after the document is scriptable.
-            $(function() {
-                // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
-                $("ul.tabs-social").tabs("div.panes-social > div");
-            });
+            <script type="text/javascript">
+                // perform JavaScript after the document is scriptable.
+                $(function() {
+                    // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+                    $("ul.tabs-social").tabs("div.panes-social > div");
+                });
             </script>
      </div>
      <!-- End Left Half -->
@@ -370,7 +371,7 @@
               <div> forth tab content</div>
             </div>
             <!-- This JavaScript snippet activates those tabs-opinion -->
-            <script>
+            <script type="text/javascript">
             
             // perform JavaScript after the document is scriptable.
             $(function() {
