@@ -50,6 +50,12 @@
                     </div>
                 </xsl:for-each>
             </replace>
+
+          <!-- esto modifica la lista de ultimos videos de seccion si y solo si
+               la vista encontro un id de seccion valido -->
+          <rules css:if-content="#video-scroll-home .section-id-ultimos-videos">
+            <copy attributes="src" css:content="#video-scroll-home .section-id-ultimos-videos" css:theme="#scroller-seccion .most_viewed"/>
+          </rules>
         </rules>
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
