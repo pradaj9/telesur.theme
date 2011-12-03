@@ -21,7 +21,7 @@ jq(function($) {
     
     $(".video-counter .counter").prepOverlay({
         subtype:'inline',
-        target: '#video-galery-container',
+        target: '#video-galery-container'
     });
 
     $("#video-galery-container").scrollable({size: 4});

@@ -97,6 +97,7 @@ body div {	 /* Eliminar todo el bloque */
 	padding: 0;
 	float:left;
 	clear:both;
+	width:100%;
 }
 #telesur-subfooter {
 	clear: both;
@@ -610,7 +611,7 @@ body div {	 /* Eliminar todo el bloque */
 }
 #scroller-seccion {
 	width:1024px;
-	height:90px;
+	height:113px;
 	float:left;
 	display:block; 
 	clear:both;
@@ -957,7 +958,7 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
 **/
 /*NOTA LAYOUT*/
 .width-video {
-    width:390px;
+    width:380px;
 }
 .position-video {
     margin-left:-700px;
@@ -966,7 +967,7 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
     width:310px;
 } 
 .position-metadata {
-    margin-left:-310px;
+    margin-left:-320px;
 }
 
 #media-counter {
@@ -979,7 +980,7 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
 
 .video-widget {
     border: 1px solid #9B9B9B;
-    margin: 0 10px;
+    margin: 0 10px 0 0;
     padding: 14px;
     -moz-border-radius: 5px;
     border-radius: 5px;

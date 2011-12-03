@@ -27,6 +27,18 @@
 @import "src/tabs-redesociales.css";
 
 
+/*GENERAL*/
+.separator {
+    clear:both; 
+    border-bottom: solid 2px #AC1206; 
+    margin:15px 0;
+}
+/*content styles*/
+h1, h2, h3 {
+    line-height:1.1em;
+}
+
+
 /***
 * TICKER STYLE
 ***/
@@ -47,12 +59,6 @@
     width:700px;
 }
 
-/*GENERAL*/
-.separator {
-    clear:both; 
-    border-bottom: solid 2px #AC1206; 
-    margin:15px 0;
-}
 /***
 * NOTA
 ***/
