@@ -178,8 +178,34 @@ h1, h2, h3 {
     border:1px solid #000000;
 }
 
+/*
+* PORTLETS GENERAL
+*/
+.widget-container {
+    margin-bottom:15px;    
+}
+.widget-container .widget-title {
+    font-size:18px;
+    color:#B40200;
+    margin:0 0 5px 0;
+    text-transform:none;
+    letter-spacing: normal;    
+}
+.widget-container iframe {
+    overflow:hidden;
+}
+
 /***
-    Portlet "mas vistos"
+* Portlet "ultimos videos"
+***/
+#ultimos-videos-widget .ultimos-videos-wrapper {
+    border:1px solid #b3b3b3;
+    background:url(../img/portlets-bg.png) repeat-x scroll 0 0;
+    padding:12px;
+}
+
+/***
+* Portlet "mas vistos"
 ***/
 #mas-vistos {
     width:310px;
@@ -225,6 +251,7 @@ h1, h2, h3 {
 .panes-masvistos {
     border: 1px solid #999;
     border-top: 0;
+    padding:10px 12px;
 }
 
 /***
@@ -232,8 +259,7 @@ h1, h2, h3 {
 ***/
 #ultimas-noticias {
     border:1px solid #b3b3b3;
-    padding:10px 15px;
-    margin-bottom:15px;
+    padding:10px;
     font-size:13px;
     color:#333333;
     background:url(../img/portlets-bg.png) repeat-x scroll 0 0;
@@ -255,4 +281,10 @@ h1, h2, h3 {
     padding-top:10px;
 }
 
+/**
+* Portlet Ultimos Programas
+**/
+#ultimos-programas-widget .ultimos-programas-wrapper{
+    border:1px solid #b3b3b3;
+}
 

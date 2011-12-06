@@ -205,12 +205,17 @@
       <!-- End Left Content -->
       <!-- Begin Right Sidebar -->
       <div id="ultimos-sidebar" class="telesur-right-sidebar">
-          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos"
-              height="175" width="308" style="border: none; margin: 5px auto;">
+    <div id="ultimos-videos-widget" class="widget-container">
+        <div class="ultimos-videos-wrapper">
+          <h2 class="widget-title">Últimos videos</h2>            
+          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_videos&width=285"
+              height="219" width="285">
               <p>Tu navegador no puede ver este contenido.</p>
           </iframe>
+        </div>
+    </div>
 
-    <div id="mas-vistos">
+    <div id="mas-vistos" class="widget-container">
         <ul class="tabs-masvistos">
           <li class="active"><a href="#">D&iacute;a</a></li>
           <li><a href="#"></span>Semana</a></li>
@@ -219,20 +224,20 @@
         <!-- tab "panes-ultimos" -->
         <div class="panes-masvistos">
           <div>
-              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=dia"
-              height="175" width="308">
+              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=dia&width=285"
+              height="219" width="285">
                   <p>Tu navegador no puede ver este contenido.</p>
               </iframe>
           </div>
           <div>
-              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=semana"
-              height="175" width="308">
+              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=semana&width=285"
+              height="219" width="285">
                   <p>Tu navegador no puede ver este contenido.</p>
               </iframe>
           </div>
           <div>
-              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=mes"
-              height="175" width="308">
+              <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mas_vistos&tiempo=mes&width=285"
+              height="219" width="285">
                   <p>Tu navegador no puede ver este contenido.</p>
               </iframe>
           </div>
@@ -246,11 +251,15 @@
             });
         </script>
       </div>
-          
+      
+      <div id="ultimos-programas-widget" class="widget-container">
+        <div class="ultimos-programas-wrapper">
           <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=ultimos_programas"
-              height="500" width="308" style="border: none; margin: 5px auto;">
+              height="500" width="308">
               <p>Tu navegador no puede ver este contenido.</p>
           </iframe>
+        </div>
+      </div>
         <!--div id="ultimos-videos">
           <h2>Ultimos videos</h2>
         </div>
