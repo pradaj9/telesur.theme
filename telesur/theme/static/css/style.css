@@ -288,3 +288,60 @@ h1, h2, h3 {
     border:1px solid #b3b3b3;
 }
 
+
+/**
+* FOOTER 
+**/
+#footer {
+    padding-bottom:15px;
+}
+.action-buttons {
+    border-bottom:2px solid #ab1306;
+}
+.action-buttons .actions-list {
+    display:inline;
+    float:left;
+    margin-bottom:15px;
+}
+.action-buttons .actions-list a {
+    color:#323232;
+    font-size:12px;
+    padding:3px 10px 3px 20px;
+    margin-right:10px;
+    background:white url(../img/icon-bg.png) repeat-x scroll 0 bottom;   
+    border:1px solid #999;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+#footer .colophone {
+    padding-top:15px;
+}
+#footer .colophone .cell-wrapper {
+    height:10em;
+    border-right:1px solid #aa1406;
+    padding-right:15px;
+}
+#footer .colophone .publicidad .cell-wrapper{
+    border-right:1px solid #FFF;
+}
+
+#footer .colophone .cell-wrapper h3 {
+    color:#333;
+    font-size:16px;
+    padding-bottom:10px;
+}
+#footer .colophone .cell-wrapper li {
+    display:block;
+}
+#footer .colophone .cell-wrapper ul a {
+    font-size:13px;
+    color:#666;
+}
+
+#footer .colophone .telesur-cc p {
+    color:#333;
+}
+#footer .colophone .telesur-cc span {
+}
+
