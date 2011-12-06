@@ -934,18 +934,6 @@ body div {	 /* Eliminar todo el bloque */
 	font-weight:normal;
 	font-size:14px;
 }
-#ultimas-noticias {
-    margin: 15px auto;
-    padding: 10px 0;
-    width: 300px;
-}
-.ultima-noticia {
-    font-size: 13px;
-}
-.ultima-noticia a.tile > img {
-    display: none;
-}
-
 body.portaltype-collective-nitf-content #parent-fieldname-text {
     clear: both;
     padding: 15px 0 0 0;

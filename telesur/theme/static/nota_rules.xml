@@ -11,7 +11,7 @@
                 css:content=".nitf-content-listing div.video-widget.principal" />
             <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#content-core > div.breadcumb" />
-            <drop css:content="dl.portlet-collection-ultimas-noticias dd.portletItem > a > img" />
+            <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />                            
             <after theme="//*[@id='telesur-right-sidebar']/div[1]">
                 <div id="ultimas-noticias">
                     <div class="breadcumb-categoria">Últimas Noticias</div>

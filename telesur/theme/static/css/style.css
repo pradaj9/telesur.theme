@@ -227,4 +227,32 @@ h1, h2, h3 {
     border-top: 0;
 }
 
+/***
+* Portlet "ultimas noticias"
+***/
+#ultimas-noticias {
+    border:1px solid #b3b3b3;
+    padding:10px 15px;
+    margin-bottom:15px;
+    font-size:13px;
+    color:#333333;
+    background:url(../img/portlets-bg.png) repeat-x scroll 0 0;
+}
+#ultimas-noticias .portletItemDetails {
+    font-size:11px;
+    color:#999;
+    text-align:right;
+}
+#ultimas-noticias .tile {
+    background:url(../img/iconos/generales/nota.png) no-repeat scroll 0 0;
+    padding-left:20px;
+    color:#333333;    
+}
+#ultimas-noticias .tile img {
+    display:none;
+}
+#ultimas-noticias .ultima-noticia {
+    padding-top:10px;
+}
+
 
