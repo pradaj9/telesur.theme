@@ -86,6 +86,9 @@ h1, h2, h3 {
 #media-counter .video-counter .counter{
     background: url("../img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
 }
+#media-container {
+    padding-bottom:15px;
+}
 #media-container .article-description {
     clear:both;
     width:310px;
@@ -93,6 +96,14 @@ h1, h2, h3 {
 }
 #media-container .article-description p {
     font-size:13px;
+}
+
+#autor-temp {
+    clear:both;
+    display:block;
+    font-size:12px;
+    color:#999999;
+    padding:0px;
 }
 /*video gallery*/
 #video-galery-container {
