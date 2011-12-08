@@ -76,6 +76,10 @@ h1, h2, h3 {
     text-align:center;
     font-size:13px;
     padding:28px 0 5px 0;
+    color:#000;
+}
+#media-counter .empty {
+    color:#999;
 }
 #media-counter .image-counter .counter{
     background: url("../img/iconos/nota-detail/foto.png") no-repeat scroll center 0 transparent;
@@ -86,6 +90,23 @@ h1, h2, h3 {
 #media-counter .video-counter .counter{
     background: url("../img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
 }
+#media-counter .audio-counter .counter{
+    background: url("../img/iconos/nota-detail/audio.png") no-repeat scroll center 0 transparent;
+}
+/*empty counters*/
+#media-counter .image-counter .empty{
+    background: url("../img/iconos/nota-detail/foto-empty.png") no-repeat scroll center 0 transparent;
+}
+#media-counter .comment-counter .empty{
+    background: url("../img/iconos/nota-detail/comentarios-empty.png") no-repeat scroll center 0 transparent;
+}
+#media-counter .video-counter .empty{
+    background: url("../img/iconos/nota-detail/video-empty.png") no-repeat scroll center 0 transparent;
+}
+#media-counter .audio-counter .empty{
+    background: url("../img/iconos/nota-detail/audio-empty.png") no-repeat scroll center 0 transparent;
+}
+
 #media-container {
     padding-bottom:15px;
 }
