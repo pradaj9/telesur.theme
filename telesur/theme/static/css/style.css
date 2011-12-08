@@ -338,14 +338,47 @@ h1, h2, h3 {
 .action-buttons .actions-list a {
     color:#323232;
     font-size:12px;
-    padding:3px 10px 3px 20px;
+    padding:3px 10px 3px 23px;
     margin-right:10px;
     background:white url(../img/icon-bg.png) repeat-x scroll 0 bottom;   
     border:1px solid #999;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    position:relative;
 }
+.action-buttons .actions-list .icon {
+    width:18px;
+    height:18px;
+    position:absolute;
+    left:2px;
+    top:2px;
+}
+.action-buttons .actions-list .subscribe .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll 0 0;
+}
+.action-buttons .actions-list .contact .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -18px 0;
+}
+.action-buttons .actions-list .starting-page .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -36px 0;
+}
+.action-buttons .actions-list .movile .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -54px 0;
+}
+.action-buttons .actions-list .jobs-telesur .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -72px 0;
+}
+.action-buttons .actions-list .im-reporter .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -90px 0;
+}
+.action-buttons .actions-list .fav .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -108px 0;
+}
+.action-buttons .actions-list .multimedia-starting-page .icon{
+    background:transparent url(../img/iconos-footer.png) no-repeat scroll -126px 0;
+}
+
 #footer .colophone {
     padding-top:15px;
 }
