@@ -2,15 +2,12 @@
 
 /* CSS Document */
 
-.panes-redesociales div {
-	display:none;
-	padding:15px 10px;
+.panes-redesociales {
+	padding:0;
 	border:1px solid #999;
 	border-top:0;
-	height:130px;
 	font-size:14px;
 	background-color:#fff;
-	width:280px;
 }
 /* root element for tabs-redesociales  */
 .tabs-redesociales {
@@ -69,4 +66,65 @@ ul.tabs-redesociales a.current, ul.tabs-redesociales a.current:hover, ul.tabs-re
 	background-color:#fff;
 	height:32px;
 	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
+}
+
+
+/*facebook style*/
+#telesur-container .facebook a {
+    font-weight:bold;
+    color:#022e87;
+    font-size:12px;
+}
+.facebook dl {
+    background-color:#eceff4;
+    padding-bottom:10px;
+}
+.facebook .portletHeader {
+    background:#FFF url(../../img/telestu-logo-small.png) scroll no-repeat 5px 50%;
+    padding:15px 40px;
+    font-size: 18px;
+    font-weight:normal;
+    color: #B40200;
+}
+.facebook .portletItem {
+    padding: 5px 17px 0px 17px;
+}
+.facebook .portletItem .result-item {
+    padding-bottom:10px;
+}
+.facebook .portletItem .result-item .date_and_time {
+    font-size:11px;
+    color:#8e8888;
+}
+.facebook .portletFooter {
+    background-color:#fff;
+    margin: 0px 17px 0px 17px;
+}
+.facebook .portletFooter a {
+    padding:4px 5px 5px 5px;
+    margin:0px 5px;
+    border-top:1px solid #d7d7d7;
+    display:block;
+}
+
+.facebook .results-wrapper {
+    background-color:#FFF;
+    padding:5px 10px 0px 10px;
+}
+.result-item p {
+    padding:3px;
+    margin-bottom:3px;
+}
+.result-item p.link, .result-item .comments {
+    background-color:#eeeff4;
+}
+.result-item .result_content {
+    padding-bottom:5px;
+}
+.result-item .result_content p {
+    padding:3px 3px 0px 3px;
+    margin:0px;
+}
+.result_content p {
+    color:#000;
 }
