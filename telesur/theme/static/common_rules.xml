@@ -47,5 +47,12 @@
         css:content="#ticker-wrapper"
         method="raw"
         />
+        
+    <!-- column 1 replace column 2 if 1 exist -->
+    <rules css:if-content="#portal-personaltools">
+        <replace css:if-content="#portal-column-one" css:theme="#admin-holder" css:content="#portal-column-one"/>
+        <drop css:if-content="#portal-column-one" css:theme=".telesur-right-sidebar, #telesur-right-sidebar" />
+        <!--<replace css:if-theme=".telesur-right-sidebar" css:theme=".telesur-right-sidebar" css:content="#portal-column-one"/>      -->
+    </rules>
 
 </rules>
