@@ -72,11 +72,15 @@
     color:#022e87;
     font-size:12px;
 }
+#telesur-container .facebookWallPortlet {
+    margin:0px;
+}
 .facebook dl {
     background-color:#eceff4;
     padding-bottom:10px;
 }
-.facebook .portletHeader {
+.facebook .portletHeader, 
+.twitterSearchPortlet .portletHeader{
     background:#FFF url(../../img/telestu-logo-small.png) scroll no-repeat 5px 50%;
     padding:15px 40px;
     font-size: 18px;
@@ -124,4 +128,56 @@
 }
 .result_content p {
     color:#000;
+}
+
+/*Twiter portlet*/
+.twitterSearchPortlet {
+    background-color:#F5F5F5;
+}
+#telesur-container .twitterSearchPortlet {
+    margin:0px;
+} 
+.twitterSearchPortlet .result-item {
+    border-bottom:1px solid #EBEBEB;
+    background-color: white;
+    padding: 10px 5px;
+}
+.twitterSearchPortlet .tweet-image {
+    float: left;
+    height: 48px;
+    margin-top: 3px;
+    overflow: hidden;
+    width: 48px;
+}
+.twitterSearchPortlet .avatar-off .tweet-image{
+    display:none;
+}
+.twitterSearchPortlet .tweet-content {
+    margin-left:58px;
+}
+.twitterSearchPortlet .avatar-off .tweet-content {
+    margin-left: 0px;
+}
+.twitterSearchPortlet .tweet-text p {
+    padding-left:0px;
+    margin-bottom:0px;
+    color:#444;
+}
+
+.twitterSearchPortlet .tweet-screen-name {
+    color: #333333 !important;
+    font-weight: bold;
+    font-size:13px;
+}
+.twitterSearchPortlet .tweet-timestamp {
+    color: #999999 !important;
+    font-size: 11px;
+}    
+#telesur-container .twitterSearchPortlet a {
+    color:#0084b4;
+    border-bottom: 1px solid #FFF;
+}
+#telesur-container .twitterSearchPortlet a:hover {
+    border-bottom: 1px solid #0084b4;
+    text-decoration:none;
 }

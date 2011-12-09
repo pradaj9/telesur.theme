@@ -49,10 +49,14 @@
         />
         
     <!-- column 1 replace column 2 if 1 exist -->
-    <rules css:if-content="#portal-personaltools">
+    <rules if-content="not(//*[@id='anon-personalbar'])">
         <replace css:if-content="#portal-column-one" css:theme="#admin-holder" css:content="#portal-column-one"/>
         <drop css:if-content="#portal-column-one" css:theme=".telesur-right-sidebar, #telesur-right-sidebar" />
         <!--<replace css:if-theme=".telesur-right-sidebar" css:theme=".telesur-right-sidebar" css:content="#portal-column-one"/>      -->
     </rules>
+
+   <!-- portlets sociales -->
+   <replace css:theme-children=".twitter-portlet" css:content=".twitterSearchPortlet"/>
+   <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>   
 
 </rules>

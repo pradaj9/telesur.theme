@@ -368,9 +368,9 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-left-half {
 	float: left;
 	height: auto; /* Puede cambiar a altura fija en pixeles */
-	margin: 0 10px 5px 0;
+	margin: 0;
 	padding: 0;
-	width: 450px;
+	width: 500px;
 }
 #telesur-right-half {
 	display: inline;
@@ -936,7 +936,7 @@ body div {	 /* Eliminar todo el bloque */
 }
 body.portaltype-collective-nitf-content #parent-fieldname-text {
     clear: both;
-    padding: 15px 0 0 0;
+    padding: 0;
 }
 
 

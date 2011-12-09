@@ -1,22 +1,22 @@
 @charset "UTF-8";
 
 /* CSS Document */
-
-.panes-social div {
-	display:none;
-	padding:15px 10px;
-	border:2px solid #999;
+.panes-social {
+    border-left:1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom:1px solid #999;
+}    
+.panes-social .pane {
+	padding:0px;
 	border-top:0;
-	height:130px;
+	height:250px;
 	font-size:14px;
 	background-color:#fff;
-	width:460px;
+	width:100%;
+	overflow:auto;
 }
 /* root element for tabs-social  */
 .tabs-social {
-	width:482px;
-}
-ul.tabs-social {
 	list-style:none;
 	margin:0 !important;
 	padding:0;

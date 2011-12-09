@@ -7,11 +7,6 @@
     <notheme if="$ajax_load" />
     <rules css:if-content="#visual-portal-wrapper">
 
-        <!--
-        <replace theme="/html/head/link">
-            <link type="text/css" rel="stylesheet" href="http://www.telesurtv.net/secciones/afondo/especiales/Argentina_Decide/css/estilos.css" />
-        </replace>
-        -->
         <xi:include href="common_rules.xml" />
         <xi:include href="home_rules.xml" />
         <xi:include href="seccion_rules.xml" />
@@ -28,9 +23,6 @@
             </div>
         </replace>
 
-        <!--
-        <theme href="http://www.telesurtv.net/secciones/afondo/especiales/Argentina_Decide/index.php" />
-        -->
         <theme href="nota.html" />
 
         <rules css:if-content="body.template-edit,
