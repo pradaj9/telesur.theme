@@ -11,9 +11,6 @@
 }
 /* root element for tabs-redesociales  */
 .tabs-redesociales {
-	width:302px;
-}
-ul.tabs-redesociales {
 	list-style:none;
 	margin:0 !important;
 	padding:0;
@@ -22,49 +19,49 @@ ul.tabs-redesociales {
 }
 
 /* single tab */
-ul.tabs-redesociales li {
+.tabs-redesociales li {
 	float:left;
 	text-indent:0;
-	padding:0;
+	padding:0 0 0 3px;
 	margin:0 !important;
 	list-style-image:none !important;
 }
 
 /* link inside the tab. uses a background image */
-ul.tabs-redesociales a {
+.tabs-redesociales a {
 	background:url(../../img/pestana-ultimos.png) no-repeat;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:11px;
 	text-align:center;
 	display:block;
-	height: 38px;
-	line-height:25px;
+	height: 32px;
+	line-height:32px;
 	width: 87px;
 	text-align:center;
 	text-decoration:none;
 	color:#333;
-	padding:3px 0 0 0px;
-	margin:0 3px;
+	padding:0;
+	margin:0;
 	position:relative;
-	top:1px;
+	top:0px;
 }
 
-ul.tabs-redesociales a:active {
+.tabs-redesociales a:active {
 	outline:none;
 }
 
 /* when mouse enters the tab move the background image */
-ul.tabs-redesociales a:hover {
+.tabs-redesociales a:hover {
 	color:#000;
 	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
 }
 
 /* active tab uses a class name "current". its highlight is also done by moving the background image. */
-ul.tabs-redesociales a.current, ul.tabs-redesociales a.current:hover, ul.tabs-redesociales li.current a {
+.tabs-redesociales a.current, .tabs-redesociales a.current:hover, .tabs-redesociales li.current a {
 	cursor:default !important;
 	color:#000 !important;
 	background-color:#fff;
-	height:32px;
+	height:38px;
 	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
 }
 
