@@ -6,21 +6,57 @@
 
     <rules if-path="/">
         <theme href="home-scroll.html" />
-        <drop css:theme="div.notas-sencilla-grande" />
+        
+        <!-- drop all the articule boxes -->
+        <!-- <drop css:theme="div.notas-sencilla-grande" /> -->
+        
+        <!-- edit bar first element inside telesur-middle -->
         <before css:theme-children="#telesur-middle"
             css:content="#edit-bar" />
-        <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
-            css:content-children="#video-scroll-home > div.breadcumb" />
-        <replace css:theme="#video-scroll-home > object"
-            css:content="#video-scroll-home div.video-widget" />
-        <replace
+
+        <!-- main new category -->
+        <!-- <replace css:theme-children="#telesur-left-content-big div.breadcumb-categoria"
+            css:content-children="#video-scroll-home > div.breadcumb" /> -->
+        <replace css:theme-children=".main-article .category-data .category"
+                 css:content-children="#video-scroll-home > div.breadcumb" />
+
+        <!-- main new video or image -->
+        <!--<replace css:theme="#video-scroll-home > object"
+            css:content="#video-scroll-home div.video-widget" />-->
+        <replace css:theme-children=".main-article .media-container"
+                 css:content="#video-scroll-home .video-widget" />
+
+        <!-- main new title -->
+        <!-- <replace
             css:theme-children="#video-scroll-home h1"
-            css:content-children="#video-scroll-home h3.tileHeadline" />
-        <replace
+            css:content-children="#video-scroll-home h3.tileHeadline" /> -->
+        <replace css:theme-children=".data-article-container .title"
+                 css:content-children="#video-scroll-home h3.tileHeadline" />            
+        <!-- main new descrption -->
+        <!--<replace
             css:theme-children="#video-scroll-home > p"
-            css:content-children="#video-scroll-home p.nota-descripcion" />
-        <after css:theme="#video-scroll-home">
-            <xsl:for-each css:select="div.notas-seccion">
+            css:content-children="#video-scroll-home p.nota-descripcion" />-->
+        <replace css:theme-children=".data-article-container .description"
+                 css:content-children="#video-scroll-home .nota-descripcion" />            
+
+        <!-- news listing -->
+        <replace css:theme-children=".articles-carousel-wrapper">
+          <xsl:for-each css:select=".notas-seccion">
+            <xsl:if test="position() &lt; 5">
+                <div class="article-item">
+                    <div class="article-item-wrapper">
+                      <div class="thumb">
+                          <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
+                      </div>                
+                      <xsl:copy-of select="h3" />
+                    </div>
+                </div>
+            </xsl:if>          
+          </xsl:for-each>
+        </replace>   
+        <replace css:theme-children=".article-listing">
+          <xsl:for-each css:select=".notas-seccion">
+              <xsl:if test="position() &gt; 5">
                 <div class="notas-sencilla-grande visualIEFloatFix">
                     <xsl:copy-of select="h3" />
                     <div class="nota-sencilla-grande-thumb">
@@ -31,8 +67,10 @@
                         <xsl:copy-of select="p[@class='tileFooter']/node()" />
                     </div>
                 </div>
-            </xsl:for-each>
-        </after>
+              </xsl:if>
+          </xsl:for-each>
+        </replace>
+        
         <after css:theme-children="#telesur-right-sidebar-small"
             css:content="#lo-mas" />
     </rules>

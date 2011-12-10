@@ -37,8 +37,81 @@
 h1, h2, h3 {
     line-height:1.1em;
 }
+h1 a {
+    color:#333 !important;
+}
+/***
+* HOME
+***/
+.media-container {
+    width:430px;
+    margin-left:-685px;
+}
+.media-container .video-widget {
+    margin:0px;
+}
+.data-article-container {
+    width: 210px;
+    margin-left: -235px;
+}
+.main-article {
+    border:1px solid #9B9B9B;
+    padding:15px 0px 15px 0px;
+    margin-bottom:30px;
+}
 
+.data-article-container .description{
+    font-size:13px;
+    color:#666;
+    padding-bottom:5px;
+}
+.data-article-container .author {
+    color:#999;
+    font-size:12px;
+    padding-bottom:5px;
+}
+.category-data .category {
+    color:#AC1206;
+    font-size:13px;
+}
+#telesur-container .related-articles {
+    color:#AC1206;
+    list-style-type:square !important;
+    padding-left:15px;
+}
+#telesur-container .related-articles li a{
+    display:list-item;
+    color:#AC1206;
+}
 
+.main-article .articles-carousel .article-item{
+    float:left;
+    width:160px;
+}
+.articles-carousel {
+    padding-top:15px;
+}
+.articles-carousel .article-item .thumb {
+    height:80px;
+    overflow:hidden;
+}
+.articles-carousel .article-item .tileHeadline {
+    font-size:12px;
+    font-weight:normal;
+}
+.articles-carousel .article-item .article-item-wrapper {
+    padding:0px 15px 0px 15px;
+}
+.articles-carousel .articles-carousel-wrapper {
+    margin: 0px 15px 0px 15px;
+    border-top: 2px solid #AC1206;
+    clear: both;
+    padding-top: 15px; 
+}
+
+.article-listing {
+    padding-bottom:15px;    
+}
 /***
 * SECCIONES
 ***/
@@ -376,6 +449,8 @@ h1, h2, h3 {
     padding-bottom:15px;
 }
 .action-buttons {
+    padding-top:15px;
+    border-top:2px solid #ab1306;
     border-bottom:2px solid #ab1306;
 }
 .action-buttons .actions-list {

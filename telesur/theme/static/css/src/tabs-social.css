@@ -5,6 +5,7 @@
     border-left:1px solid #999;
     border-right: 1px solid #999;
     border-bottom:1px solid #999;
+    clear:both;
 }    
 .panes-social .pane {
 	padding:0px;

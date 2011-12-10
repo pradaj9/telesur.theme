@@ -10,12 +10,16 @@
 	background-color:#fff;
 }
 /* root element for tabs-redesociales  */
-.tabs-redesociales {
+#telesur-container .tabs-redesociales {
+    width:auto;
+}
+#telesur-container .tabs-redesociales {
 	list-style:none;
 	margin:0 !important;
 	padding:0;
 	border-bottom:1px solid #666;
 	height:32px;
+	float:none;
 }
 
 /* single tab */
@@ -28,7 +32,7 @@
 }
 
 /* link inside the tab. uses a background image */
-.tabs-redesociales a {
+#telesur-container .tabs-redesociales li a {
 	background:url(../../img/pestana-ultimos.png) no-repeat;
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:11px;
