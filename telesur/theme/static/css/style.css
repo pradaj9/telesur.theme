@@ -40,6 +40,54 @@ h1, h2, h3 {
 
 
 /***
+* SECCIONES
+***/
+#nota-titular {
+    background-color:#e5e5e5;
+    padding:0px 0px 15px 0px;    
+}
+#nota-titular h1 {
+    padding-left:5px;
+    color:#000;
+}
+#nota-titular h1 a {
+    color:#000;
+}
+#nota-titular .description {
+    color:#000;
+    font-size:13px;
+}
+#nota-titular .video-image-container {
+    width:430px;
+    margin-left:-685px;
+}
+#nota-titular .description-container {
+    width: 210px;
+    margin-left: -235px;
+}
+.video-image-container .video-widget {
+    margin:0px;
+    background-color:white;
+}
+.video-image-container .video-widget img {
+    width:400px;
+}
+
+.description-container .link-to-article {
+    height:18px;
+}
+.description-container .link-to-article a{
+    background:url(../img/iconos/btn-continuar.png) scroll no-repeat 0 0;
+    width:20px;
+    height:18px;
+    float:right;
+}
+/*listing*/
+#telesur-seccion-listing .notas-sencilla-grande .description-container {
+    width:170px;
+    float:left;
+}
+/***
 * TICKER STYLE
 ***/
 #telesur-container #ticker-wrapper {

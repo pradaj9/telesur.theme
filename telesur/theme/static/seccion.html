@@ -60,42 +60,47 @@
             </p>
         </div>
         <div class="breadcumb-categoria"> <a href="#">Categoría</a> | <a href="#">Sección</a> </div>
-        <div id="nota-titular">
+        <div id="nota-titular" class="row">
           <h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h1>
-          <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
-          <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:0 8px 0 0;">
-            <param name="movie" value="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" />
-            <param name="quality" value="high" />
-            <param name="wmode" value="opaque" />
-            <param name="swfversion" value="6.0.65.0" />
-            <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don't want users to see the prompt. -->
-            <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
-            <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
-            <!--[if !IE]>-->
-            <object type="application/x-shockwave-flash" data="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" width="362" height="247">
-              <!--<![endif]-->
-              <param name="quality" value="high" />
-              <param name="wmode" value="opaque" />
-              <param name="swfversion" value="6.0.65.0" />
-              <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
-              <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
-              <div>
-                <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
-                <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" width="112" height="33" /></a></p>
-                <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
-              </div>
-              <!--[if !IE]>-->
-            </object>
-            <!--<![endif]-->
-          </object>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-            laoreet, justo sit amet luctus mollis, nisi justo condimentum
-            risus, quis viverra libero justo eget leo. Nulla tristique
-            facilisis pulvinar. Sed eget sapien a quam placerat condimentum.
-            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-            posuere cubilia Curae.
-          </p>
+          <div class="video-image-container cell">
+              <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
+              <object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="362" height="247" style="float:left; border:solid 1px #666; padding:5px; margin:0 8px 0 0;">
+                <param name="movie" value="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" />
+                <param name="quality" value="high" />
+                <param name="wmode" value="opaque" />
+                <param name="swfversion" value="6.0.65.0" />
+                <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don't want users to see the prompt. -->
+                <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
+                <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="/++theme++telesur.theme/swf/flowplayer-3.2.7.swf" width="362" height="247">
+                  <!--<![endif]-->
+                  <param name="quality" value="high" />
+                  <param name="wmode" value="opaque" />
+                  <param name="swfversion" value="6.0.65.0" />
+                  <param name="expressinstall" value="/++theme++telesur.theme/Scripts/expressInstall.swf" />
+                  <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
+                  <div>
+                    <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
+                    <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" width="112" height="33" /></a></p>
+                    <!-- VIDEO DE MUESTRA DE COMO SE VERIA, INSERTADO FLOW PLAYER, JQUERY TOOLS -->
+                  </div>
+                  <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+              </object>
+          </div>
+          <div class="description-container cell">
+              <span class="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                laoreet, justo sit amet luctus mollis, nisi justo condimentum
+                risus, quis viverra libero justo eget leo. Nulla tristique
+                facilisis pulvinar. Sed eget sapien a quam placerat condimentum.
+                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
+                posuere cubilia Curae.
+              </span>
+              <div class="link-to-article"><a></a></div>
+          </div>
         </div>
       </div>
       <!-- End Left Content -->
@@ -306,15 +311,16 @@
       </div>
 
       <div class="telesur-full-column">
-        <div class="separator" />
-        <h2>Especiales</h2>
-        <div id="especiales">
-          <div class="especial"><img src="especial1.jpg" alt="especial1" /></div>
-          <div class="especial"><img src="especial2.jpg" alt="especial2" /></div>
-          <div class="especial"><img src="especial3.jpg" alt="especial3" /></div>
-           <div class="especial"><img src="especial4.jpg" alt="especial4" /></div>
-        </div>
-        <div class="separator" />
+
+          <div class="separator" />
+          <div id="especiales">
+              <div class="especial"><img src="especial1.jpg" alt="especial1"/></div>
+              <div class="especial"><img src="especial2.jpg" alt="especial2"/></div>
+              <div class="especial"><img src="especial3.jpg" alt="especial3"/></div>
+              <div class="especial"><img src="especial4.jpg" alt="especial4"/></div>
+          </div>
+          <div class="separator" />
+
 
         <!--<div style="display:block;width:700px;height:460px;margin: 0 auto;">
           <iframe width="700" height="460" src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mapa_corresponsales&amp;width=700"></iframe>
