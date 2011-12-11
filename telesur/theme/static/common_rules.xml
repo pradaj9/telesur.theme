@@ -57,8 +57,23 @@
 
    <!-- footer -->
    <replace css:theme-children=".footer" css:content="#footer"/>
+
    <!-- portlets sociales -->
    <replace css:theme-children=".twitter-portlet" css:content=".twitterSearchPortlet"/>
    <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>   
+
+  <!-- portlets opinion -->
+
+  <drop css:content=".portlet-collection-articulos .tile img" />
+  <drop css:content=".portlet-collection-articulos dt" />  
+  <replace css:theme-children=".panes-opinion .articles-collection" css:content=".portlet-collection-articulos"/>
+
+  <drop css:content=".portlet-collection-contexto .tile img" />  
+  <drop css:content=".portlet-collection-contexto dt" />    
+  <replace css:theme-children=".panes-opinion .context-collection" css:content=".portlet-collection-contexto"/>
+
+  <drop css:content=".portlet-collection-entrevista .tile img" />
+  <drop css:content=".portlet-collection-entrevista dt" />  
+  <replace css:theme-children=".panes-opinion .interview-collection" css:content=".portlet-collection-entrevista"/>    
 
 </rules>

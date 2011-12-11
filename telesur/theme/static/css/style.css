@@ -70,6 +70,9 @@ h1 a {
     font-size:12px;
     padding-bottom:5px;
 }
+.data-article-container .title {
+    font-size:22px;
+}
 .category-data .category {
     color:#AC1206;
     font-size:13px;
@@ -440,7 +443,31 @@ h1 a {
 #ultimos-programas-widget .ultimos-programas-wrapper{
     border:1px solid #b3b3b3;
 }
-
+/**
+* Portlets opinion panes
+**/
+#telesur-container .panes-opinion .pane {
+    background-color:#eee;
+}
+#telesur-container .panes-opinion .portlet {
+    margin-top:20px;
+    margin-bottom:20px;
+}
+#telesur-container .panes-opinion .portletItem {
+    padding-left: 45px;
+    background: white url(../img/iconos/btn-continuar.png) no-repeat scroll 15px center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 0px 15px;
+    border-bottom: 1px solid #CCC;
+    text-decoration: none;
+}
+#telesur-container .panes-opinion .portletItem a {
+    font-size:15px;
+    color:#AC1206;
+    text-decoration: none;
+    border: none;    
+}
 
 /**
 * FOOTER 
