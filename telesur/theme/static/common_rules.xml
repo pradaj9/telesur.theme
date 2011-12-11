@@ -74,6 +74,9 @@
 
   <drop css:content=".portlet-collection-entrevista .tile img" />
   <drop css:content=".portlet-collection-entrevista dt" />  
-  <replace css:theme-children=".panes-opinion .interview-collection" css:content=".portlet-collection-entrevista"/>    
+  <replace css:theme-children=".panes-opinion .interview-collection" css:content=".portlet-collection-entrevista"/>
+
+  <drop css:content=".votePortlet dt" />    
+  <replace css:theme-children=".panes-opinion .poll-widget" css:content=".votePortlet"/>
 
 </rules>
