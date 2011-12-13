@@ -904,7 +904,7 @@ body div {	 /* Eliminar todo el bloque */
 	border-bottom:solid 2px #AC1206;
 }
 #entrevista-home img {
-	width:220px;
+	width:auto;
 	height:146px;
 	display:block;
 	background:#999;
