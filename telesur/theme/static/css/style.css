@@ -366,28 +366,36 @@ h1 a {
 #mas-vistos {
     width:310px;
 }
-.tabs-masvistos {
+.tabs-masvistos,
+.tabs-opinion {
     list-style: none;
     margin: 0 !important;
     padding: 0;
     border-bottom: 1px solid #666;
     height: 32px;
 }
-.tabs-masvistos li {
+.tabs-masvistos li,
+.tabs-opinion li {
     float: left;
     text-indent: 0;
     padding: 0 0 0 3px;
     margin: 0 !important;
     list-style-image: none !important;
 }
-.tabs-masvistos a.current, .tabs-masvistos a.current:hover, .tabs-masvistos li.current a {
+.tabs-masvistos a.current, 
+.tabs-masvistos a.current:hover, 
+.tabs-masvistos li.current a,
+.tabs-opinion a.current,
+.tabs-opinion a.current:hover,
+.tabs-opinion li.current a {
     cursor: default !important;
     color: black !important;
     background: url(../img/pestana-ultimos-hover.png) no-repeat;
     height: 38px;
     background: url(../img/pestana-ultimos-hover.png) no-repeat;
 }
-.tabs-masvistos a {
+.tabs-masvistos a,
+.tabs-opinion a {
     background: url(../img/pestana-ultimos.png) no-repeat;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
@@ -447,11 +455,10 @@ h1 a {
 * Portlets opinion panes
 **/
 #telesur-container .panes-opinion .pane {
-    background-color:#eee;
+    margin:15px;
 }
 #telesur-container .panes-opinion .portlet {
-    margin-top:20px;
-    margin-bottom:20px;
+    margin:0px;
 }
 #telesur-container .panes-opinion .portletItem {
     padding-left: 45px;
