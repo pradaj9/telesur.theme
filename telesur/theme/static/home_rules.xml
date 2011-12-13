@@ -63,9 +63,9 @@
                         <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
                     </div>
                     <xsl:copy-of select="p[@class='nota-descripcion']" />
-                    <div class="sigue-leyendo">
+                    <!--<div class="sigue-leyendo">
                         <xsl:copy-of select="p[@class='tileFooter']/node()" />
-                    </div>
+                    </div>-->
                 </div>
               </xsl:if>
           </xsl:for-each>

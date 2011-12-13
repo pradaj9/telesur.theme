@@ -123,6 +123,7 @@ h1 a {
     width:auto;
     list-style-type:disc !important;    
     padding-left:15px;
+    margin-left:5px;
     float:none;
 }
 #widget-carousel .carousel-item li {
@@ -160,7 +161,7 @@ h1 a {
 	position:relative;
 	overflow:hidden;
 	width: 623px;
-	height:183px;
+	height:228px;
 	float:left;
 }
 /*
@@ -180,12 +181,13 @@ h1 a {
 #telesur-titulares .carousel-box .carousel-item {
 	float:left;
 	width:208px;
-	height:180px;
+	height:224px;
 }
 #telesur-titulares .carousel-box .image-video {
     margin:0px 24px 0px 0px;
     width:80px;
     height:60px;
+    display:none;
 }
 #telesur-titulares .titular-seccion {
     float: left;
