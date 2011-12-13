@@ -113,8 +113,98 @@ h1 a {
 }
 
 .article-listing {
-    padding-bottom:15px;    
+    padding-bottom:30px;    
 }
+/*mas titulares*/
+#widget-carousel {
+    margin:0px -10px;
+}
+#widget-carousel .carousel-item ul{
+    width:auto;
+    list-style-type:disc !important;    
+    padding-left:15px;
+    float:none;
+}
+#widget-carousel .carousel-item li {
+    display:list-item;
+    color:#AC1206;
+}
+#widget-carousel .carousel-item ul a {
+    margin-left:-5px;
+    font-size:13px;
+}
+#widget-carousel .next {
+    background:transparent url(../img/iconos/flecha-derecha.png) scroll no-repeat center center;
+}
+#widget-carousel .prev {
+    background:transparent url(../img/iconos/flecha-izquierda.png) scroll no-repeat center center;
+}
+#widget-carousel .disabled {
+    background:medium none;
+}
+#widget-carousel .explorar {
+    margin:80px 10px;
+}
+#telesur-titulares {
+    width:100%;
+    margin-left:-100%;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #ac1206;
+    margin-bottom: 20px;    
+}
+#telesur-titulares h2 {
+    font-size:16px;
+    padding-bottom:5px;
+}
+#telesur-titulares .carousel-box {
+	position:relative;
+	overflow:hidden;
+	width: 623px;
+	height:183px;
+	float:left;
+}
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accommodate scrollable items.
+	it's enough that you set width and height for the root element and
+	not for this element.
+*/
+#telesur-titulares .carousel-box .carousel-bar {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+}
+/*
+	a single item. must be floated in horizontal scrolling.
+*/
+#telesur-titulares .carousel-box .carousel-item {
+	float:left;
+	width:208px;
+	height:180px;
+}
+#telesur-titulares .carousel-box .image-video {
+    margin:0px 24px 0px 0px;
+    width:80px;
+    height:60px;
+}
+#telesur-titulares .titular-seccion {
+    float: left;
+    border: 1px solid #AC1206;
+    height: 100%;
+    width: 200px;
+    overflow:auto;
+}
+#telesur-titulares .titulo-seccion{
+    background-color:#DDD;
+    padding:5px;
+    margin:0px;
+    color:#000;
+}
+#telesur-titulares .titular-content-wrapper {
+    padding:5px;
+}
+
+
 /***
 * SECCIONES
 ***/

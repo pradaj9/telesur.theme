@@ -16,7 +16,7 @@ a.prev, a.next, a.prevPage, a.nextPage {
 	display:block;
 	width:18px;
 	height:18px;
-	background:url(../img/scrollable/arrow/left.png) no-repeat;
+	background:url(../../img/scrollable/arrow/left.png) no-repeat;
 	float:left;
 	margin:43px 10px;
 	cursor:pointer;
@@ -35,7 +35,7 @@ a.disabled {
 
 /* next button uses another background image */
 a.next, a.nextPage {
-	background-image:url(../img/scrollable/arrow/right.png);
+	background-image:url(../../img/scrollable/arrow/right.png);
 	clear:right;	
 }
 
@@ -175,7 +175,7 @@ a.next, a.nextPage {
 	cursor:pointer;
 }
 #main .navi-foto {
-	background:url(../img/iconos/fotografia.png) no-repeat #666;
+	background:url(../../img/iconos/fotografia.png) no-repeat #666;
 	width:26px;
 	height:22px;
 	float:left;

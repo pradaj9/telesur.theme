@@ -73,6 +73,10 @@
         
         <after css:theme-children="#telesur-right-sidebar-small"
             css:content="#lo-mas" />
+
+        <replace css:if-content="#telesur-titulares" 
+                 css:content="#telesur-titulares"
+                 css:theme="#mas-titulares-widget"/>
     </rules>
 
 </rules>
