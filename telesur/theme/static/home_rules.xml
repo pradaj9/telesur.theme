@@ -39,6 +39,10 @@
         <replace css:theme-children=".data-article-container .description"
                  css:content-children="#video-scroll-home .nota-descripcion" />            
 
+        <!-- main new relateditems-->
+        <replace css:theme-children=".data-article-container .category-data .related-articles"
+                 css:content-children="#video-scroll-home #form-widgets-IRelatedItems-relatedItems" />
+
         <!-- news listing -->
         <replace css:theme-children=".articles-carousel-wrapper">
           <xsl:for-each css:select=".notas-seccion">
