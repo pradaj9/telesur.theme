@@ -4,7 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <notheme if="$ajax_load" />
+    <notheme if="$ajax_load"/>
     <rules css:if-content="#visual-portal-wrapper">
 
         <xi:include href="common_rules.xml" />
@@ -39,9 +39,9 @@
                 css:content="#content" />
         </rules>
         <drop css:theme="#telesur-left-content p" />
-        <before css:theme="#telesur-left-content > h1"
+        <before css:theme=".edittools-placeholder"
             css:content="#edit-bar" />
-        <replace css:theme="#telesur-left-content > h1"
+        <replace css:theme="#telesur-left-content #content-wrapper > h1"
             css:content="#portal-column-content h1.documentFirstHeading" />
         <after css:theme="#telesur-left-content #autor-temp"
             css:content="#parent-fieldname-text" />
@@ -69,5 +69,15 @@
         <replace
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
+
+        <!-- if we are in some of these content types, then show the content of the content type in
+        the content area of the diazo theme -->
+        <rules css:if-content=".portaltype-link, 
+                               .portaltype-collective-polls-poll,
+                               .portaltype-image,
+                               .portaltype-file">
+            <replace css:theme-children="#content-wrapper"
+                css:content-children="#content" />
+        </rules>
     </rules>
 </rules>

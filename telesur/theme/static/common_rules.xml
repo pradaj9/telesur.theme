@@ -20,8 +20,6 @@
     <copy attributes="href accesskey title"
         css:theme="#logo-telesur > a"
         css:content="#portal-logo" />
-    <drop css:if-content="#anon-personalbar"
-        css:content="#portal-personaltools-wrapper" />
     <after css:theme="#logo-telesur"
         css:content="#portal-personaltools-wrapper" />
     <after css:theme-children="#telesur-header"
@@ -51,7 +49,7 @@
     <!-- column 1 replace column 2 if 1 exist -->
     <rules if-content="not(//*[@id='anon-personalbar'])">
         <replace css:if-content="#portal-column-one" css:theme="#admin-holder" css:content="#portal-column-one"/>
-        <drop css:if-content="#portal-column-one" css:theme=".telesur-right-sidebar, #telesur-right-sidebar" />
+        <drop css:if-content="#portal-column-one" css:theme=".telesur-right-sidebar, #telesur-right-sidebar, #telesur-right-sidebar-small" />
         <!--<replace css:if-theme=".telesur-right-sidebar" css:theme=".telesur-right-sidebar" css:content="#portal-column-one"/>      -->
     </rules>
 
