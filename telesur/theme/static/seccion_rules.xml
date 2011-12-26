@@ -10,10 +10,11 @@
                            body.template-manage-content-rules.portaltype-plone-site">
         <theme href="seccion.html" />
         <rules css:if-content="body:not([class*='template-folder_summary_view'])">
-            <rules css:if-content="body[class*='template-collective.nitf.content']">
+            <rules css:if-content="body[class*='template-collective.nitf.content'], 
+                                   body[class*='template-collective.polls.poll']">
                 <drop attributes="class" css:content="#portal-column-content" />
                 <replace
-                    css:theme="#telesur-seccion-main"
+                    css:theme-children="#telesur-seccion-main"
                     css:content="#portal-column-content" />
                 <drop css:theme="div.telesur-right-sidebar" />
             </rules>

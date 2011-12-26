@@ -40,6 +40,13 @@ h1, h2, h3 {
 h1 a {
     color:#333 !important;
 }
+
+.field {
+    width:650px;
+}
+.overlay-ajax .field {
+    width:auto;
+}
 /***
 * HOME
 ***/
@@ -589,6 +596,21 @@ h1 a {
 .votePortlet .portletItem p {
     font-size:14px;
     margin-bottom:10px;
+}
+
+/*Portlet links utiles*/
+.utilLinks a, .portletNewsFlash a {
+    padding: 5px 10px;
+    background: white url(../img/icon-bg.png) repeat-x scroll 0 bottom;
+    border: 1px solid #999 !important;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-bottom:10px;
+    display:inline-block;    
+    color: #000 !important;
+    font-size: 14px;    
+    font-weight:bold;    
 }
 
 /**
