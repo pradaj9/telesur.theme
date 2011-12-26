@@ -29,7 +29,8 @@
         <rules css:if-content="body.template-edit,
                                body[class*='template-collective.nitf.content'],
                                body.template-atct_edit,
-                               body[class*='template-collective.polls.poll']">
+                               body[class*='template-collective.polls.poll'],
+                               .template-default_error_message">
                 <replace
                     css:theme-children="#telesur-seccion-main"
                     css:content="#portal-column-content" />
@@ -39,7 +40,8 @@
         <rules css:if-content="body.portaltype-plone-site:not(.template-manage-content-rules),
                                body.template-login_success,
                                body.template-folder_rename_form,
-                               body.template-telesur_helper">
+                               body.template-telesur_helper,
+                               .template-default_error_message">
             <replace css:theme-children="#telesur-middle"
                 css:content="#content" />
         </rules>
