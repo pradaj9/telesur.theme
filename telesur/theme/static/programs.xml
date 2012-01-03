@@ -5,12 +5,17 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <rules css:if-content="body.portaltype-telesur-contenttypes-program">
-        <theme href="nota.html" />
+      <theme href="nota.html" />
 
-        <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar" />
-        
+      <before css:theme="#telesur-left-content"
+           css:content="#edit-bar" />
+      <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar" />  
+
+      <!-- avoid style in edit view -->        
+      <rules css:if-content="body:not([class*='template-edit'])">
 
         <replace css:theme="#telesur-left-content">
+          <div>
           <div class="programs-header"><xsl:attribute name="style">background: url(<xsl:value-of select="//*[@id='form-widgets-image']/img/@src" />) center 0 white scroll no-repeat</xsl:attribute>
             <div class="contact-box">
               <a><xsl:attribute name="href">mailto:<xsl:value-of select="//*[@id='form-widgets-email']/node()" /></xsl:attribute><xsl:copy-of select="//*[@id='form-widgets-email']/node()" /></a>
@@ -19,9 +24,16 @@
           </div>
           <div class="description"><xsl:copy-of css:select=".description" /></div>
           <iframe width="1024" height="240"><xsl:attribute name="src"><xsl:value-of select="//*[@id='form-widgets-url']/node()" /></xsl:attribute></iframe>
+          </div>
         </replace>
-        
+      </rules>        
     </rules>
+    
+    <!-- rules for edit view -->
+    <rules css:if-content=".template-edit">
+        <replace css:theme="#telesur-left-content" css:content="#content"/>    
+    </rules>
+    
 </rules>
 
 
