@@ -1,0 +1,28 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content="body.portaltype-telesur-contenttypes-program">
+        <theme href="nota.html" />
+
+        <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar" />
+        
+
+        <replace css:theme="#telesur-left-content">
+          <div class="programs-header"><xsl:attribute name="style">background: url(<xsl:value-of select="//*[@id='form-widgets-image']/img/@src" />) center 0 white scroll no-repeat</xsl:attribute>
+            <div class="contact-box">
+              <a><xsl:attribute name="href">mailto:<xsl:value-of select="//*[@id='form-widgets-email']/node()" /></xsl:attribute><xsl:copy-of select="//*[@id='form-widgets-email']/node()" /></a>
+              <a><xsl:attribute name="href">http://www.twitter.com/<xsl:value-of select="//*[@id='form-widgets-twitter']/node()" /></xsl:attribute><xsl:copy-of select="//*[@id='form-widgets-twitter']/node()" /></a>
+            </div>
+          </div>
+          <div class="description"><xsl:copy-of css:select=".description" /></div>
+          <iframe width="1024" height="240"><xsl:attribute name="src"><xsl:value-of select="//*[@id='form-widgets-url']/node()" /></xsl:attribute></iframe>
+        </replace>
+        
+    </rules>
+</rules>
+
+
+

@@ -433,6 +433,38 @@ h1 a {
     border:1px solid #000000;
 }
 
+
+
+/*
+* PROGRAMS
+*/
+.portaltype-telesur-contenttypes-program .programs-header {
+    margin-top:10px;
+    width:100%;
+    height:467px;
+    position:relative;
+}
+.portaltype-telesur-contenttypes-program .description {
+    background-color: #BA0403;
+    font-size: 13px;
+    padding: 6px 30px;
+    color: white;
+    font-weight: bold;
+    line-height: 1.4em;
+    margin-bottom:20px;
+}
+.portaltype-telesur-contenttypes-program .contact-box {
+    position:absolute;
+    top:274px;
+    left:566px;
+}
+.portaltype-telesur-contenttypes-program .contact-box a {
+    color:#FFF;
+    font-size:13px;
+    display:block;
+}
+
+
 /*
 * PORTLETS GENERAL
 */

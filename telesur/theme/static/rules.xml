@@ -11,6 +11,7 @@
         <xi:include href="home_rules.xml" />
         <xi:include href="seccion_rules.xml" />
         <xi:include href="nota_rules.xml" />
+        <xi:include href="programs.xml" />        
 
         <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
             <div id="ultimas-noticias">
