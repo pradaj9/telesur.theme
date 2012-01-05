@@ -71,14 +71,14 @@
                         <div class="data-article-container cell">
                             <h1 class="title">Main Article Title</h1>
                             <div class="description">Main Article description</div>
-                            <div class="author">the author</div>
+                            <!--<div class="author">the author</div>
                             <div class="category-data">
                                 <p class="category"></p>
                                 <ul class="related-articles">
                                     <li><a href="">Article 1</a></li>
                                     <li><a href="">Article 2</a></li>
                                 </ul>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="articles-carousel row">
@@ -175,7 +175,24 @@
                     </div>
                     
                     <div class="widget-container">
-                        <img src="img/lomascomentado.png" />
+                        <div id="lo-mas-recomendado" class="widget-with-tabs">
+                            <ul class="widget-tabs">
+                                <li><a href="#">Lo más comentado</a></li>
+                                <li><a href="#">Lo más recomendado</a></li>
+                            </ul>
+                            <div class="panes recomendados">
+                                <div class="pane mas-comentado">Contenido comentado</div>
+                                <div class="pane mas-recomendado">Contenido recomendado</div>
+                            </div>
+                        </div>
+                        <!-- This JavaScript snippet activates those tabs-ultimos -->
+                        <script type="text/javascript">
+                        // perform JavaScript after the document is scriptable.
+                        $(function() {
+                          // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+                          $("#lo-mas-recomendado").tabs("div.panes.recomendados > div");
+                          });
+                        </script>
                     </div>
 
                     <div class="widget-container" style="width:310px; height:250px; background:#999; display:block;">Banner publicitario 310 x 250</div>                    

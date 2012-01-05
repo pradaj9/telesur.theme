@@ -482,6 +482,99 @@ h1 a {
     overflow:hidden;
 }
 
+/**
+* Portlet Panes general style
+**/
+.widget-tabs{
+    list-style: none;
+    margin: 0 !important;
+    padding: 0;
+    border-bottom: 1px solid #666;
+    height: 32px;
+}
+.widget-tabs li {
+    float: left;
+    text-indent: 0;
+    padding: 0 0 0 3px;
+    margin: 0 !important;
+    list-style-image: none !important;
+}
+.widget-tabs a.current, 
+.widget-tabs a.current:hover, 
+.widget-tabs a.current,
+.widget-tabs a.current:hover {
+    cursor: default !important;
+    color: black !important;
+    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    height: 38px;
+    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+}
+.widget-tabs a {
+    background: url(../img/pestana-ultimos.png) no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-align: center;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    width: 87px;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    padding:0;
+    margin: 0;
+    position: relative;
+    top: 0;
+}
+.widget-with-tabs .panes {
+    border: 1px solid #999;
+    border-top: 0;
+    background-color: #EEE;
+    height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    top: -5px;
+    position: relative;
+}
+
+/***
+* Porltet lo mas recomendado tabs
+***/
+#lo-mas-recomendado a{
+    line-height:13px;
+    padding-top:4px;
+    height:28px;
+}
+#lo-mas-recomendado a.current,
+#lo-mas-recomendado a.current:hover{
+    height:34px;
+}
+#lo-mas-recomendado .panes {
+    width:308px;
+    background-color:#FFF;
+}
+#lo-mas-recomendado .pane {
+    padding:10px;
+}
+#lo-mas-recomendado .portletItemDetails {
+    font-size:11px;
+    color:#999;
+    text-align:right;
+}
+#lo-mas-recomendado .thread-title {
+    background:url(../img/iconos/generales/nota.png) no-repeat scroll 0 4px;
+    padding-left:20px;
+    color:#333333;
+    font-size:13px;
+}
+.thread-content {
+    margin-bottom:6px;
+    overflow:hidden;
+}
+.thread-comments p {
+    padding:3px 0 0 0;
+    margin:0px;
+}
 /***
 * Portlet "ultimos videos"
 ***/
@@ -490,6 +583,7 @@ h1 a {
     background:url(../img/portlets-bg.png) repeat-x scroll 0 0;
     padding:12px;
 }
+
 
 /***
 * Portlet "mas vistos"
@@ -582,6 +676,7 @@ h1 a {
 #ultimos-programas-widget .ultimos-programas-wrapper{
     border:1px solid #b3b3b3;
 }
+
 /**
 * Portlets opinion panes
 **/
