@@ -566,6 +566,16 @@ h1 a {
     padding-left:20px;
     color:#333333;
     font-size:13px;
+    display:block;
+}
+#lo-mas-recomendado .thread-title {
+    padding-top:4px;
+    padding-bottom:2px;
+    height:auto;
+}
+.thread-title span {
+    width:255px;
+    display:block;
 }
 .thread-content {
     margin-bottom:6px;

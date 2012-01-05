@@ -50,22 +50,24 @@
 	top:0px;
 }
 
-.tabs-redesociales a:active {
+#telesur-container .tabs-redesociales a:active {
 	outline:none;
 }
 
 /* when mouse enters the tab move the background image */
-.tabs-redesociales a:hover {
+#telesur-container .tabs-redesociales a:hover {
 	color:#000;
 	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
 }
 
 /* active tab uses a class name "current". its highlight is also done by moving the background image. */
-.tabs-redesociales a.current, .tabs-redesociales a.current:hover, .tabs-redesociales li.current a {
+#telesur-container .tabs-redesociales a.current, 
+#telesur-container .tabs-redesociales a.current:hover, 
+#telesur-container .tabs-redesociales li.current a {
 	cursor:default !important;
 	color:#000 !important;
 	background-color:#fff;
-	height:38px;
+	height:33px;
 	background:url(../../img/pestana-ultimos-hover.png) no-repeat;
 }
 
