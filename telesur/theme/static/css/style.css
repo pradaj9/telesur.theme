@@ -453,6 +453,14 @@ h1 a {
     line-height: 1.4em;
     margin-bottom:20px;
 }
+.portaltype-telesur-contenttypes-program .host {
+    position: absolute;
+    top: 175px;
+    left: 563px;
+    width: 170px;
+    color: white;
+    text-transform: capitalize;    
+}
 .portaltype-telesur-contenttypes-program .contact-box {
     position:absolute;
     top:274px;
