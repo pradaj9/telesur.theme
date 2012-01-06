@@ -25,6 +25,7 @@ setup(name='telesur.theme',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'five.grok',
         'plone.app.theming',
         ],
       extras_require={
