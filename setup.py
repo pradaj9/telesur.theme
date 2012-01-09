@@ -25,8 +25,10 @@ setup(name='telesur.theme',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'five.grok',
         'plone.app.theming',
+        'collective.nitf',
+        'collective.routes',
+        'telesur.api',
         ],
       extras_require={
         'test': ['plone.app.testing'],

@@ -9,7 +9,7 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
-    <include package="five.grok" />
+    <includeDependencies package="." />
     <grok:grok package="." />
 
     <genericsetup:registerProfile
