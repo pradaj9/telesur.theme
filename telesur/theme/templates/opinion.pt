@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.nitf">
+<body>
+
+<metal:title fill-slot="content-title">
+    <h1 class="documentFirstHeading" tal:content="context/title" />
+</metal:title>
+
+<metal:description fill-slot="content-description">
+    <tal:content-description metal:define-macro="content-description">
+        <div class="documentDescription" tal:content="context/description" />
+
+        <p class="nitfByline" tal:condition="context/byline|nothing">
+            <span i18n:translate="">By</span>
+            <span tal:content="context/byline" />
+        </p>
+    </tal:content-description>
+</metal:description>
+
+<metal:main fill-slot="content-core">
+    <div tal:content="structure context/text/output|nothing">The text</div>
+</metal:main>
+
+</body>
+</html>

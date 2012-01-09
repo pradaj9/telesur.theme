@@ -1,0 +1,17 @@
+<div id="videos-por-seccion" class="row">
+    <div id="makeMeDraggable" class="ui-widget-content"><h3 class="ui-widget-header">Draggable</h3></div>
+    <script type="text/javascript">
+        //<![CDATA[
+    jq(function() {
+            // setup ul.tabs to work as tabs for each div directly under div.panes
+            jq('#makeMeDraggable').draggable({containment: "#first"});
+            });
+    //]]>
+    </script>
+    <style type="text/css">
+        <!--
+        #viewlet-box {width:100%;height:100%;margin:0;padding:0;}
+        #makeMeDraggable { width: 300px; height: 300px; background: red; }
+        -->
+    </style>
+</div>

@@ -1,0 +1,42 @@
+<div id="telesur-titulares" class="cell position-0 width-16">
+    <h2 class="widget-titulo">Más Titulares </h2>
+    <div id="widget-carousel"
+        tal:define="sections viewlet/getSections;">
+        <a class="prev explorar exp-izq" title="ver anteriores"></a>
+        <div class="carousel-box">
+            <div class="carousel-bar">
+                <div class="carousel-item" tal:repeat="section sections">
+                    <div class="titular-seccion visualClear">
+                        <h3 class="titulo-seccion"
+                            tal:content="section/section_name">Section Name</h3>
+                        <div class="titular-content-wrapper">                            
+                            <div class="image-video" tal:condition="exists:section/section_img">
+                                <img src="" tal:attributes="src string:${section/section_img}/image_thumb" />
+                            </div>
+                            <ul>
+                                <tal:brains repeat="brain section/brains">
+                                <li>
+                                    <a href="nota" tal:attributes="href brain/getURL">
+                                        <span tal:replace="brain/Title">Lorem impsum sit amet, consectetur adipiscing elit.</span>
+                                    </a>
+                                </li>
+                                </tal:brains>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="next explorar exp-der" title="ver siguientes"></a>
+    </div>
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    // perform JavaScript after the document is scriptable.
+    jq(function() {
+            // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+            jq("#widget-carousel .carousel-box ").scrollable({size: 3});
+            //jq("ul.tabs-ultimos").tabs("div.panes-ultimos > div");
+            });
+    /* ]]> */
+    </script>
+</div>
