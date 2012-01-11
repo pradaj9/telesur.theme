@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from AccessControl import ClassSecurityInfo
 from five import grok
 
 from zope.interface import Interface
@@ -15,6 +15,14 @@ from collective.routes.interfaces import IWrappedObjectContext
 from collective.routes import getObject
 
 from telesur.theme.interfaces import ITelesurLayer
+from telesur.theme.interfaces import IPrimaryArticle
+from telesur.theme.interfaces import ISecondaryArticle
+
+from Acquisition import aq_inner
+from zope.interface import alsoProvides, noLongerProvides
+
+from Products.statusmessages.interfaces import IStatusMessage
+from Products.CMFCore.utils import getToolByName
 
 grok.templatedir("templates")
 
@@ -79,3 +87,84 @@ class Opinion(grok.View):
     grok.context(INITF)
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
+
+
+class MarkPrimaryArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-primary-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        iface = IPrimaryArticle
+        
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__)
+
+        if existing:
+            elem = existing[0].getObject()
+            context = aq_inner(elem)
+            noLongerProvides(context, iface)
+            context.reindexObject(idxs=['object_provides'])
+            
+        context = aq_inner(self.context)
+
+        alsoProvides(context, iface)
+        context.reindexObject(idxs=['object_provides'])
+
+        IStatusMessage(self.request).addStatusMessage("Elemento marcado como principal para portada", type='info')
+        view_url = context.absolute_url()
+        self.request.response.redirect(view_url)
+
+    def render(self):
+        return "mark-primary-article"
+
+
+class MarkSecondaryArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-secondary-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        iface = ISecondaryArticle
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__)
+
+        if len(existing) > 3:
+            elem = existing[3].getObject()
+            context = aq_inner(elem)
+            noLongerProvides(context, iface)
+            context.reindexObject(idxs=['object_provides'])
+
+        context = aq_inner(self.context)
+
+        alsoProvides(context, iface)
+        context.reindexObject(idxs=['object_provides'])
+
+        IStatusMessage(self.request).addStatusMessage("Elemento marcado como secundario para portada", type='info')
+        view_url = context.absolute_url()
+        self.request.response.redirect(view_url)
+        
+    def render(self):
+        return "mark-secondary-article"
+
+class ArticleControl(grok.View):
+    grok.context(INITF)
+    grok.name("article-control")
+    grok.require("cmf.ModifyPortalContent")
+
+    security = ClassSecurityInfo()
+
+    security.declarePublic('can_be_promoted')
+    def can_be_promoted(self, atype):
+
+        ifaces = {
+                   'primary' : IPrimaryArticle,
+                   'secondary' : ISecondaryArticle
+                  }
+
+        return not ifaces[atype].providedBy(self.context)
+
+    def render(self):
+        return self
+

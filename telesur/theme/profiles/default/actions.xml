@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool">
+ <object name="object_buttons" meta_type="CMF Action Category">
+
+  <object name="nota_portada_principal" meta_type="CMF Action">
+   <property name="title">Nota de portada principal</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-primary-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:path('object/@@article-control').can_be_promoted('primary') and object.portal_type == 'collective.nitf.content'</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+
+  <object name="nota_portada_secundaria" meta_type="CMF Action">
+   <property name="title">Nota de portada secundaria</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-secondary-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:path('object/@@article-control').can_be_promoted('secondary') and object.portal_type == 'collective.nitf.content'</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+
+ </object>
+</object>
