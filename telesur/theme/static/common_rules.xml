@@ -76,5 +76,8 @@
 
   <drop css:content=".votePortlet dt" />    
   <replace css:theme-children=".panes-opinion .poll-widget" css:content=".votePortlet"/>
+  
+  <after css:content="#multipleupload-code" css:theme="#telesur-container" />
+  
 
 </rules>
