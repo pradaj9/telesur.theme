@@ -13,6 +13,14 @@
     <includeDependencies package="." />
     <grok:grok package="." />
 
+    <include package="z3c.jbot" file="meta.zcml" />
+
+    <browser:jbot
+        directory="jbot"
+        layer=".interfaces.ITelesurLayer" />
+        
+
+
     <genericsetup:registerProfile
         name="default"
         title="telesur.theme"
