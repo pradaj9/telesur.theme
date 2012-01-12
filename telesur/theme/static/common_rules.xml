@@ -17,13 +17,25 @@
     <copy attributes="*"
         css:theme="body"
         css:content="body" />
+        
+    <!-- header -->        
     <copy attributes="href accesskey title"
         css:theme="#logo-telesur > a"
         css:content="#portal-logo" />
     <after css:theme="#logo-telesur"
         css:content="#portal-personaltools-wrapper" />
     <after css:theme-children="#telesur-header"
-        css:content="#portal-searchbox" />
+        css:content="#portal-searchbox" />  
+        <!-- publicidad en header -->
+        <after css:theme="#logo-telesur">
+          <div class="full-banner">full banner</div>
+        </after>
+        <before css:theme-children="#telesur-right-sidebar, #telesur-right-sidebar-small">
+          <div class="rectangle widget-container"></div>        
+        </before>
+        <before css:theme-children=".telesur-right-sidebar.first-sidebar">
+          <div class="rectangle widget-container"></div>        
+        </before>     
     <!--<drop css:content="#portaltab-index_html, #portaltab-noticias" />-->
     <!-- MENU -->
     <replace css:theme-children="#menu"
@@ -39,6 +51,8 @@
     <replace css:theme="#menu #nav-2"
         css:content="#portaltab-noticias"
         method="raw" />
+
+    <!-- ticker -->        
     <drop css:content="#ticker-wrapper" />
     <replace
         css:theme="#avances"

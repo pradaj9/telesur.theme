@@ -67,9 +67,9 @@
 
                 <div class="main-article row">
                     <div class="articles-data row">
+                        <h1 class="title">Main Article Title</h1>                    
                         <div class="media-container cell"></div>
                         <div class="data-article-container cell">
-                            <h1 class="title">Main Article Title</h1>
                             <div class="description">Main Article description</div>
                             <!--<div class="author">the author</div>
                             <div class="category-data">
@@ -105,55 +105,25 @@
                     <div id="mas-titulares-widget" class="cell position-0 width-16"></div>
                 </div>
                         
-                <div class="row">
-                    <div class="google-map cell position-0 width-8">
+                <div>
+                    <div class="google-map">
                         <!-- mapa interactivo -->
                         <div class="breadcumb-categoria">Mapa Interactivo</div>
-                        <iframe width="330" height="330" src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mapa_corresponsales">
+                        <iframe width="700" height="550" src="http://media.tlsur.net/mapas/index.html?width=690">
                           <p>Tu navegador no puede ver este contenido.</p>
                         </iframe>
                     </div>
-                    <div class="cell position-8 width-8">
-                        <div class="breadcumb-categoria">Comunidad Social</div>
-                            <ul class="tabs-redesociales">
-                                <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
-                                <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
-                            </ul>                            
-                            <div class="panes-social">
-                                <div class="facebook pane">firs tab</div>
-                                <div class="twitter-portlet pane">Second tab content</div>
-                            </div>
-                            <!-- This JavaScript snippet activates those tabs-ultimos -->
-                            <script type="text/javascript">
-                            // perform JavaScript after the document is scriptable.
-                            $(function() {
-                              // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
-                              $(".tabs-redesociales").tabs("div.panes-social > div");
-                              });
-                            </script>
-                        </div>
                     </div>
                 </div>
             <!-- End left content-->
             <!-- Begin right sidebar-->
                 <div id="admin-holder"></div>            
                 <div id="telesur-right-sidebar-small">
-                    <div id="especiales-vertical" class="widget-container">
-                        <div class="breadcumb-categoria">
-                            <h2>Especiales</h2>
-                        </div>
-                        <div class="especial"><img src="especial1.jpg" alt="Título" /></div>
-                        <div class="especial"><img src="especial2.jpg" alt="Título" /></div>
-                        <div class="especial"><img src="especial3.jpg" alt="Título" /></div>
-                        <div class="especial"><img src="especial4.jpg" alt="Título" /></div>
-                    </div>
-
                     <div id="senal-en-vivo-small" class="widget-container">
                         <a href="http://multimedia.telesurtv.net/vivo/">
                             señal en vivo
                         </a>
-                    </div>
-                    <div class="widget-container" style="width:310px; height:250px; background:#999; display:block;">Banner publicitario 310 x 250</div>                  
+                    </div>                 
 
                     <div id="ultimos-videos-widget" class="widget-container">
                         <div class="ultimos-videos-wrapper">
@@ -225,14 +195,25 @@
                     });
                 </script>
             </div>        
-            <div id="entrevista-home" class="cell position-8 width-8">
-                <div class="breadcumb-categoria">Entrevistas</div>
-                <h3>Ana Maria Matute.</h3>
-                <img src="img/entrevista.jpg" alt="Título" />
-                <h4>El próximo mes leerá su discurso de ingreso en la Real Academia Española. Será la tercera académica en casi tres siglos de institución. Ana María Matute, 72 años, sigue siendo niña para no perderse en un proyecto de mujer. Y guarda historias para colmar la segunda vida que inició después de publicar "Olvidado Rey Gudú", rompiendo 20 años de silencio.</h4>
-                <p>Tal día como hoy Ana María Matute iba a sentarse en la Academia. Asiento K, única mujer en la regia sala, con un discurso, claro, propio de su literatura: En el bosque. La cita se ha retrasado hasta después de Reyes. Mejor, así leerá tranquila. Anda la escritora fatigada y nerviosa después de un año encantador en periplo con su Rey Gudú. El último viaje, a Perú, le ha dejado baldada, "estoy hecha una...". Fue en el avión, le dio uno de esos aires fríos que golpean al viajero en las vértebras adormecidas.</p>
-                <div class="ver-todos"><a href="#">ver todos</a></div>
-            </div>        
+            <div class="cell position-8 width-8">
+                <div class="breadcumb-categoria">Comunidad Social</div>
+                    <ul class="tabs-redesociales">
+                        <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
+                        <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
+                    </ul>                            
+                    <div class="panes-social">
+                        <div class="facebook pane">firs tab</div>
+                        <div class="twitter-portlet pane">Second tab content</div>
+                    </div>
+                    <!-- This JavaScript snippet activates those tabs-ultimos -->
+                    <script type="text/javascript">
+                    // perform JavaScript after the document is scriptable.
+                    $(function() {
+                      // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+                      $(".tabs-redesociales").tabs("div.panes-social > div");
+                      });
+                    </script>
+            </div>       
         </div>
             
         <div class="footer row"></div>

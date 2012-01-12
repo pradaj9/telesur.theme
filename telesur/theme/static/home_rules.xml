@@ -30,7 +30,7 @@
         <!-- <replace
             css:theme-children="#video-scroll-home h1"
             css:content-children="#video-scroll-home h3.tileHeadline" /> -->
-        <replace css:theme-children=".data-article-container .title"
+        <replace css:theme-children=".articles-data .title"
                  css:content-children="#video-scroll-home h3.tileHeadline" />            
         <!-- main new descrption -->
         <!--<replace

@@ -77,8 +77,8 @@ h1 a {
     font-size:12px;
     padding-bottom:5px;
 }
-.data-article-container .title {
-    font-size:22px;
+.articles-data .title {
+    padding-left:15px;
 }
 .category-data .category {
     color:#AC1206;
@@ -132,6 +132,7 @@ h1 a {
     padding-left:15px;
     margin-left:5px;
     float:none;
+    clear:both;
 }
 #widget-carousel .carousel-item li {
     display:list-item;
@@ -168,7 +169,7 @@ h1 a {
 	position:relative;
 	overflow:hidden;
 	width: 623px;
-	height:228px;
+	height:328px;
 	float:left;
 }
 /*
@@ -188,13 +189,17 @@ h1 a {
 #telesur-titulares .carousel-box .carousel-item {
 	float:left;
 	width:208px;
-	height:224px;
+	height:324px;
 }
 #telesur-titulares .carousel-box .image-video {
-    margin:0px 24px 0px 0px;
-    width:80px;
-    height:60px;
-    display:none;
+    margin: 0px 24px 0px 0px;
+    height: auto;
+    display: block;
+    clear: both;
+    width: 100%;
+    text-align: center;
+    background-color:transparent;
+    float:none;
 }
 #telesur-titulares .titular-seccion {
     float: left;
@@ -222,7 +227,7 @@ h1 a {
     padding:0px 0px 15px 0px;    
 }
 #nota-titular h1 {
-    padding-left:5px;
+    padding-left:15px;
     color:#000;
 }
 #nota-titular h1 a {
@@ -849,3 +854,22 @@ h1 a {
 #footer .colophone .telesur-cc span {
 }
 
+
+
+/*BANNER DE PUBLICIDAD*/
+.rectangle {
+    width:300px;
+    height:250px;
+    background-color: #CCC;    
+}
+.full-banner {
+    position: relative;
+    width: 468px;
+    height: 60px;
+    background-color: #CCC;
+}
+#telesur-header .full-banner {
+    top: 50px;
+    left: 10px;
+    float: left;
+}

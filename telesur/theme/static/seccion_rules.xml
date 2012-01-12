@@ -50,6 +50,7 @@
             <!-- listing news items bellow content area -->
             <replace css:theme-children="#telesur-seccion-listing">
                 <xsl:for-each css:select="div.notas-seccion">
+                    <xsl:if test="position() &lt; 7">                
                     <div class="notas-sencilla-grande visualIEFloatFix">
                         <xsl:copy-of select="h3" />
                         <div class="nota-sencilla-grande-thumb">
@@ -57,13 +58,16 @@
                         </div>
                         <div class="description-container">
                           <xsl:copy-of select="p[@class='nota-descripcion']" /> 
-                            <div class="link-to-article">
+                            <!-- <div class="link-to-article">
                               <a href=""><xsl:attribute name="href"><xsl:value-of select="h3/a/@href" /></xsl:attribute></a>
-                            </div>  
+                            </div> -->  
                         </div>
                     </div>
+                    </xsl:if>
                 </xsl:for-each>
             </replace>
+
+            
 
           <!-- esto modifica la lista de ultimos videos de seccion si y solo si
                la vista encontro un id de seccion valido -->
