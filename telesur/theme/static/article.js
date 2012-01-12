@@ -42,5 +42,19 @@ jq(function($) {
             $(this).data('video').show();
         });
     }
+    
+    
+    //article view, add videos from d&d widget
+
+    if ($('.contenttreeWindow')[0] !== undefined){
+        //first we have to add a new action in the add new menu
+        var link = $('<li><a href="./@@media_uploader" class="contenttype-multiplefiles" id="multiplefiles" title=""><img width="16" height="16" alt="" src="++resource++telesur.theme/img/movie_play.png" title="multiplefiles"><span class="subMenuTitle">Upload videos</span></a></li>');
+        jq('#plone-contentmenu-factories .actionMenuContent ul').append(link);
+        
+        link.click(function(event){
+            event.preventDefault();
+            $('.contenttreeWindow').showDialog();
+        });
+    }
             
 });

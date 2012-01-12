@@ -48,6 +48,12 @@
                     method="raw" />
                 <drop css:content="#content .article-description" />
             </rules>
+            
+            <!-- upload videos widget -->
+            <rules css:if-content="#form-widgets-IAddableVideos-relatedVideos-autocomplete">
+                <after css:theme="#media-container" css:content=".contenttreeWindow" />
+                <after css:theme="#media-container" css:content="#form-widgets-IAddableVideos-relatedVideos-autocomplete ~ script" />                
+            </rules>
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">
