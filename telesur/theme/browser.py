@@ -102,7 +102,7 @@ class MarkOutstandingArticle(grok.View):
         ac = getMultiAdapter((self.context, self.request),
                              name="article-control")
         ac.mark_outstanding(self.context)
-        IStatusMessage(self.request).addStatusMessage("Elemento marcado como destacado para portada.", type='info')
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como destacado para portada.", type='info')
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
 
@@ -119,7 +119,7 @@ class MarkPrimaryArticle(grok.View):
         ac = getMultiAdapter((self.context, self.request),
                              name="article-control")
         ac.mark_primary(self.context)
-        IStatusMessage(self.request).addStatusMessage("Elemento marcado como principal para portada", type='info')
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como principal para portada", type='info')
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
 
@@ -136,7 +136,7 @@ class MarkSecondaryArticle(grok.View):
         ac = getMultiAdapter((self.context, self.request),
                              name="article-control")
         ac.mark_secondary(self.context)
-        IStatusMessage(self.request).addStatusMessage("Elemento marcado como secundario para portada", type='info')
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como secundario para portada", type='info')
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
         
@@ -153,7 +153,7 @@ class MarkSectionArticle(grok.View):
         ac = getMultiAdapter((self.context, self.request),
                              name="article-control")
         ac.mark_section(self.context)
-        IStatusMessage(self.request).addStatusMessage("Elemento marcado como destacado de sección", type='info')
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como destacado de sección", type='info')
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
 

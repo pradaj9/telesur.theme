@@ -4,6 +4,10 @@ import unittest2 as unittest
 
 from zope.component import getMultiAdapter
 
+from plone.testing.z2 import Browser
+from telesur.theme.testing import browserLogin
+from telesur.theme.testing import setupTestContent
+
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
@@ -15,6 +19,7 @@ from telesur.theme.interfaces import ISecondaryArticle
 from telesur.theme.interfaces import ISectionArticle
 
 from telesur.theme.testing import INTEGRATION_TESTING
+from telesur.theme.testing import FUNCTIONAL_TESTING
 
 
 class MarkNewsTest(unittest.TestCase):
@@ -294,6 +299,55 @@ class MarkNewsTest(unittest.TestCase):
         self.failIf(ISectionArticle.providedBy(n2))
         self.failUnless(ISectionArticle.providedBy(n3))
         self.failUnless(ISectionArticle.providedBy(n4))
+
+
+class MarkNewsFunctionalTest(unittest.TestCase):
+
+    layer = FUNCTIONAL_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        setupTestContent(self)
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
+        self.browser = Browser(self.layer['app'])
+        self.browser.handleErrors = False
+        browserLogin(self.portal, self.browser)
+        
+    def test_actions_are_visible(self):
+        self.browser.open(self.news1.absolute_url())
+        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
+        self.failUnless('@@mark-primary-article' in self.browser.contents)
+        self.failUnless('@@mark-secondary-article' in self.browser.contents)
+        self.failUnless('@@mark-section-article' in self.browser.contents)
+
+    def test_links_hide(self):
+        self.browser.open(self.news1.absolute_url())
+        #XXX: Encontrar el encoding apropiado para "sección"
+        self.browser.getLink("Marcar como nota de secci�n").click()
+        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
+        self.failUnless('@@mark-primary-article' in self.browser.contents)
+        self.failUnless('@@mark-secondary-article' in self.browser.contents)
+        self.failIf('@@mark-section-article' in self.browser.contents)
+        
+        self.browser.getLink("Marcar como nota secundaria").click()
+        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
+        self.failUnless('@@mark-primary-article' in self.browser.contents)
+        self.failIf('@@mark-secondary-article' in self.browser.contents)
+        self.failIf('@@mark-section-article' in self.browser.contents)
+
+        self.browser.getLink("Marcar como nota principal").click()
+        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
+        self.failIf('@@mark-primary-article' in self.browser.contents)
+        self.failUnless('@@mark-secondary-article' in self.browser.contents)
+        self.failIf('@@mark-section-article' in self.browser.contents)
+
+        self.browser.getLink("Marcar como nota destacada").click()
+        self.failIf('@@mark-outstanding-article' in self.browser.contents)
+        self.failUnless('@@mark-primary-article' in self.browser.contents)
+        self.failUnless('@@mark-secondary-article' in self.browser.contents)
+        self.failIf('@@mark-section-article' in self.browser.contents)
 
         
 def test_suite():
