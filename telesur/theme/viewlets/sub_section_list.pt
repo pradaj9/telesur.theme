@@ -1,0 +1,8 @@
+<ul id="portal-subglobalnav">
+    <tal:block tal:repeat="subtab python:viewlet.data.get('children', [])">
+        <tal:block tal:condition="python:subtab and subtab['portal_type'] != 'collective.nitf.content'">
+            <li><a tal:content="subtab/Title" tal:attributes="href subtab/getURL;
+                                                              class python:(subtab['currentItem'] or subtab['currentParent']) and 'selected'"></a></li>
+        </tal:block>
+    </tal:block>
+</ul>

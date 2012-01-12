@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:grok="http://namespaces.zope.org/grok"
     xmlns:i18n="http://namespaces.zope.org/i18n"
@@ -9,7 +10,7 @@
 
     <five:registerPackage package="." initialize=".initialize" />
 
-    <include package="five.grok" />
+    <includeDependencies package="." />
     <grok:grok package="." />
 
     <genericsetup:registerProfile
@@ -26,5 +27,44 @@
         />
 
     <!-- -*- extra stuff goes here -*- -->
+    <browser:menuItems
+        for="Products.CMFCore.interfaces.IFolderish"
+        menu="plone_displayviews">
+        <browser:menuItem
+            title="Vista de resumen"
+            action="folder_summary_view"
+            description=""
+            />
+    </browser:menuItems>
+
+    <browser:menuItems
+        for="collective.nitf.content.INITF"
+        menu="plone_displayviews">
+        <browser:menuItem
+            title="Vista de noticia"
+            action="nota"
+            description=""
+            />
+    </browser:menuItems>
+
+    <browser:menuItems
+        for="collective.nitf.content.INITF"
+        menu="plone_displayviews">
+        <browser:menuItem
+            title="Artículo de opinión"
+            action="opinion"
+            description="Vista de artículo de opinión"
+            />
+    </browser:menuItems>
+
+    <!-- The customized footer -->
+    <browser:viewlet
+        name="plone.footer"
+        for="*"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        layer=".interfaces.ITelesurLayer"
+        template="templates/footer.pt"
+        permission="zope.Public"
+        />
 
 </configure>

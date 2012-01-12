@@ -1,0 +1,84 @@
+<div id="portal-footer" metal:define-macro="portal_footer"
+     tal:define="portal_state context/@@plone_portal_state;
+                 portal_url portal_state/portal_url">
+
+  <div id="footer" class="row">
+    <div class="action-buttons row">
+      <div class="cell position-0 width-16">
+        <ul class="actions-list">
+          <li><a href="#" class="button subscribe"><span class="icon"></span>Subscríbete</a></li>
+          <li>
+            <a href="" class="button contact"
+               tal:attributes="href string:${portal_url}/contact-info">
+              <span class="icon"></span>Contacto</a>
+          </li>
+          <li><a href="#" class="button starting-page"><span class="icon"></span>Pagina de inicio</a></li>
+          <li><a href="#" class="button movile"><span class="icon"></span>Móvil</a></li>
+          <li><a href="#" class="button jobs-telesur"><span class="icon"></span>Empleos TeleSUR</a></li>
+          <li><a href="#" class="button im-reporter"><span class="icon"></span>Soy Reportero</a></li>
+          <li><a href="#" class="button fav"><span class="icon"></span>Favoritos</a></li>
+          <li>
+            <a href="http://multimedia.telesurtv.net/media/video2/video" class="button multimedia-starting-page">
+              <span class="icon"></span>Video</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="colophone row">
+      <div class="cell position-0 width-4 telesur-cc">
+        <div class="cell-wrapper">
+          <h3>TeleSUR &copy;</h3>
+          <p>La nueva Televisión del Sur C.A. (TVSUR) RIF: G-20004500-0</p>
+        </div>
+      </div>
+
+      <div class="cell position-4 width-3">
+        <div class="cell-wrapper">
+          <h3>Canales</h3>
+          <ul>
+            <li><a href="#">Latinoamérica</a></li>
+            <li><a href="#">Vuelta al mundo</a></li>
+            <li><a href="#">Deportes</a></li>
+            <li><a href="#">Cultura</a></li>
+            <li><a href="#">Economía</a></li>
+            <li><a href="#">Medio Ambiente</a></li>
+            <li><a href="#">Ciencia</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cell position-7 width-3">
+        <div class="cell-wrapper">
+          <h3>Servicios</h3>
+          <ul>
+            <li><a href="#">Especiales</a></li>
+            <li><a href="#">Opinión</a></li>
+            <li><a href="#">Contexto</a></li>
+            <li><a href="#">Entrevistas</a></li>
+            <li><a href="http://multimedia.telesurtv.net/media/video2/video">Video</a></li>
+            <li><a href="#">Móvil</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cell position-10 width-3">
+        <div class="cell-wrapper">
+          <h3>Telesur</h3>
+          <ul>
+            <li><a href="#">El canal</a></li>
+            <li><a href="#">Programación</a></li>
+            <li><a href="#">Distribución</a></li>
+            <li><a href="#">Subscríbete</a></li>
+            <li><a href=""
+                   tal:attributes="href string:${portal_url}/contact-info">Contáctenos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cell publicidad position-13 width-3">
+        <div class="cell-wrapper" />
+      </div>
+    </div>
+  </div>
+</div>

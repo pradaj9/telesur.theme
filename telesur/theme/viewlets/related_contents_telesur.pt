@@ -1,0 +1,111 @@
+<tal:master define="level options/level|python:0; children options/children | nothing;">
+    <tal:navitem repeat="node children">
+        <li tal:define="show_children       node/show_children;
+                        children            node/children;
+                        item_url            node/getURL;
+                        item_token          python:view.getTermByBrain(node['item']).token;
+                        item_icon           node/item_icon;
+                        selectable          node/selectable;
+                        li_folder_class     python:show_children and ' navTreeFolderish' or '';
+                        li_selectable_class python:selectable and ' selectable' or '';
+                        li_collapsed_class  python:(len(children) > 0 and show_children) and '  expanded' or ' collapsed';
+                        li_class            string:${li_folder_class}${li_selectable_class}${li_collapsed_class}"
+            tal:attributes="class string: draggable navTreeItem visualNoMarker${li_class}">
+            <tal:level define="item_class string:contenttype-${node/normalized_portal_type} state-${node/normalized_review_state}">
+              <tal:block define="item_class item_class">
+                <a tal:attributes="href item_token; rel level;
+                                   title node/Description;
+                                   class string:$item_class">
+                    <img tal:replace="structure item_icon/html_tag|item_icon" />
+                    <span tal:content="node/Title">Selected Item Title</span>
+                </a>
+              </tal:block>
+              <ul tal:attributes="class python:'navTree navTreeLevel'+str(level)"
+                  tal:condition="python: len(children) > 0 and show_children">
+                  <span tal:replace="structure python:view.recurse_template(children=children, level=level+1)" />
+              </ul>
+            </tal:level>
+        </li>
+    </tal:navitem>
+</tal:master>
+    <script type="text/javascript">
+        //<![CDATA[
+        jq(function() {
+            //jq('div.draggable').draggable({containment: "#fieldset-fourth", snap: true, revert: true});
+            //jq('#sortable-container, #content-droppable').sortable({revert: true});
+            /*jq('#content-droppable').droppable({
+                    //accept: "div.draggable",
+                    accept: "li.draggable",
+                    activeClass: "ui-state-hover",
+                    hoverClass: "ui-state-active",
+                    drop: function(event, ui) {
+                        //jq(this).addClass("ui-state-highlight");
+                        var $dragged = ui.draggable;
+                        copyToDroppable( $dragged );
+                        }
+                    });
+            function copyToDroppable( $item ) {
+                var $droppable = jq('#content-droppable');
+                var link = $item.find("a").attr("href")
+                var txt = "";
+                txt += link;
+                jq($item).addClass("ui-state-disabled");
+                jq($item).removeClass("draggable");
+                var $newli = jq("<li class='draggable ui-widget-content width-full' />");
+                var $newh3 = jq("<h3 class='ui-widget-header' />");
+                var $newp = jq("<p class='ui-widget-content' />");
+                var $del = jq("<a class='ui-icon ui-icon-trash' href='' />");
+                $newli.attr('id', 'copied-'+$item.attr('id'));
+                $newh3.text($item.find('h3').text());
+                $newh3.appendTo($newli);
+                $newp.text(txt);
+                $newp.appendTo($newli);
+                $del.appendTo($newli);
+                $newli.appendTo($droppable);
+            }
+            function removeFromDroppable( $item ) {
+                var $dropping = jq('#content-droppable');
+                var $listing = jq('#sortable-container');
+                var $item_id = $item.attr('id');
+                var $listing_id = $item_id.match(/^copied-(.+)$/)[1];
+                jq('#'+$listing_id).removeClass("ui-state-disabled");
+                jq('#'+$listing_id).addClass("draggable");
+                $item.remove();
+            }
+            var $listing = jq('#sortable-container');
+            jq('#sortable-container li').draggable({
+                    //containment: "#sortable-container",
+                    //connectToSortable: "#content-droppable",
+                    helper: "clone",
+                    revert: "invalid"
+                    });
+            jq('ul#content-droppable').click(function(event) {
+                    var $item = jq(this);
+                    var $target = jq(event.target);
+                    var $parent = jq($target).parent();
+
+                    if ( $target.is("a.ui-icon-trash") ) {
+                        removeFromDroppable($parent);
+                        }
+                    return false
+                    });
+            */
+        });
+    //]]>
+    </script>
+    <style type="text/css">
+        <!--
+        #viewlet-box {width:100%;height:100%;margin:0;padding:0;}
+        #fieldset-fourth {height:50px;}
+        ul#content-droppable, ul#sortable-container { list-style-type: none;}
+        #content-droppable, #sortable-container { width: 90%; min-height: 50px; background: #f0fff0; text-align: center;}
+        #content-droppable { min-height: 150px; }
+        #content-droppable li, #content-droppable span { display: block; }
+        /*
+        .ui-icon-trash { float: right; }
+        */
+        -->
+    </style>
+<!--
+</div>
+-->

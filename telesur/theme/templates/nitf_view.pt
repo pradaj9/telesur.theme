@@ -1,0 +1,203 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.nitf">
+<body>
+
+<metal:title fill-slot="content-title">
+        <h1 class="documentFirstHeading" tal:content="context/title" />
+</metal:title>
+
+<metal:description fill-slot="content-description">
+</metal:description>
+
+<metal:main fill-slot="content-core"
+    tal:define="portal_api nocall:context/@@portal_api;
+                json_url python:portal_api.get_first_video_for_container(context);">
+        <div id="media-container" class="row">
+            <div id="media-data" class="cell width-video position-video">
+                <tal:hasvideo condition="not:json_url">
+                    <div class="video-widget principal newsImageContainer" tal:condition="view/image|nothing"
+                         tal:define="image view/image">
+                        <a href="#mediabox" id="parent-fieldname-image">
+                           <img class="newsImage nitf" src="" alt=""
+                                tal:attributes="src string:${image/image_url}/image_preview;
+                                                alt image/title" />
+                        </a>
+                        <p class="discreet" tal:condition="image/description|nothing"
+                           tal:content="image/description">
+                            Image Caption
+                        </p>
+                    </div>
+                </tal:hasvideo>                
+            </div>
+            <div id="media-counter" class="cell width-counter position-counter">
+                <div class="image-counter counter-element newsImageContainer" tal:condition="view/image|nothing"
+                     tal:define="images view/images">
+                    <a href="#mediabox" class="counter">
+                        <span class="number-items"
+                              tal:condition="images|default"
+                              tal:content="python: len(images)">0</span>                     
+                    </a>
+                </div>
+                <!--default empty version -->
+                <div tal:condition="not:view/image" class="image-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
+                
+                <div class="comment-counter counter-element newsCommentContainer">
+                    <a class="counter"
+                       href="#disqus_thread"
+                       tal:attributes="href string:${context/absolute_url}#disqus_thread">0</a>
+                </div>
+                
+                <div class="video-counter counter-element" tal:condition="json_url">
+                    <a class="counter" href="#video-galery-container">
+                        <span class="number-items" tal:content="python:len(view.links())">0</span>
+                    <a>
+                </div>
+                <!--default empty version -->
+                <div tal:condition="not:json_url" class="video-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
+
+                <!--default empty version -->
+                <div class="audio-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>                
+            </div>
+        </div>
+        <div class="breadcumb">
+            <tal:section tal:content="context/section" />
+        </div>
+        <div class="newsview">
+            <div id="mediabox" metal:use-macro="context/display_macros/macros/media-box"></div>
+        </div>
+
+        <div id="parent-fieldname-text" class="stx">
+            <p>
+                <strong  tal:condition="context/location|nothing"
+                    tal:content="structure string:${context/location} &mdash; &nbsp;">
+                    Location
+                </strong>
+            </p>
+            <p class="article-description" tal:content="context/description"></p>
+            <p tal:content="structure context/text/output|nothing">The body</p>
+        </div>
+    
+        <p class="nitfByline" tal:condition="context/byline|nothing"
+            i18n:domain="collective.nitf">
+            <span i18n:translate="">By</span>
+            <span tal:content="context/byline" />
+        </p>
+
+        <fieldset id="related-items" tal:condition="exists:context/relatedItems" i18n:domain="collective.nitf">
+            <legend i18n:translate="">Related items</legend>
+            <tal:relateditems tal:content="structure view/w/IRelatedItems.relatedItems/render" />
+        </fieldset>
+
+
+        <tal:relatedVideos  tal:condition="exists:view/w/IAddableVideos.relatedVideos"
+                            tal:content="structure view/w/IAddableVideos.relatedVideos/render" />
+
+
+        <fieldset id="folder-listing" i18n:domain="collective.nitf">
+            <legend i18n:translate="">Contents</legend>
+            <tal:block define="listing_macro context/folder_listing/macros/listing;
+                               entries_macro context/folder_listing/macros/entries;
+                               listitem_macro context/folder_listing/macros/listitem;
+                               video_api nocall:context/@@video_api;
+                               contentFilter python:{'portal_type': ['File', 'Link']}">
+                <metal:use_macro use-macro="listing_macro">
+                    <metal:entries fill-slot="entries">
+                    <div metal:use-macro="entries_macro">
+                        <div class="nitf-content-listing"
+                            metal:fill-slot="entry"
+                            tal:define="item_obj item/getObject;">
+                            <tal:islink tal:condition="python: item_type == 'Link' and json_url != False">
+                                <tal:link tal:define="json_url2 item_obj/remoteUrl;
+                                                  json_result python:video_api.get_json(json_url2)">
+                                    <tal:isvideo tal:condition="json_result">
+                                        <div class="video-widget principal"
+                                            tal:condition="repeat/item/start">
+                                            <tal:video tal:define="video_url python:video_api.get_video_widget_url(json_url2, 340, json_result)">
+                                                <script type="text/javascript" src=""
+                                                    tal:attributes="src string:${video_url};"
+                                                    tal:content="nothing">
+                                                    Item Title
+                                                </script>
+                                            </tal:video>
+                                        </div>
+                                        <div class="video-widget not-principal">
+                                            <tal:video tal:define="video_url_big python:video_api.get_video_widget_url(json_url2, 480, json_result)">                                    
+                                                <script type="text/javascript" src=""
+                                                    tal:attributes="src string:${video_url_big};"
+                                                    tal:content="nothing">
+                                                    Item Title
+                                                </script>
+                                            </tal:video>
+                                            <img class="thumb-image" src="" tal:attributes="src python:video_api.get_video_thumb(json_url2, 'pequeno', json_result)"/>
+                                        </div>                                
+                                    </tal:isvideo>
+                                </tal:link>
+                            </tal:islink>
+                            <span class="summary">
+                                <img tal:replace="structure item_icon/html_tag" />
+                                <a href="#"
+                                   tal:attributes="href string:$item_url/view;
+                                                   class string:$item_type_class $item_wf_state_class url"
+                                   tal:content="item_title_or_id">
+                                    Item Title
+                                </a>
+                            </span>
+
+                            <span class="documentByLine">
+                                <tal:byline condition="show_about">
+                                    &mdash;
+                                    <tal:name tal:condition="item_creator"
+                                        tal:define="author python:pas_member.info(item_creator);
+                                                    creator_short_form author/username;
+                                                    creator_long_form string:?author=${author/username};
+                                                    creator_is_openid python:'/' in creator_short_form;
+                                                    creator_id python:(creator_short_form, creator_long_form)[creator_is_openid];">
+                                      <span i18n:translate="label_by_author">
+                                        by
+                                      <a href="#"
+                                         tal:attributes="href string:${navigation_root_url}/author/${item_creator}"
+                                         tal:content="author/name_or_id"
+                                         tal:omit-tag="not:author"
+                                         i18n:name="author">
+                                        Bob Dobalina
+                                      </a>
+                                      </span>
+                                    </tal:name>
+
+                                    <tal:modified condition="python: item_type != 'Event'">
+                                        &mdash;
+                                        <tal:mod i18n:translate="box_last_modified">
+                                          last modified
+                                        </tal:mod>
+                                        <span tal:replace="python:toLocalizedTime(item_modified,long_format=1)">
+                                          August 16, 2001 at 23:35:59
+                                        </span>
+                                    </tal:modified>
+
+                                    <tal:comment replace="nothing">
+                                        Place custom listing info for custom types here
+                                    </tal:comment>
+                                </tal:byline>
+                            </span>
+                        </div>
+                    </div>
+                    </metal:entries>
+                    <metal:nocontent fill-slot="no_items_in_listing">
+                        <p class="discreet"
+                            tal:condition="not: folderContents"
+                            i18n:domain="plone" i18n:translate="description_no_items_in_folder">
+                            There are currently no items in this folder.
+                        </p>
+                    </metal:nocontent>
+                </metal:use_macro>
+            </tal:block>
+        </fieldset>
+</metal:main>
+
+</body>
+</html>
