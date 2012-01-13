@@ -132,7 +132,7 @@
                                                     Item Title
                                                 </script>
                                             </tal:video>
-                                            <img class="thumb-image" src="" tal:attributes="src string:${item}/thumbnail_pequeno"/>
+                                            <img class="thumb-image" src="" tal:attributes="src string:${item_obj/absolute_url}/@@thumbnail_pequeno"/>
                                         </div>                                
                                     </tal:isvideo>
                                 </tal:link>
