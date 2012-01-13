@@ -1,0 +1,46 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content="body[class*='template-folder_'],
+                           body.portaltype-folder,
+                           body.portaltype-topic,
+                           body.template-manage-content-rules.portaltype-plone-site">
+        <theme href="seccion_mobile.html" />   
+                
+                
+                <replace css:theme="h1"
+                    css:content="#parent-fieldname-title" />
+            <!-- listing news items bellow content area -->
+            <replace css:theme-children="#telesur-seccion-listing">
+                <xsl:for-each css:select="div.notas-seccion">
+                    <xsl:if test="position() &lt; 10">                
+                    <div class="notas-sencilla-grande visualIEFloatFix">
+                        <xsl:copy-of select="h3" />
+                        <div class="nota-sencilla-grande-thumb">
+                        </div>
+                        <div class="description-container">
+                          <xsl:copy-of select="p[@class='nota-descripcion']"/> 
+                        </div>
+                    </div>
+                    </xsl:if>
+                </xsl:for-each>
+            </replace>
+            <before css:theme-children="#telesur-seccion-listing">
+              <div class="notas-sencilla-grande visualIEFloatFix" id="seccion-nota-primera">
+                <xsl:copy-of css:select="#video-scroll-home h3.tileHeadline"/> 
+                  <div class="nota-sencilla-grande-thumb">
+                    <xsl:copy-of css:select=".video-widget a" />
+                  </div>
+                  <div class="description-container">
+                    <xsl:copy-of css:select="#video-scroll-home .nota-descripcion"/> 
+                  </div>
+                  <div style="clear:both"></div>
+              </div>
+            </before> 
+            <append  css:theme="#seccion-nota-primera" css:content="h1#parent-fieldname-title"/>
+    </rules>
+
+</rules>

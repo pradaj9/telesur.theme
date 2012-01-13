@@ -111,13 +111,12 @@
                         <div class="nitf-content-listing"
                             metal:fill-slot="entry"
                             tal:define="item_obj item/getObject;">
-                            <tal:islink tal:condition="python: item_type == 'Link' and json_url != False">
-                                <tal:link tal:define="json_url2 item_obj/remoteUrl;
-                                                  json_result python:video_api.get_json(json_url2)">
-                                    <tal:isvideo tal:condition="json_result">
+                            <tal:islink tal:condition="python: item_type == 'Link'">
+                                <tal:link tal:define="link_api item_obj/@@link_api">
+                                    <tal:isvideo tal:condition="link_api/is_video">
                                         <div class="video-widget principal"
                                             tal:condition="repeat/item/start">
-                                            <tal:video tal:define="video_url python:video_api.get_video_widget_url(json_url2, 340, json_result)">
+                                            <tal:video tal:define="video_url python:video_api.get_video_widget_url('', 340, {'archivo_url': link_api.get('archivo_url')})">
                                                 <script type="text/javascript" src=""
                                                     tal:attributes="src string:${video_url};"
                                                     tal:content="nothing">
@@ -126,14 +125,14 @@
                                             </tal:video>
                                         </div>
                                         <div class="video-widget not-principal">
-                                            <tal:video tal:define="video_url_big python:video_api.get_video_widget_url(json_url2, 480, json_result)">                                    
+                                            <tal:video tal:define="video_url_big python:video_api.get_video_widget_url('', 480, {'archivo_url': link_api.get('archivo_url')})">
                                                 <script type="text/javascript" src=""
                                                     tal:attributes="src string:${video_url_big};"
                                                     tal:content="nothing">
                                                     Item Title
                                                 </script>
                                             </tal:video>
-                                            <img class="thumb-image" src="" tal:attributes="src python:video_api.get_video_thumb(json_url2, 'pequeno', json_result)"/>
+                                            <img class="thumb-image" src="" tal:attributes="src string:${item_obj/absolute_url}/@@thumbnail_pequeno"/>
                                         </div>                                
                                     </tal:isvideo>
                                 </tal:link>

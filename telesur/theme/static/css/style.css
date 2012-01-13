@@ -347,7 +347,7 @@ h1 a {
     font-size:13px;
 }
 
-#autor-temp {
+#autor-temp, #colabs {
     clear:both;
     display:block;
     font-size:12px;
@@ -804,10 +804,7 @@ h1 a {
 .action-buttons .actions-list .contact .icon{
     background:transparent url(../img/iconos-footer.png) no-repeat scroll -18px 0;
 }
-.action-buttons .actions-list .starting-page .icon{
-    background:transparent url(../img/iconos-footer.png) no-repeat scroll -36px 0;
-}
-.action-buttons .actions-list .movile .icon{
+.action-buttons .actions-list .mobile .icon{
     background:transparent url(../img/iconos-footer.png) no-repeat scroll -54px 0;
 }
 .action-buttons .actions-list .jobs-telesur .icon{
@@ -816,10 +813,7 @@ h1 a {
 .action-buttons .actions-list .im-reporter .icon{
     background:transparent url(../img/iconos-footer.png) no-repeat scroll -90px 0;
 }
-.action-buttons .actions-list .fav .icon{
-    background:transparent url(../img/iconos-footer.png) no-repeat scroll -108px 0;
-}
-.action-buttons .actions-list .multimedia-starting-page .icon{
+.action-buttons .actions-list .multimedia .icon{
     background:transparent url(../img/iconos-footer.png) no-repeat scroll -126px 0;
 }
 

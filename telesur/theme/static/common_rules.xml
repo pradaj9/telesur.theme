@@ -67,12 +67,13 @@
         <!--<replace css:if-theme=".telesur-right-sidebar" css:theme=".telesur-right-sidebar" css:content="#portal-column-one"/>      -->
     </rules>
 
-   <!-- footer -->
-   <replace css:theme-children=".footer" css:content="#footer"/>
+  <!-- COMMON FOOTER -->
+  <!-- footer -->
+  <replace css:theme-children=".footer" css:content="#footer"/>
 
-   <!-- portlets sociales -->
-   <replace css:theme-children=".twitter-portlet" css:content=".twitterSearchPortlet"/>
-   <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>   
+  <!-- portlets sociales -->
+  <replace css:theme-children=".twitter-portlet" css:content=".twitterSearchPortlet"/>
+  <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>   
 
   <!-- portlets opinion -->
 
