@@ -5,7 +5,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <notheme if="$ajax_load"/>
-    <rules css:if-content="#visual-portal-wrapper">
+    <rules css:if-content="#visual-portal-wrapper" if="not($host = $mobile_host)">
 
         <xi:include href="common_rules.xml" />
         <xi:include href="home_rules.xml" />
@@ -96,5 +96,31 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
             <replace css:theme-children="#content-wrapper"
                 css:content-children="#content" />
         </rules>
+    </rules>
+    
+    <!-- MOBILE THEME -->
+    <rules css:if-content="#visual-portal-wrapper" if="$host = $mobile_host">
+      <xi:include href="nota_rules_mobile.xml" />
+      <xi:include href="seccion_mobile_rules.xml" />
+      <replace theme="/html/head/title"
+          content="html/head/title" />
+
+      <!-- mobile navigation -->
+      <replace css:theme-children="#telesur-mobile-navigation">
+        <xsl:for-each css:select="#portal-mobile-subglobalnav li"> 
+          <xsl:choose>
+                  <xsl:when test="position() mod 2 = 0">
+                    <div class="mobile-nav even">
+                        <xsl:copy-of select="a" />
+                    </div>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <div class="mobile-nav odd">
+                         <xsl:copy-of select="a" />
+                     </div>
+                  </xsl:otherwise>
+                </xsl:choose>                        
+        </xsl:for-each>
+    </replace>
     </rules>
 </rules>

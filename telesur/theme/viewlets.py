@@ -14,7 +14,7 @@ from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.portlets.portlets.navigation import Assignment
 #from plone.app.layout.viewlets import common
 from plone.app.layout.viewlets.interfaces import IDocumentActions
-from plone.app.layout.viewlets.interfaces import IPortalHeader
+from plone.app.layout.viewlets.interfaces import IPortalHeader, IPortalFooter
 
 from collective.nitf.content import INITF
 from telesur.theme.interfaces import ITelesurLayer
@@ -129,7 +129,44 @@ class DropdownQueryBuilder(NavtreeQueryBuilder):
         self.query['path'] = {'query': '/'.join(context_url[:(portal_len + 1)]),
                               'navtree_start': 1,
                               'depth': 2}
+class MobileNavigation(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.mobilenavigation")
+    grok.require("zope2.View")
+    grok.template("mobile_navigation")
+    grok.viewletmanager(IPortalFooter)
 
+    def update(self):
+        self.result = []
+        self.navroot_path = getNavigationRoot(self.context)
+        self.data = Assignment(root=self.navroot_path)
+        #import pdb; pdb.set_trace()
+        catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
+           'Title':'Noticias', 'path':'%s/noticias/' % self.navroot_path})
+        if catalog_news:
+            tab = catalog_news[0].getObject()
+            strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
+            queryBuilder = DropdownQueryBuilder(tab)
+            query = queryBuilder()
+
+            if query['path']['query'] != self.navroot_path:
+                news_dict = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
+                self.result += news_dict.get('children', []) 
+            else:
+                news_dict = {}
+        catalog_opinion = self.context.portal_catalog({'portal_type': 'Topic', 'path':'%s/opinion/' % self.navroot_path})
+        if catalog_opinion:
+            tab = catalog_opinion[0].getObject()
+            strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
+            queryBuilder = DropdownQueryBuilder(tab)
+            query = queryBuilder()
+
+            if query['path']['query'] != self.navroot_path:
+                news_dict = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
+                self.result += news_dict.get('children', [])
+            else:
+                news_dict = {}
 
 class SubSectionList(grok.Viewlet):
     grok.context(Interface)
