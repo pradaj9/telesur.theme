@@ -26,12 +26,12 @@
               <span class="icon"></span>Móvil</a>
           </li>
           <li>
-            <a href="#" class="button mobile"
+            <a href="#" class="button jobs-telesur"
                tal:attributes="href string:${portal_url}/el-canal/empleos">
               <span class="icon"></span>Empleos TeleSUR</a>
           </li>
           <li>
-            <a href="#" class="button mobile"
+            <a href="#" class="button im-reporter"
                tal:attributes="href string:${portal_url}/el-canal/soy-reportero">
               <span class="icon"></span>Soy Reportero</a>
           </li>
