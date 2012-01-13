@@ -311,111 +311,67 @@
       </div>
       </div>
 
-      <div class="telesur-full-column">
 
-          <div class="separator" />
-          <div id="especiales">
+        <!-- START telesur-full-column -->
+        <div id="telesur-full-column" class="row">
+            <div class="separator" />
+            <div id="especiales">
               <div class="especial"><img src="especial1.jpg" alt="especial1"/></div>
               <div class="especial"><img src="especial2.jpg" alt="especial2"/></div>
               <div class="especial"><img src="especial3.jpg" alt="especial3"/></div>
               <div class="especial"><img src="especial4.jpg" alt="especial4"/></div>
-          </div>
-          <div class="separator" />
-
-
-        <!--<div style="display:block;width:700px;height:460px;margin: 0 auto;">
-          <iframe width="700" height="460" src="http://multimedia.telesurtv.net/media/video/cmswidgets/cmswidgets.html?widget=mapa_corresponsales&amp;width=700"></iframe>
-        </div> -->
-
-        <!-- Full Column -->
-        <!-- Begin Left Half -->
-        <div id="telesur-left-half">
-          <div class="breadcumb-categoria">Comunidad Social</div>
-          <ul class="tabs-social">
-            <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
-            <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
-          </ul>
-
-          <!-- tab "panes-ultimos" -->
-          <div class="panes-social">
-            <div class="facebook pane">
-              <dl>
-                    <dt class="portletHeader">
-                        <span class="portletTopLeft"></span><span>Facebook</span><span class="portletTopRight"></span>
-                    </dt>
-                    <dd class="portletItem odd">
-                        <div class="results-wrapper">
-                            <div class="result-item">
-                                <div class="statusUpdate status">
-                                    <span class="date_and_time">08/12/2011 23:30</span>                    
-                                    <div class="result_content">
-                                        <p class="">GRACIAS POR MANTENERME INFORMADO  VIVA VENEZUELA</p>
-                                    </div>
-                                    <p class="link"><span>A <span>0</span> personas les gusta esto.</span></p>
-                                    <p class="comments"><span><span>0</span> commentarios.</span></p>                        
-                                </div>
-                            </div>
-                            <div class="result-item">
-                                <div class="statusUpdate link">                
-                                    <span class="date_and_time">08/12/2011 23:07</span>
-                                    <div class="result_content">
-                                        <a href="http://tlsur.net/sdajpx">Vicepresidente de Venezuela: Popularidad de Chávez se debe a sus políticas sociales</a>
-                                    </div>
-                                    <p class="link"><span>A <span>18</span> personas les gusta esto.</span></p>                        
-                                    <p class="comments"><span><span>3</span> commentarios.</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </dd>
-                    <dd class="portletFooter">
-                        <span class="portletBottomLeft"></span>
-                        <a target="_blank" href="https://www.facebook.com/teleSUR">
-                            <span>Ir al flujo completo en Facebook</span>
-                        </a>
-                        <span class="portletBottomRight"></span>
-                    </dd>
-                </dl>
             </div>
-            <div class="twitter-portlet pane">Second tab content</div>
-          </div>
-          <!-- This JavaScript snippet activates those tabs-ultimos -->
-          <script type="text/javascript">
-            // perform JavaScript after the document is scriptable.
-            $(function() {
-              // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
-              $("ul.tabs-social").tabs("div.panes-social > div");
-              });
-          </script>
-        </div>
-        <!-- End Left Half -->
-
-        <!-- Begin Right Half -->
-        <div id="telesur-right-half">
-          <div class="breadcumb-categoria">Opinión</div>
-          <ul class="tabs-opinion">
-            <li class="active"><a href="#">Artículo</a></li>
-            <li><a href="#">Contexto</a></li>
-            <li><a href="#">Entrevista</a></li>
-            <li><a href="#">Encuesta</a></li>
-          </ul>
-            <!-- tab "panes-opinion" -->
-            <div class="panes-opinion">
-                <div class="pane articles-collection">First tab content. Tab contents are called "panes-opinion"</div>
-                <div class="pane context-collection">Second tab content</div>
-                <div class="pane interview-collection">Third tab content</div>
-                <div class="pane poll-widget"> forth tab content</div>
+            <div class="separator" />        
+            <!-- Begin Left Half -->
+            <div class="cell position-0 width-8">
+                <div class="breadcumb-categoria">Comunidad Social</div>
+                    <ul class="tabs-redesociales">
+                        <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
+                        <li><a href="#"><span class="ico-twitter"></span>Twitter</a></li>
+                    </ul>                            
+                    <div class="panes-social">
+                        <div class="facebook pane">firs tab</div>
+                        <div class="twitter-portlet pane">Second tab content</div>
+                    </div>
+                    <!-- This JavaScript snippet activates those tabs-ultimos -->
+                    <script type="text/javascript">
+                    // perform JavaScript after the document is scriptable.
+                    $(function() {
+                      // setup ul.tabs-ultimos to work as tabs-ultimos for each div directly under div.panes-ultimos
+                      $(".tabs-redesociales").tabs("div.panes-social > div");
+                      });
+                    </script>
             </div>
-          <!-- This JavaScript snippet activates those tabs-opinion -->
-          <script type="text/javascript">
-            // perform JavaScript after the document is scriptable.
-            $(function() {
-              // setup ul.tabs-opinion to work as tabs-opinion for each div directly under div.panes-opinion
-              $("ul.tabs-opinion").tabs("div.panes-opinion > div");
-            });
-          </script>
+            <!-- END Left Half -->
+            <!-- Begin Right Half -->
+            <div id="opinion-container" class="cell position-8 width-8">
+                <div class="breadcumb-categoria">Opinión</div>
+                <ul class="tabs-opinion">
+                    <li class="active"><a href="#">Encuesta</a></li>                
+                    <li><a href="#">Artículo</a></li>
+                    <li><a href="#">Contexto</a></li>
+                    <li><a href="#">Entrevista</a></li>
+                </ul>
+                <!-- tab "panes-opinion" -->
+                <div class="panes-opinion">
+                    <div class="pane poll-widget"> forth tab content</div>                
+                    <div class="pane articles-collection">First tab content. Tab contents are called "panes-opinion"</div>
+                    <div class="pane context-collection">Second tab content</div>
+                    <div class="pane interview-collection">Third tab content</div>
+                </div>
+                <!-- This JavaScript snippet activates those tabs-opinion -->
+                <script type="text/javascript">
+                    // perform JavaScript after the document is scriptable.
+                    $(function() {
+                        // setup ul.tabs-opinion to work as tabs-opinion for each div directly under div.panes-opinion
+                        $("ul.tabs-opinion").tabs("div.panes-opinion > div");
+                    });
+                </script>
+            </div>
+            <!-- END Right Half -->
         </div>
-        <!-- End Right Half -->
-      </div>
+        <!-- END telesur-full-column -->
+
       <!-- End Middle -->
       <div class="footer"></div>
 </div>

@@ -22,6 +22,14 @@
                     </div>
                 </div>
             </after>
+            <!-- author -->
+            <!--<replace css:theme-children="#telesur-left-content #byline" 
+              css:content-children="#content p.nitfByline" /> -->
+          <!-- colaboradores -->
+          <replace css:theme-children="#colabs" 
+              css:content-children="#content .documentContributors" />
+
+
             <rules css:if-content="#content #media-container">
                 <!-- nota counters (video, comments, images, audio)-->
                 <replace 
