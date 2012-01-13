@@ -1,0 +1,63 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content="body.portaltype-collective-nitf-content">
+        <theme href="nota_mobile.html" />
+        <rules>
+              <replace css:theme="#telesur-container > h1"
+                  css:content="#portal-column-content h1.documentFirstHeading" />
+              <after css:theme="#telesur-container #autor-temp"
+                  css:content="#parent-fieldname-text" />
+                  
+                  <replace css:theme="#telesur-container div#notas-relacionadas ul"
+                      css:content="#related-items span" />
+                  <drop if-content="not(//*[@id='related-items']/span)"
+                      css:theme="#notas-relacionadas" />
+                      <replace css:theme-children="#telesur-container #byline"  css:content-children="#content p.nitfByline" />
+            <!-- images -->   
+            <rules css:if-content="#content #media-container">
+                <!-- image gallery code -->
+                <after css:theme="#telesur-container #media-container"
+                    css:content="#content div.newsview" />
+                <!-- nota description -->
+                <replace css:if-content="#content .article-description" 
+                    css:theme-children="#telesur-container .article-description"
+                    css:content="#content .article-description"
+                    method="raw" />
+                <drop css:content="#content .article-description" />
+            </rules>
+            
+        </rules>
+        <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
+       
+          <after css:theme="#telesur-container #comentarios-nota > h2">
+              <div id="disqus_thread"></div>
+              <script type="text/javascript">
+                  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                  var disqus_shortname = 'telesurtesting'; // required: replace example with your forum shortname
+                  var disqus_developer = 1;
+                  /* var disqus_identifier= 'c4a07a5b-676b-419b-9c99-eb0123e48bf2'; */
+
+                  /* * * DON'T EDIT BELOW THIS LINE * * */
+                  (function() {
+                      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                      
+                      var s = document.createElement('script'); s.async = true;
+                      s.type = 'text/javascript';
+                      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+                      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+                  })();
+
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+          </after>
+        
+    </rules>
+
+</rules>
