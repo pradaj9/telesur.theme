@@ -1,3 +1,7 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      tal:omit-tag="">
 <div id="portal-footer" metal:define-macro="portal_footer"
      tal:define="portal_state context/@@plone_portal_state;
                  portal_url portal_state/portal_url">
@@ -6,19 +10,33 @@
     <div class="action-buttons row">
       <div class="cell position-0 width-16">
         <ul class="actions-list">
-          <li><a href="#" class="button subscribe"><span class="icon"></span>Subscríbete</a></li>
+          <li>
+            <a href="#" class="button subscribe"
+               tal:attributes="href string:${portal_url}/el-canal/suscripcion">
+              <span class="icon"></span>Suscripción</a>
+          </li>
           <li>
             <a href="" class="button contact"
-               tal:attributes="href string:${portal_url}/contact-info">
+               tal:attributes="href string:${portal_url}/el-canal/contacto">
               <span class="icon"></span>Contacto</a>
           </li>
-          <li><a href="#" class="button starting-page"><span class="icon"></span>Pagina de inicio</a></li>
-          <li><a href="#" class="button movile"><span class="icon"></span>Móvil</a></li>
-          <li><a href="#" class="button jobs-telesur"><span class="icon"></span>Empleos TeleSUR</a></li>
-          <li><a href="#" class="button im-reporter"><span class="icon"></span>Soy Reportero</a></li>
-          <li><a href="#" class="button fav"><span class="icon"></span>Favoritos</a></li>
           <li>
-            <a href="http://multimedia.telesurtv.net/media/video2/video" class="button multimedia-starting-page">
+            <a href="#" class="button mobile"
+               tal:attributes="href string:${portal_url}/el-canal/movil">
+              <span class="icon"></span>Móvil</a>
+          </li>
+          <li>
+            <a href="#" class="button mobile"
+               tal:attributes="href string:${portal_url}/el-canal/empleos">
+              <span class="icon"></span>Empleos TeleSUR</a>
+          </li>
+          <li>
+            <a href="#" class="button mobile"
+               tal:attributes="href string:${portal_url}/el-canal/soy-reportero">
+              <span class="icon"></span>Soy Reportero</a>
+          </li>
+          <li>
+            <a href="http://multimedia.telesurtv.net/media/video2/video" class="button multimedia">
               <span class="icon"></span>Video</a>
           </li>
         </ul>
@@ -52,12 +70,29 @@
         <div class="cell-wrapper">
           <h3>Servicios</h3>
           <ul>
-            <li><a href="#">Especiales</a></li>
-            <li><a href="#">Opinión</a></li>
-            <li><a href="#">Contexto</a></li>
-            <li><a href="#">Entrevistas</a></li>
-            <li><a href="http://multimedia.telesurtv.net/media/video2/video">Video</a></li>
-            <li><a href="#">Móvil</a></li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/especiales">Especiales</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/opinion/articulos">Opinión</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/opinion/contexto">Contexto</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/opinion/entrevistas">Entrevistas</a>
+            </li>
+            <li>
+              <a href="http://multimedia.telesurtv.net/media/video2/video">Video</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/movil">Móvil</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -66,12 +101,26 @@
         <div class="cell-wrapper">
           <h3>Telesur</h3>
           <ul>
-            <li><a href="#">El canal</a></li>
-            <li><a href="#">Programación</a></li>
-            <li><a href="#">Distribución</a></li>
-            <li><a href="#">Subscríbete</a></li>
-            <li><a href=""
-                   tal:attributes="href string:${portal_url}/contact-info">Contáctenos</a></li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal">El canal</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/programacion">Programación</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/distribucion">Distribución</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/suscripcion">Suscripción</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/contacto">Contacto</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -82,3 +131,4 @@
     </div>
   </div>
 </div>
+</html>
