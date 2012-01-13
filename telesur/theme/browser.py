@@ -6,6 +6,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces import NotFound
 
 from Products.CMFCore.interfaces import IFolderish
+from Products.CMFCore.utils import getToolByName
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
@@ -79,3 +80,48 @@ class Opinion(grok.View):
     grok.context(INITF)
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
+
+
+class Subscription(grok.View):
+    """ Implemeta la subscripicion al newsletter de imoko mediante la carga
+        en un iframe, para luego poder mostrar la página de resultado en el
+        mismo iframe.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.require("zope2.View")
+
+    def iframe_src(self):
+        """ Retorna la url a ser incluida en el ifram.
+        """
+        portal_url = getToolByName(self.context, 'portal_url')
+        return "%s/%s" % (portal_url(), 'subscriptionform')
+
+
+class SubscriptionForm(grok.View):
+    """ Implementa el formulario de subscription al newsletter de imoko.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.require("zope2.View")
+
+    def processed_form(self):
+        """ Si el formulario es procesado por el sistema de imoko correctamente,
+            hace un redirect a una url indicada en el field 'pagOk' del form.
+            Esta metodo indica si el procesamiento se dio correctamente.
+
+            En caso de que el proceso de la subscripción falle imoko no hace el
+            redirect sino que muestra el mensaje en una pagina de su servidor.
+
+            La variable respuesta que es enviada via el redirect tiene un string
+            con un mensaje que es preferible ignorar por cuestiones de
+            seguridad.
+
+            El formulario fue procesado por imoko.
+            @return True
+
+            Se carga el formulario para ser completado por el usuario.
+            @return False
+
+        """
+        return self.request.get('respuesta', None) is not None
