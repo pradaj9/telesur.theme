@@ -21,7 +21,8 @@
 
 <div tal:condition="view/processed_form">
     <span class="subscriptionform_ok">
-        Su suscripci&oacute;n fue realizada satisfactoriamente, un correo fue enviado a su casilla de correo para que Ud. confirme su subscripción.
+        Su suscripci&oacute;n fue realizada satisfactoriamente. <br />
+        Un correo fue enviado a su casilla de correo para que Ud. confirme su suscripci&oacute;n.
     </span>
 </div>
 
