@@ -50,3 +50,11 @@ recipe to manage your project, you can do this:
         
 You can skip the ZCML slug if you are going to explicitly include the package
 from another package's configure.zcml file.
+
+* To set the mobile host name:
+  * edit the /etc/hosts file and add a new hostname like:
+    127.0.0.1       m.localhost
+  * go to plone's site configuration ->Diazo theme -> Advanced settings
+  * in Parameter expressions box add something like:
+    mobile_host = python: 'm.localhost:8080'
+  * remember to add the port if you are using a diferent one to 80.
