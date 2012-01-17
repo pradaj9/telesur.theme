@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-
+from AccessControl import ClassSecurityInfo
 from five import grok
+
+from zope.component import getMultiAdapter
 
 from zope.interface import Interface
 from zope.publisher.interfaces import NotFound
@@ -16,6 +18,16 @@ from collective.routes.interfaces import IWrappedObjectContext
 from collective.routes import getObject
 
 from telesur.theme.interfaces import ITelesurLayer
+from telesur.theme.interfaces import IOutstandingArticle
+from telesur.theme.interfaces import IPrimaryArticle
+from telesur.theme.interfaces import ISecondaryArticle
+from telesur.theme.interfaces import ISectionArticle
+
+from Acquisition import aq_inner
+from zope.interface import alsoProvides, noLongerProvides
+
+from Products.statusmessages.interfaces import IStatusMessage
+from Products.CMFCore.utils import getToolByName
 
 grok.templatedir("templates")
 
@@ -125,3 +137,180 @@ class SubscriptionForm(grok.View):
 
         """
         return self.request.get('respuesta', None) is not None
+
+
+class MarkOutstandingArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-outstanding-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        ac = getMultiAdapter((self.context, self.request),
+                             name="article-control")
+        ac.mark_outstanding(self.context)
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como destacado para portada.", type='info')
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)
+
+    def render(self):
+        return "mark-outstanding-article"
+
+
+class MarkPrimaryArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-primary-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        ac = getMultiAdapter((self.context, self.request),
+                             name="article-control")
+        ac.mark_primary(self.context)
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como principal para portada", type='info')
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)
+
+    def render(self):
+        return "mark-primary-article"
+
+
+class MarkSecondaryArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-secondary-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        ac = getMultiAdapter((self.context, self.request),
+                             name="article-control")
+        ac.mark_secondary(self.context)
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como secundario para portada", type='info')
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)
+        
+    def render(self):
+        return "mark-secondary-article"
+
+
+class MarkSectionArticle(grok.View):
+    grok.context(INITF)
+    grok.name("mark-section-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        ac = getMultiAdapter((self.context, self.request),
+                             name="article-control")
+        ac.mark_section(self.context)
+        IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como destacado de sección", type='info')
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)
+
+    def render(self):
+        return "mark-section-article"
+
+
+class ArticleControl(grok.View):
+    grok.context(INITF)
+    grok.name("article-control")
+    grok.require("cmf.ModifyPortalContent")
+
+    security = ClassSecurityInfo()
+
+    security.declarePublic('can_be_promoted')
+    def can_be_promoted(self, atype):
+        return not self.already_marked(self.context, atype)
+        
+    def already_marked(self, element, atype):
+        ifaces = {
+                   'outstanding' : IOutstandingArticle,
+                   'primary' : IPrimaryArticle,
+                   'secondary' : ISecondaryArticle,
+                   'section' : ISectionArticle,
+                  }
+
+        return ifaces[atype].providedBy(element)
+
+    def mark_outstanding(self, element):
+        
+        if self.already_marked(element, 'outstanding'):
+            return
+            
+        iface = IOutstandingArticle
+        iface_to_remove = [IPrimaryArticle, ISecondaryArticle]
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__)
+
+        if existing:
+            elem = existing[0].getObject()
+            self.mark_primary(elem)
+
+        context = aq_inner(element)
+        alsoProvides(context, iface)
+        for iface in iface_to_remove:
+            noLongerProvides(context, iface)
+
+        context.reindexObject(idxs=['object_provides'])
+
+    def mark_primary(self, element):
+        
+        if self.already_marked(element, 'primary'):
+            return
+            
+        iface = IPrimaryArticle
+        iface_to_remove = [IOutstandingArticle, ISecondaryArticle]
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__,
+                           sort_on='modified')
+
+        if len(existing) > 4:
+            elem = existing[0].getObject()
+            self.mark_secondary(elem)
+
+        context = aq_inner(element)
+        alsoProvides(context, iface)
+        for iface in iface_to_remove:
+            noLongerProvides(context, iface)
+
+        context.reindexObject(idxs=['object_provides'])
+        
+    def mark_secondary(self, element):
+        
+        if self.already_marked(element, 'secondary'):
+            return
+            
+        iface = ISecondaryArticle
+        iface_to_remove = [IOutstandingArticle, IPrimaryArticle]
+
+        context = aq_inner(element)
+        alsoProvides(context, iface)
+        for iface in iface_to_remove:
+            noLongerProvides(context, iface)
+
+        context.reindexObject(idxs=['object_provides'])
+
+    def mark_section(self, element):
+        
+        if self.already_marked(element, 'section'):
+            return
+            
+        iface = ISectionArticle
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        # Buscar *solo* para esta sección
+        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__,
+                           section=element.section)
+
+        if existing:
+            elem = existing[0].getObject()
+            context = aq_inner(elem)
+            noLongerProvides(context, iface)
+            context.reindexObject(idxs=['object_provides'])
+
+        context = aq_inner(element)
+
+        alsoProvides(context, iface)
+        context.reindexObject(idxs=['object_provides'])
+
+        
+    def render(self):
+        return self

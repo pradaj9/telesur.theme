@@ -22,6 +22,8 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=collective.formwidget.relationfield)
         import telesur.api
         self.loadZCML(package=telesur.api)
+        import collective.upload
+        self.loadZCML(package=collective.upload)
         import telesur.theme
         self.loadZCML(package=telesur.theme)
 

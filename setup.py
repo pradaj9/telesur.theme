@@ -29,6 +29,7 @@ setup(name='telesur.theme',
         'collective.nitf',
         'collective.routes',
         'telesur.api',
+        'z3c.jbot',
         ],
       extras_require={
         'test': ['plone.app.testing'],

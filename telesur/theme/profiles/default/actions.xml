@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool">
+ <object name="object_buttons" meta_type="CMF Action Category">
+
+  <object name="nota_destacada" meta_type="CMF Action">
+   <property name="title">Marcar como nota destacada</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-outstanding-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('outstanding')</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  
+  <object name="nota_principal" meta_type="CMF Action">
+   <property name="title">Marcar como nota principal</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-primary-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('primary')</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+
+  <object name="nota_secundaria" meta_type="CMF Action">
+   <property name="title">Marcar como nota secundaria</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-secondary-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('secondary')</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+
+  <object name="nota_seccion" meta_type="CMF Action">
+   <property name="title">Marcar como nota de sección</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@mark-section-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('section')</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  
+ </object>
+</object>
