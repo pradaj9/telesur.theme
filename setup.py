@@ -30,6 +30,7 @@ setup(name='telesur.theme',
         'collective.routes',
         'telesur.api',
         'z3c.jbot',
+        'collective.upload',
         ],
       extras_require={
         'test': ['plone.app.testing'],
