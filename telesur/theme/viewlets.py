@@ -143,8 +143,7 @@ class MobileNavigation(grok.Viewlet):
         self.navroot_path = getNavigationRoot(self.context)
         self.data = Assignment(root=self.navroot_path)
         for section in sections:
-            catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
-               'Title':'Noticias', 'path':'%s/noticias/' % self.navroot_path})
+            catalog_news = self.context.portal_catalog({'portal_type': 'Topic', 'path':'%s/%s/' % (self.navroot_path, section)})
             if catalog_news:
                 tab = catalog_news[0].getObject()
                 strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
