@@ -139,34 +139,23 @@ class MobileNavigation(grok.Viewlet):
 
     def update(self):
         self.result = []
+        sections = ['noticias','opinion']
         self.navroot_path = getNavigationRoot(self.context)
         self.data = Assignment(root=self.navroot_path)
-        #import pdb; pdb.set_trace()
-        catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
-           'Title':'Noticias', 'path':'%s/noticias/' % self.navroot_path})
-        if catalog_news:
-            tab = catalog_news[0].getObject()
-            strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
-            queryBuilder = DropdownQueryBuilder(tab)
-            query = queryBuilder()
+        for section in sections:
+            catalog_news = self.context.portal_catalog({'portal_type': 'Topic', 'path':'%s/%s/' % (self.navroot_path, section)})
+            if catalog_news:
+                tab = catalog_news[0].getObject()
+                strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
+                queryBuilder = DropdownQueryBuilder(tab)
+                query = queryBuilder()
 
-            if query['path']['query'] != self.navroot_path:
-                news_dict = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
-                self.result += news_dict.get('children', []) 
-            else:
-                news_dict = {}
-        catalog_opinion = self.context.portal_catalog({'portal_type': 'Topic', 'path':'%s/opinion/' % self.navroot_path})
-        if catalog_opinion:
-            tab = catalog_opinion[0].getObject()
-            strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
-            queryBuilder = DropdownQueryBuilder(tab)
-            query = queryBuilder()
-
-            if query['path']['query'] != self.navroot_path:
-                news_dict = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
-                self.result += news_dict.get('children', [])
-            else:
-                news_dict = {}
+                if query['path']['query'] != self.navroot_path:
+                    news_dict = buildFolderTree(tab, obj=tab, query=query,
+                        strategy=strategy)
+                    self.result += news_dict.get('children', []) 
+                else:
+                    news_dict = {}
 
 class SubSectionList(grok.Viewlet):
     grok.context(Interface)

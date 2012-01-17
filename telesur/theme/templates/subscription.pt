@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="telesur.theme">
+<body>
+
+<metal:title fill-slot="content-title">
+    <h1 class="documentFirstHeading">
+        Suscríbete a TeleSURtv.net
+    </h1>
+</metal:title>
+
+<metal:description fill-slot="content-description">
+    <tal:content-description metal:define-macro="content-description">
+        <div class="documentDescription">
+            <p>Si deseas suscribirte a los titulares de TeleSUR completa el siguiente formulario con tus datos y de inmediato estarás incluido en nuestra lista de contactos.</p>
+            <p>Si se te presenta algún inconveniente a la hora de suscribirte no dudes en escribirnos a nuestra dirección de correo:<br />
+contactenos@telesurtv.net
+            </p>
+        </div>
+    </tal:content-description>
+</metal:description>
+
+<metal:main fill-slot="content-core">
+    <div id="subscriptionform">
+        <iframe tal:attributes="src view/iframe_src"
+            width="473" scrolling="no" height="548" frameborder="0" src=""/>
+    </div>
+</metal:main>
+
+</body>
+</html>
