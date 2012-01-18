@@ -94,6 +94,16 @@ class Opinion(grok.View):
     grok.require('zope2.View')
 
 
+class Special_Report(grok.View):
+    """Vista para reportaje especial.
+
+    Prueba de concepto; el archivo flash principal se debe llamar main.swf
+    """
+    grok.context(INITF)
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+
 class Subscription(grok.View):
     """ Implemeta la subscripicion al newsletter de imoko mediante la carga
         en un iframe, para luego poder mostrar la página de resultado en el

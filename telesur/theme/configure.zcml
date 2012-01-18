@@ -64,6 +64,16 @@
             />
     </browser:menuItems>
 
+    <browser:menuItems
+        for="collective.nitf.content.INITF"
+        menu="plone_displayviews">
+        <browser:menuItem
+            title="Reportaje especial"
+            action="special_report"
+            description="Vista para reportaje especial"
+            />
+    </browser:menuItems>
+
     <!-- The customized footer -->
     <browser:viewlet
         name="plone.footer"
