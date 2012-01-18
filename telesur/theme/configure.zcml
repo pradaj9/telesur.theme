@@ -17,8 +17,6 @@
 
     <browser:jbot
         directory="jbot" />
-        
-
 
     <genericsetup:registerProfile
         name="default"
@@ -33,7 +31,6 @@
         directory="static"
         />
 
-    <!-- -*- extra stuff goes here -*- -->
     <browser:menuItems
         for="Products.CMFCore.interfaces.IFolderish"
         menu="plone_displayviews">
@@ -60,7 +57,7 @@
         <browser:menuItem
             title="Artículo de opinión"
             action="opinion"
-            description="Vista de artículo de opinión"
+            description="Vista para artículo de opinión"
             />
     </browser:menuItems>
 
