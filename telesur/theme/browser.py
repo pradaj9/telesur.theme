@@ -27,7 +27,6 @@ from Acquisition import aq_inner
 from zope.interface import alsoProvides, noLongerProvides
 
 from Products.statusmessages.interfaces import IStatusMessage
-from Products.CMFCore.utils import getToolByName
 
 grok.templatedir("templates")
 
@@ -89,6 +88,8 @@ class FragmentView(grok.View):
 
 
 class Opinion(grok.View):
+    """Vista para artículo de opinión.
+    """
     grok.context(INITF)
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
@@ -195,7 +196,7 @@ class MarkSecondaryArticle(grok.View):
         IStatusMessage(self.request).addStatusMessage(u"Elemento marcado como secundario para portada", type='info')
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
-        
+
     def render(self):
         return "mark-secondary-article"
 
@@ -225,29 +226,30 @@ class ArticleControl(grok.View):
     security = ClassSecurityInfo()
 
     security.declarePublic('can_be_promoted')
+
     def can_be_promoted(self, atype):
         return not self.already_marked(self.context, atype)
-        
+
     def already_marked(self, element, atype):
         ifaces = {
-                   'outstanding' : IOutstandingArticle,
-                   'primary' : IPrimaryArticle,
-                   'secondary' : ISecondaryArticle,
-                   'section' : ISectionArticle,
+                   'outstanding': IOutstandingArticle,
+                   'primary': IPrimaryArticle,
+                   'secondary': ISecondaryArticle,
+                   'section': ISectionArticle,
                   }
 
         return ifaces[atype].providedBy(element)
 
     def mark_outstanding(self, element):
-        
+
         if self.already_marked(element, 'outstanding'):
             return
-            
+
         iface = IOutstandingArticle
         iface_to_remove = [IPrimaryArticle, ISecondaryArticle]
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__)
+        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__)
 
         if existing:
             elem = existing[0].getObject()
@@ -261,15 +263,15 @@ class ArticleControl(grok.View):
         context.reindexObject(idxs=['object_provides'])
 
     def mark_primary(self, element):
-        
+
         if self.already_marked(element, 'primary'):
             return
-            
+
         iface = IPrimaryArticle
         iface_to_remove = [IOutstandingArticle, ISecondaryArticle]
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__,
+        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
                            sort_on='modified')
 
         if len(existing) > 4:
@@ -282,12 +284,12 @@ class ArticleControl(grok.View):
             noLongerProvides(context, iface)
 
         context.reindexObject(idxs=['object_provides'])
-        
+
     def mark_secondary(self, element):
-        
+
         if self.already_marked(element, 'secondary'):
             return
-            
+
         iface = ISecondaryArticle
         iface_to_remove = [IOutstandingArticle, IPrimaryArticle]
 
@@ -299,15 +301,15 @@ class ArticleControl(grok.View):
         context.reindexObject(idxs=['object_provides'])
 
     def mark_section(self, element):
-        
+
         if self.already_marked(element, 'section'):
             return
-            
+
         iface = ISectionArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
         # Buscar *solo* para esta sección
-        existing = catalog(object_provides=iface.__module__+'.'+iface.__name__,
+        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
                            section=element.section)
 
         if existing:
@@ -321,6 +323,5 @@ class ArticleControl(grok.View):
         alsoProvides(context, iface)
         context.reindexObject(idxs=['object_provides'])
 
-        
     def render(self):
         return self
