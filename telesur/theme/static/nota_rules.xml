@@ -100,7 +100,7 @@
                 css:theme-children="#telesur-middle #telesur-left-content"
                 css:content="#portal-column-content div.documentEditable" />
         </rules>
-        <drop css:content="#edit-bar" />
+        <!-- <drop css:content="#edit-bar" /> -->
         <merge attributes="href" css:theme="a#nota-destacada-button"
             css:content="a#nota_destacada"/>
         <replace  css:theme-children="a#nota-destacada-button"
