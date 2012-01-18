@@ -62,8 +62,8 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
             css:content="div.documentContributors" />
             -->
         <replace css:theme="#telesur-left-content div#notas-relacionadas ul"
-            css:content="#related-items span" />
-        <drop if-content="not(//*[@id='related-items']/span)"
+            css:content="#related-items ul" />
+        <drop if-content="not(//*[@id='related-items'])"
             css:theme="#notas-relacionadas" />
         <drop css:theme="#telesur-left-content div.comentario-individual" />
         <!--

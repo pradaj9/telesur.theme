@@ -100,6 +100,38 @@
                 css:theme-children="#telesur-middle #telesur-left-content"
                 css:content="#portal-column-content div.documentEditable" />
         </rules>
+        <!-- <drop css:content="#edit-bar" /> -->
+        <merge attributes="href" css:theme="a#nota-destacada-button"
+            css:content="a#nota_destacada"/>
+        <replace  css:theme-children="a#nota-destacada-button"
+                css:content-children="a#nota_destacada"/>
+        <merge attributes="href" css:theme="a#nota-principal-button"
+                  css:content="a#nota_principal" />
+        <replace css:theme-children="a#nota-principal-button"
+                css:content-children="a#nota_principal" />
+        <merge attributes="href" css:theme="a#nota-secundaria-button"
+                        css:content="a#nota_secundaria" />
+        <replace css:theme-children="a#nota-secundaria-button"
+                css:content-children="a#nota_secundaria" />
+        <merge attributes="href" css:theme="a#nota-seccion-button"
+                          css:content="a#nota_seccion" />
+        <replace css:theme-children="a#nota-seccion-button"
+                  css:content-children="a#nota_seccion" />
+        <merge attributes="href" css:theme="a#subir-archivo"
+                            css:content="a#file" />
+        <replace css:theme-children="a#subir-archivo"
+                      css:content-children="a#file" />
+        <merge attributes="href" css:theme="a#subir-enlace"
+                        css:content="a#link" />
+        <replace css:theme-children="a#subir-enlace"
+                          css:content-children="a#link" />
+        <merge attributes="href" css:theme="a#subir-imagen"
+                          css:content="a#image" />
+        <replace css:theme-children="a#subir-imagen"
+                          css:content-children="a#image" />
+        <merge attributes="href" css:theme="a#subir-video"
+                                            css:content="li a#multiplefiles" />
+                          
     </rules>
 
 </rules>

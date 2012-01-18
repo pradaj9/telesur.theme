@@ -902,3 +902,7 @@ h1 a {
 #subscriptionform_ok {
     font-weight: bold;
 }
+
+#notas-relacionadas ul li {
+    display:block;
+}
