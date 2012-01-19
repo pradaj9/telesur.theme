@@ -38,7 +38,7 @@
                 <drop css-if-theme="#scroller-seccion" css:theme="#scroller-seccion" />
                 <drop css-if-theme=".telesur-full-column" css:theme=".telesur-full-column" />                 
         </rules>
-        <rules css:if-content="body.portaltype-plone-site:not(.template-manage-content-rules),
+        <rules css:if-content="body.portaltype-plone-site:not(.template-home-view),
                                body.template-login_success,
                                body.template-folder_rename_form,
                                body.template-telesur_helper,

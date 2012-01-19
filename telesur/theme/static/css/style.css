@@ -105,6 +105,9 @@ h1 a {
     height:80px;
     overflow:hidden;
 }
+.articles-carousel .article-item .thumb img {
+    width:128px;
+}
 .articles-carousel .article-item .tileHeadline {
     font-size:12px;
     font-weight:normal;

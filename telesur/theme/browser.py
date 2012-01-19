@@ -5,6 +5,7 @@ from five import grok
 from zope.component import getMultiAdapter
 
 from zope.interface import Interface
+from zope.annotation.interfaces import IAnnotations
 from zope.publisher.interfaces import NotFound
 
 from Products.CMFCore.interfaces import IFolderish
@@ -325,3 +326,84 @@ class ArticleControl(grok.View):
 
     def render(self):
         return self
+
+
+class HomeView(grok.View):
+    """Vista para la home.
+    """
+    grok.context(Interface)    
+    grok.name('home-view')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def get_multimedia(self, obj, thumb=False):
+        """ returns the first multimedia object from a nitf ct, if thumb is true
+        is going to return an image even if the first objects is a video """
+        
+        obj = obj.getObject() if hasattr(obj, 'getObject') else obj
+        context_path = '/'.join(obj.getPhysicalPath())
+        query = {'Type': ('Link',)}
+        query['path'] = {'query': context_path,
+                         'depth': 1,}
+        query['sort_on'] = 'getObjPositionInParent'
+        query['limit'] = None
+        
+        results = obj.getFolderContents(contentFilter=query, batch=False, 
+                                        b_size=10, full_objects=False)
+
+        multimedia = {'type':None, 'url':None}
+        if results:
+            for link in results:
+                annotations = IAnnotations(link.getObject())
+                if thumb:
+                    is_video = annotations.get('archivo_url', None)
+                    multimedia['url'] = link.getObject().absolute_url()+\
+                        '/@@thumbnail_pequeno' if is_video else None
+                    multimedia['type'] = 'thumb' if multimedia['url'] else None
+                else:
+                    multimedia['url'] = annotations.get('archivo_url', None)
+                    multimedia['type'] = 'video' if multimedia['url'] else None
+                break
+
+        if not multimedia['url']:
+            #we need to search for images because doesn't have videos
+            query['Type'] = ('Image', )
+            results = obj.getFolderContents(contentFilter=query, batch=False, 
+                                            b_size=10, full_objects=False)            
+            if results:
+                multimedia['url'] = results[0].getObject()
+                multimedia['type'] = 'image'
+            
+        return multimedia
+        
+        
+    def outstanding(self):
+        iface = IOutstandingArticle
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__)
+
+        elem = ''
+        if existing:
+            elem = existing[0].getObject()
+
+        return elem
+
+    def primary(self):
+        iface = IPrimaryArticle
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        #ordenar por fecha efectiva y prioridad
+        elements = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
+                           sort_on='modified')
+
+        return elements
+
+    def secondary(self, limit=6):        
+        iface = ISecondaryArticle
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        elements = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
+                           sort_on='modified')
+
+        return elements[:limit]

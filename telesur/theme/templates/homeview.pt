@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main" tal:define="portal_api nocall:context/@@portal_api;
+                                                          video_api nocall:context/@@video_api">
+        <div class="principal-articles-container row" 
+             tal:define="outstanding view/outstanding">
+            <div class="main-article row" tal:condition="outstanding">
+                <h1 class="title">
+                    <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
+                </h1>
+                <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding)">
+                    <div class="video-widget">
+                        <tal:video tal:condition="python:multimedia['type'] == 'video'">
+                            <script type="text/javascript" src=""
+                                tal:define="video_url python:video_api.get_video_widget_url('', 400, {'archivo_url': multimedia['url']})"                            
+                                tal:attributes="src string:${video_url};"
+                                tal:content="nothing">
+                                Item Title
+                            </script>
+                        </tal:video>
+                        <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                                   tal:define="img python:multimedia['url']">
+                            <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
+                        </tal:image>
+                    </div>
+                </div>
+                <div class="data-article-container cell">
+                    <div class="description" tal:content="outstanding/description">
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondary-articles row" tal:define="primary_list view/primary">
+                <div class="articles-carousel-wrapper" tal:condition="primary_list">
+                    <tal:new tal:repeat="new primary_list">
+                        <div class="article-item">
+                            <div class="article-item-wrapper">
+                                <div class="thumb" tal:define="multimedia python:view.get_multimedia(new, thumb=True)">
+                                    <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                                                tal:define="img python:multimedia['url']">
+                                        <img src="" tal:attributes="src string:${img}" />
+                                    </tal:thumb>
+                                    <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                                               tal:define="img python:multimedia['url']">
+                                        <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                                    </tal:image>                                    
+                                </div>
+                                <h3 class="tileHeadline">
+                                    <a tal:attributes="href new/getURL" tal:content="new/Title"></a>
+                                </h3>
+                            </div>
+                        </div>
+                    </tal:new>
+                </div>
+            </div>
+
+            <div class="article-listing row">
+            <!-- dirty 2 block list  
+                tal:define="division python:[x for x in range(len(objs)) if x%2 == 0];
+                            list python:[(objs[x], len(objs)-1 > x and objs[x+1]) for x in division]
+                "
+            -->
+                <tal:block tal:repeat="nota view/secondary">
+                    <div class="notas-sencilla-grande visualIEFloatFix">
+                        <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
+                        <div class="nota-sencilla-grande-thumb" tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
+                            <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                                        tal:define="img python:multimedia['url']">
+                                <img src="" tal:attributes="src string:${img}" />
+                            </tal:thumb>
+                            <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                                       tal:define="img python:multimedia['url']">
+                                <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                            </tal:image>  
+                        </div>
+                        <p class="nota-descripcion" tal:content="nota/description"></p>
+                    </div>
+               </tal:block>
+            </div>
+        </div>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>        

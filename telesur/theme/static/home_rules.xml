@@ -4,11 +4,11 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules if-path="/">
+    <rules css:if-content="body.template-home-view">
         <theme href="home-scroll.html" />
         
         <!-- drop all the articule boxes -->
-        <!-- <drop css:theme="div.notas-sencilla-grande" /> -->
+        <!-- <drop css:theme="div.notas-sencilla-grande" /> -->       
         
         <!-- edit bar first element inside telesur-middle -->
         <before css:theme-children="#telesur-middle"
@@ -24,27 +24,28 @@
         <!--<replace css:theme="#video-scroll-home > object"
             css:content="#video-scroll-home div.video-widget" />-->
         <replace css:theme-children=".main-article .media-container"
-                 css:content="#video-scroll-home .video-widget" />
+                 css:content=".video-widget" />
 
         <!-- main new title -->
         <!-- <replace
             css:theme-children="#video-scroll-home h1"
             css:content-children="#video-scroll-home h3.tileHeadline" /> -->
         <replace css:theme-children=".articles-data .title"
-                 css:content-children="#video-scroll-home h3.tileHeadline" />            
+                 css:content-children=".principal-articles-container .main-article h1" />            
         <!-- main new descrption -->
         <!--<replace
             css:theme-children="#video-scroll-home > p"
             css:content-children="#video-scroll-home p.nota-descripcion" />-->
         <replace css:theme-children=".data-article-container .description"
-                 css:content-children="#video-scroll-home .nota-descripcion" />            
+                 css:content-children=".principal-articles-container .description" />            
 
         <!-- main new relateditems-->
         <!-- <replace css:theme-children=".data-article-container .category-data .related-articles"
                  css:content-children="#video-scroll-home #form-widgets-IRelatedItems-relatedItems" /> -->
 
         <!-- news listing -->
-        <replace css:theme-children=".articles-carousel-wrapper">
+        <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>
+        <!-- <replace css:theme-children=".articles-carousel-wrapper">
           <xsl:for-each css:select=".notas-seccion">
             <xsl:if test="position() &lt; 5">
                 <div class="article-item">
@@ -57,8 +58,10 @@
                 </div>
             </xsl:if>          
           </xsl:for-each>
-        </replace>   
-        <replace css:theme-children=".article-listing">
+        </replace> -->
+
+        <replace css:theme-children=".article-listing" css:content-children=".article-listing"/>
+        <!-- <replace css:theme-children=".article-listing">
           <xsl:for-each css:select=".notas-seccion">
               <xsl:if test="position() &gt; 5">
                 <xsl:if test="position() &lt; 12">
@@ -68,14 +71,14 @@
                           <xsl:copy-of select="div[@class='nota-seccion-thumb']/node()" />
                       </div>
                       <xsl:copy-of select="p[@class='nota-descripcion']" />
-                      <!--<div class="sigue-leyendo">
+                      <div class="sigue-leyendo">
                           <xsl:copy-of select="p[@class='tileFooter']/node()" />
-                      </div>-->
+                      </div>
                   </div>
                 </xsl:if>
               </xsl:if>
           </xsl:for-each>
-        </replace>
+        </replace> -->
         
         <after css:theme-children="#telesur-right-sidebar-small"
             css:content="#lo-mas" />
