@@ -68,7 +68,7 @@ class RoutesBrowserTest(unittest.TestCase):
     def test_fechas_with_results(self):
         self.browser.open(self.portal.absolute_url() + '/2011')
         self.assertIn('News Test 1', self.browser.contents)
-        self.assertIn('News Test 2',  self.browser.contents)
+        self.assertIn('News Test 2', self.browser.contents)
         self.browser.open(self.portal.absolute_url() + '/2011/09')
         self.assertIn('News Test 1', self.browser.contents)
         self.browser.open(self.portal.absolute_url() + '/2011/09/11')
