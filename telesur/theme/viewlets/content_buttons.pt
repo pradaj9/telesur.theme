@@ -9,7 +9,8 @@
               <li class='button-available utilLinks'><a tal:content="python:content['title']" tal:attributes="href python:content['url']; id python:content['id-tag']"></a></li>
           </tal:block>
   </ul>
-  <script type="text/javascript">
+  <div style="clear:both"></div>
+  <script type="text/javascript" >
   $("#notas-add-video").click(function(event) {
         event.preventDefault();
         $('.contenttreeWindow').showDialog();

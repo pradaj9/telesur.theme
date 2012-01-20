@@ -766,6 +766,13 @@ h1 a {
     font-weight:bold;    
 }
 
+.button-disable.utilLinks {
+    float: left;
+}
+
+.button-available.utilLinks{
+    float:left;
+}
 .button-disable.utilLinks a {
     background: white;
     text-decoration: none;
@@ -925,4 +932,9 @@ h1 a {
 
 #notas-relacionadas ul li {
     display:block;
+}
+
+#notas-content-buttons-actions
+{
+    margin-top:30px;
 }
