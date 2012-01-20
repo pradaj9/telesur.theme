@@ -22,4 +22,3 @@ class ISecondaryArticle(Interface):
 
 class ISectionArticle(Interface):
     """ Marker interface para noticias destacadas en una sección """
-        

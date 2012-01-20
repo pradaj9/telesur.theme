@@ -331,7 +331,7 @@ class ArticleControl(grok.View):
 class HomeView(grok.View):
     """Vista para la home.
     """
-    grok.context(Interface)    
+    grok.context(Interface)
     grok.name('home-view')
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
@@ -339,7 +339,7 @@ class HomeView(grok.View):
     def get_multimedia(self, obj, thumb=False):
         """ returns the first multimedia object from a nitf ct, if thumb is true
         is going to return an image even if the first objects is a video """
-        
+
         obj = obj.getObject() if hasattr(obj, 'getObject') else obj
         context_path = '/'.join(obj.getPhysicalPath())
         query = {'Type': ('Link',)}
@@ -347,8 +347,8 @@ class HomeView(grok.View):
                          'depth': 1,}
         query['sort_on'] = 'getObjPositionInParent'
         query['limit'] = None
-        
-        results = obj.getFolderContents(contentFilter=query, batch=False, 
+
+        results = obj.getFolderContents(contentFilter=query, batch=False,
                                         b_size=10, full_objects=False)
 
         multimedia = {'type':None, 'url':None}
@@ -368,15 +368,14 @@ class HomeView(grok.View):
         if not multimedia['url']:
             #we need to search for images because doesn't have videos
             query['Type'] = ('Image', )
-            results = obj.getFolderContents(contentFilter=query, batch=False, 
-                                            b_size=10, full_objects=False)            
+            results = obj.getFolderContents(contentFilter=query, batch=False,
+                                            b_size=10, full_objects=False)
             if results:
                 multimedia['url'] = results[0].getObject()
                 multimedia['type'] = 'image'
-            
+
         return multimedia
-        
-        
+
     def outstanding(self):
         iface = IOutstandingArticle
 
@@ -399,7 +398,7 @@ class HomeView(grok.View):
 
         return elements
 
-    def secondary(self, limit=6):        
+    def secondary(self, limit=6):
         iface = ISecondaryArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')

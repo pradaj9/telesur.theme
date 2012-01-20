@@ -17,15 +17,15 @@
     <copy attributes="*"
         css:theme="body"
         css:content="body" />
-        
-    <!-- header -->        
+
+    <!-- header -->
     <copy attributes="href accesskey title"
         css:theme="#logo-telesur > a"
         css:content="#portal-logo" />
     <after css:theme="#logo-telesur"
         css:content="#portal-personaltools-wrapper" />
     <after css:theme-children="#telesur-header"
-        css:content="#portal-searchbox" />  
+        css:content="#portal-searchbox" />
 
     <!-- publicidad -->
     <!-- XXX: ¿no sería mejor incluir esto en las plantillas directamente? -->
@@ -78,7 +78,7 @@
         <!-- XXX: ¿eliminar? -->
         <before css:theme-children=".telesur-right-sidebar.first-sidebar">
           <div class="rectangle widget-container"></div>
-        </before>     
+        </before>
 
     <!--<drop css:content="#portaltab-index_html, #portaltab-noticias" />-->
     <!-- MENU -->
@@ -88,7 +88,7 @@
     <replace css:if-content="#portal-subglobalnav > li" css:theme-children="#globalnav"
         css:content-children="#portal-subglobalnav" />
     <drop if-content="not(//*[@id='portal-subglobalnav']/li)" css:theme="#nav-contents"/>
-             
+
     <replace css:theme="#menu #nav-1"
         css:content="#portaltab-index_html"
         method="raw" />
@@ -96,14 +96,14 @@
         css:content="#portaltab-noticias"
         method="raw" />
 
-    <!-- ticker -->        
+    <!-- ticker -->
     <drop css:content="#ticker-wrapper" />
     <replace
         css:theme="#avances"
         css:content="#ticker-wrapper"
         method="raw"
         />
-        
+
     <!-- column 1 replace column 2 if 1 exist -->
     <rules if-content="not(//*[@id='anon-personalbar'])">
         <replace css:if-content="#portal-column-one" css:theme="#admin-holder" css:content="#portal-column-one"/>
@@ -117,26 +117,25 @@
 
   <!-- portlets sociales -->
   <replace css:theme-children=".twitter-portlet" css:content=".twitterSearchPortlet"/>
-  <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>   
+  <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>
 
   <!-- portlets opinion -->
 
   <drop css:content=".portlet-collection-articulos .tile img" />
-  <drop css:content=".portlet-collection-articulos dt" />  
+  <drop css:content=".portlet-collection-articulos dt" />
   <replace css:theme-children=".panes-opinion .articles-collection" css:content=".portlet-collection-articulos"/>
 
-  <drop css:content=".portlet-collection-contexto .tile img" />  
-  <drop css:content=".portlet-collection-contexto dt" />    
+  <drop css:content=".portlet-collection-contexto .tile img" />
+  <drop css:content=".portlet-collection-contexto dt" />
   <replace css:theme-children=".panes-opinion .context-collection" css:content=".portlet-collection-contexto"/>
 
   <drop css:content=".portlet-collection-entrevista .tile img" />
-  <drop css:content=".portlet-collection-entrevista dt" />  
+  <drop css:content=".portlet-collection-entrevista dt" />
   <replace css:theme-children=".panes-opinion .interview-collection" css:content=".portlet-collection-entrevista"/>
 
-  <drop css:content=".votePortlet dt" />    
+  <drop css:content=".votePortlet dt" />
   <replace css:theme-children=".panes-opinion .poll-widget" css:content=".votePortlet"/>
-  
+
   <after css:content="#multipleupload-code" css:theme="#telesur-container" />
-  
 
 </rules>

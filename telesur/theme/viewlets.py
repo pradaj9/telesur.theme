@@ -153,7 +153,7 @@ class MobileNavigation(grok.Viewlet):
                 if query['path']['query'] != self.navroot_path:
                     news_dict = buildFolderTree(tab, obj=tab, query=query,
                         strategy=strategy)
-                    self.result += news_dict.get('children', []) 
+                    self.result += news_dict.get('children', [])
                 else:
                     news_dict = {}
 

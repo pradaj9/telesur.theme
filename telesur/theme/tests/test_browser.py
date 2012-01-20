@@ -46,6 +46,5 @@ class BrowserLayerTest(unittest.TestCase):
         self.browser.open(self.portal.absolute_url() + name )
 
 
-
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
