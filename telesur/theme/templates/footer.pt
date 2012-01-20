@@ -7,42 +7,6 @@
                  portal_url portal_state/portal_url">
 
   <div id="footer" class="row">
-    <div class="action-buttons row">
-      <div class="cell position-0 width-16">
-        <ul class="actions-list">
-          <li>
-            <a href="#" class="button subscribe"
-               tal:attributes="href string:${portal_url}/el-canal/suscripcion">
-              <span class="icon"></span>Suscripción</a>
-          </li>
-          <li>
-            <a href="" class="button contact"
-               tal:attributes="href string:${portal_url}/el-canal/contacto">
-              <span class="icon"></span>Contacto</a>
-          </li>
-          <li>
-            <a href="#" class="button mobile"
-               tal:attributes="href string:${portal_url}/el-canal/movil">
-              <span class="icon"></span>Móvil</a>
-          </li>
-          <li>
-            <a href="#" class="button jobs-telesur"
-               tal:attributes="href string:${portal_url}/el-canal/empleos">
-              <span class="icon"></span>Empleos TeleSUR</a>
-          </li>
-          <li>
-            <a href="#" class="button im-reporter"
-               tal:attributes="href string:${portal_url}/el-canal/soy-reportero">
-              <span class="icon"></span>Soy Reportero</a>
-          </li>
-          <li>
-            <a href="http://multimedia.telesurtv.net/media/video2/video" class="button multimedia">
-              <span class="icon"></span>Video</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
     <div class="colophone row">
       <div class="cell position-0 width-4 telesur-cc">
         <div class="cell-wrapper">
