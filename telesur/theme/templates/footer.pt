@@ -6,6 +6,8 @@
      tal:define="portal_state context/@@plone_portal_state;
                  portal_url portal_state/portal_url">
 
+  <div class="separator" />
+
   <div id="footer" class="row">
     <div class="colophone row">
       <div class="cell position-0 width-4 telesur-cc">
