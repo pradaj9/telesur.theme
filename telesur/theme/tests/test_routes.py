@@ -2,25 +2,24 @@
 
 import unittest2 as unittest
 
-import transaction
+from zExceptions import NotFound
+
 from zope.component import getUtility
 
 from Products.CMFCore.utils import getToolByName
-from zExceptions import NotFound
+
 from plone.registry.interfaces import IRegistry
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
-from plone.registry.interfaces import IRegistry
 from plone.testing.z2 import Browser
 
 from collective.nitf.controlpanel import INITFSettings
 from collective.routes import addRoute
-from collective.routes import getRoute
 from collective.routes import getRouteNames
 from collective.routes.controlpanel import IRoutesSettings
+
 from telesur.theme.testing import FUNCTIONAL_TESTING
 from telesur.theme.testing import browserLogin
-from telesur.theme.testing import createObject
 from telesur.theme.testing import setupTestContent
 
 

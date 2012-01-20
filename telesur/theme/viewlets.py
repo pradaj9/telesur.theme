@@ -6,15 +6,13 @@ from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.component import getMultiAdapter
 
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
-from plone.app.portlets.portlets.navigation import Assignment
-#from plone.app.layout.viewlets import common
 from plone.app.layout.viewlets.interfaces import IDocumentActions
 from plone.app.layout.viewlets.interfaces import IPortalHeader, IPortalFooter
+from plone.app.portlets.portlets.navigation import Assignment
 
 from collective.nitf.content import INITF
 from telesur.theme.interfaces import ITelesurLayer
@@ -129,6 +127,8 @@ class DropdownQueryBuilder(NavtreeQueryBuilder):
         self.query['path'] = {'query': '/'.join(context_url[:(portal_len + 1)]),
                               'navtree_start': 1,
                               'depth': 2}
+
+
 class MobileNavigation(grok.Viewlet):
     grok.context(Interface)
     grok.layer(ITelesurLayer)
@@ -139,11 +139,12 @@ class MobileNavigation(grok.Viewlet):
 
     def update(self):
         self.result = []
-        sections = ['noticias','opinion']
+        sections = ['noticias', 'opinion']
         self.navroot_path = getNavigationRoot(self.context)
         self.data = Assignment(root=self.navroot_path)
         for section in sections:
-            catalog_news = self.context.portal_catalog({'portal_type': 'Topic', 'path':'%s/%s/' % (self.navroot_path, section)})
+            catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
+                                                        'path': '%s/%s/' % (self.navroot_path, section)})
             if catalog_news:
                 tab = catalog_news[0].getObject()
                 strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
@@ -156,6 +157,7 @@ class MobileNavigation(grok.Viewlet):
                     self.result += news_dict.get('children', [])
                 else:
                     news_dict = {}
+
 
 class SubSectionList(grok.Viewlet):
     grok.context(Interface)

@@ -344,20 +344,20 @@ class HomeView(grok.View):
         context_path = '/'.join(obj.getPhysicalPath())
         query = {'Type': ('Link',)}
         query['path'] = {'query': context_path,
-                         'depth': 1,}
+                         'depth': 1, }
         query['sort_on'] = 'getObjPositionInParent'
         query['limit'] = None
 
         results = obj.getFolderContents(contentFilter=query, batch=False,
                                         b_size=10, full_objects=False)
 
-        multimedia = {'type':None, 'url':None}
+        multimedia = {'type': None, 'url': None}
         if results:
             for link in results:
                 annotations = IAnnotations(link.getObject())
                 if thumb:
                     is_video = annotations.get('archivo_url', None)
-                    multimedia['url'] = link.getObject().absolute_url()+\
+                    multimedia['url'] = link.getObject().absolute_url() + \
                         '/@@thumbnail_pequeno' if is_video else None
                     multimedia['type'] = 'thumb' if multimedia['url'] else None
                 else:

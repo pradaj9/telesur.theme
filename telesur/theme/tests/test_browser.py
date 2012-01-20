@@ -2,9 +2,6 @@
 
 import unittest2 as unittest
 
-from StringIO import StringIO
-
-from zope.app.file.tests.test_image import zptlogo
 from zope.interface import directlyProvides
 
 from Products.CMFCore.utils import getToolByName
@@ -15,7 +12,6 @@ from plone.testing.z2 import Browser
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.testing import FUNCTIONAL_TESTING
 from telesur.theme.testing import browserLogin
-from telesur.theme.testing import createObject
 from telesur.theme.testing import setupTestContent
 
 
@@ -39,11 +35,11 @@ class BrowserLayerTest(unittest.TestCase):
 
     def test_nota(self):
         name = "/@@nota"
-        self.browser.open(self.news1.absolute_url() + name )
+        self.browser.open(self.news1.absolute_url() + name)
 
     def test_folder_summary_view(self):
         name = "/@@folder_summary_view"
-        self.browser.open(self.portal.absolute_url() + name )
+        self.browser.open(self.portal.absolute_url() + name)
 
 
 def test_suite():

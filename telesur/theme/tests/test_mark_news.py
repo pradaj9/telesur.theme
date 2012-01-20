@@ -9,8 +9,6 @@ from telesur.theme.testing import browserLogin
 from telesur.theme.testing import setupTestContent
 
 from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import login
 from plone.app.testing import setRoles
 
 from telesur.theme.interfaces import IOutstandingArticle
