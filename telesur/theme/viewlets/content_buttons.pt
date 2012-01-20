@@ -1,0 +1,18 @@
+<div id="notas-content-buttons">
+  <ul id="notas-content-buttons-actions">
+      <tal:block tal:repeat="action python:viewlet.actions">
+              <li  tal:attributes="class python:action['available'] and 'button-available utilLinks'  or 'button-disable utilLinks'"><a tal:content="python:action['title']" tal:attributes="href python:action['url']; "></a></li>
+          </tal:block>
+  </ul>
+  <ul id="notas-content-buttons-contents">
+      <tal:block tal:repeat="content python:viewlet.contents">
+              <li class='button-available utilLinks'><a tal:content="python:content['title']" tal:attributes="href python:content['url']; id python:content['id-tag']"></a></li>
+          </tal:block>
+  </ul>
+  <script type="text/javascript">
+  $("#notas-add-video").click(function(event) {
+        event.preventDefault();
+        $('.contenttreeWindow').showDialog();
+    })
+  </script>
+</div>

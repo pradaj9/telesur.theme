@@ -7,6 +7,9 @@ from zope.interface import Interface
 from zope.component import getMultiAdapter
 
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
+from Products.CMFPlone.interfaces.constrains import IConstrainTypes
+
+from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -101,6 +104,66 @@ class VideosRelacionarViewlet(grok.Viewlet):
 
 alsoProvides(VideosRelacionarViewlet, ITelesurViewlet)
 
+
+class ContentButtonsViewlet(grok.Viewlet):
+    grok.context(INITF)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.content_buttons")
+    grok.require("zope2.View")
+    grok.template("content_buttons")
+    grok.viewletmanager(IDocumentActions)
+
+    def get_actions(self):
+        actionIds = ['nota_secundaria', 'nota_destacada','nota_seccion', 'nota_principal']
+        context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
+        editActions = context_state.actions('object_buttons')
+        editActionsIds = {}
+        for action in editActions:
+            editActionsIds[action['id']] = action
+        actions = []
+        for index, actionId in enumerate(actionIds):
+            if actionId in editActionsIds.keys():
+                actions.append(editActionsIds[actionId])
+            else:
+                action = self.context.portal_actions.object_buttons[actionId]
+                actionDic = {'id':actionId,'title':action.title, 
+                    'available':False, 'url':None}
+                actions.append(actionDic)
+        return actions
+
+    def get_addable_contents(self):
+        addContentsIds = ['File', 'Link', 'Image']
+        allowed_types = _allowedTypes(self.request, self.context)
+        constrain = IConstrainTypes(self.context, None)
+        if constrain is None:
+            cnts =  allowed_types
+        else:
+            locallyAllowed = constrain.getLocallyAllowedTypes()
+            cnts =  [fti for fti in allowed_types if fti.getId() in locallyAllowed]
+
+        contents = []
+        for content in cnts:
+            if content.id in addContentsIds:
+                contents.append({'id':content.id,
+                                    'title': content.title,
+                                    'id-tag': "notas-add-%s" % content.id,
+                                    'url': "%s/createObject?type_name=%s" % (
+                                        self.context.absolute_url(),
+                                        content.id)})
+        contents.append({'id':'Video',
+                                'title': 'Video',
+                                'id-tag': "notas-add-video",
+                                'url': ""})
+        return contents
+
+    def update(self):
+        #get the actions
+        self.actions = self.get_actions()
+        #get the contenttypes info
+        self.contents = self.get_addable_contents()
+        
+
+alsoProvides(VideosRelacionarViewlet, ITelesurViewlet)
 
 class VideosPorSeccionViewlet(grok.Viewlet):
     grok.context(Interface)
