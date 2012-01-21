@@ -6,12 +6,14 @@
 
     <notheme if="$ajax_load"/>
     <rules css:if-content="#visual-portal-wrapper" if="not($host = $mobile_host)">
-
         <xi:include href="common_rules.xml" />
         <xi:include href="home_rules.xml" />
         <xi:include href="seccion_rules.xml" />
         <xi:include href="nota_rules.xml" />
-        <xi:include href="programs.xml" />        
+        <xi:include href="programs.xml" />
+
+        <!-- in section opinion we don't have to show ultimos videos section -->
+        <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" />
 
         <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
             <div id="ultimas-noticias">
@@ -80,12 +82,17 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
 
-        <!-- if we are authenticated, then don't show comments, special, or the footer -->
+        <!-- if we are authenticated, then don't show comments, special, map or the colophone -->
         <rules if-content="not(//*[@id='anon-personalbar'])">
           <drop css:if-theme="#especiales" css:theme="#especiales"/>
-          <drop css:if-theme=".footer" css:theme=".footer"/>
+          <drop css:if-theme="#colophone" css:theme="#colophone"/>
           <drop css:if-theme="#compartir" css:theme="#compartir"/>
           <drop css:if-theme="#comentarios-nota" css:theme="#comentarios-nota"/>
+          <drop css:if-theme=".google-map" css:theme=".google-map"/>
+          
+          <drop css:if-theme=".full-banner" css:theme=".full-banner"/>
+          <drop css:if-theme=".half-page-ad" css:theme=".half-page-ad"/>
+          <drop css:if-theme=".medium-rectangle" css:theme=".medium-rectangle"/>          
         </rules>
         <!-- if we are in some of these content types, then show the content of the content type in
         the content area of the diazo theme -->

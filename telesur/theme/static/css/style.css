@@ -161,7 +161,7 @@ h1 a {
 
 #widget-carousel .carousel-item li {
     display: list-item;
-    color: #AC1206;
+    color: #000;
     }
 
 #widget-carousel .carousel-item ul a {
@@ -245,7 +245,9 @@ h1 a {
     width: 200px;
     overflow: auto;
     }
-
+#telesur-titulares .titular-seccion .titular-content-wrapper ul a {
+    color:#666666;
+}
 #telesur-titulares .titulo-seccion {
     background-color: #DDD;
     padding: 5px;
@@ -579,7 +581,9 @@ h1 a {
     border-bottom: 1px solid #666;
     height: 32px;
     }
-
+.widget-tabs a .break {
+    display:block;
+}
 .widget-tabs li {
     float: left;
     text-indent: 0;
@@ -626,11 +630,17 @@ h1 a {
     width: 100%;
     top: -5px;
     position: relative;
-    }
+}
 
+.widget-with-tabs .recomendados {
+    width:298px;
+}
 /***
 * Porltet lo mas recomendado tabs
 ***/
+#lo-mas-recomendado {
+    width:300px;
+}
 #lo-mas-recomendado a {
     line-height: 13px;
     padding-top: 4px;
@@ -643,12 +653,11 @@ h1 a {
     }
 
 #lo-mas-recomendado .panes {
-    width: 308px;
     background-color: #FFF;
     }
 
 #lo-mas-recomendado .pane {
-    padding: 10px;
+    padding: 10px 6px;
     }
 
 #lo-mas-recomendado .portletItemDetails {
@@ -692,14 +701,14 @@ h1 a {
 #ultimos-videos-widget .ultimos-videos-wrapper {
     border: 1px solid #b3b3b3;
     background: url(../img/portlets-bg.png) repeat-x scroll 0 0;
-    padding: 12px;
+    padding: 12px 6px;
     }
 
 /***
 * Portlet "mas vistos"
 ***/
 #mas-vistos {
-    width: 310px;
+    width: 300px;
     }
 
 .tabs-masvistos,
@@ -755,7 +764,7 @@ h1 a {
 .panes-masvistos {
     border: 1px solid #999;
     border-top: 0;
-    padding: 10px 12px;
+    padding: 10px 6px;
     }
 
 /***
@@ -763,7 +772,7 @@ h1 a {
 ***/
 #ultimas-noticias {
     border: 1px solid #b3b3b3;
-    padding: 10px;
+    padding: 10px 6px;
     font-size: 13px;
     color: #333333;
     background: url(../img/portlets-bg.png) repeat-x scroll 0 0;
