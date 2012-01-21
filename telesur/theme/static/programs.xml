@@ -9,7 +9,7 @@
 
       <before css:theme="#telesur-left-content"
            css:content="#edit-bar" />
-      <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar" />  
+      <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar, #telesur-full-column" />  
 
       <!-- avoid style in edit view -->        
       <rules css:if-content="body:not([class*='template-edit'])">
