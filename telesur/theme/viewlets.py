@@ -109,7 +109,7 @@ class ContentButtonsViewlet(grok.Viewlet):
     grok.context(INITF)
     grok.layer(ITelesurLayer)
     grok.name(u"telesur.theme.content_buttons")
-    grok.require("zope2.View")
+    grok.require("cmf.ManagePortal")
     grok.template("content_buttons")
     grok.viewletmanager(IDocumentActions)
 
@@ -118,17 +118,21 @@ class ContentButtonsViewlet(grok.Viewlet):
         context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
         editActions = context_state.actions('object_buttons')
         editActionsIds = {}
-        for action in editActions:
-            editActionsIds[action['id']] = action
         actions = []
-        for index, actionId in enumerate(actionIds):
-            if actionId in editActionsIds.keys():
-                actions.append(editActionsIds[actionId])
-            else:
-                action = self.context.portal_actions.object_buttons[actionId]
-                actionDic = {'id':actionId,'title':action.title, 
-                    'available':False, 'url':None}
-                actions.append(actionDic)
+        wf_def = self.context.portal_workflow.getWorkflowsFor(self.context)[0]
+        review_state = self.context.portal_workflow.getStatusOf(wf_def.getId(), 
+            self.context)['review_state']
+        if review_state == "published":
+            for action in editActions:
+                editActionsIds[action['id']] = action
+            for index, actionId in enumerate(actionIds):
+                if actionId in editActionsIds.keys():
+                    actions.append(editActionsIds[actionId])
+                else:
+                    action = self.context.portal_actions.object_buttons[actionId]
+                    actionDic = {'id':actionId,'title':action.title, 
+                        'available':False, 'url':None}
+                    actions.append(actionDic)
         return actions
 
     def get_addable_contents(self):
