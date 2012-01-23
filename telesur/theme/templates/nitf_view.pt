@@ -20,48 +20,50 @@
         <div id="media-container" class="row">
             <div id="media-data" class="cell width-video position-video">
                 <tal:hasvideo condition="not:json_url">
-                    <div class="video-widget principal newsImageContainer" tal:condition="view/image|nothing"
-                         tal:define="image view/image">
+                    <div class="video-widget principal newsImageContainer" tal:condition="image"
+                         tal:define="image view/getImage">
                         <a href="#mediabox" id="parent-fieldname-image">
-                           <img class="newsImage nitf" src="" alt=""
-                                tal:attributes="src string:${image/image_url}/image_preview;
-                                                alt image/title" />
+                           <img tal:replace="structure python: image.tag(scale='preview', css_class='newsImage nitf')" src="" alt="" />
                         </a>
-                        <p class="discreet" tal:condition="image/description|nothing"
-                           tal:content="image/description">
+                        <p class="discreet" tal:condition="view/imageCaption|nothing"
+                           tal:content="view/imageCaption">
                             Image Caption
                         </p>
                     </div>
-                </tal:hasvideo>                
+                </tal:hasvideo>
             </div>
             <div id="media-counter" class="cell width-counter position-counter">
-                <div class="image-counter counter-element newsImageContainer" tal:condition="view/image|nothing"
-                     tal:define="images view/images">
+                <div class="image-counter counter-element newsImageContainer" tal:condition="images"
+                     tal:define="images view/get_images">
                     <a href="#mediabox" class="counter">
                         <span class="number-items"
-                              tal:condition="images|default"
-                              tal:content="python: len(images)">0</span>                     
+                              tal:condition="images"
+                              tal:content="python: len(images)">0</span>
                     </a>
                 </div>
                 <!--default empty version -->
-                <div tal:condition="not:view/image" class="image-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
-                
+                <div tal:condition="not:view/get_images" class="image-counter counter-element">
+                    <span class="counter empty"><span class="number-items">0</span></span>
+                </div>
+
                 <div class="comment-counter counter-element newsCommentContainer">
                     <a class="counter"
                        href="#disqus_thread"
                        tal:attributes="href string:${context/absolute_url}#disqus_thread">0</a>
                 </div>
-                
+
                 <div class="video-counter counter-element" tal:condition="json_url">
                     <a class="counter" href="#video-galery-container">
-                        <span class="number-items" tal:content="python:len(view.links())">0</span>
-                    <a>
+                        <span class="number-items" tal:content="python:len(view.get_links())">0</span>
+                    </a>
                 </div>
                 <!--default empty version -->
-                <div tal:condition="not:json_url" class="video-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
+                <div tal:condition="not:json_url" class="video-counter counter-element">
+                    <span class="counter empty"><span class="number-items">0</span></span>
+                </div>
 
                 <!--default empty version -->
-                <div class="audio-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>                
+                <div class="audio-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
             </div>
         </div>
         <div class="breadcumb">
@@ -81,7 +83,7 @@
             <p class="article-description" tal:content="context/description"></p>
             <p tal:content="structure context/text/output|nothing">The body</p>
         </div>
-    
+
         <p class="nitfByline" tal:condition="context/byline|nothing"
             i18n:domain="collective.nitf">
             <span i18n:translate="">By</span>
@@ -133,7 +135,7 @@
                                                 </script>
                                             </tal:video>
                                             <img class="thumb-image" src="" tal:attributes="src string:${item_obj/absolute_url}/@@thumbnail_pequeno"/>
-                                        </div>                                
+                                        </div>
                                     </tal:isvideo>
                                 </tal:link>
                             </tal:islink>
