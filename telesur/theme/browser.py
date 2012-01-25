@@ -446,13 +446,16 @@ class SectionView(grok.View):
     def articles(self, limit=7):
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog.searchResults(
-            object_provides= {
+        query = {}
+        query['object_provides'] = {
                 'query': [ISectionArticle.__identifier__]
-            },
-            sort_on='effective',
-            section= self.section()
-        )
+        }
+        query['sort_on'] = 'effective'
+        section = self.section()
+        if section:
+            query['section'] = section
+
+        existing = catalog.searchResults(query)
         
         elements = {'outstanding':[], 'secondary':[]}
         if existing:
@@ -460,3 +463,52 @@ class SectionView(grok.View):
             elements['secondary'] = existing[1:limit]
 
         return elements
+
+
+class OpinionView(grok.View):
+    """Vista para seccion opinion.
+    """
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos 
+    #de seccion, se deberia reemplazar por una marker interface que identifique 
+    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
+    # una categoria)
+    grok.context(Interface)
+    grok.name('opinion-view')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+    
+
+    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
+    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
+    def get_multimedia(self, obj, thumb=False):
+        """ returns the first multimedia object from a nitf ct, if thumb is true
+        is going to return an image even if the first objects is a video """
+
+        multimedia = parse_multimedia(obj, thumb)
+        return multimedia
+
+    def section(self):
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran 
+        #annotations
+        criterion = getattr(self.context, 
+                            'crit__section_ATSimpleStringCriterion', None)
+        section_index = ''
+        if criterion:
+            section_index = criterion.value
+        return section_index
+
+    def articles(self, limit=7):
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        query = {}
+        query['sort_on'] = 'effective'
+        query['genre'] = 'Opinion'
+
+        existing = catalog.searchResults(query)
+        
+        elements = {'outstanding':[], 'secondary':[]}
+        if existing:
+            elements['outstanding'] = existing[0].getObject()
+            elements['secondary'] = existing[1:limit]
+
+        return elements        
