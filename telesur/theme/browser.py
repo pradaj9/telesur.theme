@@ -273,7 +273,7 @@ class ArticleControl(grok.View):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
-                           sort_on='modified')
+                           sort_on='effective')
 
         if len(existing) > 4:
             elem = existing[0].getObject()
@@ -328,6 +328,43 @@ class ArticleControl(grok.View):
         return self
 
 
+def parse_multimedia(obj, thumb=False):
+    obj = obj.getObject() if hasattr(obj, 'getObject') else obj
+    context_path = '/'.join(obj.getPhysicalPath())
+    query = {'Type': ('Link',)}
+    query['path'] = {'query': context_path,
+                     'depth': 1, }
+    query['sort_on'] = 'getObjPositionInParent'
+    query['limit'] = None
+
+    results = obj.getFolderContents(contentFilter=query, batch=False,
+                                    b_size=10, full_objects=False)
+
+    multimedia = {'type': None, 'url': None}
+    if results:
+        for link in results:
+            annotations = IAnnotations(link.getObject())
+            if thumb:
+                is_video = annotations.get('archivo_url', None)
+                multimedia['url'] = link.getObject().absolute_url() + \
+                    '/@@thumbnail_pequeno' if is_video else None
+                multimedia['type'] = 'thumb' if multimedia['url'] else None
+            else:
+                multimedia['url'] = annotations.get('archivo_url', None)
+                multimedia['type'] = 'video' if multimedia['url'] else None
+            break
+
+    if not multimedia['url']:
+        #we need to search for images because doesn't have videos
+        query['Type'] = ('Image', )
+        results = obj.getFolderContents(contentFilter=query, batch=False,
+                                        b_size=10, full_objects=False)
+        if results:
+            multimedia['url'] = results[0].getObject()
+            multimedia['type'] = 'image'
+
+    return multimedia    
+
 class HomeView(grok.View):
     """Vista para la home.
     """
@@ -340,47 +377,14 @@ class HomeView(grok.View):
         """ returns the first multimedia object from a nitf ct, if thumb is true
         is going to return an image even if the first objects is a video """
 
-        obj = obj.getObject() if hasattr(obj, 'getObject') else obj
-        context_path = '/'.join(obj.getPhysicalPath())
-        query = {'Type': ('Link',)}
-        query['path'] = {'query': context_path,
-                         'depth': 1, }
-        query['sort_on'] = 'getObjPositionInParent'
-        query['limit'] = None
-
-        results = obj.getFolderContents(contentFilter=query, batch=False,
-                                        b_size=10, full_objects=False)
-
-        multimedia = {'type': None, 'url': None}
-        if results:
-            for link in results:
-                annotations = IAnnotations(link.getObject())
-                if thumb:
-                    is_video = annotations.get('archivo_url', None)
-                    multimedia['url'] = link.getObject().absolute_url() + \
-                        '/@@thumbnail_pequeno' if is_video else None
-                    multimedia['type'] = 'thumb' if multimedia['url'] else None
-                else:
-                    multimedia['url'] = annotations.get('archivo_url', None)
-                    multimedia['type'] = 'video' if multimedia['url'] else None
-                break
-
-        if not multimedia['url']:
-            #we need to search for images because doesn't have videos
-            query['Type'] = ('Image', )
-            results = obj.getFolderContents(contentFilter=query, batch=False,
-                                            b_size=10, full_objects=False)
-            if results:
-                multimedia['url'] = results[0].getObject()
-                multimedia['type'] = 'image'
-
+        multimedia = parse_multimedia(obj, thumb)
         return multimedia
 
     def outstanding(self):
         iface = IOutstandingArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__)
+        existing = catalog(object_provides=iface.__identifier__)
 
         elem = ''
         if existing:
@@ -393,8 +397,8 @@ class HomeView(grok.View):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         #ordenar por fecha efectiva y prioridad
-        elements = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
-                           sort_on='modified')
+        elements = catalog(object_provides=iface.__identifier__,
+                           sort_on='effective')
 
         return elements
 
@@ -402,7 +406,57 @@ class HomeView(grok.View):
         iface = ISecondaryArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        elements = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
-                           sort_on='modified')
+        elements = catalog(object_provides=iface.__identifier__,
+                           sort_on='effective')
 
         return elements[:limit]
+
+class SectionView(grok.View):
+    """Vista para secciones.
+    """
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos 
+    #de seccion, se deberia reemplazar por una marker interface que identifique 
+    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
+    # una categoria)
+    grok.context(Interface)
+    grok.name('section-view')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+    
+
+    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
+    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
+    def get_multimedia(self, obj, thumb=False):
+        """ returns the first multimedia object from a nitf ct, if thumb is true
+        is going to return an image even if the first objects is a video """
+
+        multimedia = parse_multimedia(obj, thumb)
+        return multimedia
+
+    def section(self):
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran 
+        #annotations
+        criterion = getattr(self.context, 
+                            'crit__section_ATSimpleStringCriterion', None)
+        section_index = ''
+        if criterion:
+            section_index = criterion.value
+        return section_index
+
+    def articles(self, limit=7):
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        existing = catalog.searchResults(
+            object_provides= {
+                'query': [ISectionArticle.__identifier__]
+            },
+            sort_on='effective',
+            section= self.section()
+        )
+        
+        elements = {'outstanding':[], 'secondary':[]}
+        if existing:
+            elements['outstanding'] = existing[0].getObject()
+            elements['secondary'] = existing[1:limit]
+
+        return elements

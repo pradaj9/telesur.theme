@@ -9,9 +9,12 @@
 <body>
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main" tal:define="portal_api nocall:context/@@portal_api;
-                                                          video_api nocall:context/@@video_api">
-        <div class="principal-articles-container row"
-             tal:define="outstanding view/outstanding">
+                                                          video_api nocall:context/@@video_api;
+                                                          articles view/articles">
+        <span class="section-name row" tal:content="view/section"></span>
+        <div class="principal-articles-container row" 
+             id="video-scroll-home"
+             tal:define="outstanding python:articles['outstanding']">
             <div class="main-article row" tal:condition="outstanding">
                 <h1 class="title">
                     <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
@@ -38,37 +41,13 @@
                 </div>
             </div>
 
-            <div class="secondary-articles row" tal:define="primary_list view/primary">
-                <div class="articles-carousel-wrapper" tal:condition="primary_list">
-                    <tal:new tal:repeat="new primary_list">
-                        <div class="article-item">
-                            <div class="article-item-wrapper">
-                                <div class="thumb" tal:define="multimedia python:view.get_multimedia(new, thumb=True)">
-                                    <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
-                                                tal:define="img python:multimedia['url']">
-                                        <img src="" tal:attributes="src string:${img}" />
-                                    </tal:thumb>
-                                    <tal:image tal:condition="python:multimedia['type'] == 'image'"
-                                               tal:define="img python:multimedia['url']">
-                                        <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
-                                    </tal:image>                                    
-                                </div>
-                                <h3 class="tileHeadline">
-                                    <a tal:attributes="href new/getURL" tal:content="new/Title"></a>
-                                </h3>
-                            </div>
-                        </div>
-                    </tal:new>
-                </div>
-            </div>
-
             <div class="article-listing row">
             <!-- dirty 2 block list  
                 tal:define="division python:[x for x in range(len(objs)) if x%2 == 0];
                             list python:[(objs[x], len(objs)-1 > x and objs[x+1]) for x in division]
                 "
             -->
-                <tal:block tal:repeat="nota view/secondary">
+                <tal:block tal:repeat="nota python:articles['secondary']">
                     <div class="notas-sencilla-grande visualIEFloatFix">
                         <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
                         <div class="nota-sencilla-grande-thumb" tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
@@ -86,7 +65,8 @@
                </tal:block>
             </div>
         </div>
+
     </tal:main-macro>
 </metal:main>
 </body>
-</html>        
+</html> 
