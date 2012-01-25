@@ -11,9 +11,24 @@
   </ul>
   <div style="clear:both"></div>
   <script type="text/javascript" >
-  $("#notas-add-video").click(function(event) {
+
+  $(function() {
+
+    $("#notas-add-video").click(function(event) {
         event.preventDefault();
         $('.contenttreeWindow').showDialog();
-    })
+    });
+    $('#notas-add-image-files').prepOverlay(
+        {
+            subtype: 'ajax',
+            filter: common_content_filter,
+            config: {
+                onLoad: function(arg){
+                    config_upload_form();
+                }
+            }
+        }
+    );
+});
   </script>
 </div>

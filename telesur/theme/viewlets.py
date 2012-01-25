@@ -5,7 +5,9 @@ from five import grok
 from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.component import getMultiAdapter
+from zope.security import checkPermission
 
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
 from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
@@ -109,9 +111,30 @@ class ContentButtonsViewlet(grok.Viewlet):
     grok.context(INITF)
     grok.layer(ITelesurLayer)
     grok.name(u"telesur.theme.content_buttons")
-    grok.require("cmf.ManagePortal")
+    grok.require("zope2.View")
     grok.template("content_buttons")
     grok.viewletmanager(IDocumentActions)
+
+    def _checkPermInFolder(self, perm, folder_id=None):
+        portal = getToolByName(self.context, 'portal_url').getPortalObject()
+        if folder_id:
+          try:
+              folder = portal[folder_id]
+          except KeyError:
+              folder = None
+        else:
+          folder = portal
+        if folder:
+            can_add = checkPermission(perm, folder)
+        else:
+            can_add = False
+
+        return can_add
+
+    def canAddNews(self):
+        can_add = self._checkPermInFolder('collective.nitf.AddNewsArticle',
+                                          'articulos')
+        return can_add
 
     def get_actions(self):
         actionIds = ['nota_secundaria', 'nota_destacada','nota_seccion', 'nota_principal']
@@ -120,7 +143,7 @@ class ContentButtonsViewlet(grok.Viewlet):
         editActionsIds = {}
         actions = []
         wf_def = self.context.portal_workflow.getWorkflowsFor(self.context)[0]
-        review_state = self.context.portal_workflow.getStatusOf(wf_def.getId(), 
+        review_state = self.context.portal_workflow.getStatusOf(wf_def.getId(),
             self.context)['review_state']
         if review_state == "published":
             for action in editActions:
@@ -130,42 +153,35 @@ class ContentButtonsViewlet(grok.Viewlet):
                     actions.append(editActionsIds[actionId])
                 else:
                     action = self.context.portal_actions.object_buttons[actionId]
-                    actionDic = {'id':actionId,'title':action.title, 
+                    actionDic = {'id':actionId,'title':action.title,
                         'available':False, 'url':None}
                     actions.append(actionDic)
         return actions
 
     def get_addable_contents(self):
-        addContentsIds = ['File', 'Link', 'Image']
-        allowed_types = _allowedTypes(self.request, self.context)
-        constrain = IConstrainTypes(self.context, None)
-        if constrain is None:
-            cnts =  allowed_types
-        else:
-            locallyAllowed = constrain.getLocallyAllowedTypes()
-            cnts =  [fti for fti in allowed_types if fti.getId() in locallyAllowed]
-
         contents = []
-        for content in cnts:
-            if content.id in addContentsIds:
-                contents.append({'id':content.id,
-                                    'title': content.title,
-                                    'id-tag': "notas-add-%s" % content.id,
-                                    'url': "%s/createObject?type_name=%s" % (
-                                        self.context.absolute_url(),
-                                        content.id)})
         contents.append({'id':'Video',
                                 'title': 'Video',
                                 'id-tag': "notas-add-video",
                                 'url': ""})
+        contents.append({'id':'Images',
+                                'title': 'Imagenes y Archivos',
+                                'id-tag': "notas-add-image-files",
+                                'url': "./@@media_uploader"})
         return contents
 
     def update(self):
         #get the actions
-        self.actions = self.get_actions()
+        if self._checkPermInFolder('cmf.ModifyPortalContent'):
+            self.actions = self.get_actions()
+        else:
+            self.actions = []
         #get the contenttypes info
-        self.contents = self.get_addable_contents()
-        
+        if self.canAddNews():
+            self.contents = self.get_addable_contents()
+        else:
+            self.contents = []
+
 
 alsoProvides(VideosRelacionarViewlet, ITelesurViewlet)
 
