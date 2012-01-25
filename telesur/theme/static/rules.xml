@@ -11,6 +11,7 @@
         <xi:include href="seccion_rules.xml" />
         <xi:include href="nota_rules.xml" />
         <xi:include href="programs.xml" />
+        <xi:include href="program_grid_rules.xml" />
 
         <!-- in section opinion we don't have to show ultimos videos section -->
         <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" />
@@ -20,7 +21,7 @@
                 <div class="breadcumb-categoria">Últimas Noticias</div>
                 <div class="ultima-noticia">
                     <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                        <xsl:copy-of select="a" /> 
+                        <xsl:copy-of select="a" />
                     </xsl:for-each>
                 </div>
             </div>
@@ -38,7 +39,7 @@
                     css:theme-children="#telesur-seccion-main"
                     css:content="#portal-column-content" />
                 <drop css-if-theme="#scroller-seccion" css:theme="#scroller-seccion" />
-                <drop css-if-theme=".telesur-full-column" css:theme=".telesur-full-column" />                 
+                <drop css-if-theme=".telesur-full-column" css:theme=".telesur-full-column" />
         </rules>
         <rules css:if-content="body.portaltype-plone-site:not(.template-home-view),
                                body.template-login_success,
@@ -89,14 +90,14 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
           <drop css:if-theme="#compartir" css:theme="#compartir"/>
           <drop css:if-theme="#comentarios-nota" css:theme="#comentarios-nota"/>
           <drop css:if-theme=".google-map" css:theme=".google-map"/>
-          
+
           <drop css:if-theme=".full-banner" css:theme=".full-banner"/>
           <drop css:if-theme=".half-page-ad" css:theme=".half-page-ad"/>
-          <drop css:if-theme=".medium-rectangle" css:theme=".medium-rectangle"/>          
+          <drop css:if-theme=".medium-rectangle" css:theme=".medium-rectangle"/>
         </rules>
         <!-- if we are in some of these content types, then show the content of the content type in
         the content area of the diazo theme -->
-        <rules css:if-content=".portaltype-link, 
+        <rules css:if-content=".portaltype-link,
                                .portaltype-collective-polls-poll,
                                .portaltype-image,
                                .portaltype-file">
@@ -104,7 +105,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
                 css:content-children="#content" />
         </rules>
     </rules>
-    
+
     <!-- MOBILE THEME -->
     <rules css:if-content="#visual-portal-wrapper" if="$host = $mobile_host">
       <xi:include href="nota_rules_mobile.xml" />
@@ -114,7 +115,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
 
       <!-- mobile navigation -->
       <replace css:theme-children="#telesur-mobile-navigation">
-        <xsl:for-each css:select="#portal-mobile-subglobalnav li"> 
+        <xsl:for-each css:select="#portal-mobile-subglobalnav li">
           <xsl:choose>
                   <xsl:when test="position() mod 2 = 0">
                     <div class="mobile-nav even">
@@ -126,7 +127,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
                          <xsl:copy-of select="a" />
                      </div>
                   </xsl:otherwise>
-                </xsl:choose>                        
+                </xsl:choose>
         </xsl:for-each>
     </replace>
     </rules>
