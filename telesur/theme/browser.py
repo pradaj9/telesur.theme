@@ -363,7 +363,7 @@ def parse_multimedia(obj, thumb=False):
             multimedia['url'] = results[0].getObject()
             multimedia['type'] = 'image'
 
-    return multimedia    
+    return multimedia
 
 class HomeView(grok.View):
     """Vista para la home.
@@ -414,15 +414,15 @@ class HomeView(grok.View):
 class SectionView(grok.View):
     """Vista para secciones.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos 
-    #de seccion, se deberia reemplazar por una marker interface que identifique 
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
+    #de seccion, se deberia reemplazar por una marker interface que identifique
     #la seccion (o en su defecto que permita guardar en una annotation en el objeto
     # una categoria)
     grok.context(Interface)
     grok.name('section-view')
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
-    
+
 
     #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
     # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
@@ -434,9 +434,9 @@ class SectionView(grok.View):
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran 
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
         #annotations
-        criterion = getattr(self.context, 
+        criterion = getattr(self.context,
                             'crit__section_ATSimpleStringCriterion', None)
         section_index = ''
         if criterion:
@@ -446,20 +446,20 @@ class SectionView(grok.View):
     def articles(self, limit=7):
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        
+
         principal = catalog(object_provides= ISectionArticle.__identifier__)
-        
+
         query = {}
         query['object_provides'] = {
                 'query': [INITF.__identifier__]
-        }        
+        }
         query['sort_on'] = 'effective'
         section = self.section()
         if section:
             query['section'] = section
 
         existing = catalog.searchResults(query)
-        
+
         elements = {'outstanding':[], 'secondary':[]}
 
         if existing and section:
@@ -483,15 +483,15 @@ class SectionView(grok.View):
 class OpinionView(grok.View):
     """Vista para seccion opinion.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos 
-    #de seccion, se deberia reemplazar por una marker interface que identifique 
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
+    #de seccion, se deberia reemplazar por una marker interface que identifique
     #la seccion (o en su defecto que permita guardar en una annotation en el objeto
     # una categoria)
     grok.context(Interface)
     grok.name('opinion-view')
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
-    
+
 
     #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
     # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
@@ -503,9 +503,9 @@ class OpinionView(grok.View):
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran 
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
         #annotations
-        criterion = getattr(self.context, 
+        criterion = getattr(self.context,
                             'crit__section_ATSimpleStringCriterion', None)
         section_index = ''
         if criterion:
@@ -520,10 +520,17 @@ class OpinionView(grok.View):
         query['genre'] = 'Opinion'
 
         existing = catalog.searchResults(query)
-        
+
         elements = {'outstanding':[], 'secondary':[]}
         if existing:
             elements['outstanding'] = existing[0].getObject()
             elements['secondary'] = existing[1:limit]
 
-        return elements        
+        return elements
+
+class Schedule(grok.View):
+    """ Programación del canal.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')

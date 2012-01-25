@@ -4,8 +4,12 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules css:if-content="body.template-program_grid">
-      <theme href="nota.html" />
+    <rules css:if-content="body.template-schedule">
+      <theme href="parrilla.html" />
+      <drop css:theme=".telesur-right-sidebar" />
       <drop css:content="#portal-column-one" />
+      <after
+                css:theme="#telesur-seccion-main"
+                css:content="#portal-column-content div#content" if-content="not(//*[@class='documentEditable'])"/>
       </rules>
 </rules>
