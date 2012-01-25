@@ -35,22 +35,23 @@ body div {	 /* Eliminar todo el bloque */
 	overflow: auto;
 	padding: 0;
 	width: 1024px;
-}
+    }
+
 #telesur-header {
+    background: url("../../img/header-bg.jpg") no-repeat scroll right top #3C608C;
+	height: 151px;
 	margin: 0
 	padding: 0;
-	height:151px;
-    background-color: #3C608C;
-    background:url("../../img/header-bg.png") no-repeat scroll right top #3C608C;
-    position:relative;
-}
+    position: relative;
+    }
+
 #telesur-header #logo-telesur a {
     background: url("../../img/logo.png") no-repeat scroll 0 0 transparent;
+    height: 102px;
     display: block;
     float: left;
-    height: 102px;
     width: 338px;
-}
+    }
 
 /*social icons*/
 #telesur-header .social-links {
@@ -427,23 +428,8 @@ body div {	 /* Eliminar todo el bloque */
 #senal-en-vivo {
 	display: block;
 	width: 300px;
-	height: 60px;
+	height: 86px;
     margin: 0px auto 10px;
-    }
-
-#senal-en-vivo a {
-	width: 300px;
-	height: 60px;
-	background: url(../../img/img-en-vivo-back.png) repeat-x;
-	float: left;
-	font-size: 18px;
-	text-transform: uppercase;
-	color: #B40200;
-	font-weight: bold;
-	text-align: center;
-	padding: 5px 0 5px 0;
-	text-decoration: none;
-	text-shadow: 2px 2px 2px #666;
     }
 
 #mapa-interactivo {
