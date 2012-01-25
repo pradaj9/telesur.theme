@@ -57,8 +57,8 @@
                          <a href="#"
                              tal:attributes="href string:$item_url"
                              tal:define="img_view nocall:item_object/@@view">
-                             <img src="" alt="" tal:condition="python: img_view.images()"
-                             tal:attributes="src python: '%s/image_preview' % img_view.image()['image_url'];" />
+                             <img src="" alt="" tal:condition="python: img_view.getImage()"
+                             tal:attributes="src python: '%s/image_preview' % img_view.getImage();" />
                          </a>
                          </tal:nitf>
                      </div>
@@ -188,8 +188,8 @@
                          <a href="#"
                              tal:attributes="href string:$item_url"
                              tal:define="img_view nocall:item_object/@@view">
-                             <img src="" alt="" tal:condition="python: img_view.images()"
-                             tal:attributes="src python: '%s/image_thumb' % img_view.image()['image_url'];" />
+                             <img src="" alt="" tal:condition="python: img_view.getImage()"
+                             tal:attributes="src python: '%s/image_thumb' % img_view.getImage();" />
                          </a>
                          </tal:nitf>
                      </div>

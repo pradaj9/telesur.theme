@@ -7,9 +7,10 @@
     <rules css:if-content="body[class*='template-folder_'],
                            body.portaltype-folder,
                            body.portaltype-topic,
-                           body.template-manage-content-rules.portaltype-plone-site">
+                           body.template-manage-content-rules.portaltype-plone-site,
+                           .template-section-view">
         <theme href="seccion.html" />
-        <rules css:if-content="body:not([class*='template-folder_summary_view'])">
+        <rules css:if-content="body:not([class*='template-section-view'])">
             <rules css:if-content="body[class*='template-collective.nitf.content'], 
                                    body[class*='template-collective.polls.poll']">
                 <drop attributes="class" css:content="#portal-column-content" />
@@ -31,24 +32,26 @@
             <before css:theme-children="#telesur-seccion-main"
                 css:content="#edit-bar" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
-                css:content-children="#video-scroll-home > div.breadcumb" />
+                css:content-children=".section-name" />
             
             <!-- video o imagen -->
             <replace css:theme-children="#nota-titular .video-image-container"
-                css:content="#video-scroll-home div.video-widget" />
+                css:content=".video-widget" />
             <replace
                 css:theme-children="#nota-titular h1"
-                css:content-children="#video-scroll-home h3.tileHeadline" />
+                css:content-children=".principal-articles-container .main-article h1" />
             <!-- new description  -->
             <replace
                 css:theme="#nota-titular .description-container .description"
-                css:content="#video-scroll-home .nota-descripcion .description" />
+                css:content=".principal-articles-container .description" />
 
-           <merge attributes="href" css:theme="#nota-titular .link-to-article a" css:content="#video-scroll-home .tileHeadline a" />
+            <!--<merge attributes="href" css:theme="#nota-titular .link-to-article a" css:content="#video-scroll-home .tileHeadline a" />-->
                 
-                
+
+            <replace css:theme-children=".article-listing" css:content-children=".article-listing"/>                
+
             <!-- listing news items bellow content area -->
-            <replace css:theme-children="#telesur-seccion-listing">
+            <!-- <replace css:theme-children="#telesur-seccion-listing">
                 <xsl:for-each css:select="div.notas-seccion">
                     <xsl:if test="position() &lt; 7">                
                     <div class="notas-sencilla-grande visualIEFloatFix">
@@ -58,14 +61,14 @@
                         </div>
                         <div class="description-container">
                           <xsl:copy-of select="p[@class='nota-descripcion']" /> 
-                            <!-- <div class="link-to-article">
+                            <div class="link-to-article">
                               <a href=""><xsl:attribute name="href"><xsl:value-of select="h3/a/@href" /></xsl:attribute></a>
-                            </div> -->  
+                            </div>
                         </div>
                     </div>
                     </xsl:if>
                 </xsl:for-each>
-            </replace>
+            </replace> -->
 
             
 
