@@ -16,9 +16,9 @@
              tal:define="outstanding python:articles['outstanding']">
             <div class="main-article row" tal:condition="outstanding">
                 <h1 class="title">
-                    <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
+                    <a tal:attributes="href python:outstanding[0].absolute_url()" tal:content="python:outstanding[0].Title()"></a>
                 </h1>
-                <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding)">
+                <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding[0])">
                     <div class="video-widget">
                         <tal:video tal:condition="python:multimedia['type'] == 'video'">
                             <script type="text/javascript" src=""
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="data-article-container cell">
-                    <div class="description" tal:content="outstanding/description">
+                    <div class="description" tal:content="python:outstanding[0].description">
                     </div>
                 </div>
             </div>

@@ -446,10 +446,13 @@ class SectionView(grok.View):
     def articles(self, limit=7):
 
         catalog = getToolByName(self.context, 'portal_catalog')
+        
+        principal = catalog(object_provides= ISectionArticle.__identifier__)
+        
         query = {}
         query['object_provides'] = {
-                'query': [ISectionArticle.__identifier__]
-        }
+                'query': [INITF.__identifier__]
+        }        
         query['sort_on'] = 'effective'
         section = self.section()
         if section:
@@ -458,9 +461,21 @@ class SectionView(grok.View):
         existing = catalog.searchResults(query)
         
         elements = {'outstanding':[], 'secondary':[]}
-        if existing:
-            elements['outstanding'] = existing[0].getObject()
-            elements['secondary'] = existing[1:limit]
+
+        if existing and section:
+            for nota in existing:
+                nota_obj = nota.getObject()
+                if ISectionArticle.providedBy(nota_obj):
+                    elements['outstanding'].append(nota_obj)
+                else:
+                    elements['secondary'].append(nota)
+                    limit = limit - 1
+                    if limit <= 0:
+                        break
+        else:
+            #no es una seccion, sino una vista global
+            elements['outstanding'] = [existing[0].getObject()]
+            elements['secondary'] =  existing[1:limit]
 
         return elements
 
