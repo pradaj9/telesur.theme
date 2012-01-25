@@ -41,6 +41,10 @@ class BrowserLayerTest(unittest.TestCase):
         name = "/@@folder_summary_view"
         self.browser.open(self.portal.absolute_url() + name)
 
+    def test_schedule_view(self):
+        name = "/@@schedule"
+        self.browser.open(self.portal.absolute_url() + name)
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
