@@ -11,7 +11,8 @@
         <xi:include href="seccion_rules.xml" />
         <xi:include href="nota_rules.xml" />
         <xi:include href="programs.xml" />
-        <xi:include href="program_grid_rules.xml" />
+        <xi:include href="program_grid_rules.xml"/>
+        <xi:include href="general_template.xml"/>
 
         <!-- in section opinion we don't have to show ultimos videos section -->
         <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" />

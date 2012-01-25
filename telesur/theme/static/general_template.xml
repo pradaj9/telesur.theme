@@ -1,0 +1,18 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content=".template-login_form, 
+                           .template-overview-controlpanel,
+                           .template-edit,
+                           .portaltype-plone-site">
+        <theme href="general.html" />
+        
+        <replace
+          css:theme-children=".no-columns .content-placeholder"
+          css:content="#portal-columns" />        
+    </rules>
+
+</rules>        
