@@ -17,7 +17,7 @@
         <!-- in section opinion we don't have to show ultimos videos section -->
         <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" />
 
-        <replace css:theme="div.telesur-right-sidebar #mapa-interactivo">
+        <replace css:theme="#ultimas-noticias">
             <div id="ultimas-noticias">
                 <div class="breadcumb-categoria">Últimas Noticias</div>
                 <div class="ultima-noticia">

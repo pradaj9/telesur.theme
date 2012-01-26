@@ -88,8 +88,8 @@ class FragmentView(grok.View):
         return view()
 
 class GoogleMapView(grok.View):
-    grok.context(IFolderish)
-    grok.name("map")
+    grok.context(Interface)
+    grok.name("mapa")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
 
@@ -482,7 +482,7 @@ class SectionView(grok.View):
                     limit = limit - 1
                     if limit <= 0:
                         break
-        else:
+        elif existing:
             #no es una seccion, sino una vista global
             elements['outstanding'] = [existing[0].getObject()]
             elements['secondary'] =  existing[1:limit]
