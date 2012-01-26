@@ -87,6 +87,11 @@ class FragmentView(grok.View):
             raise NotFound
         return view()
 
+class GoogleMapView(grok.View):
+    grok.context(IFolderish)
+    grok.name("map")
+    grok.layer(ITelesurLayer)
+    grok.require("zope2.View")
 
 class Opinion(grok.View):
     """Vista para artículo de opinión.
@@ -441,6 +446,11 @@ class SectionView(grok.View):
         section_index = ''
         if criterion:
             section_index = criterion.value
+        else:
+            #XXX deberiamos tener esto generalizado en una annotation en el objeto
+            #bajo la variable "section"
+            section_index = u'latinoamerica'
+
         return section_index
 
     def articles(self, limit=7):

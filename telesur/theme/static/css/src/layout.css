@@ -909,3 +909,32 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
 .video-widget .newsImage {
     width:340px;
 }
+
+/*google map home*/
+.google-map .lupa {
+    background:white url(++theme++telesur.theme/img/icon-fullscreen.jpg) scroll no-repeat center center;
+    width:30px;
+    height:30px;
+    position:absolute;
+    cursor:pointer;
+    right: 17px;
+    top: 37px;    
+}
+.google-map .lupa span {
+    display:none;
+}
+.google-map-width {
+    width:420px;
+}
+.google-map-position {
+    margin-left:-100%;
+}
+.ultimos-programas-width {
+    width:250px;
+}
+.ultimos-programas-position {
+    margin-left:-250px;
+}
+.ultimos-programas-wrapper {
+    padding-top:32px;
+}

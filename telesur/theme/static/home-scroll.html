@@ -103,15 +103,26 @@
                     <div id="mas-titulares-widget" class="cell position-0 width-16"></div>
                 </div>
 
-                <div>
-                    <div class="google-map">
+                <div class="row">
+                    <div class="google-map cell google-map-width google-map-position">
                         <!-- mapa interactivo -->
                         <div class="breadcumb-categoria">Mapa Interactivo</div>
-                        <iframe width="700" height="550" src="http://media.tlsur.net/mapas/index.html?width=690">
+                        <a href="/noticias/mapa" class="lupa" alt="Abre el mapa en un mayor tamaño"><span>lupa</span></a>
+                        <iframe width="420" height="321" src="http://telesur.kgdesignes.net/componentes/mapa.html?width=400&modo=minimalista&region_default=america-latina&nav_regiones=no&limite=10">
                           <p>Tu navegador no puede ver este contenido.</p>
                         </iframe>
                     </div>
+
+                    <div id="ultimos-programas-widget" class="widget-container cell ultimos-programas-width ultimos-programas-position">
+                        <div class="ultimos-programas-wrapper">
+                          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/videos.html?widget=ultimos_programas"
+                                  width="250" height="300">
+                              <p>Tu navegador no puede ver este contenido.</p>
+                          </iframe>
+                        </div>
                     </div>
+                                        
+                </div>
                 </div>
             <!-- End left content-->
             <!-- Begin right sidebar-->
@@ -132,21 +143,12 @@
                         </div>
                     </div>
 
-                    <div id="ultimos-programas-widget" class="widget-container">
-                        <div class="ultimos-programas-wrapper">
-                          <iframe src="http://multimedia.telesurtv.net/media/video/cmswidgets/videos.html?widget=ultimos_programas"
-                                  width="298" height="250">
-                              <p>Tu navegador no puede ver este contenido.</p>
-                          </iframe>
-                        </div>
-                    </div>
-
                     <div class="widget-container">
                         <div id="lo-mas-recomendado" class="widget-with-tabs">
                             <ul class="widget-tabs">
                                 <li><a href="#"><span class="break">Lo más</span> comentado</a></li>
                                 <li><a href="#"><span class="break">Lo más</span> recomendado</a></li>
-                                <li><a href="#"><span class="break">lo más</span> visto del Día</a></li>
+                                <li><a href="#"><span class="break">Lo más</span> visto del día</a></li>
                             </ul>
                             <div class="panes recomendados">
                                 <div class="pane mas-comentado">Contenido comentado</div>
