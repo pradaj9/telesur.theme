@@ -1,10 +1,28 @@
 jq(function($) {
 
-    /*comments fix*/
-    //if ($('.comment-counter .counter').html() === "0") {
-    //    $('.comment-counter .counter').addClass('empty');
-    //}
+    /**
+    * Images scrollable gallery 
+    **/
+	$("#images").scrollable({ circular: true, mousewheel: true });
+	
+	$(".image-counter .counter").prepOverlay({
+            subtype:'inline',
+            target: '#mediabox'
+    });
+    
+    $("#images .items img").hover(
+        function(){
+            $(this).siblings('.info').slideDown();
+        },
+        function(){
+            $(this).siblings('.info').slideUp();        
+        }
+    );
+    
 
+    /**
+    * Videos scrollable gallery 
+    **/
     /*first we have to check if we have videos*/
     
     if ($('#video-galery-container .scrollable-video-galery img')[0] !== undefined) {
