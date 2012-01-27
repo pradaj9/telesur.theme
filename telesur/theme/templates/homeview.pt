@@ -8,8 +8,8 @@
 
 <body>
 <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main" tal:define="portal_api nocall:context/@@portal_api;
-                                                          video_api nocall:context/@@video_api">
+    <tal:main-macro metal:define-macro="main" tal:define="video_api nocall:context/@@video_api">
+
         <div class="principal-articles-container row"
              tal:define="outstanding view/outstanding">
             <div class="main-article row" tal:condition="outstanding">

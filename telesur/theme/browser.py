@@ -407,7 +407,7 @@ class HomeView(grok.View):
 
         return elements
 
-    def secondary(self, limit=5):
+    def secondary(self, limit=6):
         iface = ISecondaryArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
