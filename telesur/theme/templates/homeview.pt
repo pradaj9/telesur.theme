@@ -7,6 +7,11 @@
       i18n:domain="plone">
 
 <body>
+
+
+<metal:css fill-slot="javascript_head_slot">
+    <script type="text/javascript" src="/++theme++telesur.theme/scripts/main.js"></script>
+</metal:css>
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main" tal:define="video_api nocall:context/@@video_api">
 
@@ -101,7 +106,6 @@
             </div>
         </div>
         <tal:left content="structure provider:telesur.theme.seccion_viewlets" />       
-        <script type="text/javascript" src="++theme++telesur.theme/scripts/main.js"></script>
     </tal:main-macro>
 </metal:main>
 </body>
