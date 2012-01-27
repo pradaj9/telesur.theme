@@ -9,7 +9,9 @@
                            .template-edit,
                            .portaltype-plone-site,
                            .template-mapa,
-                           .portaltype-topic">
+                           .portaltype-topic,
+                           body[class*='template-collective.polls.poll'],
+                           body[class*='template-collective.nitf.content']">
         <theme href="general.html" />
         
         <drop css:content="#viewlet-above-content"/>

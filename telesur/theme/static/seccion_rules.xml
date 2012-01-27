@@ -5,7 +5,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <rules css:if-content=".template-section-view,
-                           body[class*='template-collective.nitf.content']"> 
+                           .template-opinion-view"> 
         <!-- 
           body[class*='template-folder_'],
           body.portaltype-folder,
