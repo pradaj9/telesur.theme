@@ -88,6 +88,7 @@
                </tal:block>
             </div>
         </div>
+<tal:left content="structure provider:telesur.theme.seccion_viewlets" />         
     </tal:main-macro>
 </metal:main>
 </body>
