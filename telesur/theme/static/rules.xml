@@ -17,11 +17,11 @@
         <!-- in section opinion we don't have to show ultimos videos section -->
         <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> -->
 
-        <replace css:theme="#ultimas-noticias">
+        <replace css:theme="#ultimas-noticias" css:if-content="dl.portlet-latest-nitf">
             <div id="ultimas-noticias">
                 <div class="breadcumb-categoria">Últimas Noticias</div>
                 <div class="ultima-noticia">
-                    <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
+                    <xsl:for-each css:select="dl.portlet-latest-nitf dd.portletItem">
                         <xsl:copy-of select="a" />
                     </xsl:for-each>
                 </div>
@@ -102,6 +102,9 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
                                .portaltype-collective-polls-poll,
                                .portaltype-image,
                                .portaltype-file">
+
+            <before css:theme="#content-wrapper"
+                css:content="#edit-bar" />
             <replace css:theme-children="#content-wrapper"
                 css:content-children="#content" />
         </rules>

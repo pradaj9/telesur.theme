@@ -431,36 +431,36 @@ h1 a {
     padding:1em;
 }
 #images {
-	position:relative;
-	overflow:hidden;
-	clear:both;
-	height:400px;
-	width:400px;
+    position:relative;
+    overflow:hidden;
+    clear:both;
+    height:400px;
+    width:400px;
     }
 
 /* override single pane */
 #images div {
-	float:left;
-	display:block;
-	width:400px;
-	font-size:14px;
-	text-align:center;
+    float:left;
+    display:block;
+    width:400px;
+    font-size:14px;
+    text-align:center;
     }
 
 /* our additional wrapper element for the items */
 #images .items {
-	width:20000em;
-	position:absolute;
-	clear:both;
-	margin:0;
-	padding:0;
+    width:20000em;
+    position:absolute;
+    clear:both;
+    margin:0;
+    padding:0;
     }
 
 #images .less, #images .less a {
-	color:#999 !important;
-	font-size:11px;
+    color:#999 !important;
+    font-size:11px;
     }
-    
+
 #images .info {
     background:transparent url("++theme++telesur.theme/img/transparent.png") scroll repeat 0 0;
     position:absolute;
@@ -484,14 +484,14 @@ h1 a {
     background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat 0 0;
     }
 .navibuttons .prev:hover {
-    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px 0;    
-    }    
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px 0;
+    }
 .navibuttons .next {
     float:right;
-    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat 0 -30px;        
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat 0 -30px;
     }
 .navibuttons .next:hover {
-    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px -30px;    
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px -30px;
     }
 
 /*video gallery*/
@@ -625,8 +625,8 @@ h1 a {
     font-size: 13px;
     display: block;
     }
-    
-    
+
+
 
 /*
 * PROGRAMACION
@@ -986,7 +986,7 @@ h1 a {
     }
 
 /**
-* FOOTER 
+* FOOTER
 **/
 #footer {
     padding-bottom: 15px;
@@ -1146,4 +1146,9 @@ h1 a {
 
 #notas-content-buttons-actions {
     margin-top: 30px;
-    }
+}
+
+.portaltype-image #edit-bar,
+.portaltype-link #edit-bar {
+    margin-top: 34px;
+}
