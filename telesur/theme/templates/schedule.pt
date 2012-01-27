@@ -10,7 +10,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
     <iframe src="http://telesur.kgdesignes.net/componentes/parrilla.html"
-            scrolling="no" height="610" width="810" />
+            scrolling="yes" height="3942" width="966" />
     </tal:main-macro>
 </metal:main>
 
