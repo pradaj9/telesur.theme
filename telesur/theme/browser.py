@@ -449,7 +449,17 @@ class SectionView(grok.View):
         else:
             #XXX deberiamos tener esto generalizado en una annotation en el objeto
             #bajo la variable "section"
-            section_index = u'latinoamerica'
+            
+            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
+            # y usar el criterio de ahi
+            catalog = getToolByName(self.context, 'portal_catalog')
+            folder_path = '/'.join(self.context.getPhysicalPath())
+            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
+            if results:
+                criterion = getattr(results[0].getObject(),
+                            'crit__section_ATSimpleStringCriterion', None)
+                    
+            section_index = criterion.value if criterion else ''
 
         return section_index
 
