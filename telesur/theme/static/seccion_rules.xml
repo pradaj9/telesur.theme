@@ -58,8 +58,12 @@
             <drop css:content=".section-id-ultimos-videos"/>
           </rules>-->
         </rules>
+        <rules css:if-content=".template-opinion-view">
+            <drop css:theme="#scroller-seccion"/>
+        </rules>
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
+            
     </rules>
 
 </rules>
