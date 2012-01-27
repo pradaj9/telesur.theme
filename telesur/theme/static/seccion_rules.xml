@@ -13,8 +13,7 @@
           body.template-manage-content-rules.portaltype-plone-site,
         -->                           
         <theme href="seccion.html" />
-        <rules css:if-content="body:not([class*='template-section-view']),
-                               body:not([class*='template-opinion-view'])">
+        <rules css:if-content="body:not([class*='template-section-view'])">
             <rules css:if-content="body[class*='template-collective.nitf.content'], 
                                    body[class*='template-collective.polls.poll']">
                 <drop attributes="class" css:content="#portal-column-content" />
@@ -54,10 +53,10 @@
 
           <!-- esto modifica la lista de ultimos videos de seccion si y solo si
                la vista encontro un id de seccion valido -->
-          <rules css:if-content=".section-id-ultimos-videos">
+          <!--<rules css:if-content=".section-id-ultimos-videos">
             <copy attributes="src" css:content=".section-id-ultimos-videos" css:theme="#scroller-seccion .most_viewed" method="raw"/>
             <drop css:content=".section-id-ultimos-videos"/>
-          </rules>
+          </rules>-->
         </rules>
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
