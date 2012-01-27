@@ -81,7 +81,7 @@
                                 <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
                             </tal:image>  
                         </div>
-                        <p class="nota-descripcion" tal:content="nota/description"></p>
+                        <p class="nota-descripcion" tal:content="nota/getObject"></p>
                     </div>
                </tal:block>
             </div>

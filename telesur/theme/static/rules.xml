@@ -15,7 +15,7 @@
         <xi:include href="general_template.xml"/>
 
         <!-- in section opinion we don't have to show ultimos videos section -->
-        <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" />
+        <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> -->
 
         <replace css:theme="#ultimas-noticias">
             <div id="ultimas-noticias">
@@ -28,7 +28,7 @@
             </div>
         </replace>
 
-        <theme href="nota.html" />
+        <theme href="general.html" />
 
         <!-- EDIT views -->
         <rules css:if-content="body.template-edit,
