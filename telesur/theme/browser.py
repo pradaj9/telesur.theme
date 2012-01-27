@@ -492,7 +492,7 @@ class SectionView(grok.View):
 
         return section_index
 
-    def articles(self, limit=6):
+    def articles(self, limit=8):
 
         catalog = getToolByName(self.context, 'portal_catalog')
 
