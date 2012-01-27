@@ -33,6 +33,10 @@
     margin: 15px 0;
     }
 
+
+#content {
+    margin:15px 0px;
+}
 /*content styles*/
 h1,
 h2,
@@ -420,6 +424,75 @@ h1 a {
     padding: 0px;
     }
 
+/*image galery*/
+#mediabox {
+    background-color:#FFF;
+    padding:1em;
+}
+#images {
+	position:relative;
+	overflow:hidden;
+	clear:both;
+	height:400px;
+	width:400px;
+    }
+
+/* override single pane */
+#images div {
+	float:left;
+	display:block;
+	width:400px;
+	font-size:14px;
+	text-align:center;
+    }
+
+/* our additional wrapper element for the items */
+#images .items {
+	width:20000em;
+	position:absolute;
+	clear:both;
+	margin:0;
+	padding:0;
+    }
+
+#images .less, #images .less a {
+	color:#999 !important;
+	font-size:11px;
+    }
+    
+#images .info {
+    background:transparent url("++theme++telesur.theme/img/transparent.png") scroll repeat 0 0;
+    position:absolute;
+    bottom:0px;
+    display:none;
+}
+#images .info p {
+    color:#FFF;
+}
+.navibuttons {
+    padding-top:15px;
+}
+.navibuttons .navi {
+    margin-left:0px;
+    height:30px;
+    width:30px;
+    cursor:pointer;
+    }
+.navibuttons .prev {
+    float:left;
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat 0 0;
+    }
+.navibuttons .prev:hover {
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px 0;    
+    }    
+.navibuttons .next {
+    float:right;
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat 0 -30px;        
+    }
+.navibuttons .next:hover {
+    background:transparent url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") scroll no-repeat -30px -30px;    
+    }
+
 /*video gallery*/
 #video-galery-container {
     display: none;
@@ -551,6 +624,15 @@ h1 a {
     font-size: 13px;
     display: block;
     }
+    
+    
+
+/*
+* PROGRAMACION
+*/
+.template-schedule #content {
+    text-align:center;
+}
 
 /*
 * PORTLETS GENERAL
@@ -802,7 +884,7 @@ h1 a {
 * Portlet Ultimos Programas
 **/
 #ultimos-programas-widget .ultimos-programas-wrapper {
-    border: 1px solid #b3b3b3;
+    border: medium none;
     }
 
 /**

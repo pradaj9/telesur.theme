@@ -12,19 +12,7 @@
             <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#content-core > div.breadcumb" />
             <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />                            
-            <after theme="//*[@id='telesur-right-sidebar']/div[1]">
-                <div id="ultimas-noticias" class="widget-container">
-                    <div class="breadcumb-categoria widget-title">Últimas Noticias</div>
-                    <div class="ultima-noticia">
-                        <xsl:for-each css:select="dl.portlet-collection-ultimas-noticias dd.portletItem">
-                            <xsl:copy-of select="a" /> 
-                        </xsl:for-each>
-                    </div>
-                </div>
-            </after>
-            <!-- author -->
-            <!--<replace css:theme-children="#telesur-left-content #byline" 
-              css:content-children="#content p.nitfByline" /> -->
+
           <!-- colaboradores -->
           <replace css:theme-children="#colabs" 
               css:content-children="#content .documentContributors" />

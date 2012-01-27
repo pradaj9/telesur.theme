@@ -7,12 +7,15 @@
     <rules css:if-content=".template-login_form, 
                            .template-overview-controlpanel,
                            .template-edit,
-                           .portaltype-plone-site">
+                           .portaltype-plone-site,
+                           .template-mapa,
+                           .portaltype-topic">
         <theme href="general.html" />
         
+        <drop css:content="#viewlet-above-content"/>
         <replace
           css:theme-children=".no-columns .content-placeholder"
-          css:content="#portal-columns" />        
+          css:content-children="#portal-column-content" />        
     </rules>
 
 </rules>        

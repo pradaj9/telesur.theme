@@ -4,12 +4,12 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules css:if-content="body.template-schedule">
+    <rules css:if-content=".template-schedule">
       <theme href="parrilla.html" />
       <drop css:theme=".telesur-right-sidebar" />
       <drop css:content="#portal-column-one" />
-      <after
-                css:theme="#telesur-seccion-main"
-                css:content="#portal-column-content div#content" if-content="not(//*[@class='documentEditable'])"/>
+      <replace
+                css:theme="#telesur-middle"
+                css:content="#content" if-content="not(//*[@class='documentEditable'])"/>
       </rules>
 </rules>
