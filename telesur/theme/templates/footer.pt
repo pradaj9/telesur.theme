@@ -88,7 +88,7 @@
             </li>
             <li>
               <a href="#"
-                 tal:attributes="href string:${portal_url}/el-canal/suscripcion">Suscripción</a>
+                 tal:attributes="href string:${portal_url}/el-canal/subscription">Suscripción</a>
             </li>
             <li>
               <a href="#"
