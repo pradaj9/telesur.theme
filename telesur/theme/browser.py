@@ -87,6 +87,11 @@ class FragmentView(grok.View):
             raise NotFound
         return view()
 
+class GoogleMapView(grok.View):
+    grok.context(Interface)
+    grok.name("mapa")
+    grok.layer(ITelesurLayer)
+    grok.require("zope2.View")
 
 class Opinion(grok.View):
     """Vista para artículo de opinión.
@@ -398,7 +403,7 @@ class HomeView(grok.View):
         catalog = getToolByName(self.context, 'portal_catalog')
         #ordenar por fecha efectiva y prioridad
         elements = catalog(object_provides=iface.__identifier__,
-                           sort_on='effective')
+                           sort_on='effective', sort_order='reverse')
 
         return elements
 
@@ -407,7 +412,7 @@ class HomeView(grok.View):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         elements = catalog(object_provides=iface.__identifier__,
-                           sort_on='effective')
+                           sort_on='effective', sort_order='reverse')
 
         return elements[:limit]
 
@@ -441,6 +446,21 @@ class SectionView(grok.View):
         section_index = ''
         if criterion:
             section_index = criterion.value
+        else:
+            #XXX deberiamos tener esto generalizado en una annotation en el objeto
+            #bajo la variable "section"
+            
+            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
+            # y usar el criterio de ahi
+            catalog = getToolByName(self.context, 'portal_catalog')
+            folder_path = '/'.join(self.context.getPhysicalPath())
+            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
+            if results:
+                criterion = getattr(results[0].getObject(),
+                            'crit__section_ATSimpleStringCriterion', None)
+                    
+            section_index = criterion.value if criterion else ''
+
         return section_index
 
     def articles(self, limit=7):
@@ -454,6 +474,7 @@ class SectionView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'
         section = self.section()
         if section:
             query['section'] = section
@@ -472,7 +493,7 @@ class SectionView(grok.View):
                     limit = limit - 1
                     if limit <= 0:
                         break
-        else:
+        elif existing:
             #no es una seccion, sino una vista global
             elements['outstanding'] = [existing[0].getObject()]
             elements['secondary'] =  existing[1:limit]
@@ -510,21 +531,56 @@ class OpinionView(grok.View):
         section_index = ''
         if criterion:
             section_index = criterion.value
+        else:
+            #XXX deberiamos tener esto generalizado en una annotation en el objeto
+            #bajo la variable "section"
+            
+            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
+            # y usar el criterio de ahi
+            catalog = getToolByName(self.context, 'portal_catalog')
+            folder_path = '/'.join(self.context.getPhysicalPath())
+            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
+            if results:
+                criterion = getattr(results[0].getObject(),
+                            'crit__section_ATSimpleStringCriterion', None)
+                    
+            section_index = criterion.value if criterion else ''
+
         return section_index
 
     def articles(self, limit=7):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         query = {}
+        query['object_provides'] = {
+                'query': [INITF.__identifier__]
+        }
         query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'        
         query['genre'] = 'Opinion'
+        section = self.section()
+
+        if section:
+            query['section'] = section
 
         existing = catalog.searchResults(query)
 
         elements = {'outstanding':[], 'secondary':[]}
-        if existing:
-            elements['outstanding'] = existing[0].getObject()
-            elements['secondary'] = existing[1:limit]
+
+        if existing and section:
+            for nota in existing:
+                nota_obj = nota.getObject()
+                if ISectionArticle.providedBy(nota_obj):
+                    elements['outstanding'].append(nota_obj)
+                else:
+                    elements['secondary'].append(nota)
+                    limit = limit - 1
+                    if limit <= 0:
+                        break
+        elif existing:
+            #no es una seccion, sino una vista global
+            elements['outstanding'] = [existing[0].getObject()]
+            elements['secondary'] =  existing[1:limit]                
 
         return elements
 

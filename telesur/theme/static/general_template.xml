@@ -7,12 +7,27 @@
     <rules css:if-content=".template-login_form, 
                            .template-overview-controlpanel,
                            .template-edit,
-                           .portaltype-plone-site">
+                           .portaltype-plone-site,
+                           .template-mapa,
+                           .portaltype-topic,
+                           body[class*='template-collective.polls.poll'],
+                           body[class*='template-collective.nitf.content'],
+                           body[class*='template-telesur.contenttypes.program'],
+                           .template-manage-portlets">
         <theme href="general.html" />
         
-        <replace
-          css:theme-children=".no-columns .content-placeholder"
-          css:content="#portal-columns" />        
+        <drop css:content="#viewlet-above-content"/>
+        
+        <rules css:if-content="body:not(.template-manage-portlets)">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-column-content" />
+        </rules>
+        <rules css:if-content=".template-manage-portlets">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-columns" />
+        </rules>
     </rules>
 
 </rules>        

@@ -21,13 +21,20 @@
         <div class="cell-wrapper">
           <h3>Canales</h3>
           <ul>
-            <li><a href="#">Latinoamérica</a></li>
-            <li><a href="#">Vuelta al mundo</a></li>
-            <li><a href="#">Deportes</a></li>
-            <li><a href="#">Cultura</a></li>
-            <li><a href="#">Economía</a></li>
-            <li><a href="#">Medio Ambiente</a></li>
-            <li><a href="#">Ciencia</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/latinoamerica">Latinoamérica</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/vuelta-al-mundo">Vuelta al mundo</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/deportes">Deportes</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/cultura">Cultura</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/salud">Salud</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/ciencia">Ciencia</a></li>
+            <li><a href="#"
+                   tal:attributes="href string:${portal_url}/noticias/tecnologia">Tecnología</a></li>
           </ul>
         </div>
       </div>
@@ -53,7 +60,7 @@
                  tal:attributes="href string:${portal_url}/opinion/entrevistas">Entrevistas</a>
             </li>
             <li>
-              <a href="http://multimedia.telesurtv.net/media/video2/video">Video</a>
+              <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/telesur-web.html">Video</a>
             </li>
             <li>
               <a href="#"
