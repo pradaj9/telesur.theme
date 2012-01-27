@@ -274,7 +274,7 @@
                 </metal:block>
             </metal:entries>
         </metal:block>
-    <tal:left content="structure provider:telesur.theme.seccion_viewlets" />            
+    <!-- <tal:left content="structure provider:telesur.theme.seccion_viewlets" />             -->
     </metal:content-core>
 
 </body>
