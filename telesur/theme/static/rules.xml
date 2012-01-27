@@ -18,7 +18,7 @@
         <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> -->
 
         <replace css:theme="#ultimas-noticias" css:if-content="dl.portlet-latest-nitf">
-            <div id="ultimas-noticias">
+            <div id="telesur-ultimas-noticias">
                 <div class="breadcumb-categoria">Últimas Noticias</div>
                 <div class="ultima-noticia">
                     <xsl:for-each css:select="dl.portlet-latest-nitf dd.portletItem">

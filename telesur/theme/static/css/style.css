@@ -854,6 +854,9 @@ h1 a {
 * Portlet "ultimas noticias"
 ***/
 #ultimas-noticias {
+    display:none;
+}
+#telesur-ultimas-noticias {
     border: 1px solid #b3b3b3;
     padding: 10px 6px;
     font-size: 13px;
@@ -861,23 +864,23 @@ h1 a {
     background: url(../img/portlets-bg.png) repeat-x scroll 0 0;
     }
 
-#ultimas-noticias .portletItemDetails {
+#telesur-ultimas-noticias .portletItemDetails {
     font-size: 11px;
     color: #999;
     text-align: right;
     }
 
-#ultimas-noticias .tile {
+#telesur-ultimas-noticias .tile {
     background: url(../img/iconos/generales/nota.png) no-repeat scroll 0 0;
     padding-left: 20px;
     color: #333333;
     }
 
-#ultimas-noticias .tile img {
+#telesur-ultimas-noticias .tile img {
     display: none;
     }
 
-#ultimas-noticias .ultima-noticia {
+#telesur-ultimas-noticias .ultima-noticia {
     padding-top: 10px;
     }
 
