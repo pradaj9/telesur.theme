@@ -145,4 +145,14 @@
 
   <after css:content="#multipleupload-code" css:theme="#telesur-container" />
 
+
+  <!-- lo mas visto and lo mas recomendado tabs portlet-->
+  <replace css:if-content=".portletPopularThreads"
+           css:content-children=".portletPopularThreads .portletItem"
+           css:theme-children=".mas-comentado"/>
+
+  <replace css:if-content=".portletHotThreads"
+           css:content-children=".portletHotThreads .portletItem"
+           css:theme-children=".mas-recomendado"/>
+
 </rules>

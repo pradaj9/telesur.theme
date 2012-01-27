@@ -36,16 +36,7 @@
 
         <replace css:if-content="#telesur-titulares" 
                  css:content="#telesur-titulares"
-                 css:theme="#mas-titulares-widget"/>
-
-        <!-- lo mas visto and lo mas recomendado tabs portlet-->
-        <replace css:if-content=".portletPopularThreads"
-                 css:content-children=".portletPopularThreads .portletItem"
-                 css:theme-children=".mas-comentado"/>
-
-        <replace css:if-content=".portletHotThreads"
-                 css:content-children=".portletHotThreads .portletItem"
-                 css:theme-children=".mas-recomendado"/>                 
+                 css:theme="#mas-titulares-widget"/>               
 
     </rules>
 
