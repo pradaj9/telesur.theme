@@ -403,16 +403,16 @@ class HomeView(grok.View):
         catalog = getToolByName(self.context, 'portal_catalog')
         #ordenar por fecha efectiva y prioridad
         elements = catalog(object_provides=iface.__identifier__,
-                           sort_on='effective')
+                           sort_on='effective', sort_order='reverse')
 
         return elements
 
-    def secondary(self, limit=6):
+    def secondary(self, limit=5):
         iface = ISecondaryArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
         elements = catalog(object_provides=iface.__identifier__,
-                           sort_on='effective')
+                           sort_on='effective', sort_order='reverse')
 
         return elements[:limit]
 
@@ -474,6 +474,7 @@ class SectionView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'
         section = self.section()
         if section:
             query['section'] = section
@@ -555,6 +556,7 @@ class OpinionView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'        
         query['genre'] = 'Opinion'
         section = self.section()
 
