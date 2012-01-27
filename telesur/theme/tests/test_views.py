@@ -50,21 +50,20 @@ class BrowserLayerTest(unittest.TestCase):
         view = self.getViewByName(self.n1, name)
         self.failUnless(view, u"%s has no view %s" % (self.n1, name))
 
-        view.update()
-        self.assertEquals(view.image(), None)
+        self.assertEquals(view.has_images(), 0)
+        self.assertEquals(view.has_files(), 0)
+        self.assertEquals(view.has_links(), 0)
 
-        images = view.images()
-        self.assertEquals(len(images), 0)
-        files = view.files()
-        self.assertEquals(len(files), 0)
-        links = view.links()
-        self.assertEquals(len(links), 0)
+        self.n1.invokeFactory('Image', 'foo', title='Foo', description='FOO',
+                              image=StringIO(zptlogo), filename='zpt.gif')
+        self.n1.invokeFactory('File', 'bar', title='Bar', description='BAR',
+                              image=StringIO(zptlogo), filename='zpt.gif')
+        self.n1.invokeFactory('Link', 'baz', title='Baz', url='http://baz/')
 
-        self.n1.invokeFactory('Image', 'foo', image=StringIO(zptlogo))
-        self.assertEquals(view.image()['id'], 'foo')
-        images = view.images()
-        self.assertEquals(len(images), 1)
-        # TODO: add file and link tests
+        self.assertEquals(view.has_images(), 1)
+        self.assertEquals(view.has_files(), 1)
+        self.assertEquals(view.has_links(), 1)
+        self.assertEquals(view.getImage()['id'], 'foo')
 
     def test_folder_summary_view(self):
         name = '@@folder_summary_view'
