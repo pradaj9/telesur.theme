@@ -11,13 +11,23 @@
                            .template-mapa,
                            .portaltype-topic,
                            body[class*='template-collective.polls.poll'],
-                           body[class*='template-collective.nitf.content']">
+                           body[class*='template-collective.nitf.content'],
+                           body[class*='template-telesur.contenttypes.program'],
+                           .template-manage-portlets">
         <theme href="general.html" />
         
         <drop css:content="#viewlet-above-content"/>
-        <replace
-          css:theme-children=".no-columns .content-placeholder"
-          css:content-children="#portal-column-content" />        
+        
+        <rules css:if-content="body:not(.template-manage-portlets)">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-column-content" />
+        </rules>
+        <rules css:if-content=".template-manage-portlets">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-columns" />
+        </rules>
     </rules>
 
 </rules>        
