@@ -624,6 +624,15 @@ h1 a {
     font-size: 13px;
     display: block;
     }
+    
+    
+
+/*
+* PROGRAMACION
+*/
+.template-schedule #content {
+    text-align:center;
+}
 
 /*
 * PORTLETS GENERAL
