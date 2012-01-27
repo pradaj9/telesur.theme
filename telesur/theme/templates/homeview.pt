@@ -100,7 +100,8 @@
                </tal:block>
             </div>
         </div>
-<tal:left content="structure provider:telesur.theme.seccion_viewlets" />         
+        <tal:left content="structure provider:telesur.theme.seccion_viewlets" />       
+        <script type="text/javascript" src="++theme++telesur.theme/scripts/main.js"></script>
     </tal:main-macro>
 </metal:main>
 </body>
