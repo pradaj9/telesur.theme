@@ -125,7 +125,8 @@ h1 a {
     overflow: hidden;
     }
 
-.articles-carousel .article-item .thumb img {
+.articles-carousel .article-item .thumb img,
+.nota-sencilla-grande-thumb img {
     width: 128px;
     }
 

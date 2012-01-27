@@ -463,7 +463,7 @@ class SectionView(grok.View):
 
         return section_index
 
-    def articles(self, limit=7):
+    def articles(self, limit=6):
 
         catalog = getToolByName(self.context, 'portal_catalog')
 
@@ -548,7 +548,7 @@ class OpinionView(grok.View):
 
         return section_index
 
-    def articles(self, limit=7):
+    def articles(self, limit=6):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         query = {}
