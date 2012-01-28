@@ -1,0 +1,39 @@
+.. -*- coding: utf-8 -*-
+
+Introducción
+============
+
+Este producto contiene un tema `Diazo`_ en Plone 4.1 para el `sitio Web de teleSUR`_. Este permite integrar visualmente elementos del Plone CMS, de la `sitio Web Multimedia teleSUR`_, redes sociales, y demás aplicaciones Web en una única interfaz de usuario.
+
+Características
+===============
+
+- Este tema `Diazo`_ contiene los siguientes archivos de reglas:
+
+  - Archivo ``rules.xml``, este define las reglas principales del `sitio Web de teleSUR`_
+
+  - Archivo ``common_rules.xml``, este define las reglas comunes aplicadas al `sitio Web de teleSUR`_.
+
+  - Archivo ``home_rules.xml``, este define las reglas aplicadas al archivo *theme* llamado ``home-scroll.html``.
+
+  - Archivo ``seccion_rules.xml``, este define las reglas aplicadas al archivo *theme* llamado ``seccion.html``.
+
+  - Archivo ``nota_rules.xml``, este define las reglas aplicadas al archivo *theme* llamado ``nota.html``.
+
+  - Archivo ``programs.xml``, este define las reglas aplicadas al archivo *theme* llamado ``programas.html``.
+
+Instalación
+===========
+Usted puede leer el archivo ``INSTALL.txt`` dentro del directorio ``docs`` de este paquete.
+
+
+Descargas
+=========
+
+Usted puede encontrar la versión de desarrollo del paquete ``telesur.theme`` en el `repositorio desarrollotv`_ en Github.com.
+
+.. _Diazo: http://pypi.python.org/pypi/diazo
+.. _sitio Web de teleSUR: http://telesurtv.net/
+.. _sitio Web Multimedia teleSUR: http://multimedia.telesurtv.net/
+.. _repositorio desarrollotv: https://github.com/desarrollotv/telesur.theme
+
