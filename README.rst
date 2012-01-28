@@ -3,7 +3,7 @@
 Introducción
 ============
 
-Este producto contiene un tema `Diazo`_ en Plone 4.1 para el `sitio Web de teleSUR`_. Este permite integrar visualmente elementos del Plone CMS, de la `sitio Web Multimedia teleSUR`_, redes sociales, y demás aplicaciones Web en una única interfaz de usuario.
+Este producto contiene un tema `Diazo`_ en Plone 4.1 para el `sitio Web de teleSUR`_. Este permite integrar visualmente elementos del Plone CMS, de la `sitio web Video teleSUR`_, redes sociales, y demás aplicaciones Web en una única interfaz de usuario.
 
 Características
 ===============
@@ -34,6 +34,6 @@ Usted puede encontrar la versión de desarrollo del paquete ``telesur.theme`` en
 
 .. _Diazo: http://pypi.python.org/pypi/diazo
 .. _sitio Web de teleSUR: http://telesurtv.net/
-.. _sitio Web Multimedia teleSUR: http://multimedia.telesurtv.net/
+.. _sitio web Video teleSUR: http://multimedia.telesurtv.net/
 .. _repositorio desarrollotv: https://github.com/desarrollotv/telesur.theme
 
