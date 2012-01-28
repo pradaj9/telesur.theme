@@ -5,8 +5,8 @@ version = '1.0'
 
 setup(name='telesur.theme',
       version=version,
-      description="A Diazo theme for Plone 4.1",
-      long_description=open("README.txt").read() + "\n" +
+      description="Un tema Diazo en Plone 4.1 para el sitio de teleSUR",
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
@@ -14,10 +14,10 @@ setup(name='telesur.theme',
         "Framework :: Plone",
         "Programming Language :: Python",
         ],
-      keywords='',
+      keywords='diazo theme plone teleSUR',
       author='',
       author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      url='https://github.com/desarrollotv/telesur.theme',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['telesur'],
