@@ -113,7 +113,7 @@ h1 a {
 
 .main-article .articles-carousel .article-item {
     float: left;
-    width: 160px;
+    width: 156px;
     }
 
 .articles-carousel {
@@ -140,11 +140,21 @@ h1 a {
     }
 
 .articles-carousel .articles-carousel-wrapper {
-    margin: 0px 15px 0px 15px;
+    margin: 0px auto;
     border-top: 2px solid #AC1206;
-    clear: both;
     padding-top: 15px;
+    width:624px;
+	position:relative;
+	overflow:hidden;
+	float:none;
     }
+.articles-carousel .carousel-dummy {
+    width:2000em;
+    position:absolute;
+}
+.carousel-dummy .items-wrapper {
+    float:left;
+}
 
 .article-listing {
     padding-bottom: 30px;
@@ -175,11 +185,11 @@ h1 a {
     }
 
 #widget-carousel .next {
-    background: transparent url(../img/iconos/flecha-derecha.png) scroll no-repeat center center;
+    background: transparent url(++theme++telesur.theme/img/iconos/flecha-derecha.png) scroll no-repeat center center;
     }
 
 #widget-carousel .prev {
-    background: transparent url(../img/iconos/flecha-izquierda.png) scroll no-repeat center center;
+    background: transparent url(++theme++telesur.theme/img/iconos/flecha-izquierda.png) scroll no-repeat center center;
     }
 
 #widget-carousel .disabled {
@@ -310,7 +320,7 @@ h1 a {
     }
 
 .description-container .link-to-article a {
-    background: url(../img/iconos/btn-continuar.png) scroll no-repeat 0 0;
+    background: url(++theme++telesur.theme/img/iconos/btn-continuar.png) scroll no-repeat 0 0;
     width: 20px;
     height: 18px;
     float: right;
@@ -370,36 +380,36 @@ h1 a {
     }
 
 #media-counter .image-counter .counter {
-    background: url("../img/iconos/nota-detail/foto.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/foto.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .comment-counter .counter {
-    background: url("../img/iconos/nota-detail/comentarios.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/comentarios.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .video-counter .counter {
-    background: url("../img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/video.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .audio-counter .counter {
-    background: url("../img/iconos/nota-detail/audio.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/audio.png") no-repeat scroll center 0 transparent;
     }
 
 /*empty counters*/
 #media-counter .image-counter .empty {
-    background: url("../img/iconos/nota-detail/foto-empty.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/foto-empty.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .comment-counter .empty {
-    background: url("../img/iconos/nota-detail/comentarios-empty.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/comentarios-empty.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .video-counter .empty {
-    background: url("../img/iconos/nota-detail/video-empty.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/video-empty.png") no-repeat scroll center 0 transparent;
     }
 
 #media-counter .audio-counter .empty {
-    background: url("../img/iconos/nota-detail/audio-empty.png") no-repeat scroll center 0 transparent;
+    background: url("++theme++telesur.theme/img/iconos/nota-detail/audio-empty.png") no-repeat scroll center 0 transparent;
     }
 
 #media-container {
@@ -520,7 +530,7 @@ h1 a {
 
 /*close, right and left*/
 #video-galery-container a.close {
-    background-image: url(../img/pb_close.png);
+    background-image: url(++theme++telesur.theme/img/pb_close.png);
     position: absolute;
     left: -14px;
     top: -14px;
@@ -530,7 +540,7 @@ h1 a {
     }
 
 #video-galery-container a.browse {
-    background: url("../img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 transparent;
+    background: url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
     display: block;
     float: left;
@@ -681,13 +691,13 @@ h1 a {
 .widget-tabs a.current:hover {
     cursor: default !important;
     color: black !important;
-    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos-hover.png) no-repeat;
     height: 38px;
-    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos-hover.png) no-repeat;
     }
 
 .widget-tabs a {
-    background: url(../img/pestana-ultimos.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos.png) no-repeat;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     text-align: center;
@@ -750,7 +760,7 @@ h1 a {
     }
 
 #lo-mas-recomendado .thread-title {
-    background: url(../img/iconos/generales/nota.png) no-repeat scroll 0 4px;
+    background: url(++theme++telesur.theme/img/iconos/generales/nota.png) no-repeat scroll 0 4px;
     padding-left: 20px;
     color: #333333;
     font-size: 13px;
@@ -783,7 +793,7 @@ h1 a {
 ***/
 #ultimos-videos-widget .ultimos-videos-wrapper {
     border: 1px solid #b3b3b3;
-    background: url(../img/portlets-bg.png) repeat-x scroll 0 0;
+    background: url(++theme++telesur.theme/img/portlets-bg.png) repeat-x scroll 0 0;
     padding: 12px 6px;
     }
 
@@ -820,14 +830,14 @@ h1 a {
 .tabs-opinion li.current a {
     cursor: default !important;
     color: black !important;
-    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos-hover.png) no-repeat;
     height: 38px;
-    background: url(../img/pestana-ultimos-hover.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos-hover.png) no-repeat;
     }
 
 .tabs-masvistos a,
 .tabs-opinion a {
-    background: url(../img/pestana-ultimos.png) no-repeat;
+    background: url(++theme++telesur.theme/img/pestana-ultimos.png) no-repeat;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 11px;
     text-align: center;
@@ -861,7 +871,7 @@ h1 a {
     padding: 10px 6px;
     font-size: 13px;
     color: #333333;
-    background: url(../img/portlets-bg.png) repeat-x scroll 0 0;
+    background: url(++theme++telesur.theme/img/portlets-bg.png) repeat-x scroll 0 0;
     }
 
 #telesur-ultimas-noticias .portletItemDetails {
@@ -871,7 +881,7 @@ h1 a {
     }
 
 #telesur-ultimas-noticias .tile {
-    background: url(../img/iconos/generales/nota.png) no-repeat scroll 0 0;
+    background: url(++theme++telesur.theme/img/iconos/generales/nota.png) no-repeat scroll 0 0;
     padding-left: 20px;
     color: #333333;
     }
@@ -904,7 +914,7 @@ h1 a {
 
 #telesur-container .panes-opinion .portletItem {
     padding-left: 45px;
-    background: white url(../img/iconos/btn-continuar.png) no-repeat scroll 15px center;
+    background: white url(++theme++telesur.theme/img/iconos/btn-continuar.png) no-repeat scroll 15px center;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0px 15px;
@@ -952,7 +962,7 @@ h1 a {
 .utilLinks a,
 .portletNewsFlash a {
     padding: 5px 10px;
-    background: white url(../img/icon-bg.png) repeat-x scroll 0 bottom;
+    background: white url(++theme++telesur.theme/img/icon-bg.png) repeat-x scroll 0 bottom;
     border: 1px solid #999 !important;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1012,7 +1022,7 @@ h1 a {
     font-size: 12px;
     padding: 3px 10px 3px 23px;
     margin-right: 10px;
-    background: white url(../img/icon-bg.png) repeat-x scroll 0 bottom;
+    background: white url(++theme++telesur.theme/img/icon-bg.png) repeat-x scroll 0 bottom;
     border: 1px solid #999;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1029,27 +1039,27 @@ h1 a {
     }
 
 .action-buttons .actions-list .subscribe .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll 0 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll 0 0;
     }
 
 .action-buttons .actions-list .contact .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll -18px 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll -18px 0;
     }
 
 .action-buttons .actions-list .mobile .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll -54px 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll -54px 0;
     }
 
 .action-buttons .actions-list .jobs-telesur .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll -72px 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll -72px 0;
     }
 
 .action-buttons .actions-list .im-reporter .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll -90px 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll -90px 0;
     }
 
 .action-buttons .actions-list .multimedia .icon {
-    background: transparent url(../img/iconos-footer.png) no-repeat scroll -126px 0;
+    background: transparent url(++theme++telesur.theme/img/iconos-footer.png) no-repeat scroll -126px 0;
     }
 
 #footer .colophone {
