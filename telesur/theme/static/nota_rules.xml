@@ -11,24 +11,24 @@
                 css:content=".nitf-content-listing div.video-widget.principal" />
             <replace css:theme-children="#telesur-left-content > div.breadcumb-categoria"
                 css:content-children="#content-core > div.breadcumb" />
-            <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />                            
+            <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />
 
           <!-- colaboradores -->
-          <replace css:theme-children="#colabs" 
+          <replace css:theme-children="#colabs"
               css:content-children="#content .documentContributors" />
 
 
             <rules css:if-content="#content #media-container">
                 <!-- nota counters (video, comments, images, audio)-->
-                <replace 
+                <replace
                     css:theme="#media-counter #nota-detail"
                     css:content-children="#content #media-counter" />
                 <!-- image gallery code -->
                 <after css:theme="#telesur-left-content #media-container"
                     css:content="#content div.newsview" />
-                
+
                 <!-- media data, principal video or image -->
-                <replace 
+                <replace
                     css:theme-children="#telesur-left-content #media-data"
                     css:content="#content .video-widget.principal" />
 
@@ -38,17 +38,17 @@
                     css:content=".nitf-content-listing .video-widget.not-principal" />
 
                 <!-- nota description -->
-                <replace css:if-content="#content .article-description" 
+                <replace css:if-content="#content .article-description"
                     css:theme-children="#telesur-left-content .article-description"
                     css:content="#content .article-description"
                     method="raw" />
                 <drop css:content="#content .article-description" />
             </rules>
-            
+
             <!-- upload videos widget -->
             <rules css:if-content="#form-widgets-IAddableVideos-relatedVideos-autocomplete">
                 <after css:theme="#media-container" css:content=".contenttreeWindow" />
-                <after css:theme="#media-container" css:content="#form-widgets-IAddableVideos-relatedVideos-autocomplete ~ script" />                
+                <after css:theme="#media-container" css:content="#form-widgets-IAddableVideos-relatedVideos-autocomplete ~ script" />
             </rules>
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
@@ -66,7 +66,7 @@
                       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                       dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
                       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                      
+
                       var s = document.createElement('script'); s.async = true;
                       s.type = 'text/javascript';
                       s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
@@ -84,12 +84,15 @@
                                      body.template-atct_edit"
                 css:theme-children="#telesur-middle #telesur-left-content"
                 css:content-children="#portal-column-content" />
-            <replace 
+            <replace
                 css:theme-children="#telesur-middle #telesur-left-content"
                 css:content="#portal-column-content div.documentEditable" />
         </rules>
+<!-- buttons for articles  -->
         <replace css:theme-children=".edittools-placeholder-button"
                           css:content="#notas-content-buttons" />
+<!-- removing buttons for articles in folder_contents view  -->
+        <drop css:if-content=".template-folder_contents" css:content=".documentActions" />
     </rules>
 
 </rules>
