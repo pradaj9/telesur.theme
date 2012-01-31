@@ -504,6 +504,7 @@ class SectionView(grok.View):
         }
         query['sort_on'] = 'effective'
         query['sort_order'] ='reverse'
+        query['genre'] = 'Current'        
         section = self.section()
         if section:
             query['section'] = section
