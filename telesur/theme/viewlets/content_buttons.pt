@@ -17,6 +17,7 @@
     $("#notas-add-video").click(function(event) {
         event.preventDefault();
         $('.contenttreeWindow').showDialog();
+        firstLoad();
     });
     $('#notas-add-image-files').prepOverlay(
         {
