@@ -1173,15 +1173,12 @@ p.iconos-portada span.icono {
 }
 
 .has-videos {
-    background: url("++theme++telesur.theme/tango_icon_library.jpeg") no-repeat scroll -296px -18px transparent;
 }
 
 .has-gallery {
-    background: url("++theme++telesur.theme/tango_icon_library.jpeg") no-repeat scroll -146px -49px transparent;
 }
 
 .has-attachmets {
-    background: transparent url(++theme++telesur.theme/tango_icon_library.jpeg) no-repeat scroll -386px -47px;
 }
 
 .portaltype-image #edit-bar,
