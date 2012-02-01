@@ -311,6 +311,7 @@ body div {	 /* Eliminar todo el bloque */
 	float:left;
 	margin:0 5px 5px 0;
     text-align: center;
+    overflow:hidden;
 }
 .notas-sencilla-grande h3 {
     line-height: 18px;
