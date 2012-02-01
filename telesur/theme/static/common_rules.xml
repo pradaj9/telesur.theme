@@ -107,7 +107,7 @@
         />
 
     <!-- portal message -->
-    <rules css:if-content=",portalMessage">
+    <rules css:if-content=".portalMessage">
       <before css:theme-children="#telesur-middle" css:content=".portalMessage"/>
     </rules>
 

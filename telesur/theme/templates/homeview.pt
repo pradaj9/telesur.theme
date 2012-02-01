@@ -77,7 +77,9 @@
                     <div class="notas-sencilla-grande visualIEFloatFix" tal:condition="nota">
                         <tal:obj tal:define="nota_obj python:nota.getObject()">
                             <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
-                            <div class="nota-sencilla-grande-thumb" tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
+                            <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
+                            <div class="nota-sencilla-grande-thumb" 
+                                 tal:condition="python:multimedia['url']">
                                 <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
                                             tal:define="img python:multimedia['url']">
                                     <img src="" tal:attributes="src string:${img}" />
@@ -87,6 +89,7 @@
                                     <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
                                 </tal:image>  
                             </div>
+                            </tal:multimedia>
                             <p class="nota-descripcion" tal:content="nota_obj/description"></p>
 
                             <p class="iconos-portada">

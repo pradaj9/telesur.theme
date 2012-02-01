@@ -12,33 +12,7 @@
                                                           articles view/articles">
         <span class="section-name row" tal:content="view/section"></span>
         <div class="principal-articles-container row" 
-             id="video-scroll-home"
-             tal:define="outstanding python:articles['outstanding']">
-            <div class="main-article row" tal:condition="outstanding">
-                <h1 class="title">
-                    <a tal:attributes="href python:outstanding[0].absolute_url()" tal:content="python:outstanding[0].Title()"></a>
-                </h1>
-                <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding[0])">
-                    <div class="video-widget">
-                        <tal:video tal:condition="python:multimedia['type'] == 'video'">
-                            <script type="text/javascript" src=""
-                                tal:define="video_url python:video_api.get_video_widget_url('', 400, {'archivo_url': multimedia['url']})"                            
-                                tal:attributes="src string:${video_url};"
-                                tal:content="nothing">
-                                Item Title
-                            </script>
-                        </tal:video>
-                        <tal:image tal:condition="python:multimedia['type'] == 'image'"
-                                   tal:define="img python:multimedia['url']">
-                            <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
-                        </tal:image>
-                    </div>
-                </div>
-                <div class="data-article-container cell">
-                    <div class="description" tal:content="python:outstanding[0].description">
-                    </div>
-                </div>
-            </div>
+             id="video-scroll-home">
 
             <div class="article-listing row">
             <!-- dirty 2 block list  
@@ -50,16 +24,19 @@
                     <div class="notas-sencilla-grande visualIEFloatFix">
                         <tal:obj tal:define="nota_obj python:nota.getObject()">                    
                         <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
-                        <div class="nota-sencilla-grande-thumb" tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
-                            <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
-                                        tal:define="img python:multimedia['url']">
-                                <img src="" tal:attributes="src string:${img}" />
-                            </tal:thumb>
-                            <tal:image tal:condition="python:multimedia['type'] == 'image'"
-                                       tal:define="img python:multimedia['url']">
-                                <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
-                            </tal:image>  
-                        </div>
+                        <p class="autor">Autor: <span tal:content="nota/byline">autor</span></p>
+                        <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
+                            <div class="nota-sencilla-grande-thumb" tal:condition="python:multimedia['url']">
+                                <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                                            tal:define="img python:multimedia['url']">
+                                    <img src="" tal:attributes="src string:${img}" />
+                                </tal:thumb>
+                                <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                                           tal:define="img python:multimedia['url']">
+                                    <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                                </tal:image>  
+                            </div>
+                        </tal:multimedia>
                         <p class="nota-descripcion" tal:content="nota_obj/description"></p>
                         </tal:obj>
                     </div>

@@ -7,6 +7,8 @@
     <rules css:if-content=".template-login_form, 
                            .template-overview-controlpanel,
                            .template-edit,
+                           .template-atct_edit,
+                           .portaltype-folder,
                            .portaltype-plone-site,
                            .template-mapa,
                            .portaltype-topic,

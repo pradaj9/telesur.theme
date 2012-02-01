@@ -5,7 +5,8 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <rules css:if-content=".template-section-view,
-                           .template-opinion-view"> 
+                           .template-opinion-view,
+                           .template-opinion-interview-view"> 
         <!-- 
           body[class*='template-folder_'],
           body.portaltype-folder,
@@ -59,8 +60,14 @@
           </rules>-->
         </rules>
         <rules css:if-content=".template-opinion-view">
-            <drop css:theme="#scroller-seccion"/>
+            <drop css:theme=".telesur-full-column"/>
+            <drop css:theme="#nota-titular"/>
         </rules>
+        <rules css:if-content=".template-opinion-interview-view">
+            <drop css:theme=".telesur-full-column"/>
+            <before css:theme="#nota-titular >h1" css:content=".subtitle"/>
+        </rules>        
+
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
             

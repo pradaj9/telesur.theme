@@ -578,7 +578,84 @@ class OpinionView(grok.View):
 
         return section_index
 
-    def articles(self, limit=6):
+    def articles(self, limit=8):
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        query = {}
+        query['object_provides'] = {
+                'query': [INITF.__identifier__]
+        }
+        query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'
+        query['genre'] = 'Opinion'
+        section = self.section()
+
+        if section:
+            query['section'] = section
+
+        existing = catalog.searchResults(query)
+
+        elements = {'articles':[]}
+
+        if existing and section:
+            for nota in existing:
+                elements['articles'].append(nota)
+                limit = limit - 1
+                if limit <= 0:
+                    break
+        elif existing:
+            #no es una seccion, sino una vista global
+            elements['articles'] =  existing[:limit]
+
+        return elements
+
+class Opinion_InterviewView(grok.View):
+    """Vista para seccion opinion.
+    """
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
+    #de seccion, se deberia reemplazar por una marker interface que identifique
+    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
+    # una categoria)
+    grok.context(Interface)
+    grok.name('opinion-interview-view')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
+    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
+    def get_multimedia(self, obj, thumb=False):
+        """ returns the first multimedia object from a nitf ct, if thumb is true
+        is going to return an image even if the first objects is a video """
+
+        multimedia = parse_multimedia(obj, thumb)
+        return multimedia
+
+    def section(self):
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
+        #annotations
+        criterion = getattr(self.context,
+                            'crit__section_ATSimpleStringCriterion', None)
+        section_index = ''
+        if criterion:
+            section_index = criterion.value
+        else:
+            #XXX deberiamos tener esto generalizado en una annotation en el objeto
+            #bajo la variable "section"
+            
+            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
+            # y usar el criterio de ahi
+            catalog = getToolByName(self.context, 'portal_catalog')
+            folder_path = '/'.join(self.context.getPhysicalPath())
+            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
+            if results:
+                criterion = getattr(results[0].getObject(),
+                            'crit__section_ATSimpleStringCriterion', None)
+                    
+            section_index = criterion.value if criterion else ''
+
+        return section_index
+
+    def articles(self, limit=8):
 
         catalog = getToolByName(self.context, 'portal_catalog')
         query = {}

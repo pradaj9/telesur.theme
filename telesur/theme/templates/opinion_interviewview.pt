@@ -15,6 +15,7 @@
              id="video-scroll-home"
              tal:define="outstanding python:articles['outstanding']">
             <div class="main-article row" tal:condition="outstanding">
+                <p class="subtitle" tal:content="python:outstanding[0].subtitle"></p>
                 <h1 class="title">
                     <a tal:attributes="href python:outstanding[0].absolute_url()" tal:content="python:outstanding[0].Title()"></a>
                 </h1>
@@ -48,9 +49,10 @@
             -->
                 <tal:block tal:repeat="nota python:articles['secondary']">
                     <div class="notas-sencilla-grande visualIEFloatFix">
+                        <p class="subtitle" tal:content="python:nota.subtitle"></p>                    
                         <tal:obj tal:define="nota_obj python:nota.getObject()">                    
                         <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
-                        <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">                        
+                        <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
                         <div class="nota-sencilla-grande-thumb" tal:condition="python:multimedia['url']">
                             <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
                                         tal:define="img python:multimedia['url']">
