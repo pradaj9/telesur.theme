@@ -1,0 +1,47 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules css:if-content="body.template-home-view">
+        <theme href="portada_mobile.html" />
+            <replace css:theme="h1"
+                    css:content="#content .section-name" />
+
+            <!--Notas que en en el sitio original estan en un carousel-->
+            <replace css:theme-children="#telesur-portada-listing">
+                <xsl:for-each css:select="div.article-item-wrapper">
+                    <div class="notas-portada">
+                        <xsl:copy-of select="h3" />
+                    </div>
+                </xsl:for-each>
+            </replace>
+            <!--Notas que en en el sitio original estan abajo del carousel-->
+            <append css:theme="#telesur-portada-listing">
+                <xsl:for-each css:select="div.notas-sencilla-grande">
+                    <div class="notas-portada">
+                        <xsl:copy-of select="h3" />
+                    </div>
+                </xsl:for-each>
+            </append>
+
+            <!-- Nota Principal -->
+            <before css:theme-children="#telesur-portada-listing">
+              <div class="notas-portada" id="portada-nota-primera">
+                <h3>
+                    <xsl:copy-of css:select=".main-article .title a"/>
+                </h3>
+                  <div class="nota-sencilla-grande-thumb-mobile">
+                    <xsl:copy-of css:select=".video-widget img" />
+                  </div>
+                  <div class="description-container">
+                    <xsl:copy-of css:select=".main-article .data-article-container"/>
+                  </div>
+                  <div style="clear:both"></div>
+              </div>
+            </before>
+            <append  css:theme="#portada-nota-primera" css:content="h1#parent-fieldname-title"/>
+    </rules>
+
+</rules>
