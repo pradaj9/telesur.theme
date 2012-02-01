@@ -6,7 +6,8 @@
 
     <rules css:if-content=".template-section-view,
                            .template-opinion-view,
-                           .template-opinion-interview-view"> 
+                           .template-opinion-interview-view,
+                           .template-opinion-context-view"> 
         <!-- 
           body[class*='template-folder_'],
           body.portaltype-folder,
@@ -65,8 +66,11 @@
         </rules>
         <rules css:if-content=".template-opinion-interview-view">
             <drop css:theme=".telesur-full-column"/>
-            <before css:theme="#nota-titular >h1" css:content=".subtitle"/>
-        </rules>        
+            <before css:theme="#nota-titular >h1" css:content=".main-article .subtitle"/>
+        </rules>
+        <rules css:if-content=".template-opinion-context-view">
+            <after css:theme="#nota-titular .description-container .description" css:content=".main-article .autor"/>
+        </rules>          
 
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />

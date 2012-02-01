@@ -345,13 +345,15 @@ def parse_multimedia(obj, thumb=False):
     results = obj.getFolderContents(contentFilter=query, batch=False,
                                     b_size=10, full_objects=False)
 
-    multimedia = {'type': None, 'url': None}
+    multimedia = {'type': None, 'url': None, 'obj':None}
     if results:
         for link in results:
-            annotations = IAnnotations(link.getObject())
+            link_obj = link.getObject()
+            multimedia['obj'] = link_obj            
+            annotations = IAnnotations(link_obj)
             if thumb:
                 is_video = annotations.get('archivo_url', None)
-                multimedia['url'] = link.getObject().absolute_url() + \
+                multimedia['url'] = link_obj.absolute_url() + \
                     '/@@thumbnail_pequeno' if is_video else None
                 multimedia['type'] = 'thumb' if multimedia['url'] else None
             else:
@@ -367,6 +369,7 @@ def parse_multimedia(obj, thumb=False):
         if results:
             multimedia['url'] = results[0].getObject()
             multimedia['type'] = 'image'
+            multimedia['obj'] = results[0].getObject()
 
     return multimedia
 
@@ -690,6 +693,90 @@ class Opinion_InterviewView(grok.View):
             elements['secondary'] =  existing[1:limit]                
 
         return elements
+
+
+class Opinion_ContextView(grok.View):
+    """Vista para seccion opinion.
+    """
+    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
+    #de seccion, se deberia reemplazar por una marker interface que identifique
+    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
+    # una categoria)
+    grok.context(Interface)
+    grok.name('opinion-context-view')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
+    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
+    def get_multimedia(self, obj, thumb=False):
+        """ returns the first multimedia object from a nitf ct, if thumb is true
+        is going to return an image even if the first objects is a video """
+
+        multimedia = parse_multimedia(obj, thumb)
+        return multimedia
+
+    def section(self):
+        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
+        #annotations
+        criterion = getattr(self.context,
+                            'crit__section_ATSimpleStringCriterion', None)
+        section_index = ''
+        if criterion:
+            section_index = criterion.value
+        else:
+            #XXX deberiamos tener esto generalizado en una annotation en el objeto
+            #bajo la variable "section"
+            
+            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
+            # y usar el criterio de ahi
+            catalog = getToolByName(self.context, 'portal_catalog')
+            folder_path = '/'.join(self.context.getPhysicalPath())
+            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
+            if results:
+                criterion = getattr(results[0].getObject(),
+                            'crit__section_ATSimpleStringCriterion', None)
+                    
+            section_index = criterion.value if criterion else ''
+
+        return section_index
+
+    def articles(self, limit=8):
+
+        catalog = getToolByName(self.context, 'portal_catalog')
+        query = {}
+        query['object_provides'] = {
+                'query': [INITF.__identifier__]
+        }
+        query['sort_on'] = 'effective'
+        query['sort_order'] ='reverse'        
+        query['genre'] = 'Opinion'
+        section = self.section()
+
+        if section:
+            query['section'] = section
+
+        existing = catalog.searchResults(query)
+
+        elements = {'outstanding':[], 'secondary':[]}
+
+        if existing and section:
+            for nota in existing:
+                nota_obj = nota.getObject()
+                if ISectionArticle.providedBy(nota_obj):
+                    elements['outstanding'].append(nota_obj)
+                else:
+                    elements['secondary'].append(nota)
+                    limit = limit - 1
+                    if limit <= 0:
+                        break
+        elif existing:
+            #no es una seccion, sino una vista global
+            elements['outstanding'] = [existing[0].getObject()]
+            elements['secondary'] =  existing[1:limit]                
+
+        return elements
+
 
 class Schedule(grok.View):
     """ Programación del canal.
