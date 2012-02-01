@@ -116,6 +116,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
     <rules css:if-content="#visual-portal-wrapper" if="$host = $mobile_host">
       <xi:include href="nota_rules_mobile.xml" />
       <xi:include href="seccion_mobile_rules.xml" />
+      <xi:include href="portada_mobile_rules.xml" />
       <replace theme="/html/head/title"
           content="html/head/title" />
 
