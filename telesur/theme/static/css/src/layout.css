@@ -40,7 +40,7 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-header {
     background: url("../../img/header-bg.jpg") no-repeat scroll right top #3C608C;
 	height: 151px;
-	margin: 0
+	margin: 0;
 	padding: 0;
     position: relative;
     }
