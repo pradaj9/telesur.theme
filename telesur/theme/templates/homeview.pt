@@ -90,13 +90,13 @@
                             <p class="nota-descripcion" tal:content="nota_obj/description"></p>
 
                             <p class="iconos-portada">
-                                <img src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
+                                <img style="margin: 0 5px" src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
                                      tal:define="has_videos python:view.has_videos(nota_obj)"
                                      tal:condition="has_videos" />
-                                <img src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
+                                <img style="margin: 0 5px" src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
                                      tal:define="has_gallery python:view.has_gallery(nota_obj)"
                                      tal:condition="has_gallery" />
-                                <img src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
+                                <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
                                      tal:define="has_atachments python:view.has_atachments(nota_obj)"
                                      tal:condition="has_atachments" />
                             </p>
