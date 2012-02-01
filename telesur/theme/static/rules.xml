@@ -46,10 +46,12 @@
                                body.template-login_success,
                                body.template-folder_rename_form,
                                body.template-telesur_helper,
+                               body.template-edit,
                                .template-default_error_message">
             <replace css:theme-children="#telesur-middle"
                 css:content=".documentEditable" />
         </rules>
+
 <!-- template-collective.polls.poll portaltype-folder section-encuestas
 template-collective.polls.poll portaltype-plone-site
 template-view portaltype-collective-polls-poll section-encuesta-test

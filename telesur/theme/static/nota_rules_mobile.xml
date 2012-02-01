@@ -11,28 +11,28 @@
                   css:content="#portal-column-content h1.documentFirstHeading" />
               <after css:theme="#telesur-container #autor-temp"
                   css:content="#parent-fieldname-text" />
-                  
+
                   <replace css:theme="#telesur-container div#notas-relacionadas ul"
                       css:content="#related-items span" />
                   <drop if-content="not(//*[@id='related-items']/span)"
                       css:theme="#notas-relacionadas" />
                       <replace css:theme-children="#telesur-container #byline"  css:content-children="#content p.nitfByline" />
-            <!-- images -->   
+            <!-- images -->
             <rules css:if-content="#content #media-container">
                 <!-- image gallery code -->
                 <after css:theme="#telesur-container #media-container"
-                    css:content="#content div.newsview" />
+                    content="//div[@class='items']/div[1]/div/img" />
                 <!-- nota description -->
-                <replace css:if-content="#content .article-description" 
+                <replace css:if-content="#content .article-description"
                     css:theme-children="#telesur-container .article-description"
                     css:content="#content .article-description"
                     method="raw" />
                 <drop css:content="#content .article-description" />
             </rules>
-            
+
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
-       
+
           <after css:theme="#telesur-container #comentarios-nota > h2">
               <div id="disqus_thread"></div>
               <script type="text/javascript">
@@ -46,7 +46,7 @@
                       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
                       dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
                       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                      
+
                       var s = document.createElement('script'); s.async = true;
                       s.type = 'text/javascript';
                       s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
@@ -57,7 +57,7 @@
               <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
               <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
           </after>
-        
+
     </rules>
 
 </rules>

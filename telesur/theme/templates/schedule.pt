@@ -4,13 +4,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="telesur.policy">
+      i18n:domain="telesur.theme">
 <body>
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
     <iframe src="http://telesur.kgdesignes.net/componentes/parrilla.html"
-            scrolling="yes" height="3942" width="966" />
+            scrolling="yes" height="4000" width="1024" />
     </tal:main-macro>
 </metal:main>
 
