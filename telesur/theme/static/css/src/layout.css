@@ -912,7 +912,7 @@ body.portaltype-collective-nitf-content #parent-fieldname-text {
 
 /*google map home*/
 .google-map .lupa {
-    background:white url(++theme++telesur.theme/img/icon-fullscreen.jpg) scroll no-repeat center center;
+    background: url(++theme++telesur.theme/img/icon-fullscreen.png) scroll no-repeat center center transparent;
     width:30px;
     height:30px;
     position:absolute;
