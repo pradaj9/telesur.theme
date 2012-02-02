@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.nitf">
+
+<head tal:define="portal_state context/@@plone_portal_state;
+                  portal_url portal_state/portal_url;">
+
+    <metal:block fill-slot="style_slot" tal:define="navroot context/@@plone_portal_state/navigation_root_url">
+        <link rel="stylesheet" type="text/css" 
+              tal:attributes="href string:${navroot}/++resource++collective.nitf/styles.css" />                  
+    </metal:block>
+
+    <metal:javascriptslot fill-slot="javascript_head_slot">
+	    <script type="text/javascript">	    
+	    $(function() {
+
+            $('.sortable-media a.draggable-item').prepOverlay({
+                    subtype: 'ajax',
+                    filter: '#portal-column-content > div',
+                    noform:'close'
+            });
+
+            $('.sortable-media a.btn').prepOverlay({
+                    subtype: 'ajax',
+                    filter: '#portal-column-content > div',
+                    formselector: 'form',
+                    noform:'close'
+            });
+
+	    
+            $(".sortable-media").sortable({
+                placeholder: "ui-state-highlight",
+                update: function(event, ui){
+                    var id_cleaner = function(ids) {
+                        var cleaned = new Array();
+                        for (i=0;i<ids.length;i++) {
+                           cleaned[i] = ids[i].replace('sortable-', "");
+                           }
+                       return cleaned;
+                    };
+                    var item = $(this).data("sortable").currentItem;
+                    var items= $(this).sortable("toArray");
+                    var prev = $(this).data("sortable").domPosition ? $(this).data("sortable").domPosition.prev : undefined;
+                    var prev_pos = undefined;
+                    var a_id = item.attr("id").replace('sortable-', "");
+                    var pos = item.index();
+                    var msg = "Position " + pos;
+                    var msg2 = "\nId " + a_id;
+                    var base = $("base").attr("href");
+                    var move_url = base + "folder_moveitem";
+                    var query = {delta: "1", id: a_id};
+                    var ids = id_cleaner($(this).sortable("toArray"));
+                    var prev_msg = "\nPrev pos: ";
+
+                    if (typeof prev === "undefined") {
+                        prev_pos = 0;
+                    } else {
+                        prev_pos = items.indexOf(prev.id);
+                    }
+
+                    var delta = pos - prev_pos;
+
+                    prev_msg += prev_pos;
+                    msg2 += "\nDelta: " + delta;
+                    msg2 += "\n" + move_url;
+                    msg2 += "\n" + query;
+                    msg2 += "\n" + ids;
+                    msg2 += "\n" + prev_msg;
+                    $.post(move_url, { delta: delta, item_id: a_id});
+                    $(this).sortable("refresh");
+                }
+            });            
+	    });
+	    </script>
+    </metal:javascriptslot>
+</head>
+
+<body tal:define="errors options/state/getErrors">
+    <metal:main fill-slot="main">
+        <tal:protect tal:condition="python: not checkPermission('List folder contents', here)"
+                     tal:replace="here/raiseUnauthorized" />
+
+        <metal:main_macro define-macro="main">
+            <metal:pic_sorter_macro define-macro="pic_sorter"
+                                    tal:define="imgs python:context.getFolderContents({'portal_type':'Image'});
+                                                videos python:view.has_videos()">
+
+            <h1 class="documentFirstHeading" i18n:translate="">Media</h1>
+            <p i18n:translate="">Drag and drop images to change their order on the gallery.</p>
+
+            <tal:sortable tal:condition="imgs">
+            <div class="row">            
+                <h2>Imagenes</h2>
+                <ul class="sortable-media">
+                    <!-- images -->
+                    <tal:items tal:repeat="item imgs">
+                    <li class="ui-state-default"
+                           tal:define="item_id item/getId|item/id;
+                                       item_url item/getURL|item/absolute_url;"
+                                       tal:attributes="id string:sortable-${item_id};
+                                       class string:sort-${repeat/item/index}">
+	                    <a href=""
+                           tal:define="item_title_or_id item/pretty_title_or_id;
+                                       item_description item/Description;"
+                           tal:attributes="href string:${item_url}/view;
+                                           id string:folder-contents-item-${item_id};"
+                           class="draggable-item">
+                            <img src="" alt="" title=""
+                                 tal:attributes="src string:${item_url}/image_thumb;
+                                                 alt item_title_or_id;
+                                                 title item_description;" />
+                        </a>
+                        <a class="btn success" 
+                           tal:attributes="href string:${item_url}/edit">Editar</a>
+                    </li>
+                    </tal:items>
+                </ul>
+            </div>
+            </tal:sortable>
+
+            <tal:sortable tal:condition="videos">
+            <div class="row">
+                <h2>Videos</h2>
+                <ul class="sortable-media">
+                    <!-- images -->
+                    <tal:items tal:repeat="video videos">
+                    <li class="ui-state-default"
+                           tal:define="item python:video['obj'];
+                                       item_id item/getId|item/id;
+                                       item_url item/getURL|item/absolute_url;"
+                                       tal:attributes="id string:sortable-${item_id};
+                                       class string:sort-${repeat/video/index}">
+	                    <a href=""
+                           tal:define="item_title_or_id item/pretty_title_or_id;
+                                       item_description item/Description;"
+                           tal:attributes="href string:${item_url}/view;
+                                           id string:folder-contents-item-${item_id};"
+                           class="draggable-item">
+                            <img src="" alt="" title=""
+                                 tal:attributes="src python:video['url'];
+                                                 alt item_title_or_id;
+                                                 title item_description;" />
+                        </a>
+                        <a class="btn success" 
+                           tal:attributes="href string:${item_url}/edit">Editar</a>
+                    </li>
+                    </tal:items>
+                </ul>
+            </div>
+            </tal:sortable>
+
+            <p class="discreet"
+               i18n:domain="atcontenttypes"
+               i18n:translate="text_no_albums_uploaded"
+               tal:condition="python:not imgs">
+                No images uploaded yet.
+            </p>
+
+            </metal:pic_sorter_macro>
+        </metal:main_macro>
+    </metal:main>
+</body>
+</html>

@@ -29,6 +29,8 @@ from zope.interface import alsoProvides, noLongerProvides
 
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone.directives import dexterity
+
 grok.templatedir("templates")
 
 
@@ -52,6 +54,34 @@ class NITF_View(View):
     grok.name("nota")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
+
+class Media(dexterity.DisplayForm):
+    grok.context(INITF)
+    grok.require('cmf.ModifyPortalContent')
+    grok.layer(ITelesurLayer)
+
+    def has_videos(self):
+        view = getMultiAdapter((self.context, self.request), name='nota')
+        videos = []        
+        if view:
+            context_path = '/'.join(self.context.getPhysicalPath())
+            query = {'Type': ('Link',)}
+            query['path'] = {'query': context_path,
+                             'depth': 1, }
+            query['sort_on'] = 'getObjPositionInParent'
+            query['limit'] = None
+                        
+            results = self.context.getFolderContents(contentFilter=query, batch=False,
+                                            b_size=10, full_objects=False)
+            
+            for link in results:
+                link_obj = link.getObject()
+                annotations = IAnnotations(link_obj)
+                is_video = annotations.get('thumbnail_pequeno', None)
+                if is_video:
+                    videos.append({'obj':link, 'url':link_obj.absolute_url()+'/@@thumbnail_mediano'})
+
+        return videos
 
 
 class Folder_Summary_View(grok.View):
