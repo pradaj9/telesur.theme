@@ -142,9 +142,12 @@ class ContentButtonsViewlet(grok.Viewlet):
         editActions = context_state.actions('object_buttons')
         editActionsIds = {}
         actions = []
-        wf_def = self.context.portal_workflow.getWorkflowsFor(self.context)[0]
-        review_state = self.context.portal_workflow.getStatusOf(wf_def.getId(),
-            self.context)['review_state']
+        review_state = None
+        workflows = self.context.portal_workflow.getWorkflowsFor(self.context)
+        if workflows:
+            wf_def = workflows[0]
+            review_state = self.context.portal_workflow.getStatusOf(
+            wf_def.getId(), self.context)['review_state']
         if review_state == "published":
             for action in editActions:
                 editActionsIds[action['id']] = action

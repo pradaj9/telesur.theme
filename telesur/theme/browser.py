@@ -232,7 +232,20 @@ class ArticleControl(grok.View):
     security = ClassSecurityInfo()
 
     security.declarePublic('can_be_promoted')
-
+    security.declarePublic('is_published')
+    
+    def is_published(self):
+        workflowTool = getToolByName(self.context, 'portal_workflow')
+        workFlow = workflowTool.getWorkflowsFor(self.context)
+        state = None
+        if workFlow:
+            wf_def = workFlow[0]
+            status = self.context.portal_workflow.getStatusOf(wf_def.getId(),
+                self.context)
+            if status:
+                state = status["review_state"]
+        return state == "published"
+    
     def can_be_promoted(self, atype):
         return not self.already_marked(self.context, atype)
 

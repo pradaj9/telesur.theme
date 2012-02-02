@@ -43,6 +43,10 @@ class Fixture(PloneSandboxLayer):
         self.applyProfile(portal, 'collective.routes:default')
         self.applyProfile(portal, 'telesur.api:default')
         self.applyProfile(portal, 'telesur.theme:default')
+        
+        #adding the workflow to the container content type
+        types = ('Container', 'collective.nitf.content')
+        wf.setChainForPortalTypes(types, 'simple_publication_workflow')
 
 
 FIXTURE = Fixture()
@@ -101,7 +105,16 @@ def setupTestContent(test):
     test.news3 = test.folder['news-3']
     test.news3.section = u'Latinoamérica'
     test.news3.setEffectiveDate('2011/10/31')
+    createObject(test.folder, 'collective.nitf.content', 'news-4',
+            title='News Test 4')
+    test.news4 = test.folder['news-4']
+    test.news4.section = u'Latinoamérica'
+    test.news4.setEffectiveDate('2011/11/30')
+    
     test.news1.reindexObject()
     test.news2.reindexObject()
     test.news3.reindexObject()
+    test.news4.reindexObject()
     transaction.commit()
+    wf = getattr(test.portal, 'portal_workflow')
+    wf.doActionFor(test.news4, "publish")

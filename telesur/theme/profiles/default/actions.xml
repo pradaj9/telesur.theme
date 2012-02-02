@@ -7,7 +7,8 @@
    <property name="description"></property>
    <property name="url_expr">string:${object_url}/@@mark-outstanding-article</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('outstanding')</property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('outstanding') and 
+     path('object/@@article-control').is_published()</property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>
@@ -19,7 +20,8 @@
    <property name="description"></property>
    <property name="url_expr">string:${object_url}/@@mark-primary-article</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('primary')</property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('primary') and 
+     path('object/@@article-control').is_published()</property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>
@@ -31,7 +33,8 @@
    <property name="description"></property>
    <property name="url_expr">string:${object_url}/@@mark-secondary-article</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('secondary')</property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('secondary') and 
+    path('object/@@article-control').is_published() </property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>
@@ -43,7 +46,8 @@
    <property name="description"></property>
    <property name="url_expr">string:${object_url}/@@mark-section-article</property>
    <property name="icon_expr"></property>
-   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('section')</property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').can_be_promoted('section') and 
+     path('object/@@article-control').is_published()</property>
    <property name="permissions">
     <element value="Modify portal content"/>
    </property>

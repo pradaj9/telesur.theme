@@ -312,8 +312,19 @@ class MarkNewsFunctionalTest(unittest.TestCase):
         self.browser.handleErrors = False
         browserLogin(self.portal, self.browser)
 
-    def test_actions_are_visible(self):
+    def test_actions_are_not_visible(self):
+        #the article isn't published
         self.browser.open(self.news1.absolute_url())
+        self.failIf('@@mark-outstanding-article' in self.browser.contents)
+        self.failIf('@@mark-primary-article' in self.browser.contents)
+        self.failIf('@@mark-secondary-article' in self.browser.contents)
+        self.failIf('@@mark-section-article' in self.browser.contents)
+    
+    def test_actions_are_visible(self):
+        #the article isn't published
+        
+        self.browser.open(self.news4.absolute_url())
+        self.browser.getLink("Publish").click()
         self.failUnless('@@mark-outstanding-article' in self.browser.contents)
         self.failUnless('@@mark-primary-article' in self.browser.contents)
         self.failUnless('@@mark-secondary-article' in self.browser.contents)
@@ -321,6 +332,7 @@ class MarkNewsFunctionalTest(unittest.TestCase):
 
     def test_links_hide(self):
         self.browser.open(self.news1.absolute_url())
+        self.browser.getLink("Publish").click()
         #XXX: Encontrar el encoding apropiado para "sección"
         self.browser.getLink("Marcar como nota de secci�n").click()
         self.failUnless('@@mark-outstanding-article' in self.browser.contents)
@@ -345,7 +357,7 @@ class MarkNewsFunctionalTest(unittest.TestCase):
         self.failUnless('@@mark-primary-article' in self.browser.contents)
         self.failUnless('@@mark-secondary-article' in self.browser.contents)
         self.failIf('@@mark-section-article' in self.browser.contents)
-
+    
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
