@@ -1203,3 +1203,9 @@ p.iconos-portada span.icono {
 .portaltype-link #edit-bar {
     margin-top: 34px;
 }
+
+/* fixing firefox issue with search bar*/
+#portal-searchbox .LSBox input.searchField {
+    -moz-appearance: none;
+    width: 105px;
+}
