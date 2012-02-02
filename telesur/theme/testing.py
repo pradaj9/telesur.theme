@@ -116,5 +116,3 @@ def setupTestContent(test):
     test.news3.reindexObject()
     test.news4.reindexObject()
     transaction.commit()
-    wf = getattr(test.portal, 'portal_workflow')
-    wf.doActionFor(test.news4, "publish")
