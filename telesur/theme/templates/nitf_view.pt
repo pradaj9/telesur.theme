@@ -17,6 +17,11 @@
 <metal:main fill-slot="content-core"
     tal:define="portal_api nocall:context/@@portal_api;
                 json_url python:portal_api.get_first_video_for_container(context);">
+        <div id="colabs" tal:condition="context/contributors">
+            <tal:block tal:repeat="colab context/contributors">
+                <span tal:content="colab"></span><tal:last tal:condition="not:python:repeat['colab'].end">,</tal:last>
+            </tal:block>
+        </div>
         <div id="media-container" class="row">
             <div id="media-data" class="cell width-video position-video">
                 <tal:hasvideo condition="not:json_url">
@@ -74,12 +79,12 @@
         </div>
 
         <div id="parent-fieldname-text" class="stx">
-            <p>
+            <!--<p>
                 <strong  tal:condition="context/location|nothing"
                     tal:content="structure string:${context/location} &mdash; &nbsp;">
                     Location
                 </strong>
-            </p>
+            </p>-->
             <p class="article-description" tal:content="context/description"></p>
             <p tal:content="structure context/text/output|nothing">The body</p>
         </div>
@@ -87,7 +92,7 @@
         <p class="nitfByline" tal:condition="context/byline|nothing"
             i18n:domain="collective.nitf">
             <span i18n:translate="">By</span>
-            <span tal:content="context/byline" />
+            <span class="author" tal:content="context/byline" />
         </p>
 
         <fieldset id="related-items" tal:condition="exists:context/relatedItems" i18n:domain="collective.nitf">

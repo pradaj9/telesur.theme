@@ -28,6 +28,9 @@ body div {	 /* Eliminar todo el bloque */
 	font-family:Arial, Helvetica, sans-serif;
 }
 
+.author {
+    text-transform: capitalize;    
+}
 /* COMMON LAYOUT */
 #telesur-container {
 	background: #fff;	/* Modificar */
@@ -786,23 +789,30 @@ body div {	 /* Eliminar todo el bloque */
 	margin:10px 10px 0 0;
     padding: 8px 5px;
 }
-#notas-relacionadas {
+#notas-relacionadas, 
+#files-listing {
 	width:620px;
 	height:auto;
 	display:block;
 	clear:both;
 }
-#notas-relacionadas ul {
+#notas-relacionadas ul,
+#files-listing ul,
+#comentarios-nota ul {
 	width:610px;
 	height:auto;
 	float:left;
 	margin-bottom:20px;
 	padding:0;
 	list-style:none;
-	border-top: solid 2px #B40200;
-	border-bottom: solid 2px #B40200;
 }
-#notas-relacionadas li a {
+#notas-relacionadas h2,
+#files-listing h2,
+#comentarios-nota h2{
+	border-bottom: solid 1px #B40200;
+	}
+#notas-relacionadas li a,
+#files-listing li a {
 	width:610px;
 	height:auto;
 	line-height:32px;
