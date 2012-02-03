@@ -1,0 +1,3 @@
+<div id="telesur-live-signal-link">
+    <a tal:attributes="href python:viewlet.url">Live Signal</a>
+</div>
