@@ -13,9 +13,14 @@
                 css:content-children="#content-core > div.breadcumb" />
             <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />
 
+
+          <!-- author -->
+          <rules css:if-content=".nitfByline">
+            <replace css:theme="#byline .author" css:content=".nitfByline .author" />
+          </rules>
           <!-- colaboradores -->
           <replace css:theme-children="#colabs"
-              css:content-children="#content .documentContributors" />
+              css:content-children="#colabs" />
 
 
             <rules css:if-content="#content #media-container">
@@ -50,6 +55,19 @@
                 <after css:theme="#media-container" css:content=".contenttreeWindow" />
                 <after css:theme="#media-container" css:content="#form-widgets-IAddableVideos-relatedVideos-autocomplete ~ script" />
             </rules>
+
+          <!-- files listing -->
+          <rules css:if-content=".nitf-content-listing .contenttype-file">
+            <replace css:theme-children="#files-listing ul">
+              <xsl:for-each css:select=".summary">
+                <xsl:if css:test=".contenttype-file">
+                  <li>
+                    <xsl:copy-of select="."/>
+                  </li>
+                </xsl:if>
+              </xsl:for-each>
+            </replace>
+          </rules>
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">

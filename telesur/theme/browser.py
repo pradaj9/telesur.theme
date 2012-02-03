@@ -710,7 +710,7 @@ class Opinion_InterviewView(grok.View):
         }
         query['sort_on'] = 'effective'
         query['sort_order'] ='reverse'        
-        query['genre'] = 'Opinion'
+        query['genre'] = 'Interview'
         section = self.section()
 
         if section:
@@ -793,7 +793,7 @@ class Opinion_ContextView(grok.View):
         }
         query['sort_on'] = 'effective'
         query['sort_order'] ='reverse'        
-        query['genre'] = 'Opinion'
+        query['genre'] = 'Background'
         section = self.section()
 
         if section:
