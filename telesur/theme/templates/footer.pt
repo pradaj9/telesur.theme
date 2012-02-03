@@ -60,7 +60,7 @@
                  tal:attributes="href string:${portal_url}/opinion/entrevistas">Entrevistas</a>
             </li>
             <li>
-              <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/#!lista/noticia/secciones">Video</a>
+              <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/#!es/lista/noticia/secciones">Video</a>
             </li>
             <li>
               <a href="#"

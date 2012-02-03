@@ -11,7 +11,7 @@
         <metal:column_two fill-slot="column_two_slot"></metal:column_two>        
         <metal:main fill-slot="main">
                 <div id="google-map-big">
-                    <iframe width="1024px" height="780px" src="http://telesur.kgdesignes.net/componentes/mapa.html?width=1000"></iframe>
+                    <iframe width="1024" height="780" src="http://kgdesignes.tlsur.net/componentes/mapa.html?width=1000"></iframe>
                 </div>
         </metal:main>
     </body>
