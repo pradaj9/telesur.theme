@@ -1211,3 +1211,18 @@ p.iconos-portada span.icono {
     -moz-appearance: none;
     width: 105px;
 }
+
+/* live signal style*/
+
+#telesur-live-signal {
+    margin:auto;
+}
+
+#telesur-live-signal-buttons {
+    margin-top: 3px;
+    margin-left: 15px;
+}
+
+#telesur-live-signal-buttons td {
+    padding-right: 5px;
+}

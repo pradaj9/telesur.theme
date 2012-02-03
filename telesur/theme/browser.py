@@ -827,3 +827,12 @@ class Schedule(grok.View):
     grok.context(Interface)
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
+
+class LiveSignal(grok.View):
+    """ Programación del canal.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('live-signal')
+    grok.template('live_signal')
+    grok.require('zope2.View')
