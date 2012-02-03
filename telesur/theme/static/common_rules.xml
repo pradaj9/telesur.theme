@@ -26,6 +26,7 @@
         css:content="#portal-personaltools-wrapper" />
     <after css:theme-children="#telesur-header"
         css:content="#portal-searchbox" />
+    <copy css:theme="#nav-9 a" css:content="#telesur-live-signal-link a" attributes="href"/>
 
     <!-- publicidad -->
     <!-- XXX: ¿no sería mejor incluir esto en las plantillas directamente? -->

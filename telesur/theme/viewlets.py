@@ -6,6 +6,7 @@ from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.component import getMultiAdapter
 from zope.security import checkPermission
+from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
@@ -244,6 +245,20 @@ class MobileNavigation(grok.Viewlet):
                 else:
                     news_dict = {}
 
+class LiveSignalLinkViewlet(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.livesignal")
+    grok.require("zope2.View")
+    grok.template("live_signal")
+    grok.viewletmanager(IPortalFooter)
+
+    def update(self):
+        site = getSite()
+        self.url = ""
+        if site and 'el-canal' in site.keys() and \
+            'senal-en-vivo' in site['el-canal'].keys():
+            self.url = site['el-canal']['senal-en-vivo'].absolute_url()
 
 class SubSectionList(grok.Viewlet):
     grok.context(Interface)

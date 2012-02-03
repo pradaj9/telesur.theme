@@ -76,13 +76,6 @@
       <script onreadystatechange="try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; }" onload="try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; }" type="text/javascript" 
       src="http://embeddedplayer.visionip.tv/data/js/flashPlayer.js "> try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; } </script>
       <!--END embedcode - Telesur Live and Telesur Radio - 10 June 2011 - Powered by VisionIPTV Ltd--> 
-    
-    
-    
-    
-    
-    
-    
     </tal:main-macro>
 </metal:main>
 
