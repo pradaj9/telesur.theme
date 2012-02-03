@@ -368,7 +368,9 @@ h1 a {
 #media-data {
     overflow: hidden;
     }
-#media-data .discreet {
+#media-data .discreet,
+.video-image-container .discreet,
+.video-widget .discreet{
     padding-top:10px;
 }
 
@@ -597,7 +599,10 @@ h1 a {
     position: relative;
     width: 474px;
     }
-
+.scrollable-video-galery .items {
+    width:2000em;
+    position:absolute;
+}
 .scrollable-video-galery .thumb-image {
     margin: 10px 0 10px 10px;
     border: 1px solid #CCCCCC;

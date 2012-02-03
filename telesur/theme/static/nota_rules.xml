@@ -68,6 +68,9 @@
               </xsl:for-each>
             </replace>
           </rules>
+          <rules if-content="not(//*[@class='nitf-content-listing']/span/a[contains(@class,'contenttype-file')])">
+            <drop css:theme="#files-listing"/>
+          </rules>
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">

@@ -130,6 +130,7 @@
                                                     Item Title
                                                 </script>
                                             </tal:video>
+                                            <p class="discreet" tal:content="item_obj/Description"></p>
                                         </div>
                                         <div class="video-widget not-principal">
                                             <tal:video tal:define="video_url_big python:video_api.get_video_widget_url('', 480, {'archivo_url': link_api.get('archivo_url')})">

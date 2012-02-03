@@ -24,7 +24,7 @@
                     <div class="notas-sencilla-grande visualIEFloatFix">
                         <tal:obj tal:define="nota_obj python:nota.getObject()">                    
                         <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
-                        <p class="autor">Autor: <span tal:content="nota/byline">autor</span></p>
+                        <p class="autor" tal:condition="nota/byline">Por: <span tal:content="nota/byline">autor</span></p>
                         <p class="nota-descripcion" tal:content="nota_obj/description"></p>
                         </tal:obj>
                     </div>
