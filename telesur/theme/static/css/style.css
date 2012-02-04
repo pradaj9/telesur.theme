@@ -41,6 +41,12 @@
     margin:15px 0px;
 }
 
+#envivo #nav-8 {
+    display:none;
+}
+.searchSection {
+    display:none;
+}
 /*content styles*/
 h1,
 h2,
@@ -963,6 +969,7 @@ h1 a {
 #ultimos-programas-widget .ultimos-programas-wrapper {
     border: 1px solid #666;
     padding: 0px;
+    margin-top:11px;
     }
 
 /**
