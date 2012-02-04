@@ -331,7 +331,7 @@ class ArticleControl(grok.View):
         existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
                            sort_on='effective')
 
-        if len(existing) > 4:
+        if len(existing) > 3:
             elem = existing[0].getObject()
             self.mark_secondary(elem)
 

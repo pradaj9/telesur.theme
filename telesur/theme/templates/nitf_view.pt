@@ -131,6 +131,11 @@
                                                 </script>
                                             </tal:video>
                                             <p class="discreet" tal:content="item_obj/Description"></p>
+                                            <div class="download-links" tal:define="video_link python:link_api.get('archivo_url');
+                                                                                    audio_link python:link_api.get('audio_url');">
+                                                <a tal:condition="video_link" class="download-video" tal:attributes="href video_link"></a>
+                                                <a tal:condition="audio_link" class="download-audio" tal:attributes="href audio_link"></a>
+                                            </div>
                                         </div>
                                         <div class="video-widget not-principal">
                                             <tal:video tal:define="video_url_big python:video_api.get_video_widget_url('', 480, {'archivo_url': link_api.get('archivo_url')})">

@@ -18,6 +18,10 @@
           <rules css:if-content=".nitfByline">
             <replace css:theme="#byline .author" css:content=".nitfByline .author" />
           </rules>
+          <rules if-content="not(//*[@class='nitfByline'])">
+            <drop css:theme="#byline" />
+          </rules>          
+
           <!-- colaboradores -->
           <replace css:theme-children="#colabs"
               css:content-children="#colabs" />
