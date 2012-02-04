@@ -78,10 +78,10 @@
       </before>
     </rules>
 
-        <!-- XXX: ¿eliminar? -->
-        <before css:theme-children=".telesur-right-sidebar.first-sidebar">
-          <div class="rectangle widget-container"></div>
-        </before>
+    <!-- XXX: ¿eliminar? -->
+    <before css:theme-children=".telesur-right-sidebar.first-sidebar">
+      <div class="rectangle widget-container"></div>
+    </before>
 
     <!--<drop css:content="#portaltab-index_html, #portaltab-noticias" />-->
     <!-- MENU -->
