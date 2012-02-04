@@ -5,19 +5,12 @@ jq(function($) {
     **/
 	$("#images").scrollable({ circular: true, mousewheel: true });
 	
-	$(".image-counter .counter").prepOverlay({
-            subtype:'inline',
-            target: '#mediabox'
-    });
-    
-    $("#images .items img").hover(
-        function(){
-            $(this).siblings('.info').slideDown();
-        },
-        function(){
-            $(this).siblings('.info').slideUp();        
-        }
-    );
+	if ($('#mediabox')[0] !== undefined) {
+	    $(".image-counter .counter").prepOverlay({
+                subtype:'inline',
+                target: '#mediabox'
+        });
+    }
     
 
     /**

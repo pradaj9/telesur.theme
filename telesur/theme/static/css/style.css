@@ -198,7 +198,7 @@ h1 a {
 
 #widget-carousel .carousel-item ul a {
     margin-left: -5px;
-    font-size: 13px;
+    font-size: 12px;
     }
 
 #widget-carousel .next {
@@ -227,7 +227,7 @@ h1 a {
 
 #telesur-titulares h2 {
     font-size: 16px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     }
 
 #telesur-titulares .carousel-box {
@@ -281,7 +281,6 @@ h1 a {
     color:#666666;
 }
 #telesur-titulares .titulo-seccion {
-    background-color: #DDD;
     padding: 5px;
     margin: 0px;
     color: #000;
@@ -290,6 +289,9 @@ h1 a {
 #telesur-titulares .titular-content-wrapper {
     padding: 5px;
     }
+#telesur-titulares .titular-content-wrapper .image-video{
+    padding-bottom:5px;
+}
 
 /***
 * SECCIONES
@@ -351,6 +353,11 @@ h1 a {
     height: 18px;
     float: right;
     }
+    
+.template-nota #byline {
+    font-weight:bold;
+    color:#666;
+}
 
 /*listing*/
 #telesur-seccion-listing .notas-sencilla-grande .description-container {
@@ -389,6 +396,8 @@ h1 a {
 .video-image-container .discreet,
 .video-widget .discreet{
     padding-top:10px;
+    color:#666;
+    font-size:12px;
 }
 
 #media-counter .counter-element {
@@ -506,11 +515,13 @@ h1 a {
 #images .info {
     background:transparent url("++theme++telesur.theme/img/transparent.png") scroll repeat 0 0;
     position:absolute;
-    bottom:0px;
-    display:none;
+    bottom: -85px;
+    height: 50px;
 }
 #images .info p {
     color:#FFF;
+    line-height: 1em;
+    padding: 5px 10px;    
 }
 .navibuttons {
     padding-top:15px;
@@ -694,7 +705,7 @@ h1 a {
     }
 
 .widget-container .widget-title {
-    font-size: 18px;
+    font-size: 16px;
     color: #B40200;
     margin: 0 0 5px 0;
     text-transform: none;
@@ -939,7 +950,8 @@ h1 a {
 * Portlet Ultimos Programas
 **/
 #ultimos-programas-widget .ultimos-programas-wrapper {
-    border: medium none;
+    border: 1px solid #666;
+    padding: 0px;
     }
 
 /**
@@ -1042,8 +1054,13 @@ h1 a {
 /**
 * FOOTER
 **/
+.footer {
+    padding-top: 10px;
+}
 #footer {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-top: 2px solid #AA1406;
     }
 
 .action-buttons {

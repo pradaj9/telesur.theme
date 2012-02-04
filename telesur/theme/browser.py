@@ -830,6 +830,7 @@ class Schedule(grok.View):
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
+
 class LiveSignal(grok.View):
     """ Señal en vivo del canal.
     """
