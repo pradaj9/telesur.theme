@@ -36,7 +36,7 @@
 
         <replace css:if-content="#telesur-titulares" 
                  css:content="#telesur-titulares"
-                 css:theme="#mas-titulares-widget"/>               
+                 css:theme="#mas-titulares-widget"/>                           
 
     </rules>
 

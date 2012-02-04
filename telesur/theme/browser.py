@@ -392,7 +392,8 @@ def parse_multimedia(obj, thumb=False):
     if results:
         for link in results:
             link_obj = link.getObject()
-            multimedia['obj'] = link_obj            
+            multimedia['obj'] = link_obj
+            multimedia['description'] = link_obj.Description()
             annotations = IAnnotations(link_obj)
             if thumb:
                 is_video = annotations.get('archivo_url', None)
@@ -413,6 +414,7 @@ def parse_multimedia(obj, thumb=False):
             multimedia['url'] = results[0].getObject()
             multimedia['type'] = 'image'
             multimedia['obj'] = results[0].getObject()
+            multimedia['description'] = results[0].Description
 
     return multimedia
 

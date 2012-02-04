@@ -70,6 +70,7 @@
         </rules>
         <rules css:if-content=".template-opinion-context-view">
             <after css:theme="#nota-titular .description-container .description" css:content=".main-article .autor"/>
+            <drop css:theme=".telesur-full-column"/>
         </rules>          
 
         <after css:theme-children="#ultimos-sidebar"

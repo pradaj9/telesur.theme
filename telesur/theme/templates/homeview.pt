@@ -35,6 +35,7 @@
                                    tal:define="img python:multimedia['url']">
                             <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
                         </tal:image>
+                        <p class="discreet" tal:content="python:multimedia['description']"></p>                        
                     </div>
                 </div>
                 <div class="data-article-container cell">

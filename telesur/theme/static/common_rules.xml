@@ -152,9 +152,9 @@
            css:content-children=".portletPopularThreads .portletItem"
            css:theme-children=".mas-comentado"/>
 
-    <!-- Ultimas Noticias -->
+    <!-- mas comentado-->
     <replace css:if-content=".portletPopularThreads"
            css:content-children=".portletPopularThreads .portletItem"
-           css:theme-children=".mas-comentado"/>
+           css:theme-children=".mas-comentado"/>           
 
 </rules>

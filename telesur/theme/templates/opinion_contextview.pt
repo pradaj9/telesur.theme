@@ -38,7 +38,7 @@
                 <div class="data-article-container cell">
                     <div class="description" tal:content="python:outstanding[0].description">
                     </div>
-                    <p class="autor">Autor: <span tal:content="python:outstanding[0].byline">autor</span></p>
+                    <p class="autor" tal:condition="python:outstanding[0].byline">Por: <span tal:content="python:outstanding[0].byline">autor</span></p>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
                         </div>
                         </tal:multimedia>
                         <p class="nota-descripcion" tal:content="nota_obj/description"></p>
-                        <p class="autor">Autor: <span tal:content="nota/byline">autor</span></p>                        
+                        <p class="autor" tal:condition="nota/byline">Por: <span tal:content="nota/byline">autor</span></p>                        
                         </tal:obj>
                     </div>
                </tal:block>
