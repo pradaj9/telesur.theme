@@ -138,7 +138,7 @@ class ContentButtonsViewlet(grok.Viewlet):
         return can_add
 
     def get_actions(self):
-        actionIds = ['nota_secundaria', 'nota_destacada','nota_seccion', 'nota_principal']
+        actionIds = ['nota_destacada', 'nota_principal', 'nota_secundaria','nota_seccion']
         context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
         editActions = context_state.actions('object_buttons')
         editActionsIds = {}
