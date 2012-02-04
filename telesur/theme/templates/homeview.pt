@@ -53,6 +53,19 @@
                             </ul>
                         </div>
                     </tal:related-items>
+                    <tal:multimedia>
+                        <p class="media-icons iconos-portada">
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
+                                 tal:define="has_videos python:view.has_videos(outstanding)"
+                                 tal:condition="has_videos" />
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
+                                 tal:define="has_gallery python:view.has_gallery(outstanding)"
+                                 tal:condition="has_gallery" />
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
+                                 tal:define="has_atachments python:view.has_atachments(outstanding)"
+                                 tal:condition="has_atachments" />
+                        </p>                    
+                    </tal:multimedia>
                 </div>
             </div>
 

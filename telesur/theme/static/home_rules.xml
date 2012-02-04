@@ -26,6 +26,9 @@
 
         <!-- related items -->
         <replace css:theme=".related-items" css:content=".related-items"/>
+        
+        <!--media icons -->
+        <replace css:theme=".media-icons" css:content=".media-icons"/>        
 
         <!-- articles "principal" listing -->
         <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>
