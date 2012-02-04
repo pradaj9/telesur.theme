@@ -55,6 +55,7 @@ class NITF_View(View):
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
 
+
 class Media(dexterity.DisplayForm):
     grok.context(INITF)
     grok.require('cmf.ModifyPortalContent')
@@ -62,7 +63,7 @@ class Media(dexterity.DisplayForm):
 
     def has_videos(self):
         view = getMultiAdapter((self.context, self.request), name='nota')
-        videos = []        
+        videos = []
         if view:
             context_path = '/'.join(self.context.getPhysicalPath())
             query = {'Type': ('Link',)}
@@ -70,16 +71,19 @@ class Media(dexterity.DisplayForm):
                              'depth': 1, }
             query['sort_on'] = 'getObjPositionInParent'
             query['limit'] = None
-                        
-            results = self.context.getFolderContents(contentFilter=query, batch=False,
-                                            b_size=10, full_objects=False)
-            
+
+            results = self.context.getFolderContents(contentFilter=query,
+                                                     batch=False,
+                                                     b_size=10,
+                                                     full_objects=False)
+
             for link in results:
                 link_obj = link.getObject()
                 annotations = IAnnotations(link_obj)
                 is_video = annotations.get('thumbnail_pequeno', None)
                 if is_video:
-                    videos.append({'obj':link, 'url':link_obj.absolute_url()+'/@@thumbnail_mediano'})
+                    videos.append({'obj': link,
+                                   'url': link_obj.absolute_url() + '/@@thumbnail_mediano'})
 
         return videos
 
@@ -117,11 +121,13 @@ class FragmentView(grok.View):
             raise NotFound
         return view()
 
+
 class GoogleMapView(grok.View):
     grok.context(Interface)
     grok.name("mapa")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
+
 
 class Opinion(grok.View):
     """Vista para artículo de opinión.
@@ -165,15 +171,17 @@ class SubscriptionForm(grok.View):
     grok.require("zope2.View")
 
     def processed_form(self):
-        """ Si el formulario es procesado por el sistema de imoko correctamente,
-            hace un redirect a una url indicada en el field 'pagOk' del form.
-            Esta metodo indica si el procesamiento se dio correctamente.
+        """ Si el formulario es procesado por el sistema de imoko
+            correctamente, hace un redirect a una url indicada en el field
+            'pagOk' del form. Esta metodo indica si el procesamiento se dio
+            correctamente.
 
-            En caso de que el proceso de la subscripción falle imoko no hace el
-            redirect sino que muestra el mensaje en una pagina de su servidor.
+            En caso de que el proceso de la subscripción falle imoko no hace
+            el redirect sino que muestra el mensaje en una pagina de su
+            servidor.
 
-            La variable respuesta que es enviada via el redirect tiene un string
-            con un mensaje que es preferible ignorar por cuestiones de
+            La variable respuesta que es enviada via el redirect tiene un
+            string con un mensaje que es preferible ignorar por cuestiones de
             seguridad.
 
             El formulario fue procesado por imoko.
@@ -263,7 +271,7 @@ class ArticleControl(grok.View):
 
     security.declarePublic('can_be_promoted')
     security.declarePublic('is_published')
-    
+
     def is_published(self):
         workflowTool = getToolByName(self.context, 'portal_workflow')
         workFlow = workflowTool.getWorkflowsFor(self.context)
@@ -275,7 +283,7 @@ class ArticleControl(grok.View):
             if status:
                 state = status["review_state"]
         return state == "published"
-    
+
     def can_be_promoted(self, atype):
         return not self.already_marked(self.context, atype)
 
@@ -388,7 +396,7 @@ def parse_multimedia(obj, thumb=False):
     results = obj.getFolderContents(contentFilter=query, batch=False,
                                     b_size=10, full_objects=False)
 
-    multimedia = {'type': None, 'url': None, 'obj':None}
+    multimedia = {'type': None, 'url': None, 'obj': None}
     if results:
         for link in results:
             link_obj = link.getObject()
@@ -417,6 +425,7 @@ def parse_multimedia(obj, thumb=False):
             multimedia['description'] = results[0].Description
 
     return multimedia
+
 
 class HomeView(grok.View):
     """Vista para la home.
@@ -505,7 +514,6 @@ class SectionView(grok.View):
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-
     #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
     # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
     def get_multimedia(self, obj, thumb=False):
@@ -516,26 +524,26 @@ class SectionView(grok.View):
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
-        #annotations
+        # XXX: aca es donde se deberia cambiar lo que devuelve si se usaran
+        # annotations
         criterion = getattr(self.context,
                             'crit__section_ATSimpleStringCriterion', None)
         section_index = ''
         if criterion:
             section_index = criterion.value
         else:
-            #XXX deberiamos tener esto generalizado en una annotation en el objeto
-            #bajo la variable "section"
-            
-            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
-            # y usar el criterio de ahi
+            # XXX: deberiamos tener esto generalizado en una annotation en el
+            # objeto bajo la variable "section"
+
+            # por ahora vamos a buscar las colecciones hijas, el primer
+            # elemento y usar el criterio de ahi
             catalog = getToolByName(self.context, 'portal_catalog')
             folder_path = '/'.join(self.context.getPhysicalPath())
             results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
             if results:
                 criterion = getattr(results[0].getObject(),
                             'crit__section_ATSimpleStringCriterion', None)
-                    
+
             section_index = criterion.value if criterion else ''
 
         return section_index
@@ -544,22 +552,20 @@ class SectionView(grok.View):
 
         catalog = getToolByName(self.context, 'portal_catalog')
 
-        principal = catalog(object_provides= ISectionArticle.__identifier__)
-
         query = {}
         query['object_provides'] = {
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
-        query['sort_order'] ='reverse'
-        query['genre'] = 'Current'        
+        query['sort_order'] = 'reverse'
+        query['genre'] = 'Current'
         section = self.section()
         if section:
             query['section'] = section
 
         existing = catalog.searchResults(query)
 
-        elements = {'outstanding':[], 'secondary':[]}
+        elements = {'outstanding': [], 'secondary': []}
 
         if existing and section:
             for nota in existing:
@@ -574,7 +580,7 @@ class SectionView(grok.View):
         elif existing:
             #no es una seccion, sino una vista global
             elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] =  existing[1:limit]
+            elements['secondary'] = existing[1:limit]
 
         return elements
 
@@ -582,15 +588,14 @@ class SectionView(grok.View):
 class OpinionView(grok.View):
     """Vista para seccion opinion.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
-    #de seccion, se deberia reemplazar por una marker interface que identifique
-    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
-    # una categoria)
+    # XXX: Esta vista utiliza el criterio de una coleccion para buscar
+    # elementos de seccion, se deberia reemplazar por una marker interface que
+    # identifique la seccion (o en su defecto que permita guardar en una
+    # annotation en el objeto una categoria)
     grok.context(Interface)
     grok.name('opinion-view')
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
-
 
     #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
     # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
@@ -610,18 +615,18 @@ class OpinionView(grok.View):
         if criterion:
             section_index = criterion.value
         else:
-            #XXX deberiamos tener esto generalizado en una annotation en el objeto
-            #bajo la variable "section"
-            
-            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
-            # y usar el criterio de ahi
+            # XXX: deberiamos tener esto generalizado en una annotation en el
+            # objeto bajo la variable "section"
+
+            # por ahora vamos a buscar las colecciones hijas, el primer
+            # elemento y usar el criterio de ahi
             catalog = getToolByName(self.context, 'portal_catalog')
             folder_path = '/'.join(self.context.getPhysicalPath())
             results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
             if results:
                 criterion = getattr(results[0].getObject(),
                             'crit__section_ATSimpleStringCriterion', None)
-                    
+
             section_index = criterion.value if criterion else ''
 
         return section_index
@@ -634,7 +639,7 @@ class OpinionView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
-        query['sort_order'] ='reverse'
+        query['sort_order'] = 'reverse'
         query['genre'] = 'Opinion'
         section = self.section()
 
@@ -643,7 +648,7 @@ class OpinionView(grok.View):
 
         existing = catalog.searchResults(query)
 
-        elements = {'articles':[]}
+        elements = {'articles': []}
 
         if existing and section:
             for nota in existing:
@@ -653,17 +658,18 @@ class OpinionView(grok.View):
                     break
         elif existing:
             #no es una seccion, sino una vista global
-            elements['articles'] =  existing[:limit]
+            elements['articles'] = existing[:limit]
 
         return elements
+
 
 class Opinion_InterviewView(grok.View):
     """Vista para seccion opinion.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
-    #de seccion, se deberia reemplazar por una marker interface que identifique
-    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
-    # una categoria)
+    # XXX: Esta vista utiliza el criterio de una coleccion para buscar
+    # elementos de seccion, se deberia reemplazar por una marker interface que
+    # identifique la seccion (o en su defecto que permita guardar en una
+    # annotation en el objeto una categoria)
     grok.context(Interface)
     grok.name('opinion-interview-view')
     grok.layer(ITelesurLayer)
@@ -687,18 +693,18 @@ class Opinion_InterviewView(grok.View):
         if criterion:
             section_index = criterion.value
         else:
-            #XXX deberiamos tener esto generalizado en una annotation en el objeto
-            #bajo la variable "section"
-            
-            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
-            # y usar el criterio de ahi
+            # XXX: deberiamos tener esto generalizado en una annotation en el
+            # objeto bajo la variable "section"
+
+            # por ahora vamos a buscar las colecciones hijas, el primer
+            # elemento y usar el criterio de ahi
             catalog = getToolByName(self.context, 'portal_catalog')
             folder_path = '/'.join(self.context.getPhysicalPath())
             results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
             if results:
                 criterion = getattr(results[0].getObject(),
                             'crit__section_ATSimpleStringCriterion', None)
-                    
+
             section_index = criterion.value if criterion else ''
 
         return section_index
@@ -711,7 +717,7 @@ class Opinion_InterviewView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
-        query['sort_order'] ='reverse'        
+        query['sort_order'] = 'reverse'
         query['genre'] = 'Interview'
         section = self.section()
 
@@ -720,7 +726,7 @@ class Opinion_InterviewView(grok.View):
 
         existing = catalog.searchResults(query)
 
-        elements = {'outstanding':[], 'secondary':[]}
+        elements = {'outstanding': [], 'secondary': []}
 
         if existing and section:
             for nota in existing:
@@ -735,7 +741,7 @@ class Opinion_InterviewView(grok.View):
         elif existing:
             #no es una seccion, sino una vista global
             elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] =  existing[1:limit]                
+            elements['secondary'] = existing[1:limit]
 
         return elements
 
@@ -770,18 +776,18 @@ class Opinion_ContextView(grok.View):
         if criterion:
             section_index = criterion.value
         else:
-            #XXX deberiamos tener esto generalizado en una annotation en el objeto
-            #bajo la variable "section"
-            
-            #por ahora vamos a buscar las colecciones hijas, el primer elemento 
-            # y usar el criterio de ahi
+            # XXX: deberiamos tener esto generalizado en una annotation en el
+            # objeto bajo la variable "section"
+
+            # por ahora vamos a buscar las colecciones hijas, el primer
+            # elemento y usar el criterio de ahi
             catalog = getToolByName(self.context, 'portal_catalog')
             folder_path = '/'.join(self.context.getPhysicalPath())
             results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
             if results:
                 criterion = getattr(results[0].getObject(),
                             'crit__section_ATSimpleStringCriterion', None)
-                    
+
             section_index = criterion.value if criterion else ''
 
         return section_index
@@ -794,7 +800,7 @@ class Opinion_ContextView(grok.View):
                 'query': [INITF.__identifier__]
         }
         query['sort_on'] = 'effective'
-        query['sort_order'] ='reverse'        
+        query['sort_order'] = 'reverse'
         query['genre'] = 'Background'
         section = self.section()
 
@@ -803,7 +809,7 @@ class Opinion_ContextView(grok.View):
 
         existing = catalog.searchResults(query)
 
-        elements = {'outstanding':[], 'secondary':[]}
+        elements = {'outstanding': [], 'secondary': []}
 
         if existing and section:
             for nota in existing:
@@ -818,7 +824,7 @@ class Opinion_ContextView(grok.View):
         elif existing:
             #no es una seccion, sino una vista global
             elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] =  existing[1:limit]                
+            elements['secondary'] = existing[1:limit]
 
         return elements
 
@@ -829,6 +835,7 @@ class Schedule(grok.View):
     grok.context(Interface)
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
+
 
 class LiveSignal(grok.View):
     """ Señal en vivo del canal.
@@ -850,8 +857,8 @@ class BatchListUtils(grok.View):
         return self
 
     def two_per_iter_list(self, data):
-        division = [x for x in range(len(data)) if x%2 == 0]
-        obj_list = [(data[x], len(data)-1 > x and data[x+1]) for x in division]
+        division = [x for x in range(len(data)) if x % 2 == 0]
+        obj_list = [(data[x], len(data) - 1 > x and data[x + 1]) for x in division]
         return obj_list
 
 
