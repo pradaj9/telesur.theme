@@ -113,9 +113,13 @@ h1 a {
 }
 
 .articles-data .title {
-    padding-left: 0px;
+    padding-left: 15px;
     padding-bottom:15px;
     }
+
+.related-items .title {
+    padding-left: 0px;
+}    
 
 .category-data .category {
     color: #AC1206;
