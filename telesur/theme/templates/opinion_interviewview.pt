@@ -42,34 +42,45 @@
                 </div>
             </div>
 
-            <div class="article-listing row">
-            <!-- dirty 2 block list  
-                tal:define="division python:[x for x in range(len(objs)) if x%2 == 0];
-                            list python:[(objs[x], len(objs)-1 > x and objs[x+1]) for x in division]
-                "
-            -->
-                <tal:block tal:repeat="nota python:articles['secondary']">
-                    <div class="notas-sencilla-grande visualIEFloatFix">
-                        <p class="subtitle" tal:content="python:nota.subtitle"></p>                    
-                        <tal:obj tal:define="nota_obj python:nota.getObject()">                    
-                        <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
-                        <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
-                        <div class="nota-sencilla-grande-thumb" tal:condition="python:multimedia['url']">
-                            <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
-                                        tal:define="img python:multimedia['url']">
-                                <img src="" tal:attributes="src string:${img}" />
-                            </tal:thumb>
-                            <tal:image tal:condition="python:multimedia['type'] == 'image'"
-                                       tal:define="img python:multimedia['url']">
-                                <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
-                            </tal:image>  
-                        </div>
-                        </tal:multimedia>
-                        <p class="nota-descripcion" tal:content="nota_obj/description"></p>
-                        </tal:obj>
+            <div class="article-listing row" tal:define="secondary_list_raw python:articles['secondary'];
+                                                         batcher context/@@batch_list_utils;
+                                                         secondary_list python:batcher.two_per_iter_list(secondary_list_raw)">
+                <tal:block tal:repeat="notas_iter secondary_list">
+                    <div class="row news-row">
+                        <tal:notas tal:repeat="nota notas_iter">
+                            <tal:block tal:condition="nota">                        
+                            <tal:obj tal:define="nota_obj python:nota.getObject()">
+                                <div class="notas-sencilla-grande" tal:attributes="class python:'notas-sencilla-grande ' + ('end' if repeat['nota'].end else 'start')">
+                                    <div class="nota-wrapper">
+                                        <p class="subtitle" tal:content="python:nota.subtitle"></p>
+                                        <h3><a tal:attributes="href nota/getURL" tal:content="nota/Title"></a></h3>
+                                        <tal:multimedia tal:define="multimedia python:view.get_multimedia(nota, thumb=True)">
+                                        <div class="media-thumb-container">
+                                            <div class="nota-sencilla-grande-thumb" 
+                                                 tal:condition="python:multimedia['url']">
+                                                <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                                                            tal:define="img python:multimedia['url']">
+                                                    <img src="" tal:attributes="src string:${img}" />
+                                                </tal:thumb>
+                                                <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                                                           tal:define="img python:multimedia['url']">
+                                                    <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                                                </tal:image>  
+                                            </div>
+                                        </div>
+                                        </tal:multimedia>
+                                        <div>
+                                            <p class="nota-descripcion" tal:content="nota_obj/description"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tal:obj>
+                            </tal:block>
+                        </tal:notas>
                     </div>
                </tal:block>
             </div>
+            
         </div>
 
     </tal:main-macro>

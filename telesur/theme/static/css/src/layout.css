@@ -295,31 +295,47 @@ body div {	 /* Eliminar todo el bloque */
 	border:none;
 	font-size:11px;
 }
+
+.article-listing .news-row{
+    padding-bottom:15px;
+    margin-top:15px;
+    border-bottom:2px solid #AC1206;
+}
 .notas-sencilla-grande  {
 	width:340px;
 	height:245px;
 	float:left;
 	display:block;
-	border-bottom: solid 2px #AC1206;
-	border-right:solid 2px #AC1206;
-	margin:3px 0 0 5px;
+	border-right:solid 1px #AC1206;
+	margin:0px;
+}
+.article-listing .news-row .end {
+    border-right:medium none;
+}
+.notas-sencilla-grande .nota-wrapper {
+    padding-left:15px;
+    padding-right:15px;
 }
 .notas-sencilla-grande .nota-sencilla-grande-thumb {
     /*
     */
 	width:144px;
-	height:96px;
+	height:80px;
 	background:#fff;
 	display:block;
 	float:left;
 	margin:0 5px 5px 0;
-    text-align: center;
+    text-align: left;
     overflow:hidden;
 }
 .notas-sencilla-grande h3 {
     line-height: 18px;
     font-size: 18px;
     height: 54px;
+}
+.notas-sencilla-grande .media-thumb-container {
+    float:left;
+    height:175px;
 }
 #telesur-right-sidebar-small > div {
     display: block;

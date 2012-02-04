@@ -838,3 +838,17 @@ class LiveSignal(grok.View):
     grok.name('live-signal')
     grok.template('live_signal')
     grok.require('zope2.View')
+
+class BatchListUtils(grok.View):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('batch_list_utils')
+    grok.require('zope2.View')
+
+    def render(self):
+        return self
+
+    def two_per_iter_list(self, data):
+        division = [x for x in range(len(data)) if x%2 == 0]
+        obj_list = [(data[x], len(data)-1 > x and data[x+1]) for x in division]
+        return obj_list
