@@ -839,6 +839,7 @@ class LiveSignal(grok.View):
     grok.template('live_signal')
     grok.require('zope2.View')
 
+
 class BatchListUtils(grok.View):
     grok.context(Interface)
     grok.layer(ITelesurLayer)
@@ -852,3 +853,13 @@ class BatchListUtils(grok.View):
         division = [x for x in range(len(data)) if x%2 == 0]
         obj_list = [(data[x], len(data)-1 > x and data[x+1]) for x in division]
         return obj_list
+
+
+class DondeDistribucion(grok.View):
+    """ Señal en vivo del canal.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('donde-distribucion')
+    grok.template('donde_distribucion')
+    grok.require('zope2.View')

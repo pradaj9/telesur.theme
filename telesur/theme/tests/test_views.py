@@ -40,7 +40,7 @@ class BrowserLayerTest(unittest.TestCase):
             return None
 
     def test_views_registered(self):
-        views = ['nota', 'folder_summary_view', 'schedule', 'live-signal']
+        views = ['nota', 'folder_summary_view', 'schedule', 'live-signal', 'donde-distribucion']
         registered = [v.name for v in registration.getViews(ITelesurLayer)]
         # empty set only if all 'views' are 'registered'
         self.assertEquals(set(views) - set(registered), set([]))
@@ -81,6 +81,13 @@ class BrowserLayerTest(unittest.TestCase):
 
     def test_live_signal_view(self):
         name = '@@live-signal'
+        try:
+            self.n1.unrestrictedTraverse(name)
+        except AttributeError:
+            self.fail('%s has no view %s' % (self.n1, name))
+    
+    def test_live_signal_view(self):
+        name = '@@donde-distribucion'
         try:
             self.n1.unrestrictedTraverse(name)
         except AttributeError:
