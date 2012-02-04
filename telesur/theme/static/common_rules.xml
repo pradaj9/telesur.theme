@@ -161,8 +161,15 @@
     <rules css:if-content=".download-video">
        <copy css:content='.download-video' css:theme=".download-video" attributes="href"/>
     </rules>
+    <rules if-content="not(//*[@class='download-video'])">
+      <drop css:theme=".download-video"/>
+    </rules>
+    
     <rules css:if-content=".download-audio">
        <copy css:content='.download-audio' css:theme=".download-audio" attributes="href"/>    
-    </rules>    
+    </rules>
+    <rules if-content="not(//*[@class='download-audio'])">
+      <drop css:theme=".download-audio"/>
+    </rules>        
 
 </rules>

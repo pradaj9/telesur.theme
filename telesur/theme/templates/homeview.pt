@@ -40,7 +40,7 @@
                 </div>
                 <div class="data-article-container cell">
                     <div class="description" tal:content="outstanding/description"></div>
-                    <tal:related-items tal:define="related outstanding/relatedItems">
+                    <tal:related-items tal:define="related outstanding/relatedItems|nothing">
                         <div class="related-items" tal:condition="related">
                             <span class="title">Notas relacionadas</span>
                             <ul>
