@@ -12,7 +12,7 @@
     <div class="colophone row">
       <div class="cell position-0 width-4 telesur-cc">
         <div class="cell-wrapper">
-          <h3>TeleSUR &copy;</h3>
+          <h3>teleSUR &copy;</h3>
           <p>La nueva Televisión del Sur C.A. (TVSUR) RIF: G-20004500-0</p>
         </div>
       </div>
@@ -44,10 +44,6 @@
           <h3>Servicios</h3>
           <ul>
             <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/">Especiales</a>
-            </li>
-            <li>
               <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/#!es/lista/noticia/secciones">Video</a>
             </li>
             <li>
@@ -76,7 +72,7 @@
 
       <div class="cell position-10 width-3">
         <div class="cell-wrapper">
-          <h3>Telesur</h3>
+          <h3>teleSUR</h3>
           <ul>
             <li>
               <a href="#"
