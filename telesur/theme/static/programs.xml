@@ -38,8 +38,8 @@
     
     <!-- rules for edit view -->
     <!--<rules css:if-content=".template-edit">
-        <replace css:theme="#telesur-left-content" css:content="#content"/>    
-    </rules>-->
+        <replace css:theme="#telesur-left-content" css:content="#content"/>    -->
+    </rules>
     
 </rules>
 
