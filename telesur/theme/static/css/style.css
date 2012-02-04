@@ -947,6 +947,7 @@ div#banners-home.widget-container a img {
     border: 1px solid #999;
     border-top: 0;
     padding: 10px 6px;
+    position:relative;
     }
 
 /***
