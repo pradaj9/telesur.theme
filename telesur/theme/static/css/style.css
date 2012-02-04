@@ -33,16 +33,12 @@
     margin: 15px 0;
     }
 
-#portal-personaltools-wrapper{
-    display:none;
-}
-
 #content {
     margin:15px 0px;
 }
 
 #envivo #nav-8 {
-    display:none;
+    display:none !important;
 }
 .searchSection {
     display:none;
@@ -298,6 +294,26 @@ h1 a {
     }
 #telesur-titulares .titular-content-wrapper .image-video{
     padding-bottom:5px;
+}
+.related-items {
+    margin-left:15px;
+    margin-top:15px;
+}
+.related-items .title {
+    font-size:14px;
+}
+#telesur-middle .related-items ul {
+    float:none;
+    list-style:disc;
+}
+#telesur-middle .related-items li {
+    color:#AC1206;
+    display: list-item;    
+}
+#telesur-middle .related-items li a {
+    color:#000;
+    font-size:12px;
+    pading-bottom:5px;
 }
 
 /***

@@ -22,7 +22,10 @@
                  css:content-children=".principal-articles-container .main-article h1" />            
         <!-- main new "outstanding" descrption -->
         <replace css:theme-children=".data-article-container .description"
-                 css:content-children=".principal-articles-container .description" />            
+                 css:content-children=".principal-articles-container .description" />      
+
+        <!-- related items -->
+        <replace css:theme=".related-items" css:content=".related-items"/>
 
         <!-- articles "principal" listing -->
         <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>

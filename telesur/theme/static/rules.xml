@@ -88,6 +88,10 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
             css:theme="#caja-titulares"
             css:content="#caja-titulares" />
 
+        <!-- if we are anon, remove the user bar -->
+        <rules if-content="//*[@id='anon-personalbar']">
+          <drop css:content="#portal-personaltools-wrapper"/>        
+        </rules>
         <!-- if we are authenticated, then don't show comments, special, map or the colophone -->
         <rules if-content="not(//*[@id='anon-personalbar'])">
           <drop css:if-theme="#especiales" css:theme="#especiales"/>

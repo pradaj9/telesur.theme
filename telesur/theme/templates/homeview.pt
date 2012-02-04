@@ -39,8 +39,20 @@
                     </div>
                 </div>
                 <div class="data-article-container cell">
-                    <div class="description" tal:content="outstanding/description">
-                    </div>
+                    <div class="description" tal:content="outstanding/description"></div>
+                    <tal:related-items tal:define="related outstanding/relatedItems">
+                        <div class="related-items" tal:condition="related">
+                            <span class="title">Notas relacionadas</span>
+                            <ul>
+                                <tal:block tal:repeat="nota_rel related">
+                                <li tal:condition="python:repeat['nota_rel'].index < 3">
+                                    <a tal:content="nota_rel/to_object/Title" 
+                                       tal:attributes="href nota_rel/to_object/absolute_url"></a>
+                                </li>
+                                </tal:block>
+                            </ul>
+                        </div>
+                    </tal:related-items>
                 </div>
             </div>
 
