@@ -5,14 +5,20 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <rules css:if-content="body.portaltype-telesur-contenttypes-program">
-      <theme href="nota.html" />
+      <!--<theme href="general.html" />
 
       <before css:theme="#telesur-left-content"
            css:content="#edit-bar" />
-      <drop css:theme=".breadcumb-categoria, #byline,  #compartir,  #notas-relacionadas, #comentarios-nota, #telesur-right-sidebar, #telesur-full-column" />  
-
+      <drop css:theme=".breadcumb-categoria, 
+                      #byline,  
+                      #compartir,  
+                      #notas-relacionadas, 
+                      #comentarios-nota, 
+                      #telesur-right-sidebar, 
+                      #telesur-full-column" />  
+      -->
       <!-- avoid style in edit view -->        
-      <rules css:if-content="body:not([class*='template-edit'])">
+      <!--<rules css:if-content="body:not([class*='template-edit'])">
 
         <replace css:theme="#telesur-left-content">
           <div>
@@ -28,12 +34,12 @@
           </div>
         </replace>
       </rules>        
-    </rules>
+    </rules>-->
     
     <!-- rules for edit view -->
-    <rules css:if-content=".template-edit">
+    <!--<rules css:if-content=".template-edit">
         <replace css:theme="#telesur-left-content" css:content="#content"/>    
-    </rules>
+    </rules>-->
     
 </rules>
 

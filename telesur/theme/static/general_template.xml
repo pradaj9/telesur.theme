@@ -17,6 +17,7 @@
                            body[class*='template-collective.polls.poll'],
                            body[class*='template-collective.nitf.content'],
                            body[class*='template-telesur.contenttypes.program'],
+                           body[class*='template-telesur.contenttypes.edition'],
                            .template-manage-portlets">
         <theme href="general.html" />
 
