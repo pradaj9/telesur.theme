@@ -316,6 +316,10 @@ h1 a {
     pading-bottom:5px;
 }
 
+div#banners-home.widget-container a img {
+    margin-bottom:10px;
+}
+
 /***
 * SECCIONES
 ***/

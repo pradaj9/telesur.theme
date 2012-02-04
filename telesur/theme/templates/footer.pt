@@ -30,11 +30,11 @@
             <li><a href="#"
                    tal:attributes="href string:${portal_url}/noticias/cultura">Cultura</a></li>
             <li><a href="#"
-                   tal:attributes="href string:${portal_url}/noticias/salud">Salud</a></li>
+                   tal:attributes="href string:${portal_url}/opinion/articulos">Opinión</a></li>
             <li><a href="#"
-                   tal:attributes="href string:${portal_url}/noticias/ciencia">Ciencia</a></li>
+                   tal:attributes="href string:${portal_url}/opinion/contexto">Contexto</a></li>
             <li><a href="#"
-                   tal:attributes="href string:${portal_url}/noticias/tecnologia">Tecnología</a></li>
+                   tal:attributes="href string:${portal_url}/opinion/entrevistas">Entrevistas</a></li>
           </ul>
         </div>
       </div>
@@ -45,19 +45,7 @@
           <ul>
             <li>
               <a href="#"
-                 tal:attributes="href string:${portal_url}/especiales">Especiales</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/opinion/articulos">Opinión</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/opinion/contexto">Contexto</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/opinion/entrevistas">Entrevistas</a>
+                 tal:attributes="href string:${portal_url}/">Especiales</a>
             </li>
             <li>
               <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/#!es/lista/noticia/secciones">Video</a>
@@ -65,6 +53,22 @@
             <li>
               <a href="#"
                  tal:attributes="href string:${portal_url}/el-canal/movil">Móvil</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/">Soy Reportero</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/">Foros</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/">Seriados</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/">teleSUR al Día</a>
             </li>
           </ul>
         </div>
@@ -88,11 +92,15 @@
             </li>
             <li>
               <a href="#"
-                 tal:attributes="href string:${portal_url}/el-canal/subscription">Suscripción</a>
+                 tal:attributes="href string:${portal_url}/el-canal/contacto">Contacto</a>
             </li>
             <li>
               <a href="#"
-                 tal:attributes="href string:${portal_url}/el-canal/contacto">Contacto</a>
+                 tal:attributes="href string:${portal_url}/el-canal/empleos">Empleos</a>
+            </li>
+            <li>
+              <a href="#"
+                 tal:attributes="href string:${portal_url}/el-canal/senal-en-vivo">Señal en vivo</a>
             </li>
           </ul>
         </div>
