@@ -836,3 +836,12 @@ class LiveSignal(grok.View):
     grok.name('live-signal')
     grok.template('live_signal')
     grok.require('zope2.View')
+
+class DondeDistribucion(grok.View):
+    """ Señal en vivo del canal.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('donde-distribucion')
+    grok.template('donde_distribucion')
+    grok.require('zope2.View')
