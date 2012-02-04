@@ -87,13 +87,15 @@ object {
 	line-height:18px;
     color: #000000;
 }
-#telesur-left-content #parent-fieldname-text p {
+#telesur-left-content #parent-fieldname-text p, 
+#content p {
 	line-height:1.5em;
     color: #000000;
     font-size: 14px;
-    padding-bottom:15px;
+    margin-bottom:15px;
 }
-#telesur-left-content #parent-fieldname-text h3 {
+#telesur-left-content #parent-fieldname-text h3,
+#content h3 {
     margin-bottom: 0.5em;
     padding-top: 0.2em;
 }

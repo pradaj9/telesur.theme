@@ -105,9 +105,16 @@
                                      body.template-atct_edit"
                 css:theme-children="#telesur-middle #telesur-left-content"
                 css:content-children="#portal-column-content" />
-            <replace
-                css:theme-children="#telesur-middle #telesur-left-content"
-                css:content="#portal-column-content div.documentEditable" />
+            <rules css:if-content="div.documentEditable">
+              <replace
+                  css:theme-children="#telesur-middle #telesur-left-content"
+                  css:content="#portal-column-content div.documentEditable" />
+            </rules>
+            <rules if-content="not(//*[contains(@class,'.documentEditable')])">
+              <replace
+                  css:theme-children="#telesur-middle #telesur-left-content #content-wrapper"
+                  css:content="#portal-column-content #content" />
+            </rules>
         </rules>
 <!-- buttons for articles  -->
         <replace css:theme-children=".edittools-placeholder-button"

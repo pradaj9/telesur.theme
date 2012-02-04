@@ -40,6 +40,7 @@
 #content {
     margin:15px 0px;
 }
+
 /*content styles*/
 h1,
 h2,
@@ -303,6 +304,7 @@ h1 a {
 
 #nota-titular h1 {
     padding-left: 15px;
+    padding-top:10px;
     color: #000;
     }
 
@@ -354,9 +356,11 @@ h1 a {
     float: right;
     }
     
-.template-nota #byline {
+.template-nota #byline,
+.template-opinion #byline {
     font-weight:bold;
     color:#666;
+    font-size:11px;
 }
 
 /*listing*/
@@ -645,6 +649,13 @@ h1 a {
 .template-media h2{
     margin-bottom: 15px;
     margin-top: 10px;
+}
+
+/*
+* OPINION
+*/
+.template-opinion .documentDescription {
+    display:none;
 }
 
 /*
