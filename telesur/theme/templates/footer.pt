@@ -47,24 +47,20 @@
               <a href="http://multimedia.telesurtv.net/media/telesur.video.web/telesur-web/#!es/lista/noticia/secciones">Video</a>
             </li>
             <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/el-canal/movil">Móvil</a>
+              <a href="http://m.telesurtv.net/">Móvil</a>
+            </li>
+            <li>
+              <a href="http://exwebserv.telesurtv.net/secciones/psoy_reportero/">Soy Reportero</a>
+            </li>
+            <li>
+              <a href="http://exwebserv.telesurtv.net/secciones/pforos/listado.php">Foros</a>
+            </li>
+            <li>
+              <a href="http://exwebserv.telesurtv.net/secciones/afondo/pseriados/">Seriados</a>
             </li>
             <li>
               <a href="#"
-                 tal:attributes="href string:${portal_url}/">Soy Reportero</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/">Foros</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/">Seriados</a>
-            </li>
-            <li>
-              <a href="#"
-                 tal:attributes="href string:${portal_url}/">teleSUR al Día</a>
+                 tal:attributes="href string:${portal_url}/el-canal/telesur-al-dia">teleSUR al día</a>
             </li>
           </ul>
         </div>
