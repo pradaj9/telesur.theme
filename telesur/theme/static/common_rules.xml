@@ -155,6 +155,14 @@
     <!-- mas comentado-->
     <replace css:if-content=".portletPopularThreads"
            css:content-children=".portletPopularThreads .portletItem"
-           css:theme-children=".mas-comentado"/>           
+           css:theme-children=".mas-comentado"/>
+
+    <!-- Links de descarga -->
+    <rules css:if-content=".download-video">
+       <copy css:content='.download-video' css:theme=".download-video" attributes="href"/>
+    </rules>
+    <rules css:if-content=".download-audio">
+       <copy css:content='.download-audio' css:theme=".download-audio" attributes="href"/>    
+    </rules>    
 
 </rules>
