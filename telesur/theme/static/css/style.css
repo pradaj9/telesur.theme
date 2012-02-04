@@ -849,6 +849,12 @@ div#banners-home.widget-container a img {
 #lo-mas-recomendado .pane {
     padding: 10px 6px;
     }
+#lo-mas-recomendado .mas-vistos-dia {
+    padding-top:15px;
+}
+#lo-mas-recomendado .mas-vistos-dia h2 {
+    padding-bottom:10px;
+}
 
 #lo-mas-recomendado .portletItemDetails {
     font-size: 11px;
