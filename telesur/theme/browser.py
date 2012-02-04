@@ -856,7 +856,7 @@ class BatchListUtils(grok.View):
 
 
 class DondeDistribucion(grok.View):
-    """ Señal en vivo del canal.
+    """ Distribucion del canal.
     """
     grok.context(Interface)
     grok.layer(ITelesurLayer)

@@ -86,7 +86,7 @@ class BrowserLayerTest(unittest.TestCase):
         except AttributeError:
             self.fail('%s has no view %s' % (self.n1, name))
     
-    def test_live_signal_view(self):
+    def test_donde_distribucion_view(self):
         name = '@@donde-distribucion'
         try:
             self.n1.unrestrictedTraverse(name)
