@@ -20,7 +20,8 @@
                            body[class*='template-telesur.contenttypes.edition'],
                            .portaltype-telesur-contenttypes-program,
                            .portaltype-telesur-contenttypes-edition,
-                           .template-manage-portlets">
+                           .template-manage-portlets,
+                           .portaltype-document">
         <theme href="general.html" />
 
         <drop css:content="#viewlet-above-content"/>
