@@ -14,15 +14,15 @@
       tal:attributes="href string:${portal_url}/++theme++telesur.theme/css/style.css" />
 
 <script type="text/javascript" src=""
-      tal:attributes="src string:${portal_url}/++theme++telesur.theme/subscriptionform.js" />
+        tal:attributes="src string:${portal_url}/++theme++telesur.theme/subscriptionform.js"></script>
 </head>
 
 <body>
 
 <div tal:condition="view/processed_form">
     <span class="subscriptionform_ok">
-        Su suscripci&oacute;n fue realizada satisfactoriamente. <br />
-        Un correo fue enviado a su casilla de correo para que Ud. confirme su suscripci&oacute;n.
+        Su suscripción fue realizada satisfactoriamente. <br />
+        Un correo fue enviado a su casilla de correo para que Ud. confirme su suscripción.
     </span>
 </div>
 
