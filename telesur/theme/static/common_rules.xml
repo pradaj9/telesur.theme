@@ -54,6 +54,9 @@
       </div>
       </after>
 
+    <!-- ANALYTICS -->
+    <after css:content="#analytics" css:theme=".footer"/>
+
       <!-- zona derecha 1 -->
       <before css:theme-children="#telesur-right-sidebar, #telesur-right-sidebar-small, .telesur-right-sidebar.first-sidebar">
       <div class="medium-rectangle widget-container">
@@ -170,6 +173,6 @@
     </rules>
     <rules if-content="not(//*[@class='download-audio'])">
       <drop css:theme=".download-audio"/>
-    </rules>        
+    </rules>
 
 </rules>
