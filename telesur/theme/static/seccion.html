@@ -287,8 +287,37 @@
                             <li><a href="#"><span class="ico-facebook"></span>Facebook</a></li>
                         </ul>
                         <div class="panes-social">
-                            <div class="twitter-portlet pane">Second tab content</div>
-                            <div class="facebook pane">firs tab</div>
+                            <div class="twitter-portlet pane">
+                                <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+                                <script type="text/javascript">
+                                new TWTR.Widget({
+                                  version: 2,
+                                  type: 'profile',
+                                  rpp: 4,
+                                  interval: 30000,
+                                  width: 'auto',
+                                  height: 300,
+                                  theme: {
+                                    shell: {
+                                      background: '#ffffff',
+                                      color: '#000000'
+                                    },
+                                    tweets: {
+                                      background: '#ffffff',
+                                      color: '#000000',
+                                      links: '#205c90'
+                                    }
+                                  },
+                                  features: {
+                                    scrollbar: false,
+                                    loop: false,
+                                    live: true,
+                                    behavior: 'all'
+                                  }
+                                }).render().setUser('telesurtv').start();
+                                </script>
+                            </div>
+                            <div class="facebook pane">Facebook tab</div>
                         </div>
                         <!-- This JavaScript snippet activates those tabs-ultimos -->
                         <script type="text/javascript">

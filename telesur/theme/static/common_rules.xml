@@ -127,7 +127,7 @@
   <replace css:theme-children=".footer" css:content="#footer"/>
 
   <!-- portlets sociales -->
-  <replace css:theme-children=".twitter-portlet" css:content=".twitterProfilePortlet"/>
+  <!-- replace css:theme-children=".twitter-portlet" css:content=".twitterProfilePortlet"/ -->
   <replace css:theme-children=".facebook" css:content=".facebookWallPortlet"/>
 
   <!-- portlets opinion -->
