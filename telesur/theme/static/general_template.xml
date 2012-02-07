@@ -46,6 +46,14 @@
             css:theme-children=".no-columns .content-placeholder"
             css:content-children="#portal-columns" />
         </rules>
+        
+        <!-- IF we are in the edit view of nitf -->
+        <rules css:if-content="body[class*='template-collective.nitf.content']">
+          <after css:theme="#footer-wrapper">
+            <script src="++theme++telesur.theme/character-counter.js" type="text/javascript"></script>
+          </after>
+        </rules>     
+        
     </rules>
 
 </rules>
