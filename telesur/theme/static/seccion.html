@@ -292,9 +292,11 @@
 <script type="text/javascript">
 new TWTR.Widget({
   version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 30000,
+  type: 'search',
+  search: '@telesurtv OR telesur OR from:telesurtv',
+  interval: 3000,
+  title: 'teleSUR en Twitter',
+  subject: '@teleSURtv',
   width: 'auto',
   height: 212,
   theme: {
@@ -312,9 +314,9 @@ new TWTR.Widget({
     scrollbar: false,
     loop: false,
     live: true,
-    behavior: 'all'
+    behavior: 'default'
   }
-}).render().setUser('telesurtv').start();
+}).render().start();
 </script>
                             </div>
                             <div class="facebook pane">Facebook tab</div>
