@@ -55,9 +55,8 @@ h1 a {
     }
 
 .field {
-    width: 650px;
+    width: auto;
     }
-
 .overlay-ajax .field {
     width: auto;
     }
