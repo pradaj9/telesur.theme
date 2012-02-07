@@ -33,7 +33,7 @@
     <!-- zona superior 1 -->
     <rules if-content="//*[@id='anon-personalbar']">
       <after css:theme="#logo-telesur">
-      <div class="full-banner">
+      <div class="full-banner ad-legend-left">
           <!--/* OpenX Javascript Tag v2.8.7 */-->
 
           <script type='text/javascript'><!--//<![CDATA[
@@ -59,7 +59,7 @@
 
       <!-- zona derecha 1 -->
       <before css:theme-children="#telesur-right-sidebar, #telesur-right-sidebar-small, .telesur-right-sidebar.first-sidebar">
-      <div class="medium-rectangle widget-container">
+      <div class="medium-rectangle ad-legend-top widget-container">
           <!--/* OpenX Javascript Tag v2.8.7 */-->
 
           <script type='text/javascript'><!--//<![CDATA[

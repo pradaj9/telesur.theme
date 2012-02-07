@@ -1230,6 +1230,18 @@ div#banners-home.widget-container a img {
     float: left;
     }
 
+.ad-legend-top {
+    background: url("++theme++telesur.theme/img/ad_horizontal.png") no-repeat scroll top center #EEE;
+    padding-top:12px;
+}
+
+.ad-legend-left {
+    background: url("++theme++telesur.theme/img/ad_vertical.png") no-repeat scroll center left #EEE;
+    padding-left:12px;
+}
+
+/* formulario de suscripciones */
+
 #subscriptionform iframe {
     margin-left: 10em;
     }
