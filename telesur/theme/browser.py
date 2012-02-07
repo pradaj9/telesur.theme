@@ -31,6 +31,8 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.directives import dexterity
 
+import DateTime
+
 grok.templatedir("templates")
 
 
@@ -870,3 +872,28 @@ class DondeDistribucion(grok.View):
     grok.name('donde-distribucion')
     grok.template('donde_distribucion')
     grok.require('zope2.View')
+
+class Rss2(grok.View):
+    """ template rss2 """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('rss2')
+    grok.template('rss2')
+    grok.require('zope2.View')
+
+    def get_channel_pubdate(self):
+        today = DateTime.DateTime().strftime('%m/%d/%Y')
+        pubdate = DateTime.DateTime(today)
+
+        return pubdate
+
+    def get_item_pubdate(self, obj):
+        effective = obj.effective_date and obj.effective()
+        modified = obj.modified()
+        date = effective or modified
+        return date
+
+    def get_objects_list(self):
+        syn = self.context.portal_syndication
+        obj_list = list(syn.getSyndicatableContent(self.context))
+        return obj_list

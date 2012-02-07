@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+                   xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <tal:block tal:define="syn context/portal_syndication;
+                         objectList python:list(syn.getSyndicatableContent(here));
+                         max python:syn.getMaxItems(here);
+                         max python:type(max) != str or 10;
+                         objects python: objectList[:max];
+                         pubdate python:view.get_channel_pubdate()">
+  <tal:block tal:define="dummy python:request.RESPONSE.setHeader('Content-Type', 'text/xml;;charset=utf-8')" />                                         
+	<channel>
+    <title tal:content="context/pretty_title_or_id">Noticias telesurtv.net</title>
+    <link tal:content="context/portal_url">http://www.telesurtv.net/</link>
+    <description tal:content="context/Description">Canal de noticias de america del sur</description>
+    <language>es</language>
+    <copyright>  </copyright>
+    <pubDate tal:content="python:pubdate.rfc822()">Sun, 05 Feb 2012 00:45 -0400</pubDate>
+
+    <tal:comment replace="nothing">
+      The syndication tool is pretty brain dead and won't let you access the variables
+      you need for this from something like search_rss, unless you've enable site syndication
+      it really needs rewriting.
+    </tal:comment>   
+    <tal:block repeat="obj_item python: objects">
+    <item tal:define="obj_item python: obj_item.getObject();
+                      has_effective exists:obj_item/aq_explicit/effective_date;
+                      effective python:has_effective and obj_item.effective() or '';
+                      pubdate python:view.get_item_pubdate(obj_item)">
+      <title tal:content="obj_item/pretty_title_or_id"></title>
+      <link tal:content="obj_item/absolute_url"></link>
+      <description tal:content="obj_item/Description"></description>
+      <pubDate tal:content="python:pubdate.rfc822()">Mon, 30 Sep 2002 01:56:02 GMT</pubDate>
+      <guid tal:content="obj_item/absolute_url">http://scriptingnews.userland.com/backissues/2002/09/29#When:6:56:02PM</guid>
+    </item>
+    </tal:block>     
+	</channel>
+	</tal:block>
+</rss>
