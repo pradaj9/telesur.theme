@@ -1330,3 +1330,8 @@ p.iconos-portada span.icono {
 #telesur-live-signal-buttons td {
     padding-right: 5px;
 }
+
+/* Comunidad social */
+div.panes-social div.twitter-portlet {
+    background-color:#cf0c0a;
+}
