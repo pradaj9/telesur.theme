@@ -1,4 +1,4 @@
-/* CSS for mobile devices */
+/*
 body {
     font-family: Arial,Helvetica,sans-serif;
     margin: 0;
@@ -41,4 +41,155 @@ body {
 .nota-sencilla-grande-thumb-mobile img {
     width: 125px;
     height: 125px;
+}*/
+
+img {
+   border-style: none;
+}
+
+body {
+    margin:0;
+    padding:0;
+    background-color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #282828;
+    font-size: 15px;
+}
+
+a   {
+  /* Applies to all unvisited links */
+  text-decoration:  none;
+  color: #005d98;
+  }
+
+h1 {
+    font-size: 17px;
+    color: #171717;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    color: #005d98;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-size: 15px;
+}
+
+#telesur-container {
+    max-width:388px;
+    min-width:319px;
+    margin:auto;
+}
+
+header img {
+    width:100%;
+}
+
+header #telesur-topbar {
+    height: 31px;
+    width: 100%;
+    background: url("../img/mobile/topbar-background.png");
+}
+
+#telesur-topbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#telesur-topbar ul li {
+    height: 100%;
+    float:left;
+}
+
+#telesur-topbar ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    display:block;
+    padding-top: 7px;
+    padding-bottom: 4px;
+    padding-left: 19px;
+    padding-right: 19px;
+    background: url("../img/mobile/topbar-sep.png") no-repeat scroll right center transparent;
+}
+
+#telesur-topbar ul li.selected {
+    -moz-box-shadow: inset 0 0 15px 2px #a09d9e;
+    -webkit-box-shadow: inset 0 0 15px 2px #a09d9e;
+    box-shadow: inset 0 0 15px 2px #a09d9e;
+    color: #000000;
+    background:#FFFFFF;
+}
+
+#telesur-topbar ul li.selected a {
+    color: #000000;
+    text-shadow: 2px 2px 10px #FFFFFF;
+}
+
+.notas-portada, .notas-sencilla-grande {
+    padding-top:17px;
+    padding-bottom: 17px;
+    padding-left: 12px;
+    background: url("../img/mobile/portada-sep.png") no-repeat scroll center bottom transparent;
+}
+
+.notas-portada img,
+.notas-sencilla-grande img {
+    float: left;
+    max-width: 100px;
+    max-height: 70px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+#media-container img {
+    width: 100%;
+}
+
+#portal-mobile-subglobalnav {
+    background: #dbdbdb;
+    text-transform: uppercase;
+    color:#000000;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#portal-mobile-subglobalnav li a {
+    display: block;
+    color: #000000;
+    padding: 10px;
+    background: url("../img/mobile/bottombar-sep.png") no-repeat scroll center bottom transparent;
+}    
+
+#portal-mobile-subglobalnav li a.selected {
+    -moz-box-shadow: inset 0 0 15px 2px #3d403f;
+    -webkit-box-shadow: inset 0 0 15px 2px #3d403f;
+    box-shadow: inset 0 0 15px 2px #3d403f;
+    color: #000000;
+    background:#646464;
+}
+
+
+.section-name {
+    color: #B40200;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    margin: 0 0 5px;
+    text-decoration: none;
+}
+footer {
+    background-color: #1a82f7; 
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#307ea3), to(#caf1fe));
+    background: -webkit-linear-gradient(top, #307ea3, #caf1fe);
+    background: -moz-linear-gradient(top, #307ea3, #caf1fe); /* IE 10 */ 
+    background: -ms-linear-gradient(top, #307ea3, #caf1fe); /* Opera 11.10+ */ 
+    background: -o-linear-gradient(top, #307ea3, #caf1fe);
+    text-align: center;
+    padding-top: 20px;
+    height: 80px;
 }

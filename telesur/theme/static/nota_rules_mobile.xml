@@ -7,7 +7,7 @@
     <rules css:if-content="body.portaltype-collective-nitf-content">
         <theme href="nota_mobile.html" />
         <rules>
-              <replace css:theme="#telesur-container > h1"
+              <replace css:theme="#telesur-container h1"
                   css:content="#portal-column-content h1.documentFirstHeading" />
               <after css:theme="#telesur-container #autor-temp"
                   css:content="#parent-fieldname-text" />
@@ -20,13 +20,13 @@
             <!-- images -->
             <rules css:if-content="#content #media-container">
                 <!-- image gallery code -->
-                <after css:theme="#telesur-container #media-container"
+                <prepend css:theme="#telesur-container #media-container"
                     content="//div[@class='items']/div[1]/div/img" />
                 <!-- nota description -->
-                <replace css:if-content="#content .article-description"
-                    css:theme-children="#telesur-container .article-description"
-                    css:content="#content .article-description"
-                    method="raw" />
+                <!-- <replace css:if-content="#content .article-description"
+                                    css:theme-children="#telesur-container .article-description"
+                                    css:content="#content .article-description"
+                                    method="raw" /> -->
                 <drop css:content="#content .article-description" />
             </rules>
 

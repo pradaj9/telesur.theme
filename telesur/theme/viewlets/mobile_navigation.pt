@@ -2,7 +2,7 @@
     <tal:block tal:repeat="subtab python:viewlet.result">
         <tal:block tal:condition="python:subtab">
             <li><a tal:content="subtab/Title" tal:attributes="href subtab/getURL;
-                                                              class python:(subtab['currentItem'] or subtab['currentParent']) and 'selected'"></a></li>
+                                                              class python:subtab['is_selected'] and 'selected'"></a></li>
         </tal:block>
     </tal:block>
 </ul>

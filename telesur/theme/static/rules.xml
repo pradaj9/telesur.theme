@@ -127,21 +127,9 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
           content="html/head/title" />
 
       <!-- mobile navigation -->
-      <replace css:theme-children="#telesur-mobile-navigation">
-        <xsl:for-each css:select="#portal-mobile-subglobalnav li">
-          <xsl:choose>
-                  <xsl:when test="position() mod 2 = 0">
-                    <div class="mobile-nav even">
-                        <xsl:copy-of select="a" />
-                    </div>
-                  </xsl:when>
-                  <xsl:otherwise>
-                     <div class="mobile-nav odd">
-                         <xsl:copy-of select="a" />
-                     </div>
-                  </xsl:otherwise>
-                </xsl:choose>
-        </xsl:for-each>
-    </replace>
+      <replace css:theme="li#telesur-inicio"  css:content="li#portaltab-index_html" />
+      <replace css:theme="li#telesur-noticias"  css:content="li#portaltab-noticias" />
+      <replace css:theme="li#telesur-opinion"  css:content="li#portaltab-opinion" />
     </rules>
+    <replace css:theme="#portal-mobile-subglobalnav"  css:content="#portal-mobile-subglobalnav" />
 </rules>
