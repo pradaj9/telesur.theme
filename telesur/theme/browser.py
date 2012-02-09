@@ -647,7 +647,8 @@ class OpinionView(grok.View):
 
     def __init__(self, context, request):
         super(OpinionView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
+        self.layout_helper = getMultiAdapter((self.context, self.request), 
+                                             name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
