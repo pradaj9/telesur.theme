@@ -155,10 +155,10 @@
            css:content-children=".portletPopularThreads .portletItem"
            css:theme-children=".mas-comentado"/>
 
-    <!-- mas comentado-->
-    <replace css:if-content=".portletPopularThreads"
-           css:content-children=".portletPopularThreads .portletItem"
-           css:theme-children=".mas-comentado"/>
+  <!-- mas recomendado-->
+  <replace css:if-content=".portletHotThreads"
+         css:content-children=".portletHotThreads .portletItem"
+         css:theme-children=".mas-recomendado"/>
 
     <!-- Links de descarga -->
     <rules css:if-content=".download-video">
