@@ -13,7 +13,9 @@
             <replace css:theme-children="#telesur-portada-listing">
                 <xsl:for-each css:select="div.article-item-wrapper">
                     <div class="notas-portada">
+                        <xsl:copy-of css:select=".thumb img" />
                         <xsl:copy-of select="h3" />
+                        <div style="clear:both"></div>
                     </div>
                 </xsl:for-each>
             </replace>
@@ -21,7 +23,9 @@
             <append css:theme="#telesur-portada-listing">
                 <xsl:for-each css:select="div.notas-sencilla-grande">
                     <div class="notas-portada">
-                        <xsl:copy-of select="h3" />
+                      <xsl:copy-of css:select=".nota-sencilla-grande-thumb img" />
+                        <xsl:copy-of css:select="h3" />
+                        <div style="clear:both"></div>
                     </div>
                 </xsl:for-each>
             </append>
@@ -29,19 +33,19 @@
             <!-- Nota Principal -->
             <before css:theme-children="#telesur-portada-listing">
               <div class="notas-portada" id="portada-nota-primera">
+                <xsl:copy-of css:select=".video-widget img" />
                 <h3>
                     <xsl:copy-of css:select=".main-article .title a"/>
                 </h3>
-                  <div class="nota-sencilla-grande-thumb-mobile">
-                    <xsl:copy-of css:select=".video-widget img" />
-                  </div>
-                  <div class="description-container">
-                    <xsl:copy-of css:select=".main-article .data-article-container"/>
-                  </div>
                   <div style="clear:both"></div>
               </div>
             </before>
             <append  css:theme="#portada-nota-primera" css:content="h1#parent-fieldname-title"/>
+            <xsl:template css:match=".video-widget img">
+              <xsl:copy>
+                <xsl:apply-templates/>
+              </xsl:copy>
+            </xsl:template>
     </rules>
 
 </rules>

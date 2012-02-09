@@ -231,7 +231,7 @@ class MobileNavigation(grok.Viewlet):
         self.data = Assignment(root=self.navroot_path)
         for section in sections:
             catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
-                                                        'path': '%s/%s/' % (self.navroot_path, section)})
+                                'path': '%s/%s/' % (self.navroot_path, section)})
             if catalog_news:
                 tab = catalog_news[0].getObject()
                 strategy = getMultiAdapter((tab, self.data), INavtreeStrategy)
@@ -244,6 +244,12 @@ class MobileNavigation(grok.Viewlet):
                     self.result += news_dict.get('children', [])
                 else:
                     news_dict = {}
+                    
+        for item in self.result:
+            if self.context.getId() == item['id']:
+                item['is_selected'] = True
+            else:
+                item['is_selected'] = False
 
 class LiveSignalLinkViewlet(grok.Viewlet):
     grok.context(Interface)
