@@ -386,49 +386,6 @@ class ArticleControl(grok.View):
         return self
 
 
-def parse_multimedia(obj, thumb=False):
-    obj = obj.getObject() if hasattr(obj, 'getObject') else obj
-    context_path = '/'.join(obj.getPhysicalPath())
-    query = {'Type': ('Link',)}
-    query['path'] = {'query': context_path,
-                     'depth': 1, }
-    query['sort_on'] = 'getObjPositionInParent'
-    query['limit'] = None
-
-    results = obj.getFolderContents(contentFilter=query, batch=False,
-                                    b_size=10, full_objects=False)
-
-    multimedia = {'type': None, 'url': None, 'obj': None}
-    if results:
-        for link in results:
-            link_obj = link.getObject()
-            multimedia['obj'] = link_obj
-            multimedia['description'] = link_obj.Description()
-            annotations = IAnnotations(link_obj)
-            if thumb:
-                is_video = annotations.get('archivo_url', None)
-                multimedia['url'] = link_obj.absolute_url() + \
-                    '/@@thumbnail_pequeno' if is_video else None
-                multimedia['type'] = 'thumb' if multimedia['url'] else None
-            else:
-                multimedia['url'] = annotations.get('archivo_url', None)
-                multimedia['type'] = 'video' if multimedia['url'] else None
-            break
-
-    if not multimedia['url']:
-        #we need to search for images because doesn't have videos
-        query['Type'] = ('Image', )
-        results = obj.getFolderContents(contentFilter=query, batch=False,
-                                        b_size=10, full_objects=False)
-        if results:
-            multimedia['url'] = results[0].getObject()
-            multimedia['type'] = 'image'
-            multimedia['obj'] = results[0].getObject()
-            multimedia['description'] = results[0].Description
-
-    return multimedia
-
-
 class HomeView(grok.View):
     """Vista para la home.
     """
@@ -437,11 +394,13 @@ class HomeView(grok.View):
     grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-    def get_multimedia(self, obj, thumb=False):
-        """ returns the first multimedia object from a nitf ct, if thumb is true
-        is going to return an image even if the first objects is a video """
+    def __init__(self, context, request):
+        super(HomeView, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request), 
+                                            name='layout-helper')
 
-        multimedia = parse_multimedia(obj, thumb)
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
         return multimedia
 
     def outstanding(self):
@@ -504,6 +463,146 @@ class HomeView(grok.View):
         return False
 
 
+class LayoutHelper(grok.View):
+    """ Vista base para secciones
+    """
+    grok.context(Interface)
+    grok.name('layout-helper')
+    grok.require('zope2.View')
+
+    def render(self):
+        return self
+
+    def get_multimedia(self, obj, thumb=False):
+        obj = obj.getObject() if hasattr(obj, 'getObject') else obj
+        context_path = '/'.join(obj.getPhysicalPath())
+        query = {'Type': ('Link',)}
+        query['path'] = {'query': context_path,
+                         'depth': 1, }
+        query['sort_on'] = 'getObjPositionInParent'
+        query['limit'] = None
+
+        results = obj.getFolderContents(contentFilter=query, batch=False,
+                                        b_size=10, full_objects=False)
+
+        multimedia = {'type': None, 'url': None, 'obj': None, 'description': None}
+        if results:
+            for link in results:
+                link_obj = link.getObject()
+                multimedia['obj'] = link_obj
+                multimedia['description'] = link_obj.Description()
+                annotations = IAnnotations(link_obj)
+                if thumb:
+                    is_video = annotations.get('archivo_url', None)
+                    multimedia['url'] = link_obj.absolute_url() + \
+                        '/@@thumbnail_pequeno' if is_video else None
+                    multimedia['type'] = 'thumb' if multimedia['url'] else None
+                else:
+                    multimedia['url'] = annotations.get('archivo_url', None)
+                    multimedia['type'] = 'video' if multimedia['url'] else None
+                break
+
+        if not multimedia['url']:
+            #we need to search for images because doesn't have videos
+            query['Type'] = ('Image', )
+            results = obj.getFolderContents(contentFilter=query, batch=False,
+                                            b_size=10, full_objects=False)
+            if results:
+                multimedia['url'] = results[0].getObject()
+                multimedia['type'] = 'image'
+                multimedia['obj'] = results[0].getObject()
+                multimedia['description'] = results[0].Description
+
+        return multimedia
+
+    def section(self, section=''):
+        criterion = getattr(self.context,
+                            'crit__section_ATSimpleStringCriterion', None)
+
+        section_index = ''
+        if not section:
+            if criterion:
+                section_index = criterion.value
+            else:
+                # XXX: deberiamos tener esto generalizado en una annotation en el
+                # objeto bajo la variable "section"
+
+                # por ahora vamos a buscar las colecciones hijas, el primer
+                # elemento y usar el criterio de ahi
+                catalog = getToolByName(self.context, 'portal_catalog')
+                folder_path = '/'.join(self.context.getPhysicalPath())
+                results = catalog(path={'query': folder_path, 'depth': 1},
+                                  portal_type="Topic",
+                                  sort_on='getObjPositionInParent',
+                                  review_state='published')
+                if results:
+                    criterion = getattr(results[0].getObject(),
+                                'crit__section_ATSimpleStringCriterion', None)
+
+                section_index = criterion.value if criterion else ''
+        else:
+            section_index = section
+        return section_index
+
+    def articles(self, limit, genre='Current', all_articles=False, 
+        outstanding_optional=False, section=''):
+
+        elements = {'outstanding': [], 'secondary': [], 'articles': []}
+        catalog = getToolByName(self.context, 'portal_catalog')
+        section = self.section(section)
+
+        #query build getting all the section news
+        query = {}
+        query['object_provides'] = {'query': [INITF.__identifier__]}
+        query['sort_on'] = 'effective'
+        query['sort_order'] = 'reverse'
+        query['sort_limit'] = limit + 1
+        query['genre'] = genre
+        query['review_state'] = 'published'
+
+        #query build for outstanding news
+        outstanding = {}
+        outstanding['object_provides'] = {
+        'query': [ISectionArticle.__identifier__]}
+        outstanding['genre'] = genre
+        outstanding['sort_limit'] = 1
+        outstanding['review_state'] = 'published'
+
+        if section:
+            query['section'] = section
+            outstanding['section'] = section
+
+        existing = catalog.searchResults(query)
+
+        if all_articles:
+            elements['articles'] = existing[:limit]
+        else:
+            #queremos dividir los objetos en outstanding y otros
+            if (existing and section) or (existing and outstanding_optional):
+                outstanding_UID = 0
+                outstanding_results = catalog.searchResults(outstanding)
+
+                move = 0
+                if outstanding_results:
+                    elements['outstanding'].append(
+                        outstanding_results[0].getObject())
+                    outstanding_UID = outstanding_results[0].UID
+                else:
+                    elements['outstanding'].append(existing[0].getObject())
+                    move = 1
+
+                elements['secondary'] = \
+                    filter(lambda nota: nota.UID != outstanding_UID,
+                           existing)[move:limit+move]
+
+            elif existing:
+                #no es una seccion, sino una vista global
+                elements['outstanding'] = [existing[0].getObject()]
+                elements['secondary'] = existing[1:limit+1]
+
+        return elements
+
+
 class SectionView(grok.View):
     """Vista para secciones.
     """
@@ -513,77 +612,25 @@ class SectionView(grok.View):
     # una categoria)
     grok.context(Interface)
     grok.name('section-view')
-    grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
-    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
-    def get_multimedia(self, obj, thumb=False):
-        """ returns the first multimedia object from a nitf ct, if thumb is true
-        is going to return an image even if the first objects is a video """
+    def __init__(self, context, request):
+        super(SectionView, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
 
-        multimedia = parse_multimedia(obj, thumb)
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+
         return multimedia
 
     def section(self):
-        # XXX: aca es donde se deberia cambiar lo que devuelve si se usaran
-        # annotations
-        criterion = getattr(self.context,
-                            'crit__section_ATSimpleStringCriterion', None)
-        section_index = ''
-        if criterion:
-            section_index = criterion.value
-        else:
-            # XXX: deberiamos tener esto generalizado en una annotation en el
-            # objeto bajo la variable "section"
-
-            # por ahora vamos a buscar las colecciones hijas, el primer
-            # elemento y usar el criterio de ahi
-            catalog = getToolByName(self.context, 'portal_catalog')
-            folder_path = '/'.join(self.context.getPhysicalPath())
-            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
-            if results:
-                criterion = getattr(results[0].getObject(),
-                            'crit__section_ATSimpleStringCriterion', None)
-
-            section_index = criterion.value if criterion else ''
+        section_index = self.layout_helper.section()
 
         return section_index
 
-    def articles(self, limit=8):
-
-        catalog = getToolByName(self.context, 'portal_catalog')
-
-        query = {}
-        query['object_provides'] = {
-                'query': [INITF.__identifier__]
-        }
-        query['sort_on'] = 'effective'
-        query['sort_order'] = 'reverse'
-        query['genre'] = 'Current'
-        section = self.section()
-        if section:
-            query['section'] = section
-
-        existing = catalog.searchResults(query)
-
-        elements = {'outstanding': [], 'secondary': []}
-
-        if existing and section:
-            for nota in existing:
-                nota_obj = nota.getObject()
-                if ISectionArticle.providedBy(nota_obj):
-                    elements['outstanding'].append(nota_obj)
-                else:
-                    elements['secondary'].append(nota)
-                    limit = limit - 1
-                    if limit <= 0:
-                        break
-        elif existing:
-            #no es una seccion, sino una vista global
-            elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] = existing[1:limit]
-
+    def articles(self, limit=8, section=''):
+        elements = self.layout_helper.articles(limit, genre='Current', 
+                                               section=section)
         return elements
 
 
@@ -596,71 +643,25 @@ class OpinionView(grok.View):
     # annotation en el objeto una categoria)
     grok.context(Interface)
     grok.name('opinion-view')
-    grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
-    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
-    def get_multimedia(self, obj, thumb=False):
-        """ returns the first multimedia object from a nitf ct, if thumb is true
-        is going to return an image even if the first objects is a video """
+    def __init__(self, context, request):
+        super(OpinionView, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
 
-        multimedia = parse_multimedia(obj, thumb)
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
-        #annotations
-        criterion = getattr(self.context,
-                            'crit__section_ATSimpleStringCriterion', None)
-        section_index = ''
-        if criterion:
-            section_index = criterion.value
-        else:
-            # XXX: deberiamos tener esto generalizado en una annotation en el
-            # objeto bajo la variable "section"
-
-            # por ahora vamos a buscar las colecciones hijas, el primer
-            # elemento y usar el criterio de ahi
-            catalog = getToolByName(self.context, 'portal_catalog')
-            folder_path = '/'.join(self.context.getPhysicalPath())
-            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
-            if results:
-                criterion = getattr(results[0].getObject(),
-                            'crit__section_ATSimpleStringCriterion', None)
-
-            section_index = criterion.value if criterion else ''
+        section_index = self.layout_helper.section()
 
         return section_index
 
-    def articles(self, limit=8):
-
-        catalog = getToolByName(self.context, 'portal_catalog')
-        query = {}
-        query['object_provides'] = {
-                'query': [INITF.__identifier__]
-        }
-        query['sort_on'] = 'effective'
-        query['sort_order'] = 'reverse'
-        query['genre'] = 'Opinion'
-        section = self.section()
-
-        if section:
-            query['section'] = section
-
-        existing = catalog.searchResults(query)
-
-        elements = {'articles': []}
-
-        if existing and section:
-            for nota in existing:
-                elements['articles'].append(nota)
-                limit = limit - 1
-                if limit <= 0:
-                    break
-        elif existing:
-            #no es una seccion, sino una vista global
-            elements['articles'] = existing[:limit]
+    def articles(self, limit=8, section=''):
+        elements = self.layout_helper.articles(limit, genre='Opinion',
+                    all_articles=True, section=section)
 
         return elements
 
@@ -674,77 +675,24 @@ class Opinion_InterviewView(grok.View):
     # annotation en el objeto una categoria)
     grok.context(Interface)
     grok.name('opinion-interview-view')
-    grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
-    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
-    def get_multimedia(self, obj, thumb=False):
-        """ returns the first multimedia object from a nitf ct, if thumb is true
-        is going to return an image even if the first objects is a video """
+    def __init__(self, context, request):
+        super(Opinion_InterviewView, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
 
-        multimedia = parse_multimedia(obj, thumb)
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
-        #annotations
-        criterion = getattr(self.context,
-                            'crit__section_ATSimpleStringCriterion', None)
-        section_index = ''
-        if criterion:
-            section_index = criterion.value
-        else:
-            # XXX: deberiamos tener esto generalizado en una annotation en el
-            # objeto bajo la variable "section"
-
-            # por ahora vamos a buscar las colecciones hijas, el primer
-            # elemento y usar el criterio de ahi
-            catalog = getToolByName(self.context, 'portal_catalog')
-            folder_path = '/'.join(self.context.getPhysicalPath())
-            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
-            if results:
-                criterion = getattr(results[0].getObject(),
-                            'crit__section_ATSimpleStringCriterion', None)
-
-            section_index = criterion.value if criterion else ''
+        section_index = self.layout_helper.section()
 
         return section_index
 
     def articles(self, limit=8):
-
-        catalog = getToolByName(self.context, 'portal_catalog')
-        query = {}
-        query['object_provides'] = {
-                'query': [INITF.__identifier__]
-        }
-        query['sort_on'] = 'effective'
-        query['sort_order'] = 'reverse'
-        query['genre'] = 'Interview'
-        section = self.section()
-
-        if section:
-            query['section'] = section
-
-        existing = catalog.searchResults(query)
-
-        elements = {'outstanding': [], 'secondary': []}
-
-        if existing and section:
-            for nota in existing:
-                nota_obj = nota.getObject()
-                if ISectionArticle.providedBy(nota_obj):
-                    elements['outstanding'].append(nota_obj)
-                else:
-                    elements['secondary'].append(nota)
-                    limit = limit - 1
-                    if limit <= 0:
-                        break
-        elif existing:
-            #no es una seccion, sino una vista global
-            elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] = existing[1:limit]
-
+        elements = self.layout_helper.articles(limit, genre='Interview', 
+                                               outstanding_optional=True)
         return elements
 
 
@@ -757,77 +705,24 @@ class Opinion_ContextView(grok.View):
     # una categoria)
     grok.context(Interface)
     grok.name('opinion-context-view')
-    grok.layer(ITelesurLayer)
     grok.require('zope2.View')
 
-    #XXX THIS METHOD IS THE SAME THAT THE ONE IN HomeView WE SHOULD MOVE THIS TO
-    # A SEPARATED FUNCTION (becuase i can't inherit a grok z3view class =(
-    def get_multimedia(self, obj, thumb=False):
-        """ returns the first multimedia object from a nitf ct, if thumb is true
-        is going to return an image even if the first objects is a video """
+    def __init__(self, context, request):
+        super(Opinion_ContextView, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
 
-        multimedia = parse_multimedia(obj, thumb)
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
         return multimedia
 
     def section(self):
-        #XXX aca es donde se deberia cambiar lo que devuelve si se usaran
-        #annotations
-        criterion = getattr(self.context,
-                            'crit__section_ATSimpleStringCriterion', None)
-        section_index = ''
-        if criterion:
-            section_index = criterion.value
-        else:
-            # XXX: deberiamos tener esto generalizado en una annotation en el
-            # objeto bajo la variable "section"
-
-            # por ahora vamos a buscar las colecciones hijas, el primer
-            # elemento y usar el criterio de ahi
-            catalog = getToolByName(self.context, 'portal_catalog')
-            folder_path = '/'.join(self.context.getPhysicalPath())
-            results = catalog(path={'query': folder_path, 'depth': 1}, portal_type="Topic")
-            if results:
-                criterion = getattr(results[0].getObject(),
-                            'crit__section_ATSimpleStringCriterion', None)
-
-            section_index = criterion.value if criterion else ''
+        section_index = self.layout_helper.section()
 
         return section_index
 
     def articles(self, limit=8):
-
-        catalog = getToolByName(self.context, 'portal_catalog')
-        query = {}
-        query['object_provides'] = {
-                'query': [INITF.__identifier__]
-        }
-        query['sort_on'] = 'effective'
-        query['sort_order'] = 'reverse'
-        query['genre'] = 'Background'
-        section = self.section()
-
-        if section:
-            query['section'] = section
-
-        existing = catalog.searchResults(query)
-
-        elements = {'outstanding': [], 'secondary': []}
-
-        if existing and section:
-            for nota in existing:
-                nota_obj = nota.getObject()
-                if ISectionArticle.providedBy(nota_obj):
-                    elements['outstanding'].append(nota_obj)
-                else:
-                    elements['secondary'].append(nota)
-                    limit = limit - 1
-                    if limit <= 0:
-                        break
-        elif existing:
-            #no es una seccion, sino una vista global
-            elements['outstanding'] = [existing[0].getObject()]
-            elements['secondary'] = existing[1:limit]
-
+        elements = self.layout_helper.articles(limit, genre='Background', 
+                                                outstanding_optional=True)
         return elements
 
 
@@ -872,6 +767,7 @@ class DondeDistribucion(grok.View):
     grok.name('donde-distribucion')
     grok.template('donde_distribucion')
     grok.require('zope2.View')
+
 
 class Rss2(grok.View):
     """ template rss2 """
