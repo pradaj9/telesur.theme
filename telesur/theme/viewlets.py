@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 
 from Acquisition import aq_inner
 from five import grok
@@ -229,6 +230,7 @@ class MobileNavigation(grok.Viewlet):
         sections = ['noticias', 'opinion']
         self.navroot_path = getNavigationRoot(self.context)
         self.data = Assignment(root=self.navroot_path)
+        self.year = datetime.date.today().strftime("%Y")
         for section in sections:
             catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
                                 'path': '%s/%s/' % (self.navroot_path, section)})

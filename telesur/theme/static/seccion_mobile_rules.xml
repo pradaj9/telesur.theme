@@ -23,6 +23,7 @@
                     <div class="notas-sencilla-grande visualIEFloatFix">
                         <xsl:copy-of css:select=".nota-sencilla-grande-thumb img" />
                         <xsl:copy-of css:select="h3" />
+                        <xsl:copy-of css:select="p.autor" />
                         <div style="clear:both"></div>
                     </div>
                     </xsl:if>

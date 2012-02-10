@@ -196,6 +196,10 @@ header #telesur-topbar {
     margin: 0;
 }
 
+.autor {
+    font-size: 11px;
+}
+
 footer {
     background-color: #1a82f7; 
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#307ea3), to(#caf1fe));
