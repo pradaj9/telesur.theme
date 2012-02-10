@@ -142,7 +142,25 @@
                </tal:block>
             </div>
         </div>
-        <tal:left content="structure provider:telesur.theme.seccion_viewlets" />       
+        <tal:left content="structure provider:telesur.theme.seccion_viewlets" />              
+        <!-- agregamos la imagen thumb de la nota principal.. es usado para el tema para moviles -->
+        <tal:multimedia tal:define="outstanding view/outstanding;
+            multimedia python:view.get_multimedia(outstanding, thumb=True)">
+        <div class="outstanding-media-thumb-container">
+            <div class="outstanding-nota-sencilla-grande-thumb" 
+                 tal:condition="python:multimedia['url']">
+                <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                            tal:define="img python:multimedia['url']">
+                    <img src="" tal:attributes="src string:${img}" />
+                </tal:thumb>
+                <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                           tal:define="img python:multimedia['url']">
+                    <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                </tal:image>  
+            </div>
+        </div>
+        </tal:multimedia>
+        <!-- fin de imagen thumb de nota principal -->
     </tal:main-macro>
 </metal:main>
 </body>

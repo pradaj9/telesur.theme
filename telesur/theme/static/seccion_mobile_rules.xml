@@ -32,7 +32,7 @@
             <!-- Nota Principal -->
             <before css:theme-children="#telesur-seccion-listing">
               <div class="notas-sencilla-grande visualIEFloatFix" id="seccion-nota-primera">
-                <xsl:copy-of css:select=".video-widget img" />
+                <xsl:copy-of css:select=".outstanding-nota-sencilla-grande-thumb img" />
                 <h3>
                     <xsl:copy-of css:select=".main-article .title a"/>
                 </h3>

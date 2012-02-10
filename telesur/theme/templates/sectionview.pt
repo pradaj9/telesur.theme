@@ -77,11 +77,29 @@
                         </tal:notas>
                     </div>
                </tal:block>
-            </div>
-
-            
+            </div>  
         </div>
-
+        <!-- agregamos la imagen thumb de la nota principal.. es usado para el tema para moviles -->
+        <tal:multimedia tal:define="articles view/articles;
+            outstanding python:articles['outstanding'];
+            ">
+        <div class="outstanding-media-thumb-container" tal:condition="outstanding">
+          <div tal:define="multimedia python:view.get_multimedia(outstanding[0], thumb=True)">
+            <div class="outstanding-nota-sencilla-grande-thumb" 
+                 tal:condition="python:multimedia['url']">
+                <tal:thumb  tal:condition="python:multimedia['type'] == 'thumb'"
+                            tal:define="img python:multimedia['url']">
+                    <img src="" tal:attributes="src string:${img}" />
+                </tal:thumb>
+                <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                           tal:define="img python:multimedia['url']">
+                    <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
+                </tal:image>  
+            </div>
+            </div>
+        </div>
+        </tal:multimedia>
+        <!-- fin de imagen thumb de nota principal -->
     </tal:main-macro>
 </metal:main>
 </body>
