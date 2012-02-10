@@ -37,7 +37,7 @@
                 <h3>
                     <xsl:copy-of css:select=".main-article .title a"/>
                 </h3>
-                    
+                  <xsl:copy-of css:select=".main-article .autor"/>
                   <div style="clear:both"></div>
               </div>
             </before>
