@@ -475,43 +475,45 @@ class LayoutHelper(grok.View):
 
     def get_multimedia(self, obj, thumb=False):
         obj = obj.getObject() if hasattr(obj, 'getObject') else obj
-        context_path = '/'.join(obj.getPhysicalPath())
-        query = {'Type': ('Link',)}
-        query['path'] = {'query': context_path,
-                         'depth': 1, }
-        query['sort_on'] = 'getObjPositionInParent'
-        query['limit'] = None
-
-        results = obj.getFolderContents(contentFilter=query, batch=False,
-                                        b_size=10, full_objects=False)
-
         multimedia = {'type': None, 'url': None, 'obj': None, 'description': None}
-        if results:
-            for link in results:
-                link_obj = link.getObject()
-                multimedia['obj'] = link_obj
-                multimedia['description'] = link_obj.Description()
-                annotations = IAnnotations(link_obj)
-                if thumb:
-                    is_video = annotations.get('archivo_url', None)
-                    multimedia['url'] = link_obj.absolute_url() + \
-                        '/@@thumbnail_pequeno' if is_video else None
-                    multimedia['type'] = 'thumb' if multimedia['url'] else None
-                else:
-                    multimedia['url'] = annotations.get('archivo_url', None)
-                    multimedia['type'] = 'video' if multimedia['url'] else None
-                break
+#        import pdb; pdb.set_trace()
+        if obj:        
+            context_path = '/'.join(obj.getPhysicalPath())
+            query = {'Type': ('Link',)}
+            query['path'] = {'query': context_path,
+                             'depth': 1, }
+            query['sort_on'] = 'getObjPositionInParent'
+            query['limit'] = None
 
-        if not multimedia['url']:
-            #we need to search for images because doesn't have videos
-            query['Type'] = ('Image', )
             results = obj.getFolderContents(contentFilter=query, batch=False,
                                             b_size=10, full_objects=False)
+
             if results:
-                multimedia['url'] = results[0].getObject()
-                multimedia['type'] = 'image'
-                multimedia['obj'] = results[0].getObject()
-                multimedia['description'] = results[0].Description
+                for link in results:
+                    link_obj = link.getObject()
+                    multimedia['obj'] = link_obj
+                    multimedia['description'] = link_obj.Description()
+                    annotations = IAnnotations(link_obj)
+                    if thumb:
+                        is_video = annotations.get('archivo_url', None)
+                        multimedia['url'] = link_obj.absolute_url() + \
+                            '/@@thumbnail_pequeno' if is_video else None
+                        multimedia['type'] = 'thumb' if multimedia['url'] else None
+                    else:
+                        multimedia['url'] = annotations.get('archivo_url', None)
+                        multimedia['type'] = 'video' if multimedia['url'] else None
+                    break
+
+            if not multimedia['url']:
+                #we need to search for images because doesn't have videos
+                query['Type'] = ('Image', )
+                results = obj.getFolderContents(contentFilter=query, batch=False,
+                                                b_size=10, full_objects=False)
+                if results:
+                    multimedia['url'] = results[0].getObject()
+                    multimedia['type'] = 'image'
+                    multimedia['obj'] = results[0].getObject()
+                    multimedia['description'] = results[0].Description
 
         return multimedia
 
