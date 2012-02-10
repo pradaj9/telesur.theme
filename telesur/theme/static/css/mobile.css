@@ -182,6 +182,19 @@ header #telesur-topbar {
     margin: 0 0 5px;
     text-decoration: none;
 }
+
+#portada-nota-primera.notas-portada img,
+#seccion-nota-primera.notas-sencilla-grande img {
+    max-height: 110px;
+    max-width: 110px;
+}
+
+
+#portada-nota-primera h3,
+#seccion-nota-primera h3 {
+    font-size: 20px;
+}
+
 footer {
     background-color: #1a82f7; 
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#307ea3), to(#caf1fe));
