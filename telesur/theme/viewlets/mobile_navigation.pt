@@ -6,3 +6,4 @@
         </tal:block>
     </tal:block>
 </ul>
+<span id="mobile-footer-year" tal:content="python:viewlet.year"></span>

@@ -7,11 +7,18 @@
     <rules css:if-content="body.portaltype-collective-nitf-content">
         <theme href="nota_mobile.html" />
         <rules>
+          <!-- el titulo -->
               <replace css:theme="#telesur-container h1"
                   css:content="#portal-column-content h1.documentFirstHeading" />
+              <!-- el texto del articulo -->
               <after css:theme="#telesur-container #autor-temp"
                   css:content="#parent-fieldname-text" />
-
+                  <!-- es una opinion -->
+              <rules css:if-content=".template-opinion">
+                <after css:theme="#telesur-container #autor-temp"
+                    css:content="#content-core" />
+                
+              </rules>
                   <replace css:theme="#telesur-container div#notas-relacionadas ul"
                       css:content="#related-items span" />
                   <drop if-content="not(//*[@id='related-items']/span)"
@@ -29,7 +36,7 @@
                                     method="raw" /> -->
                 <drop css:content="#content .article-description" />
             </rules>
-
+            
         </rules>
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
 

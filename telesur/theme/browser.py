@@ -526,7 +526,6 @@ class LayoutHelper(grok.View):
 
     def get_multimedia(self, obj, thumb=False):
         obj = obj.getObject() if hasattr(obj, 'getObject') else obj
-
         multimedia = {'type': None, 'url': None, 'obj': None, 'description': None}
         if obj:
             context_path = '/'.join(obj.getPhysicalPath())

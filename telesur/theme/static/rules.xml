@@ -132,4 +132,6 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
       <replace css:theme="li#telesur-opinion"  css:content="li#portaltab-opinion" />
     </rules>
     <replace css:theme="#portal-mobile-subglobalnav"  css:content="#portal-mobile-subglobalnav" />
+    <!-- footer year change -->
+    <replace css:theme="#mobile-year"  css:content="#mobile-footer-year" />
 </rules>
