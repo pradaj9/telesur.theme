@@ -264,6 +264,23 @@ class MarkSectionArticle(grok.View):
         return "mark-section-article"
 
 
+class UnmarkArticle(grok.View):
+    grok.context(INITF)
+    grok.name("unmark-article")
+    grok.require("cmf.ModifyPortalContent")
+
+    def __call__(self):
+        ac = getMultiAdapter((self.context, self.request),
+                             name="article-control")
+        ac.unmark(self.context)
+        IStatusMessage(self.request).addStatusMessage(u"El elemento fue desmarcado", type='info')
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)
+
+    def render(self):
+        return "unmark-article"
+
+
 class ArticleControl(grok.View):
     grok.context(INITF)
     grok.name("article-control")
@@ -298,6 +315,40 @@ class ArticleControl(grok.View):
                   }
 
         return ifaces[atype].providedBy(element)
+
+    def unmark(self, element):
+
+        catalog = getToolByName(self.context, 'portal_catalog')        
+        
+        if element:
+            has_outstanding = 0
+            has_primary = 0
+            if self.already_marked(element, 'outstanding'):
+                noLongerProvides(element, IOutstandingArticle)
+
+                element.reindexObject(idxs=['object_provides'])
+                primary_list = catalog(object_provides=IPrimaryArticle.__identifier__,
+                                    sort_on='effective', sort_order='reverse')
+                if primary_list:
+                    self.mark_outstanding(primary_list[0].getObject())
+                has_outstanding = 1
+
+            if self.already_marked(element, 'primary') or has_outstanding:
+                noLongerProvides(element, IPrimaryArticle)
+
+                element.reindexObject(idxs=['object_provides'])
+                secondary_list = catalog(object_provides=ISecondaryArticle.__identifier__,
+                                    sort_on='effective', sort_order='reverse')
+
+                if secondary_list:
+                    self.mark_primary(secondary_list[0].getObject())
+                has_primary = 1
+
+            if self.already_marked(element, 'secondary') or has_primary:
+                noLongerProvides(element, ISecondaryArticle)
+                element.reindexObject(idxs=['object_provides'])                
+
+            element.reindexObject(idxs=['object_provides'])
 
     def mark_outstanding(self, element):
 
@@ -396,7 +447,7 @@ class HomeView(grok.View):
 
     def __init__(self, context, request):
         super(HomeView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), 
+        self.layout_helper = getMultiAdapter((self.context, self.request),
                                             name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
@@ -475,43 +526,45 @@ class LayoutHelper(grok.View):
 
     def get_multimedia(self, obj, thumb=False):
         obj = obj.getObject() if hasattr(obj, 'getObject') else obj
-        context_path = '/'.join(obj.getPhysicalPath())
-        query = {'Type': ('Link',)}
-        query['path'] = {'query': context_path,
-                         'depth': 1, }
-        query['sort_on'] = 'getObjPositionInParent'
-        query['limit'] = None
-
-        results = obj.getFolderContents(contentFilter=query, batch=False,
-                                        b_size=10, full_objects=False)
 
         multimedia = {'type': None, 'url': None, 'obj': None, 'description': None}
-        if results:
-            for link in results:
-                link_obj = link.getObject()
-                multimedia['obj'] = link_obj
-                multimedia['description'] = link_obj.Description()
-                annotations = IAnnotations(link_obj)
-                if thumb:
-                    is_video = annotations.get('archivo_url', None)
-                    multimedia['url'] = link_obj.absolute_url() + \
-                        '/@@thumbnail_pequeno' if is_video else None
-                    multimedia['type'] = 'thumb' if multimedia['url'] else None
-                else:
-                    multimedia['url'] = annotations.get('archivo_url', None)
-                    multimedia['type'] = 'video' if multimedia['url'] else None
-                break
+        if obj:
+            context_path = '/'.join(obj.getPhysicalPath())
+            query = {'Type': ('Link',)}
+            query['path'] = {'query': context_path,
+                             'depth': 1, }
+            query['sort_on'] = 'getObjPositionInParent'
+            query['limit'] = None
 
-        if not multimedia['url']:
-            #we need to search for images because doesn't have videos
-            query['Type'] = ('Image', )
             results = obj.getFolderContents(contentFilter=query, batch=False,
                                             b_size=10, full_objects=False)
+
             if results:
-                multimedia['url'] = results[0].getObject()
-                multimedia['type'] = 'image'
-                multimedia['obj'] = results[0].getObject()
-                multimedia['description'] = results[0].Description
+                for link in results:
+                    link_obj = link.getObject()
+                    multimedia['obj'] = link_obj
+                    multimedia['description'] = link_obj.Description()
+                    annotations = IAnnotations(link_obj)
+                    if thumb:
+                        is_video = annotations.get('archivo_url', None)
+                        multimedia['url'] = link_obj.absolute_url() + \
+                            '/@@thumbnail_pequeno' if is_video else None
+                        multimedia['type'] = 'thumb' if multimedia['url'] else None
+                    else:
+                        multimedia['url'] = annotations.get('archivo_url', None)
+                        multimedia['type'] = 'video' if multimedia['url'] else None
+                    break
+
+            if not multimedia['url']:
+                #we need to search for images because doesn't have videos
+                query['Type'] = ('Image', )
+                results = obj.getFolderContents(contentFilter=query, batch=False,
+                                                b_size=10, full_objects=False)
+                if results:
+                    multimedia['url'] = results[0].getObject()
+                    multimedia['type'] = 'image'
+                    multimedia['obj'] = results[0].getObject()
+                    multimedia['description'] = results[0].Description
 
         return multimedia
 

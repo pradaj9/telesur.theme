@@ -29,6 +29,46 @@ class MarkNewsTest(unittest.TestCase):
         self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
+    def test_unmark_article(self):
+        self.portal.invokeFactory('collective.nitf.content', 'n1')
+        self.portal.invokeFactory('collective.nitf.content', 'n2')
+        n1 = self.portal['n1']
+        n2 = self.portal['n2']
+        ac = getMultiAdapter((n1, self.request), name="article-control")
+
+        ac.mark_outstanding(n1)
+        self.failUnless(IOutstandingArticle.providedBy(n1))
+
+        ac.unmark(n1)
+        self.failIf(IOutstandingArticle.providedBy(n1))
+
+        self.portal.invokeFactory('collective.nitf.content', 'n3')
+        n3 = self.portal['n3']
+        ac.mark_primary(n3)
+        ac.mark_outstanding(n1)
+        ac.unmark(n1)
+
+        self.failUnless(IOutstandingArticle.providedBy(n3))
+
+        ac.mark_secondary(n2)
+        ac.mark_primary(n1)
+
+        ac.unmark(n3)
+
+        self.failIf(IOutstandingArticle.providedBy(n3))
+        self.failIf(IPrimaryArticle.providedBy(n3))
+        self.failIf(ISecondaryArticle.providedBy(n3))
+
+        self.portal.invokeFactory('collective.nitf.content', 'n4')
+        n4 = self.portal['n4']
+
+        ac.mark_secondary(n4)
+
+        self.failUnless(IOutstandingArticle.providedBy(n1))
+        self.failUnless(IPrimaryArticle.providedBy(n2))
+        self.failUnless(ISecondaryArticle.providedBy(n4))
+        self.failIf(IPrimaryArticle.providedBy(n4))
+
     def test_mark_news_as_outstanding(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
         self.portal.invokeFactory('collective.nitf.content', 'n2')
@@ -83,7 +123,7 @@ class MarkNewsTest(unittest.TestCase):
         self.failUnless(IPrimaryArticle.providedBy(n4))
         self.failIf(IPrimaryArticle.providedBy(n5))
         self.failIf(IPrimaryArticle.providedBy(n6))
-        self.failIf(IPrimaryArticle.providedBy(n7))        
+        self.failIf(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n5)
 
@@ -328,10 +368,10 @@ class MarkNewsFunctionalTest(unittest.TestCase):
         self.failIf('@@mark-primary-article' in self.browser.contents)
         self.failIf('@@mark-secondary-article' in self.browser.contents)
         self.failIf('@@mark-section-article' in self.browser.contents)
-    
+
     def test_actions_are_visible(self):
         #the article isn't published
-        
+
         self.browser.open(self.news4.absolute_url())
         self.browser.getLink("Publish").click()
         self.failUnless('@@mark-outstanding-article' in self.browser.contents)
@@ -366,7 +406,7 @@ class MarkNewsFunctionalTest(unittest.TestCase):
         self.failUnless('@@mark-primary-article' in self.browser.contents)
         self.failUnless('@@mark-secondary-article' in self.browser.contents)
         self.failIf('@@mark-section-article' in self.browser.contents)
-    
+
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
