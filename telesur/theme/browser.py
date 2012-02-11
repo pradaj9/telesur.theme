@@ -834,15 +834,17 @@ class Rss2(grok.View):
         today = DateTime.DateTime().strftime('%m/%d/%Y')
         pubdate = DateTime.DateTime(today)
 
-        return pubdate
+        return pubdate.rfc822()
 
     def get_item_pubdate(self, obj):
         effective = obj.effective_date and obj.effective()
         modified = obj.modified()
         date = effective or modified
+
         return date
 
     def get_objects_list(self):
         syn = self.context.portal_syndication
         obj_list = list(syn.getSyndicatableContent(self.context))
+
         return obj_list

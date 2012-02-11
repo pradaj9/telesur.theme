@@ -15,7 +15,7 @@
     <description tal:content="context/Description">Canal de noticias de america del sur</description>
     <language>es</language>
     <copyright>  </copyright>
-    <pubDate tal:content="python:pubdate.rfc822()">Sun, 05 Feb 2012 00:45 -0400</pubDate>
+    <pubDate tal:content="pubdate">Sun, 05 Feb 2012 00:45 -0400</pubDate>
 
     <tal:comment replace="nothing">
       The syndication tool is pretty brain dead and won't let you access the variables
