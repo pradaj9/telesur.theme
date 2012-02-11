@@ -1,0 +1,3 @@
+<div id="sitedate">
+    <span tal:content="python:viewlet.date"></span>
+</div>

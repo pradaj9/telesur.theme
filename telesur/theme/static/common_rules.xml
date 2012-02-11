@@ -79,6 +79,11 @@
         css:content="#portaltab-noticias"
         method="raw" />
 
+    <!-- site date -->
+    <after css:theme="#menu"
+        css:content="#sitedate"
+        method="raw" />
+
     <!-- ticker -->
     <drop css:content="#ticker-wrapper" />
     <replace

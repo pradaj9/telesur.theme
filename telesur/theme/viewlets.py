@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+import DateTime
 
 from Acquisition import aq_inner
 from five import grok
@@ -120,12 +121,12 @@ class ContentButtonsViewlet(grok.Viewlet):
     def _checkPermInFolder(self, perm, folder_id=None):
         portal = getToolByName(self.context, 'portal_url').getPortalObject()
         if folder_id:
-          try:
-              folder = portal[folder_id]
-          except KeyError:
-              folder = None
+            try:
+                folder = portal[folder_id]
+            except KeyError:
+                folder = None
         else:
-          folder = portal
+            folder = portal
         if folder:
             can_add = checkPermission(perm, folder)
         else:
@@ -139,7 +140,7 @@ class ContentButtonsViewlet(grok.Viewlet):
         return can_add
 
     def get_actions(self):
-        actionIds = ['nota_destacada', 'nota_principal', 'nota_secundaria','nota_seccion']
+        actionIds = ['nota_destacada', 'nota_principal', 'nota_secundaria', 'nota_seccion']
         context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
         editActions = context_state.actions('object_buttons')
         editActionsIds = {}
@@ -158,18 +159,18 @@ class ContentButtonsViewlet(grok.Viewlet):
                     actions.append(editActionsIds[actionId])
                 else:
                     action = self.context.portal_actions.object_buttons[actionId]
-                    actionDic = {'id':actionId,'title':action.title,
-                        'available':False, 'url':None}
+                    actionDic = {'id': actionId, 'title': action.title,
+                        'available': False, 'url': None}
                     actions.append(actionDic)
         return actions
 
     def get_addable_contents(self):
         contents = []
-        contents.append({'id':'Video',
+        contents.append({'id': 'Video',
                                 'title': 'Video',
                                 'id-tag': "notas-add-video",
                                 'url': ""})
-        contents.append({'id':'Images',
+        contents.append({'id': 'Images',
                                 'title': 'Imagenes y Archivos',
                                 'id-tag': "notas-add-image-files",
                                 'url': "./@@media_uploader"})
@@ -189,6 +190,7 @@ class ContentButtonsViewlet(grok.Viewlet):
 
 
 alsoProvides(VideosRelacionarViewlet, ITelesurViewlet)
+
 
 class VideosPorSeccionViewlet(grok.Viewlet):
     grok.context(Interface)
@@ -246,12 +248,13 @@ class MobileNavigation(grok.Viewlet):
                     self.result += news_dict.get('children', [])
                 else:
                     news_dict = {}
-                    
+
         for item in self.result:
             if self.context.getId() == item['id']:
                 item['is_selected'] = True
             else:
                 item['is_selected'] = False
+
 
 class LiveSignalLinkViewlet(grok.Viewlet):
     grok.context(Interface)
@@ -267,6 +270,7 @@ class LiveSignalLinkViewlet(grok.Viewlet):
         if site and 'el-canal' in site.keys() and \
             'senal-en-vivo' in site['el-canal'].keys():
             self.url = site['el-canal']['senal-en-vivo'].absolute_url()
+
 
 class SubSectionList(grok.Viewlet):
     grok.context(Interface)
@@ -292,3 +296,22 @@ class SubSectionList(grok.Viewlet):
             self.data = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
         else:
             self.data = {}
+
+
+class SiteDate(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.sitedate")
+    grok.require("zope2.View")
+    grok.template("site_date")
+    grok.viewletmanager(IPortalFooter)
+
+    def update(self):
+        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+        day = DateTime.DateTime().strftime('%d')
+        month = DateTime.DateTime().strftime('%m')
+        year = DateTime.DateTime().strftime('%Y')
+        month_index = int(month) - 1
+        self.date = day + ' de ' + months[month_index] + ' del ' + year
