@@ -314,4 +314,4 @@ class SiteDate(grok.Viewlet):
         month = DateTime.DateTime().strftime('%m')
         year = DateTime.DateTime().strftime('%Y')
         month_index = int(month) - 1
-        self.date = day + ' de ' + months[month_index] + ' del ' + year
+        self.date = day + ' de ' + months[month_index] + ' de ' + year
