@@ -12,9 +12,7 @@ from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
-from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
