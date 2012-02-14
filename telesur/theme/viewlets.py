@@ -12,9 +12,7 @@ from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
-from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -307,11 +305,15 @@ class SiteDate(grok.Viewlet):
     grok.viewletmanager(IPortalFooter)
 
     def update(self):
+        weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves',
+                    'Viernes', 'Sábado']
         months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
                   'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
+        weekday = DateTime.DateTime().strftime('%w')
         day = DateTime.DateTime().strftime('%d')
         month = DateTime.DateTime().strftime('%m')
         year = DateTime.DateTime().strftime('%Y')
-        month_index = int(month) - 1
-        self.date = day + ' de ' + months[month_index] + ' del ' + year
+        w = int(weekday)
+        m = int(month) - 1
+        self.date = '%s %s de %s de %s' % (weekdays[w], day, months[m], year)
