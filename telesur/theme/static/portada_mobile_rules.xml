@@ -13,7 +13,11 @@
             <replace css:theme-children="#telesur-portada-listing">
                 <xsl:for-each css:select="div.article-item-wrapper">
                     <div class="notas-portada">
-                        <xsl:copy-of css:select=".thumb img" />
+                      <xsl:element name="img">
+                        <xsl:attribute name="src">
+                          <xsl:value-of select="*[@class='thumb']/img/@*[name(.)='src']"/>
+                        </xsl:attribute>
+                    </xsl:element>
                         <xsl:copy-of select="h3" />
                         <div style="clear:both"></div>
                     </div>
@@ -23,7 +27,12 @@
             <append css:theme="#telesur-portada-listing">
                 <xsl:for-each css:select="div.notas-sencilla-grande">
                     <div class="notas-portada">
-                      <xsl:copy-of css:select=".nota-sencilla-grande-thumb img" />
+                      <xsl:value-of select="*[@class='nota-sencilla-grande-thumb']/img/@*[name(.)='src']"/>
+                      <xsl:element name="img">
+                        <xsl:attribute name="src">
+                          <xsl:value-of select="div/div/*[@class='nota-sencilla-grande-thumb']/img/@*[name(.)='src']"/>
+                        </xsl:attribute>
+                    </xsl:element>
                         <xsl:copy-of css:select="h3" />
                         <div style="clear:both"></div>
                     </div>
@@ -33,7 +42,11 @@
             <!-- Nota Principal -->
             <before css:theme-children="#telesur-portada-listing">
               <div class="notas-portada" id="portada-nota-primera">
-                <xsl:copy-of css:select=".outstanding-nota-sencilla-grande-thumb img" />
+                <xsl:element name="img">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="//*[@class='outstanding-nota-sencilla-grande-thumb']/img/@*[name(.)='src']"/>
+                  </xsl:attribute>
+              </xsl:element>
                 <h3>
                     <xsl:copy-of css:select=".main-article .title a"/>
                 </h3>
@@ -41,11 +54,7 @@
               </div>
             </before>
             <append  css:theme="#portada-nota-primera" css:content="h1#parent-fieldname-title"/>
-            <xsl:template css:match=".video-widget img">
-              <xsl:copy>
-                <xsl:apply-templates/>
-              </xsl:copy>
-            </xsl:template>
+            
     </rules>
 
 </rules>
