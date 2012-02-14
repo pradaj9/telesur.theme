@@ -22,7 +22,7 @@ class InstallTest(unittest.TestCase):
         self.failUnless(self.qi.isProductInstalled('telesur.theme'))
 
     def test_dependencies_installed(self):
-        DEPENDENCIES = ['collective.nitf', 'collective.routes']
+        DEPENDENCIES = ['collective.nitf']
         for p in DEPENDENCIES:
             self.failUnless(self.qi.isProductInstalled(p),
                             '%s not installed' % p)

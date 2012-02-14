@@ -40,7 +40,6 @@ class Fixture(PloneSandboxLayer):
 
         # Install into Plone site using portal_setup
         self.applyProfile(portal, 'collective.nitf:default')
-        self.applyProfile(portal, 'collective.routes:default')
         self.applyProfile(portal, 'telesur.api:default')
         self.applyProfile(portal, 'telesur.theme:default')
         
