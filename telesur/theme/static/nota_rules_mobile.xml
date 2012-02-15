@@ -29,11 +29,8 @@
                 <!-- image gallery code -->
                 <prepend css:theme="#telesur-container #media-container"
                     content="//div[@class='items']/div[1]/div/img" />
-                <!-- nota description -->
-                <!-- <replace css:if-content="#content .article-description"
-                                    css:theme-children="#telesur-container .article-description"
-                                    css:content="#content .article-description"
-                                    method="raw" /> -->
+                <drop attributes="width height" content="//div[@class='items']/div[1]/div/img" />
+ 
                 <drop css:content="#content .article-description" />
             </rules>
             

@@ -20,7 +20,7 @@
           </rules>
           <rules if-content="not(//*[@class='nitfByline'])">
             <drop css:theme="#byline" />
-          </rules>          
+          </rules>
 
           <!-- colaboradores -->
           <replace css:theme-children="#colabs"
@@ -79,6 +79,7 @@
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">
           <after css:theme="#telesur-left-content #comentarios-nota > h2">
+              <p>Condiciones de uso: No se publicará en caso alguno material ofensivo, denigrante, fuera de contexto, que afecten la dignidad de una persona o un grupo social, que sean difamatorios, que inciten a violar leyes o a alterar el orden.</p>
               <div id="disqus_thread"></div>
               <script type="text/javascript">
                   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

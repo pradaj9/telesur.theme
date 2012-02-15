@@ -6,17 +6,12 @@ from zope.component import getMultiAdapter
 
 from zope.interface import Interface
 from zope.annotation.interfaces import IAnnotations
-from zope.publisher.interfaces import NotFound
 
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
-from collective.routes.interfaces import IFragmentContext
-from collective.routes.interfaces import IWrappedBrainsContext
-from collective.routes.interfaces import IWrappedObjectContext
-from collective.routes import getObject
 
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.interfaces import IOutstandingArticle
@@ -95,33 +90,6 @@ class Folder_Summary_View(grok.View):
     grok.name("folder_summary_view")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
-
-
-class Routes_Folder_Summary_View(Folder_Summary_View):
-    grok.context(IWrappedBrainsContext)
-    grok.layer(ITelesurLayer)
-    grok.require("zope2.View")
-
-
-class FragmentView(grok.View):
-    grok.context(IFragmentContext)
-    grok.name("view")
-    grok.layer(ITelesurLayer)
-    grok.require("zope2.View")
-
-    def render(self):
-        route = self.context.route
-        wrapped = getObject(route, self.context, self.request)
-
-        if IWrappedBrainsContext.providedBy(wrapped):
-            wrapped.Title = lambda: u"TeleSUR"
-            view = wrapped.restrictedTraverse('folder_summary_view')
-        elif IWrappedObjectContext.providedBy(wrapped):
-            layout = wrapped.obj.getLayout()
-            view = wrapped.restrictedTraverse(layout)
-        else:
-            raise NotFound
-        return view()
 
 
 class GoogleMapView(grok.View):
