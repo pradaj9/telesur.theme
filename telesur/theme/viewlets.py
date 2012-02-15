@@ -305,10 +305,11 @@ class SiteDate(grok.Viewlet):
     grok.viewletmanager(IPortalFooter)
 
     def update(self):
-        weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves',
-                    'Viernes', 'Sábado']
-        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
-                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        weekdays = [u'Domingo', u'Lunes', u'Martes', u'Miércoles', u'Jueves',
+                    u'Viernes', u'Sábado']
+        months = [u'Enero', u'Febrero', u'Marzo', u'Abril', u'Mayo', u'Junio',
+                  u'Julio', u'Agosto', u'Septiembre', u'Octubre',
+                  u'Noviembre', u'Diciembre']
 
         weekday = DateTime.DateTime().strftime('%w')
         day = int(DateTime.DateTime().strftime('%d'))
@@ -316,4 +317,4 @@ class SiteDate(grok.Viewlet):
         year = DateTime.DateTime().strftime('%Y')
         w = int(weekday)
         m = int(month) - 1
-        self.date = '%s %s de %s de %s' % (weekdays[w], day, months[m], year)
+        self.date = u'%s %s de %s de %s' % (weekdays[w], day, months[m], year)
