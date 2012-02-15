@@ -8,6 +8,7 @@
 <body>
 
 <metal:title fill-slot="content-title">
+        <span class="pubdate" tal:content="view/pub_date"></span>
         <h1 class="documentFirstHeading" tal:content="context/title" />
 </metal:title>
 

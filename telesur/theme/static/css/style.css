@@ -437,6 +437,12 @@ div#banners-home.widget-container a img {
 /***
 * NOTA
 ***/
+
+.pubdate {
+    font-size:12px;
+    display:block;
+    clear:both;
+}
 #media-data {
     overflow: hidden;
     }

@@ -51,6 +51,29 @@ class NITF_View(View):
     grok.name("nota")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
+    
+    def pub_date(self):
+        weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves',
+                    'Viernes', 'Sábado']
+        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+        self.date = ''
+        effective = self.context.effective_date
+        if effective:
+            weekday = effective.strftime('%w')
+            day = int(effective.strftime('%d'))
+            month = effective.strftime('%m')
+            year = effective.strftime('%Y')
+            w = int(weekday)
+            m = int(month) - 1
+            hour = effective.strftime('%I')
+            minute = effective.strftime('%M')
+            timeofday = effective.strftime('%P')
+            self.date = '%s %s de %s de %s, %s:%s %s' % (weekdays[w], day, months[m], year, 
+                        hour, minute, timeofday)
+
+        return self.date
 
 
 class Media(dexterity.DisplayForm):

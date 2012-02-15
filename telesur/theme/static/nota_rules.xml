@@ -14,6 +14,11 @@
             <drop css:content=".portlet-collection-ultimas-noticias .portletItem a img" />
 
 
+          <!-- date -->
+          <rules>
+            <replace css:theme=".pubdate" css:content=".pubdate" method="raw" />
+          </rules>
+  
           <!-- author -->
           <rules css:if-content=".nitfByline">
             <replace css:theme="#byline .author" css:content=".nitfByline .author" />

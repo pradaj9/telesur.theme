@@ -311,7 +311,7 @@ class SiteDate(grok.Viewlet):
                   'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
         weekday = DateTime.DateTime().strftime('%w')
-        day = DateTime.DateTime().strftime('%d')
+        day = int(DateTime.DateTime().strftime('%d'))
         month = DateTime.DateTime().strftime('%m')
         year = DateTime.DateTime().strftime('%Y')
         w = int(weekday)
