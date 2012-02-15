@@ -38,6 +38,23 @@
                 <div class="data-article-container cell">
                     <div class="description" tal:content="python:outstanding[0].description">
                     </div>
+                    <tal:multimedia >
+                        <p class="media-icons iconos-portada">
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
+                                 tal:define="has_videos python:view.has_videos(outstanding[0])"
+                                 tal:condition="has_videos" />
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
+                                 tal:define="has_gallery python:view.has_gallery(outstanding[0])"
+                                 tal:condition="has_gallery" />
+                            <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
+                                 tal:define="has_atachments python:view.has_atachments(outstanding[0])"
+                                 tal:condition="has_atachments" />
+                        </p>                    
+                    </tal:multimedia>
+                    
+                    
+                    
+                    
                 </div>
             </div>
 
@@ -65,6 +82,17 @@
                                                     <img tal:replace="structure python: path('nocall:img/tag')(scale='thumb')" />
                                                 </tal:image>  
                                             </div>
+                                            <p class="iconos-portada">
+                                                <img style="margin: 0 5px" src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
+                                                     tal:define="has_videos python:view.has_videos(nota_obj)"
+                                                     tal:condition="has_videos" />
+                                                <img style="margin: 0 5px" src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
+                                                     tal:define="has_gallery python:view.has_gallery(nota_obj)"
+                                                     tal:condition="has_gallery" />
+                                                <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
+                                                     tal:define="has_atachments python:view.has_atachments(nota_obj)"
+                                                     tal:condition="has_atachments" />
+                                            </p>
                                         </div>
                                         </tal:multimedia>
                                         <div>

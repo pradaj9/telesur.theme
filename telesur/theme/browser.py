@@ -675,7 +675,34 @@ class SectionView(grok.View):
         elements = self.layout_helper.articles(limit, genre='Current', 
                                                section=section)
         return elements
+    
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
 
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
 
 class OpinionView(grok.View):
     """Vista para seccion opinion.
