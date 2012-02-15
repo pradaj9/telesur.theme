@@ -21,7 +21,13 @@
                   
                     <xsl:if test="position() &lt; 10">
                     <div class="notas-sencilla-grande visualIEFloatFix">
-                        <xsl:copy-of css:select=".nota-sencilla-grande-thumb img" />
+                      
+                      
+                      <xsl:element name="img">
+                        <xsl:attribute name="src">
+                          <xsl:value-of select="div/div/*[@class='nota-sencilla-grande-thumb']/img/@*[name(.)='src']"/>
+                        </xsl:attribute>
+                    </xsl:element>
                         <xsl:copy-of css:select="h3" />
                         <xsl:copy-of css:select="p.autor" />
                         <div style="clear:both"></div>
@@ -33,7 +39,11 @@
             <!-- Nota Principal -->
             <before css:theme-children="#telesur-seccion-listing">
               <div class="notas-sencilla-grande visualIEFloatFix" id="seccion-nota-primera">
-                <xsl:copy-of css:select=".outstanding-nota-sencilla-grande-thumb img" />
+                <xsl:element name="img">
+                  <xsl:attribute name="src">
+                    <xsl:value-of select="//*[@class='outstanding-nota-sencilla-grande-thumb']/img/@*[name(.)='src']"/>
+                  </xsl:attribute>
+              </xsl:element>
                 <h3>
                     <xsl:copy-of css:select=".main-article .title a"/>
                 </h3>

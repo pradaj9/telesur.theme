@@ -46,11 +46,11 @@
 }
 
 #sitedate {
-    margin-right: 10px;
+    margin-right: 7px;
     float: right;
     clear: right;
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 34px;
 }
 /*content styles*/
@@ -120,6 +120,11 @@ h1 a {
 .data-article-container .media-icons {
     padding-top:10px;
 }
+
+#nota-titular .media-icons {
+    padding-top:10px;
+}
+
 
 .articles-data .title {
     padding-left: 15px;
@@ -437,6 +442,12 @@ div#banners-home.widget-container a img {
 /***
 * NOTA
 ***/
+
+.pubdate {
+    font-size:12px;
+    display:block;
+    clear:both;
+}
 #media-data {
     overflow: hidden;
     }
