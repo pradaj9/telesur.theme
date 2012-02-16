@@ -6,7 +6,7 @@ from Acquisition import aq_inner
 from five import grok
 from zope.interface import alsoProvides
 from zope.interface import Interface
-from zope.component import getMultiAdapter, queryUtility
+from zope.component import getMultiAdapter
 from zope.security import checkPermission
 from zope.app.component.hooks import getSite
 
