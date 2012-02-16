@@ -76,7 +76,9 @@
 
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
-            
+         <!-- Ultimos videos widget    -->
+         <replace css:theme-children=".ultimos-videos-wrapper"
+           css:content-children="#lastest-videos-viewlet" />
     </rules>
 
 </rules>
