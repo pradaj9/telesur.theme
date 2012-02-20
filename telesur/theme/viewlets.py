@@ -20,7 +20,9 @@ from plone.app.layout.viewlets.interfaces import IDocumentActions
 from plone.app.layout.viewlets.interfaces import IPortalHeader, IPortalFooter
 from plone.app.portlets.portlets.navigation import Assignment
 
-from collective.nitf.content import INITF
+from plone.i18n.normalizer import idnormalizer
+
+from collective.nitf.content import INITF, SectionsVocabulary
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.interfaces import ITelesurViewlet
 
@@ -295,6 +297,24 @@ class SubSectionList(grok.Viewlet):
         else:
             self.data = {}
 
+class LastestVideosWidget(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.lastestvideos")
+    grok.require("zope2.View")
+    grok.template("lastest_videos")
+    grok.viewletmanager(IPortalFooter)
+
+    def update(self):
+        objSectionVocabulary = SectionsVocabulary()
+        sectionsVoc = objSectionVocabulary(self.context)
+        sections = [term.title for term in sectionsVoc]
+        tab = aq_inner(self.context)
+        self.url = "http://multimedia.tlsur.net/media/video/cmswidgets/videos.html?widget=ultimos_videos&amp;width=285"
+        if tab.title in sections:
+            titleId = idnormalizer.normalize(tab.title, 'es')
+            seccionUrl = "&seccion_plone=" + titleId
+            self.url += seccionUrl
 
 class SiteDate(grok.Viewlet):
     grok.context(Interface)
