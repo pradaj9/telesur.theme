@@ -42,7 +42,7 @@
   </object>
 
   <object name="nota_seccion" meta_type="CMF Action">
-   <property name="title">Marcar como nota de sección</property>
+   <property name="title">Marcar como destacado de sección</property>
    <property name="description"></property>
    <property name="url_expr">string:${object_url}/@@mark-section-article</property>
    <property name="icon_expr"></property>

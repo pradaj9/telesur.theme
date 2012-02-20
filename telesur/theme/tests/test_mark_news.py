@@ -421,7 +421,7 @@ class MarkNewsFunctionalTest(unittest.TestCase):
         self.browser.open(self.news1.absolute_url())
         self.browser.getLink("Publish").click()
         #XXX: Encontrar el encoding apropiado para "sección"
-        self.browser.getLink("Marcar como nota de secci�n").click()
+        self.browser.getLink("Marcar como destacado de secci�n").click()
         self.failUnless('@@mark-outstanding-article' in self.browser.contents)
         self.failUnless('@@mark-primary-article' in self.browser.contents)
         self.failUnless('@@mark-secondary-article' in self.browser.contents)
