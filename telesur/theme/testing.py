@@ -22,6 +22,10 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=collective.formwidget.relationfield)
         import telesur.api
         self.loadZCML(package=telesur.api)
+        import collective.prettydate
+        self.loadZCML(package=collective.prettydate)
+        import collective.nitf
+        self.loadZCML(package=collective.nitf)
         import collective.upload
         self.loadZCML(package=collective.upload)
         import telesur.theme
@@ -42,7 +46,7 @@ class Fixture(PloneSandboxLayer):
         self.applyProfile(portal, 'collective.nitf:default')
         self.applyProfile(portal, 'telesur.api:default')
         self.applyProfile(portal, 'telesur.theme:default')
-        
+
         #adding the workflow to the container content type
         types = ('Container', 'collective.nitf.content')
         wf.setChainForPortalTypes(types, 'simple_publication_workflow')
@@ -109,7 +113,7 @@ def setupTestContent(test):
     test.news4 = test.folder['news-4']
     test.news4.section = u'Latinoamérica'
     test.news4.setEffectiveDate('2011/11/30')
-    
+
     test.news1.reindexObject()
     test.news2.reindexObject()
     test.news3.reindexObject()
