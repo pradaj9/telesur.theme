@@ -51,12 +51,13 @@ class NITF_View(View):
     grok.name("nota")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
-    
+
     def pub_date(self):
         weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves',
                     'Viernes', 'Sábado']
-        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
-                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        months = ['Enero', 'Febrero', 'Marzo', 'Abril',
+                  'Mayo', 'Junio', 'Julio', 'Agosto',
+                  'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
 
         self.date = ''
         effective = self.context.effective_date
@@ -70,8 +71,13 @@ class NITF_View(View):
             hour = effective.strftime('%I')
             minute = effective.strftime('%M')
             timeofday = effective.strftime('%P')
-            self.date = '%s %s de %s de %s, %s:%s %s' % (weekdays[w], day, months[m], year, 
-                        hour, minute, timeofday)
+            self.date = '%s %s de %s de %s, %s:%s %s' % (weekdays[w],
+                                                         day,
+                                                         months[m],
+                                                         year,
+                                                         hour,
+                                                         minute,
+                                                         timeofday)
 
         return self.date
 
@@ -309,11 +315,11 @@ class ArticleControl(grok.View):
 
     def unmark(self, element):
 
-        catalog = getToolByName(self.context, 'portal_catalog')        
-        
+        catalog = getToolByName(self.context, 'portal_catalog')
+
         if element:
-            has_outstanding = 0
-            has_primary = 0
+            has_outstanding = False
+            has_primary = False
             if self.already_marked(element, 'outstanding'):
                 noLongerProvides(element, IOutstandingArticle)
 
@@ -322,7 +328,7 @@ class ArticleControl(grok.View):
                                     sort_on='effective', sort_order='reverse')
                 if primary_list:
                     self.mark_outstanding(primary_list[0].getObject())
-                has_outstanding = 1
+                has_outstanding = True
 
             if self.already_marked(element, 'primary') or has_outstanding:
                 noLongerProvides(element, IPrimaryArticle)
@@ -333,11 +339,11 @@ class ArticleControl(grok.View):
 
                 if secondary_list:
                     self.mark_primary(secondary_list[0].getObject())
-                has_primary = 1
+                has_primary = True
 
             if self.already_marked(element, 'secondary') or has_primary:
                 noLongerProvides(element, ISecondaryArticle)
-                element.reindexObject(idxs=['object_provides'])                
+                element.reindexObject(idxs=['object_provides'])
 
             element.reindexObject(idxs=['object_provides'])
 
@@ -346,18 +352,17 @@ class ArticleControl(grok.View):
         if self.already_marked(element, 'outstanding'):
             return
 
-        iface = IOutstandingArticle
         iface_to_remove = [IPrimaryArticle, ISecondaryArticle]
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__)
+        existing = catalog(object_provides=IOutstandingArticle.__identifier__)
 
         if existing:
             elem = existing[0].getObject()
             self.mark_primary(elem)
 
         context = aq_inner(element)
-        alsoProvides(context, iface)
+        alsoProvides(context, IOutstandingArticle)
         for iface in iface_to_remove:
             noLongerProvides(context, iface)
 
@@ -368,11 +373,10 @@ class ArticleControl(grok.View):
         if self.already_marked(element, 'primary'):
             return
 
-        iface = IPrimaryArticle
         iface_to_remove = [IOutstandingArticle, ISecondaryArticle]
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
+        existing = catalog(object_provides=IPrimaryArticle.__identifier__,
                            sort_on='effective')
 
         if len(existing) > 3:
@@ -380,7 +384,7 @@ class ArticleControl(grok.View):
             self.mark_secondary(elem)
 
         context = aq_inner(element)
-        alsoProvides(context, iface)
+        alsoProvides(context, IPrimaryArticle)
         for iface in iface_to_remove:
             noLongerProvides(context, iface)
 
@@ -391,11 +395,10 @@ class ArticleControl(grok.View):
         if self.already_marked(element, 'secondary'):
             return
 
-        iface = ISecondaryArticle
         iface_to_remove = [IOutstandingArticle, IPrimaryArticle]
 
         context = aq_inner(element)
-        alsoProvides(context, iface)
+        alsoProvides(context, ISecondaryArticle)
         for iface in iface_to_remove:
             noLongerProvides(context, iface)
 
@@ -406,25 +409,23 @@ class ArticleControl(grok.View):
         if self.already_marked(element, 'section'):
             return
 
-        iface = ISectionArticle
-
         catalog = getToolByName(self.context, 'portal_catalog')
         # search *only* in this section
-        existing = catalog(object_provides=iface.__identifier__,
+        existing = catalog(object_provides=ISectionArticle.__identifier__,
                            section=element.section)
 
-        # existe el caso donde se puede marcar una nota para una seccion, luego
-        # cambiarle manualmente la misma, lo que nos dejaria con mas de una 
-        # *nota de seccion* por seccion
+        # existe el caso donde se puede marcar una nota para una seccion,
+        # luego cambiarle manualmente la misma, lo que nos dejaria con mas de
+        # una *nota de seccion* por seccion
         for article in existing:
             elem = article.getObject()
             context = aq_inner(elem)
-            noLongerProvides(context, iface)
+            noLongerProvides(context, ISectionArticle)
             context.reindexObject(idxs=['object_provides'])
 
         context = aq_inner(element)
 
-        alsoProvides(context, iface)
+        alsoProvides(context, ISectionArticle)
         context.reindexObject(idxs=['object_provides'])
 
     def render(self):
@@ -449,10 +450,8 @@ class HomeView(grok.View):
         return multimedia
 
     def outstanding(self):
-        iface = IOutstandingArticle
-
         catalog = getToolByName(self.context, 'portal_catalog')
-        existing = catalog(object_provides=iface.__identifier__)
+        existing = catalog(object_provides=IOutstandingArticle.__identifier__)
 
         elem = ''
         if existing:
@@ -461,20 +460,15 @@ class HomeView(grok.View):
         return elem
 
     def primary(self):
-        iface = IPrimaryArticle
-
         catalog = getToolByName(self.context, 'portal_catalog')
-        #ordenar por fecha efectiva y prioridad
-        elements = catalog(object_provides=iface.__identifier__,
+        elements = catalog(object_provides=IPrimaryArticle.__identifier__,
                            sort_on='effective', sort_order='reverse')
 
         return elements
 
     def secondary(self, limit=6):
-        iface = ISecondaryArticle
-
         catalog = getToolByName(self.context, 'portal_catalog')
-        elements = catalog(object_provides=iface.__identifier__,
+        elements = catalog(object_provides=ISecondaryArticle.__identifier__,
                            sort_on='effective', sort_order='reverse')
 
         return elements[:limit]
@@ -551,8 +545,10 @@ class LayoutHelper(grok.View):
             if not multimedia['url']:
                 #we need to search for images because doesn't have videos
                 query['Type'] = ('Image', )
-                results = obj.getFolderContents(contentFilter=query, batch=False,
-                                                b_size=10, full_objects=False)
+                results = obj.getFolderContents(contentFilter=query,
+                                                batch=False,
+                                                b_size=10,
+                                                full_objects=False)
                 if results:
                     multimedia['url'] = results[0].getObject()
                     multimedia['type'] = 'image'
@@ -570,8 +566,8 @@ class LayoutHelper(grok.View):
             if criterion:
                 section_index = criterion.value
             else:
-                # XXX: deberiamos tener esto generalizado en una annotation en el
-                # objeto bajo la variable "section"
+                # XXX: deberiamos tener esto generalizado en una annotation en
+                # el objeto bajo la variable "section"
 
                 # por ahora vamos a buscar las colecciones hijas, el primer
                 # elemento y usar el criterio de ahi
@@ -590,8 +586,8 @@ class LayoutHelper(grok.View):
             section_index = section
         return section_index
 
-    def articles(self, limit, genre='Current', all_articles=False, 
-        outstanding_optional=False, section=''):
+    def articles(self, limit, genre='Current', all_articles=False,
+                       outstanding_optional=False, section=''):
 
         elements = {'outstanding': [], 'secondary': [], 'articles': []}
         catalog = getToolByName(self.context, 'portal_catalog')
@@ -611,8 +607,8 @@ class LayoutHelper(grok.View):
         outstanding['object_provides'] = {
         'query': [ISectionArticle.__identifier__]}
         outstanding['genre'] = genre
-        outstanding['sort_on'] = 'effective'    
-        outstanding['sort_order'] = 'reverse'            
+        outstanding['sort_on'] = 'effective'
+        outstanding['sort_order'] = 'reverse'
         outstanding['sort_limit'] = 1
         outstanding['review_state'] = 'published'
 
@@ -641,12 +637,12 @@ class LayoutHelper(grok.View):
 
                 elements['secondary'] = \
                     filter(lambda nota: nota.UID != outstanding_UID,
-                           existing)[move:limit+move]
+                           existing)[move: limit + move]
 
             elif existing:
                 #no es una seccion, sino una vista global
                 elements['outstanding'] = [existing[0].getObject()]
-                elements['secondary'] = existing[1:limit+1]
+                elements['secondary'] = existing[1: limit + 1]
 
         return elements
 
@@ -654,17 +650,18 @@ class LayoutHelper(grok.View):
 class SectionView(grok.View):
     """Vista para secciones.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
-    #de seccion, se deberia reemplazar por una marker interface que identifique
-    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
-    # una categoria)
+    # XXX: Esta vista utiliza el criterio de una coleccion para buscar
+    # elementos de sección, se deberia reemplazar por una marker interface que
+    # identifique la sección (o en su defecto que permita guardar en una
+    # annotation en el objeto una categoría)
     grok.context(Interface)
     grok.name('section-view')
     grok.require('zope2.View')
 
     def __init__(self, context, request):
         super(SectionView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                             name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
@@ -677,10 +674,10 @@ class SectionView(grok.View):
         return section_index
 
     def articles(self, limit=8, section=''):
-        elements = self.layout_helper.articles(limit, genre='Current', 
+        elements = self.layout_helper.articles(limit, genre='Current',
                                                section=section)
         return elements
-    
+
     def has_videos(self, obj):
         """ Retorna verdadero si el objeto contiene al menos un vínculo a un
         video en el sistema multimedia.
@@ -709,6 +706,7 @@ class SectionView(grok.View):
             return view.has_files() > 0
         return False
 
+
 class OpinionView(grok.View):
     """Vista para seccion opinion.
     """
@@ -722,7 +720,7 @@ class OpinionView(grok.View):
 
     def __init__(self, context, request):
         super(OpinionView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), 
+        self.layout_helper = getMultiAdapter((self.context, self.request),
                                              name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
@@ -755,7 +753,8 @@ class Opinion_InterviewView(grok.View):
 
     def __init__(self, context, request):
         super(Opinion_InterviewView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                             name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
@@ -767,7 +766,7 @@ class Opinion_InterviewView(grok.View):
         return section_index
 
     def articles(self, limit=8):
-        elements = self.layout_helper.articles(limit, genre='Interview', 
+        elements = self.layout_helper.articles(limit, genre='Interview',
                                                outstanding_optional=True)
         return elements
 
@@ -775,17 +774,18 @@ class Opinion_InterviewView(grok.View):
 class Opinion_ContextView(grok.View):
     """Vista para seccion opinion.
     """
-    #XXX Esta vista utiliza el criterio de una coleccion para buscar elementos
-    #de seccion, se deberia reemplazar por una marker interface que identifique
-    #la seccion (o en su defecto que permita guardar en una annotation en el objeto
-    # una categoria)
+    # XXX: Esta vista utiliza el criterio de una coleccion para buscar
+    # elementos de seccion, se deberia reemplazar por una marker interface que
+    # identifique la seccion (o en su defecto que permita guardar en una
+    # annotation en el objeto una categoria)
     grok.context(Interface)
     grok.name('opinion-context-view')
     grok.require('zope2.View')
 
     def __init__(self, context, request):
         super(Opinion_ContextView, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request), name='layout-helper')
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                             name='layout-helper')
 
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
@@ -797,8 +797,8 @@ class Opinion_ContextView(grok.View):
         return section_index
 
     def articles(self, limit=8):
-        elements = self.layout_helper.articles(limit, genre='Background', 
-                                                outstanding_optional=True)
+        elements = self.layout_helper.articles(limit, genre='Background',
+                                               outstanding_optional=True)
         return elements
 
 
