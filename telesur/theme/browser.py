@@ -409,12 +409,15 @@ class ArticleControl(grok.View):
         iface = ISectionArticle
 
         catalog = getToolByName(self.context, 'portal_catalog')
-        # Buscar *solo* para esta sección
-        existing = catalog(object_provides=iface.__module__ + '.' + iface.__name__,
+        # search *only* in this section
+        existing = catalog(object_provides=iface.__identifier__,
                            section=element.section)
 
-        if existing:
-            elem = existing[0].getObject()
+        # existe el caso donde se puede marcar una nota para una seccion, luego
+        # cambiarle manualmente la misma, lo que nos dejaria con mas de una 
+        # *nota de seccion* por seccion
+        for article in existing:
+            elem = article.getObject()
             context = aq_inner(elem)
             noLongerProvides(context, iface)
             context.reindexObject(idxs=['object_provides'])
@@ -608,6 +611,8 @@ class LayoutHelper(grok.View):
         outstanding['object_provides'] = {
         'query': [ISectionArticle.__identifier__]}
         outstanding['genre'] = genre
+        outstanding['sort_on'] = 'effective'    
+        outstanding['sort_order'] = 'reverse'            
         outstanding['sort_limit'] = 1
         outstanding['review_state'] = 'published'
 

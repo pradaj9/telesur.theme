@@ -346,6 +346,44 @@ class MarkNewsTest(unittest.TestCase):
         self.failUnless(ISectionArticle.providedBy(n3))
         self.failUnless(ISectionArticle.providedBy(n4))
 
+    def test_changed_section_in_already_marked_section(self):
+        self.portal.invokeFactory('collective.nitf.content', 'n1')
+        self.portal.invokeFactory('collective.nitf.content', 'n2')
+        self.portal.invokeFactory('collective.nitf.content', 'n3')
+        n1 = self.portal['n1']
+        n2 = self.portal['n2']
+        n3 = self.portal['n3']
+
+        n1.section = 'section1'
+        n1.reindexObject()
+        n2.section = 'section1'
+        n2.reindexObject()
+        n3.section = 'section2'
+        n3.reindexObject()
+
+        ac = getMultiAdapter((n1, self.request), name="article-control")
+
+        ac.mark_section(n1)
+        self.failUnless(ISectionArticle.providedBy(n1))
+        self.failIf(ISectionArticle.providedBy(n2))
+        self.failIf(ISectionArticle.providedBy(n3))
+
+        ac.mark_section(n2)
+        self.failIf(ISectionArticle.providedBy(n1))
+        self.failUnless(ISectionArticle.providedBy(n2))
+        self.failIf(ISectionArticle.providedBy(n3))
+
+        ac.mark_section(n3)
+        self.failIf(ISectionArticle.providedBy(n1))
+        self.failUnless(ISectionArticle.providedBy(n2))
+        self.failUnless(ISectionArticle.providedBy(n3))
+
+        n3.section = 'section1'
+        n3.reindexObject()
+        self.failIf(ISectionArticle.providedBy(n1))
+        self.failUnless(ISectionArticle.providedBy(n2))
+        self.failUnless(ISectionArticle.providedBy(n3))        
+
 
 class MarkNewsFunctionalTest(unittest.TestCase):
 
