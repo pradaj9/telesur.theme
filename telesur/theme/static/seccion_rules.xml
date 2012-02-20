@@ -50,7 +50,8 @@
                 css:theme="#nota-titular .description-container .description"
                 css:content=".principal-articles-container .description" />
                 
-
+            <!--media icons -->
+            <replace css:theme=".media-icons" css:content=".media-icons"/>
             <replace css:theme-children=".article-listing" css:content-children=".article-listing"/>                            
 
           <!-- esto modifica la lista de ultimos videos de seccion si y solo si
@@ -75,7 +76,9 @@
 
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
-            
+         <!-- Ultimos videos widget    -->
+         <replace css:theme-children=".ultimos-videos-wrapper"
+           css:content-children="#lastest-videos-viewlet" />
     </rules>
 
 </rules>

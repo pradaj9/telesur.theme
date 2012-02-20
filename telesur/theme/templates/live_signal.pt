@@ -9,73 +9,14 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
-    
-    
-    
-    
-      <!--START embedcode - Telesur Live and Telesur Radio - 10 June 2011 - Powered by VisionIPTV Ltd-->
-
-      <table id="telesur-live-signal" cellspacing="0" cellpadding="0" align="center" width="320" style="border: 0px solid rgb(102, 0, 255);">
-      <tr>
-        <td>
-        <object data="http://embeddedplayer.visionip.tv/data/swf/player_5_3.swf?stretching=uniform&amp;file=b2b-telesur-live-25f-4x3_3?USER=Telesur_0001&amp;fontcolor=ffffff&amp;lightcolor=cc9900&amp;screencolor=000000&amp;type=rtmp&amp;bufferlength=2&amp;skin=http://embeddedplayer.visionip.tv/data/swf/beelden_modified_v2.zip&amp;streamer=rtmp://telesur.fms6.visionip.tv/live&amp;autostart=true&amp;repeat=always&amp;viral.onpause=false&amp;logo.file= &amp;logo.hide=false&amp;logo.position=No Logo&amp;logo.link=&amp;logo.margin=0&amp;logo.out=1&amp;image=http://embeddedplayer.visionip.tv/portals/Telesur/Telesur_Live/overlay_logos/Telesur Live and Telesur Radio-plBackground-185.png&amp;
-        controlbar=over&amp;plugins=viral-2&amp;viral.functions=link%2Cembed&amp;viral.onpause=false&amp;viral.oncomplete=false&amp;viral.pluginmode=FLASH"
-            width="320"
-            height="275"
-            id="visioniptvefplayer185"
-            title=""
-            type="application/x-shockwave-flash">
-            <param name="allowfullscreen" value="true"/>
-            <param name="wmode" value="opaque" />
-            <param name="allowScriptAccess" value="always" />
-
-            <param name="hdbitrate" value="b2b-telesur-live-25f-4x3_4?USER=Telesur_0001" />
-            <param name="hibitrate" value="b2b-telesur-live-25f-4x3_3?USER=Telesur_0001" />
-            <param name="mediumbitrate" value="b2b-telesur-live-25f-4x3_2?USER=Telesur_0001" />
-            <param name="mobilebitrate" value="b2b-telesur-live-25f-4x3_1?USER=Telesur_0001" />
-                <param name="radiourl"    value="b2b-telesur-live-radio?USER=Telesur_0001" />
-                <param name="radioimage" value="http://embeddedplayer.visionip.tv/portals/Telesur/Telesur_Live/overlay_logos/Telesur Live and Telesur Radio-radio-185.png" />
-                <param name="audioTitle" value="Play audio" />
-            <param name="applehttpmobile"  value="http://telesur.ashttp6.visionip.tv/live/b2b-telesur-live-25f-4x3_1/playlist.m3u8?USER=Telesur_0001" />
-            <param name="hdTitle" value="Play in HD quality" />
-
-                <param name="hiTitle" value="Play in Hi quality" />
-                <param name="mediumTitle" value="Play in Medium quality" />
-               <param name="mobileTitle" value="Play in Mobile quality" />
-              <param name="imageUrl" value="http://embeddedplayer.visionip.tv/portals/Telesur/cms/" />
-             <param name="noFlashText" value="Please <a href='http://www.adobe.com/go/getflash'>install</a> the latest     Flash Player for best video experience." />
-            <param name="quality" value="best" />
-        <param name="movie" value="http://embeddedplayer.visionip.tv/data/swf/player_5_3.swf?stretching=uniform&amp;file=b2b-telesur-live-25f-4x3_3?USER=Telesur_0001&amp;fontcolor=ffffff&amp;lightcolor=cc9900&amp;screencolor=000000&amp;type=rtmp&amp;bufferlength=2&amp;skin=http://embeddedplayer.visionip.tv/data/swf/beelden_modified_v2.zip&amp;streamer=rtmp://telesur.fms6.visionip.tv/live&amp;autostart=false&amp;repeat=always&amp;viral.onpause=false&amp;logo.file= &amp;logo.hide=false&amp;logo.position=No Logo&amp;logo.link=&amp;logo.margin=0&amp;logo.out=1&amp;
-        image=http://embeddedplayer.visionip.tv/portals/Telesur/Telesur_Live/overlay_logos/Telesur Live and Telesur Radio-plBackground-185.png&amp;controlbar=over&amp;plugins=viral-2&amp;viral.functions=link%2Cembed&amp;viral.onpause=false&amp;viral.oncomplete=false&amp;viral.pluginmode=FLASH" />
-        </object>
-        </td>
-      </tr>
-
-      <tr>
-      <td>
-
-      <table id="telesur-live-signal-buttons" align="center" style="border: 0px solid rgb(0, 204, 0); width: 100px; height: 10px;">
-
-      <tr>
-      <td><div id="visioniptvefplayer185hdbitrate"></div></td>
-      <td><div id="visioniptvefplayer185hibitrate"></div></td>
-      <td><div id="visioniptvefplayer185mediumbitrate"></div></td>
-      <td><div id="visioniptvefplayer185mobilebitrate"></div></td>
-      <td><div id="visioniptvefplayer185audio"></div></td>
-      </tr>
-
-      </table>
-
-      </td>
-      </tr>
-
-      </table>
-
-      <script type="text/javascript" src="http://embeddedplayer.visionip.tv/data/js/flashPlayer.js "></script>
-
-      <script onreadystatechange="try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; }" onload="try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; }" type="text/javascript" 
-      src="http://embeddedplayer.visionip.tv/data/js/flashPlayer.js "> try { visioniptvefplayer185obj = new flashPlayer('visioniptvefplayer185'); } catch(err) { return true; } </script>
-      <!--END embedcode - Telesur Live and Telesur Radio - 10 June 2011 - Powered by VisionIPTV Ltd--> 
+    <table id="telesur-live-signal" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
+    <tr><td>
+    <!--START embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd-->
+    <div id="visionplayer_185" align="center"></div>
+    <script type="text/javascript" src="http://embeddedplayer.visionip.tv/embed/185?w=&h=" >
+    </script>
+    <!--END embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd--> 
+    </td></tr></table>
     </tal:main-macro>
 </metal:main>
 

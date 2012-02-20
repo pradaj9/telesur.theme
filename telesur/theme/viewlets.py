@@ -12,9 +12,7 @@ from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
-from Products.CMFPlone.interfaces.constrains import IConstrainTypes
 
-from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -22,7 +20,9 @@ from plone.app.layout.viewlets.interfaces import IDocumentActions
 from plone.app.layout.viewlets.interfaces import IPortalHeader, IPortalFooter
 from plone.app.portlets.portlets.navigation import Assignment
 
-from collective.nitf.content import INITF
+from plone.i18n.normalizer import idnormalizer
+
+from collective.nitf.content import INITF, SectionsVocabulary
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.interfaces import ITelesurViewlet
 
@@ -297,6 +297,24 @@ class SubSectionList(grok.Viewlet):
         else:
             self.data = {}
 
+class LastestVideosWidget(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name(u"telesur.theme.lastestvideos")
+    grok.require("zope2.View")
+    grok.template("lastest_videos")
+    grok.viewletmanager(IPortalFooter)
+
+    def update(self):
+        objSectionVocabulary = SectionsVocabulary()
+        sectionsVoc = objSectionVocabulary(self.context)
+        sections = [term.title for term in sectionsVoc]
+        tab = aq_inner(self.context)
+        self.url = "http://multimedia.tlsur.net/media/video/cmswidgets/videos.html?widget=ultimos_videos&amp;width=285"
+        if tab.title in sections:
+            titleId = idnormalizer.normalize(tab.title, 'es')
+            seccionUrl = "&seccion_plone=" + titleId
+            self.url += seccionUrl
 
 class SiteDate(grok.Viewlet):
     grok.context(Interface)
@@ -307,11 +325,16 @@ class SiteDate(grok.Viewlet):
     grok.viewletmanager(IPortalFooter)
 
     def update(self):
-        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
-                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        weekdays = [u'Domingo', u'Lunes', u'Martes', u'Miércoles', u'Jueves',
+                    u'Viernes', u'Sábado']
+        months = [u'Enero', u'Febrero', u'Marzo', u'Abril', u'Mayo', u'Junio',
+                  u'Julio', u'Agosto', u'Septiembre', u'Octubre',
+                  u'Noviembre', u'Diciembre']
 
-        day = DateTime.DateTime().strftime('%d')
+        weekday = DateTime.DateTime().strftime('%w')
+        day = int(DateTime.DateTime().strftime('%d'))
         month = DateTime.DateTime().strftime('%m')
         year = DateTime.DateTime().strftime('%Y')
-        month_index = int(month) - 1
-        self.date = day + ' de ' + months[month_index] + ' del ' + year
+        w = int(weekday)
+        m = int(month) - 1
+        self.date = u'%s %s de %s de %s' % (weekdays[w], day, months[m], year)

@@ -6,17 +6,12 @@ from zope.component import getMultiAdapter
 
 from zope.interface import Interface
 from zope.annotation.interfaces import IAnnotations
-from zope.publisher.interfaces import NotFound
 
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
-from collective.routes.interfaces import IFragmentContext
-from collective.routes.interfaces import IWrappedBrainsContext
-from collective.routes.interfaces import IWrappedObjectContext
-from collective.routes import getObject
 
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.interfaces import IOutstandingArticle
@@ -56,6 +51,29 @@ class NITF_View(View):
     grok.name("nota")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
+    
+    def pub_date(self):
+        weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves',
+                    'Viernes', 'Sábado']
+        months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                  'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+
+        self.date = ''
+        effective = self.context.effective_date
+        if effective:
+            weekday = effective.strftime('%w')
+            day = int(effective.strftime('%d'))
+            month = effective.strftime('%m')
+            year = effective.strftime('%Y')
+            w = int(weekday)
+            m = int(month) - 1
+            hour = effective.strftime('%I')
+            minute = effective.strftime('%M')
+            timeofday = effective.strftime('%P')
+            self.date = '%s %s de %s de %s, %s:%s %s' % (weekdays[w], day, months[m], year, 
+                        hour, minute, timeofday)
+
+        return self.date
 
 
 class Media(dexterity.DisplayForm):
@@ -95,33 +113,6 @@ class Folder_Summary_View(grok.View):
     grok.name("folder_summary_view")
     grok.layer(ITelesurLayer)
     grok.require("zope2.View")
-
-
-class Routes_Folder_Summary_View(Folder_Summary_View):
-    grok.context(IWrappedBrainsContext)
-    grok.layer(ITelesurLayer)
-    grok.require("zope2.View")
-
-
-class FragmentView(grok.View):
-    grok.context(IFragmentContext)
-    grok.name("view")
-    grok.layer(ITelesurLayer)
-    grok.require("zope2.View")
-
-    def render(self):
-        route = self.context.route
-        wrapped = getObject(route, self.context, self.request)
-
-        if IWrappedBrainsContext.providedBy(wrapped):
-            wrapped.Title = lambda: u"TeleSUR"
-            view = wrapped.restrictedTraverse('folder_summary_view')
-        elif IWrappedObjectContext.providedBy(wrapped):
-            layout = wrapped.obj.getLayout()
-            view = wrapped.restrictedTraverse(layout)
-        else:
-            raise NotFound
-        return view()
 
 
 class GoogleMapView(grok.View):
@@ -684,7 +675,34 @@ class SectionView(grok.View):
         elements = self.layout_helper.articles(limit, genre='Current', 
                                                section=section)
         return elements
+    
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
 
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
 
 class OpinionView(grok.View):
     """Vista para seccion opinion.
