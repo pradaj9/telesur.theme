@@ -160,6 +160,10 @@ header #telesur-topbar {
     font-size: 11px;
 }
 
+#media-container {
+    text-align: center;
+}
+
 footer {
     background-color: #1a82f7; 
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#307ea3), to(#caf1fe));

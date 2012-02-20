@@ -27,10 +27,12 @@
             <!-- images -->
             <rules css:if-content="#content #media-container">
                 <!-- image gallery code -->
-                <prepend css:theme="#telesur-container #media-container"
-                    content="//div[@class='items']/div[1]/div/img" />
-                <drop attributes="width height" content="//div[@class='items']/div[1]/div/img" />
- 
+                <!-- <prepend css:theme="#telesur-container #media-container"
+                                    content="//div[@class='items']/div[1]/div/img" />
+                                <drop attributes="width height" content="//div[@class='items']/div[1]/div/img" /> -->
+                  <drop attributes="width height" css:content=".video-widget.principal img" />
+                <append css:theme="#telesur-container #media-container" css:content-children=".video-widget.principal"/>
+                <drop css:content=".video-widget.principal p" />
                 <drop css:content="#content .article-description" />
             </rules>
             
