@@ -37,10 +37,10 @@ class MarkNewsTest(unittest.TestCase):
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
         ac.mark_outstanding(n1)
-        self.failUnless(IOutstandingArticle.providedBy(n1))
+        self.assertTrue(IOutstandingArticle.providedBy(n1))
 
         ac.unmark(n1)
-        self.failIf(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
 
         self.portal.invokeFactory('collective.nitf.content', 'n3')
         n3 = self.portal['n3']
@@ -48,26 +48,26 @@ class MarkNewsTest(unittest.TestCase):
         ac.mark_outstanding(n1)
         ac.unmark(n1)
 
-        self.failUnless(IOutstandingArticle.providedBy(n3))
+        self.assertTrue(IOutstandingArticle.providedBy(n3))
 
         ac.mark_secondary(n2)
         ac.mark_primary(n1)
 
         ac.unmark(n3)
 
-        self.failIf(IOutstandingArticle.providedBy(n3))
-        self.failIf(IPrimaryArticle.providedBy(n3))
-        self.failIf(ISecondaryArticle.providedBy(n3))
+        self.assertFalse(IOutstandingArticle.providedBy(n3))
+        self.assertFalse(IPrimaryArticle.providedBy(n3))
+        self.assertFalse(ISecondaryArticle.providedBy(n3))
 
         self.portal.invokeFactory('collective.nitf.content', 'n4')
         n4 = self.portal['n4']
 
         ac.mark_secondary(n4)
 
-        self.failUnless(IOutstandingArticle.providedBy(n1))
-        self.failUnless(IPrimaryArticle.providedBy(n2))
-        self.failUnless(ISecondaryArticle.providedBy(n4))
-        self.failIf(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IOutstandingArticle.providedBy(n1))
+        self.assertTrue(IPrimaryArticle.providedBy(n2))
+        self.assertTrue(ISecondaryArticle.providedBy(n4))
+        self.assertFalse(IPrimaryArticle.providedBy(n4))
 
     def test_mark_news_as_outstanding(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -76,16 +76,16 @@ class MarkNewsTest(unittest.TestCase):
         n2 = self.portal['n2']
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
-        self.failIf(IOutstandingArticle.providedBy(n1))
-        self.failIf(IOutstandingArticle.providedBy(n2))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n2))
         ac.mark_outstanding(n1)
 
-        self.failUnless(IOutstandingArticle.providedBy(n1))
-        self.failIf(IOutstandingArticle.providedBy(n2))
+        self.assertTrue(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n2))
         ac.mark_outstanding(n2)
 
-        self.failIf(IOutstandingArticle.providedBy(n1))
-        self.failUnless(IOutstandingArticle.providedBy(n2))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
+        self.assertTrue(IOutstandingArticle.providedBy(n2))
 
     def test_mark_news_as_primary(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -104,76 +104,76 @@ class MarkNewsTest(unittest.TestCase):
         n7 = self.portal['n7']
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n2))
-        self.failIf(IPrimaryArticle.providedBy(n3))
-        self.failIf(IPrimaryArticle.providedBy(n4))
-        self.failIf(IPrimaryArticle.providedBy(n5))
-        self.failIf(IPrimaryArticle.providedBy(n6))
-        self.failIf(IPrimaryArticle.providedBy(n7))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n2))
+        self.assertFalse(IPrimaryArticle.providedBy(n3))
+        self.assertFalse(IPrimaryArticle.providedBy(n4))
+        self.assertFalse(IPrimaryArticle.providedBy(n5))
+        self.assertFalse(IPrimaryArticle.providedBy(n6))
+        self.assertFalse(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n1)
         ac.mark_primary(n2)
         ac.mark_primary(n3)
         ac.mark_primary(n4)
 
-        self.failUnless(IPrimaryArticle.providedBy(n1))
-        self.failUnless(IPrimaryArticle.providedBy(n2))
-        self.failUnless(IPrimaryArticle.providedBy(n3))
-        self.failUnless(IPrimaryArticle.providedBy(n4))
-        self.failIf(IPrimaryArticle.providedBy(n5))
-        self.failIf(IPrimaryArticle.providedBy(n6))
-        self.failIf(IPrimaryArticle.providedBy(n7))
+        self.assertTrue(IPrimaryArticle.providedBy(n1))
+        self.assertTrue(IPrimaryArticle.providedBy(n2))
+        self.assertTrue(IPrimaryArticle.providedBy(n3))
+        self.assertTrue(IPrimaryArticle.providedBy(n4))
+        self.assertFalse(IPrimaryArticle.providedBy(n5))
+        self.assertFalse(IPrimaryArticle.providedBy(n6))
+        self.assertFalse(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n5)
 
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failUnless(IPrimaryArticle.providedBy(n2))
-        self.failUnless(IPrimaryArticle.providedBy(n3))
-        self.failUnless(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failIf(IPrimaryArticle.providedBy(n6))
-        self.failIf(IPrimaryArticle.providedBy(n7))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertTrue(IPrimaryArticle.providedBy(n2))
+        self.assertTrue(IPrimaryArticle.providedBy(n3))
+        self.assertTrue(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertFalse(IPrimaryArticle.providedBy(n6))
+        self.assertFalse(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n6)
 
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n2))
-        self.failUnless(IPrimaryArticle.providedBy(n3))
-        self.failUnless(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failUnless(IPrimaryArticle.providedBy(n6))
-        self.failIf(IPrimaryArticle.providedBy(n7))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n2))
+        self.assertTrue(IPrimaryArticle.providedBy(n3))
+        self.assertTrue(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertTrue(IPrimaryArticle.providedBy(n6))
+        self.assertFalse(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n7)
 
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n2))
-        self.failIf(IPrimaryArticle.providedBy(n3))
-        self.failUnless(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failUnless(IPrimaryArticle.providedBy(n6))
-        self.failUnless(IPrimaryArticle.providedBy(n7))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n2))
+        self.assertFalse(IPrimaryArticle.providedBy(n3))
+        self.assertTrue(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertTrue(IPrimaryArticle.providedBy(n6))
+        self.assertTrue(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n1)
 
-        self.failUnless(IPrimaryArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n2))
-        self.failIf(IPrimaryArticle.providedBy(n3))
-        self.failIf(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failUnless(IPrimaryArticle.providedBy(n6))
-        self.failUnless(IPrimaryArticle.providedBy(n7))
+        self.assertTrue(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n2))
+        self.assertFalse(IPrimaryArticle.providedBy(n3))
+        self.assertFalse(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertTrue(IPrimaryArticle.providedBy(n6))
+        self.assertTrue(IPrimaryArticle.providedBy(n7))
 
         ac.mark_primary(n2)
 
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failUnless(IPrimaryArticle.providedBy(n2))
-        self.failIf(IPrimaryArticle.providedBy(n3))
-        self.failIf(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failUnless(IPrimaryArticle.providedBy(n6))
-        self.failUnless(IPrimaryArticle.providedBy(n7))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertTrue(IPrimaryArticle.providedBy(n2))
+        self.assertFalse(IPrimaryArticle.providedBy(n3))
+        self.assertFalse(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertTrue(IPrimaryArticle.providedBy(n6))
+        self.assertTrue(IPrimaryArticle.providedBy(n7))
 
     def test_mark_news_as_secondary(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -182,18 +182,18 @@ class MarkNewsTest(unittest.TestCase):
         n2 = self.portal['n2']
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
-        self.failIf(ISecondaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n2))
+        self.assertFalse(ISecondaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n2))
 
         ac.mark_secondary(n1)
 
-        self.failUnless(ISecondaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n2))
+        self.assertTrue(ISecondaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n2))
 
         ac.mark_secondary(n2)
 
-        self.failUnless(ISecondaryArticle.providedBy(n1))
-        self.failUnless(ISecondaryArticle.providedBy(n2))
+        self.assertTrue(ISecondaryArticle.providedBy(n1))
+        self.assertTrue(ISecondaryArticle.providedBy(n2))
 
     def test_automatic_downgrade_marks(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -223,48 +223,48 @@ class MarkNewsTest(unittest.TestCase):
         ac.mark_outstanding(n7)
         ac.mark_outstanding(n8)
 
-        self.failUnless(ISecondaryArticle.providedBy(n1))
-        self.failUnless(ISecondaryArticle.providedBy(n2))
-        self.failUnless(ISecondaryArticle.providedBy(n3))
-        self.failUnless(IPrimaryArticle.providedBy(n4))
-        self.failUnless(IPrimaryArticle.providedBy(n5))
-        self.failUnless(IPrimaryArticle.providedBy(n6))
-        self.failUnless(IPrimaryArticle.providedBy(n7))
-        self.failUnless(IOutstandingArticle.providedBy(n8))
+        self.assertTrue(ISecondaryArticle.providedBy(n1))
+        self.assertTrue(ISecondaryArticle.providedBy(n2))
+        self.assertTrue(ISecondaryArticle.providedBy(n3))
+        self.assertTrue(IPrimaryArticle.providedBy(n4))
+        self.assertTrue(IPrimaryArticle.providedBy(n5))
+        self.assertTrue(IPrimaryArticle.providedBy(n6))
+        self.assertTrue(IPrimaryArticle.providedBy(n7))
+        self.assertTrue(IOutstandingArticle.providedBy(n8))
 
     def test_marks_mutually_exclusive(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
         n1 = self.portal['n1']
 
-        self.failIf(IOutstandingArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n1))
 
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
         ac.mark_outstanding(n1)
 
-        self.failUnless(IOutstandingArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n1))
+        self.assertTrue(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n1))
 
         ac.mark_primary(n1)
 
-        self.failIf(IOutstandingArticle.providedBy(n1))
-        self.failUnless(IPrimaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
+        self.assertTrue(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n1))
 
         ac.mark_secondary(n1)
 
-        self.failIf(IOutstandingArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failUnless(ISecondaryArticle.providedBy(n1))
+        self.assertFalse(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertTrue(ISecondaryArticle.providedBy(n1))
 
         ac.mark_outstanding(n1)
 
-        self.failUnless(IOutstandingArticle.providedBy(n1))
-        self.failIf(IPrimaryArticle.providedBy(n1))
-        self.failIf(ISecondaryArticle.providedBy(n1))
+        self.assertTrue(IOutstandingArticle.providedBy(n1))
+        self.assertFalse(IPrimaryArticle.providedBy(n1))
+        self.assertFalse(ISecondaryArticle.providedBy(n1))
 
     def test_section_mark_can_live_with_others(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -272,23 +272,23 @@ class MarkNewsTest(unittest.TestCase):
 
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
-        self.failIf(ISectionArticle.providedBy(n1))
+        self.assertFalse(ISectionArticle.providedBy(n1))
 
         ac.mark_section(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n1))
 
         ac.mark_outstanding(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n1))
 
         ac.mark_primary(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n1))
 
         ac.mark_secondary(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n1))
 
     def test_only_one_section_mark_per_section(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -313,38 +313,38 @@ class MarkNewsTest(unittest.TestCase):
 
         ac.mark_section(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
-        self.failIf(ISectionArticle.providedBy(n2))
-        self.failIf(ISectionArticle.providedBy(n3))
-        self.failIf(ISectionArticle.providedBy(n4))
+        self.assertTrue(ISectionArticle.providedBy(n1))
+        self.assertFalse(ISectionArticle.providedBy(n2))
+        self.assertFalse(ISectionArticle.providedBy(n3))
+        self.assertFalse(ISectionArticle.providedBy(n4))
 
         ac.mark_section(n2)
 
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failIf(ISectionArticle.providedBy(n3))
-        self.failIf(ISectionArticle.providedBy(n4))
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertFalse(ISectionArticle.providedBy(n3))
+        self.assertFalse(ISectionArticle.providedBy(n4))
 
         ac.mark_section(n3)
 
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failUnless(ISectionArticle.providedBy(n3))
-        self.failIf(ISectionArticle.providedBy(n4))
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertTrue(ISectionArticle.providedBy(n3))
+        self.assertFalse(ISectionArticle.providedBy(n4))
 
         ac.mark_section(n4)
 
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failUnless(ISectionArticle.providedBy(n3))
-        self.failUnless(ISectionArticle.providedBy(n4))
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertTrue(ISectionArticle.providedBy(n3))
+        self.assertTrue(ISectionArticle.providedBy(n4))
 
         ac.mark_section(n1)
 
-        self.failUnless(ISectionArticle.providedBy(n1))
-        self.failIf(ISectionArticle.providedBy(n2))
-        self.failUnless(ISectionArticle.providedBy(n3))
-        self.failUnless(ISectionArticle.providedBy(n4))
+        self.assertTrue(ISectionArticle.providedBy(n1))
+        self.assertFalse(ISectionArticle.providedBy(n2))
+        self.assertTrue(ISectionArticle.providedBy(n3))
+        self.assertTrue(ISectionArticle.providedBy(n4))
 
     def test_changed_section_in_already_marked_section(self):
         self.portal.invokeFactory('collective.nitf.content', 'n1')
@@ -364,25 +364,25 @@ class MarkNewsTest(unittest.TestCase):
         ac = getMultiAdapter((n1, self.request), name="article-control")
 
         ac.mark_section(n1)
-        self.failUnless(ISectionArticle.providedBy(n1))
-        self.failIf(ISectionArticle.providedBy(n2))
-        self.failIf(ISectionArticle.providedBy(n3))
+        self.assertTrue(ISectionArticle.providedBy(n1))
+        self.assertFalse(ISectionArticle.providedBy(n2))
+        self.assertFalse(ISectionArticle.providedBy(n3))
 
         ac.mark_section(n2)
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failIf(ISectionArticle.providedBy(n3))
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertFalse(ISectionArticle.providedBy(n3))
 
         ac.mark_section(n3)
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failUnless(ISectionArticle.providedBy(n3))
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertTrue(ISectionArticle.providedBy(n3))
 
         n3.section = 'section1'
         n3.reindexObject()
-        self.failIf(ISectionArticle.providedBy(n1))
-        self.failUnless(ISectionArticle.providedBy(n2))
-        self.failUnless(ISectionArticle.providedBy(n3))        
+        self.assertFalse(ISectionArticle.providedBy(n1))
+        self.assertTrue(ISectionArticle.providedBy(n2))
+        self.assertTrue(ISectionArticle.providedBy(n3))
 
 
 class MarkNewsFunctionalTest(unittest.TestCase):
@@ -402,48 +402,48 @@ class MarkNewsFunctionalTest(unittest.TestCase):
     def test_actions_are_not_visible(self):
         #the article isn't published
         self.browser.open(self.news1.absolute_url())
-        self.failIf('@@mark-outstanding-article' in self.browser.contents)
-        self.failIf('@@mark-primary-article' in self.browser.contents)
-        self.failIf('@@mark-secondary-article' in self.browser.contents)
-        self.failIf('@@mark-section-article' in self.browser.contents)
+        self.assertFalse('@@mark-outstanding-article' in self.browser.contents)
+        self.assertFalse('@@mark-primary-article' in self.browser.contents)
+        self.assertFalse('@@mark-secondary-article' in self.browser.contents)
+        self.assertFalse('@@mark-section-article' in self.browser.contents)
 
     def test_actions_are_visible(self):
         #the article isn't published
 
         self.browser.open(self.news4.absolute_url())
         self.browser.getLink("Publish").click()
-        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
-        self.failUnless('@@mark-primary-article' in self.browser.contents)
-        self.failUnless('@@mark-secondary-article' in self.browser.contents)
-        self.failUnless('@@mark-section-article' in self.browser.contents)
+        self.assertTrue('@@mark-outstanding-article' in self.browser.contents)
+        self.assertTrue('@@mark-primary-article' in self.browser.contents)
+        self.assertTrue('@@mark-secondary-article' in self.browser.contents)
+        self.assertTrue('@@mark-section-article' in self.browser.contents)
 
     def test_links_hide(self):
         self.browser.open(self.news1.absolute_url())
         self.browser.getLink("Publish").click()
         #XXX: Encontrar el encoding apropiado para "sección"
         self.browser.getLink("Marcar como destacado de secci�n").click()
-        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
-        self.failUnless('@@mark-primary-article' in self.browser.contents)
-        self.failUnless('@@mark-secondary-article' in self.browser.contents)
-        self.failIf('@@mark-section-article' in self.browser.contents)
+        self.assertTrue('@@mark-outstanding-article' in self.browser.contents)
+        self.assertTrue('@@mark-primary-article' in self.browser.contents)
+        self.assertTrue('@@mark-secondary-article' in self.browser.contents)
+        self.assertFalse('@@mark-section-article' in self.browser.contents)
 
         self.browser.getLink("Marcar como nota secundaria").click()
-        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
-        self.failUnless('@@mark-primary-article' in self.browser.contents)
-        self.failIf('@@mark-secondary-article' in self.browser.contents)
-        self.failIf('@@mark-section-article' in self.browser.contents)
+        self.assertTrue('@@mark-outstanding-article' in self.browser.contents)
+        self.assertTrue('@@mark-primary-article' in self.browser.contents)
+        self.assertFalse('@@mark-secondary-article' in self.browser.contents)
+        self.assertFalse('@@mark-section-article' in self.browser.contents)
 
         self.browser.getLink("Marcar como nota principal").click()
-        self.failUnless('@@mark-outstanding-article' in self.browser.contents)
-        self.failIf('@@mark-primary-article' in self.browser.contents)
-        self.failUnless('@@mark-secondary-article' in self.browser.contents)
-        self.failIf('@@mark-section-article' in self.browser.contents)
+        self.assertTrue('@@mark-outstanding-article' in self.browser.contents)
+        self.assertFalse('@@mark-primary-article' in self.browser.contents)
+        self.assertTrue('@@mark-secondary-article' in self.browser.contents)
+        self.assertFalse('@@mark-section-article' in self.browser.contents)
 
         self.browser.getLink("Marcar como nota destacada").click()
-        self.failIf('@@mark-outstanding-article' in self.browser.contents)
-        self.failUnless('@@mark-primary-article' in self.browser.contents)
-        self.failUnless('@@mark-secondary-article' in self.browser.contents)
-        self.failIf('@@mark-section-article' in self.browser.contents)
+        self.assertFalse('@@mark-outstanding-article' in self.browser.contents)
+        self.assertTrue('@@mark-primary-article' in self.browser.contents)
+        self.assertTrue('@@mark-secondary-article' in self.browser.contents)
+        self.assertFalse('@@mark-section-article' in self.browser.contents)
 
 
 def test_suite():

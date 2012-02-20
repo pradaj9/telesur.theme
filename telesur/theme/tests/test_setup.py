@@ -19,12 +19,12 @@ class InstallTest(unittest.TestCase):
         self.qi = getattr(self.portal, 'portal_quickinstaller')
 
     def test_installed(self):
-        self.failUnless(self.qi.isProductInstalled('telesur.theme'))
+        self.assertTrue(self.qi.isProductInstalled('telesur.theme'))
 
     def test_dependencies_installed(self):
         DEPENDENCIES = ['collective.nitf']
         for p in DEPENDENCIES:
-            self.failUnless(self.qi.isProductInstalled(p),
+            self.assertTrue(self.qi.isProductInstalled(p),
                             '%s not installed' % p)
 
 
@@ -40,7 +40,7 @@ class UninstallTest(unittest.TestCase):
     def test_uninstalled(self):
         qi = getattr(self.portal, 'portal_quickinstaller')
         qi.uninstallProducts(products=['telesur.theme'])
-        self.failIf(qi.isProductInstalled('telesur.theme'))
+        self.assertFalse(qi.isProductInstalled('telesur.theme'))
 
 
 def test_suite():

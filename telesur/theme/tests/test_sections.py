@@ -34,27 +34,27 @@ class SectionsViewTest(unittest.TestCase):
 
         #the result should be empty, because the nitf is not published
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) != 1)
-        self.failUnless(len(view_result['secondary']) != 1)
+        self.assertTrue(len(view_result['outstanding']) != 1)
+        self.assertTrue(len(view_result['secondary']) != 1)
 
         #after publication, now we should have 1 new in outstanding
         self.workflowTool.doActionFor(n1, 'publish')
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['outstanding']) == 1)
 
         self.portal.invokeFactory('collective.nitf.content', 'n2',
             genre='Current', section=u'Latinoamérica')
         n2 = self.portal['n2']
 
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(len(view_result['secondary']) != 1)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['secondary']) != 1)
 
         #after n1 and n2 publication, we should have the 2 news
         self.workflowTool.doActionFor(n2, 'publish')
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(len(view_result['secondary']) == 1)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['secondary']) == 1)
 
         self.portal.invokeFactory('collective.nitf.content', 'n3',
             genre='Current', section=u'Latinoamérica')
@@ -91,31 +91,31 @@ class SectionsViewTest(unittest.TestCase):
 
         #9 news, 1 outstanding and 8 secondary
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(len(view_result['secondary']) == 8)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['secondary']) == 8)
 
         #we mark the number 5 news like section news, and we check if is
         # in outstanding
         ac.mark_section(n5)
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(len(view_result['secondary']) == 8)
-        self.failUnless(view_result['outstanding'][0].id == n5.id)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['secondary']) == 8)
+        self.assertTrue(view_result['outstanding'][0].id == n5.id)
 
         #we mark the n10 like outstanding, and check the order
         ac.mark_section(n10)
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(len(view_result['secondary']) == 8)
-        self.failUnless(view_result['outstanding'][0].id == n10.id)
-        self.failUnless(view_result['secondary'][0].id == n9.id)
-        self.failUnless(view_result['secondary'][1].id == n8.id)
-        self.failUnless(view_result['secondary'][2].id == n7.id)
-        self.failUnless(view_result['secondary'][3].id == n6.id)
-        self.failUnless(view_result['secondary'][4].id == n5.id)
-        self.failUnless(view_result['secondary'][5].id == n4.id)
-        self.failUnless(view_result['secondary'][6].id == n3.id)
-        self.failUnless(view_result['secondary'][7].id == n2.id)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(len(view_result['secondary']) == 8)
+        self.assertTrue(view_result['outstanding'][0].id == n10.id)
+        self.assertTrue(view_result['secondary'][0].id == n9.id)
+        self.assertTrue(view_result['secondary'][1].id == n8.id)
+        self.assertTrue(view_result['secondary'][2].id == n7.id)
+        self.assertTrue(view_result['secondary'][3].id == n6.id)
+        self.assertTrue(view_result['secondary'][4].id == n5.id)
+        self.assertTrue(view_result['secondary'][5].id == n4.id)
+        self.assertTrue(view_result['secondary'][6].id == n3.id)
+        self.assertTrue(view_result['secondary'][7].id == n2.id)
 
     def test_outstanding_if_article_moved_from_section(self):
 
@@ -137,13 +137,13 @@ class SectionsViewTest(unittest.TestCase):
         self.workflowTool.doActionFor(n2, 'publish')
         ac.mark_section(n2)
         view_result = sectionview.articles(section=u'Cultura')
-        self.failUnless(view_result['outstanding'][0].id == n2.id)
+        self.assertTrue(view_result['outstanding'][0].id == n2.id)
 
         n2.section = u'Latinoamérica'
         n2.reindexObject()
         view_result = sectionview.articles(section=u'Latinoamérica')
-        self.failUnless(len(view_result['outstanding']) == 1)
-        self.failUnless(view_result['outstanding'][0].id == n2.id)
+        self.assertTrue(len(view_result['outstanding']) == 1)
+        self.assertTrue(view_result['outstanding'][0].id == n2.id)
 
     def test_opinionview_number_of_elements(self):
 
@@ -190,6 +190,6 @@ class SectionsViewTest(unittest.TestCase):
         #in opinion view, only show the 8 permited elements in the articles key
 
         view_result = opinionview.articles(section=u'Opinion')
-        self.failUnless(len(view_result['outstanding']) == 0)
-        self.failUnless(len(view_result['secondary']) == 0)
-        self.failUnless(len(view_result['articles']) == 8)
+        self.assertTrue(len(view_result['outstanding']) == 0)
+        self.assertTrue(len(view_result['secondary']) == 0)
+        self.assertTrue(len(view_result['articles']) == 8)

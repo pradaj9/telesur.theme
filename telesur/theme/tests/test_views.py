@@ -48,7 +48,7 @@ class BrowserLayerTest(unittest.TestCase):
     def test_nota(self):
         name = "@@nota"
         view = self.getViewByName(self.n1, name)
-        self.failUnless(view, u"%s has no view %s" % (self.n1, name))
+        self.assertTrue(view, u"%s has no view %s" % (self.n1, name))
 
         self.assertEquals(view.has_images(), 0)
         self.assertEquals(view.has_files(), 0)
@@ -85,7 +85,7 @@ class BrowserLayerTest(unittest.TestCase):
             self.n1.unrestrictedTraverse(name)
         except AttributeError:
             self.fail('%s has no view %s' % (self.n1, name))
-    
+
     def test_donde_distribucion_view(self):
         name = '@@donde-distribucion'
         try:
