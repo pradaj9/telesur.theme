@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="telesur.theme">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+    <table id="telesur-live-audio" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
+    <tr><td>
+    <!--START embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd-->
+	<div id="visionplayer_807" align="center"></div>
+	<script type="text/javascript"
+	src="http://embeddedplayer.visionip.tv/embed/807?w=&h=" >
+	</script>
+	<!--END embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd-->
+    </td></tr></table>
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>
