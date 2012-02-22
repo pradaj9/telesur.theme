@@ -820,6 +820,16 @@ class LiveSignal(grok.View):
     grok.require('zope2.View')
 
 
+class LiveAudio(grok.View):
+    """ Audio en vivo del canal.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('live-audio')
+    grok.template('live_audio')
+    grok.require('zope2.View')
+
+
 class BatchListUtils(grok.View):
     grok.context(Interface)
     grok.layer(ITelesurLayer)
