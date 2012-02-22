@@ -38,7 +38,7 @@
 }
 
 #envivo #nav-8 {
-    display:none !important;
+	display:inline;
 }
 .searchSection {
     display:none;
@@ -1348,6 +1348,21 @@ p.iconos-portada span.icono {
 }
 
 #telesur-live-signal-buttons td {
+    padding-right: 5px;
+}
+
+/* live audio style*/
+
+#telesur-live-audio {
+    margin:auto;
+}
+
+#telesur-live-audio-buttons {
+    margin-top: 3px;
+    margin-left: 15px;
+}
+
+#telesur-live-audio-buttons td {
     padding-right: 5px;
 }
 
