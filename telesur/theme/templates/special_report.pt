@@ -14,13 +14,17 @@
                 disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
 <metal:main fill-slot="content-core"
-    tal:define="movie string:${context/@@absolute_url}/main.swf">
+    tal:define="movie string:${context/@@absolute_url}/index.swf;
+                location string:location=${context/@@absolute_url}">
+<!-- TODO: add validation to see if index.swf exists -->
 <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="1024" height="650" id="flash" align="middle">
-    <param name="movie" value="main.swf" tal:attributes="value movie" />
+    <param name="movie" value="index.swf" tal:attributes="value movie" />
+    <param name="FlashVars" value="location" tal:attributes="value location" />
     <!--[if !IE]>-->
-    <object type="application/x-shockwave-flash" data="main.swf" width="1024" height="650"
+    <object type="application/x-shockwave-flash" data="index.swf" width="1024" height="650"
             tal:attributes="data movie">
-        <param name="movie" value="main.swf" tal:attributes="value movie" />
+        <param name="movie" value="index.swf" tal:attributes="value movie" />
+        <param name="FlashVars" value="location" tal:attributes="value location" />
     <!--<![endif]-->
         <a href="http://www.adobe.com/go/getflash">
             <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
