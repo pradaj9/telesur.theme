@@ -234,7 +234,7 @@ class MobileNavigation(grok.Viewlet):
         self.data = Assignment(root=self.navroot_path)
         self.year = datetime.date.today().strftime("%Y")
         for section in sections:
-            catalog_news = self.context.portal_catalog({'portal_type': 'Topic',
+            catalog_news = self.context.portal_catalog({'portal_type': 'Folder',
                                 'path': '%s/%s/' % (self.navroot_path, section)})
             if catalog_news:
                 tab = catalog_news[0].getObject()
