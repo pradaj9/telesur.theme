@@ -77,8 +77,7 @@
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
          <!-- Ultimos videos widget    -->
-         <replace css:theme-children=".ultimos-videos-wrapper"
-           css:content-children="#lastest-videos-viewlet" />
+         <replace css:content-children="#lastest-videos-viewlet" css:theme="#scroller-seccion .most_viewed"/>
     </rules>
 
 </rules>

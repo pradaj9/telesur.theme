@@ -310,7 +310,7 @@ class LastestVideosWidget(grok.Viewlet):
         sectionsVoc = objSectionVocabulary(self.context)
         sections = [term.title for term in sectionsVoc]
         tab = aq_inner(self.context)
-        self.url = "http://multimedia.tlsur.net/media/video/cmswidgets/videos.html?widget=ultimos_videos&amp;width=285"
+        self.url = "http://multimedia.tlsur.net/media/video/cmswidgets/index.html?widget=ultimos_seccion"
         if tab.title in sections:
             titleId = idnormalizer.normalize(tab.title, 'es')
             seccionUrl = "&seccion_plone=" + titleId
