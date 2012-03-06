@@ -867,12 +867,6 @@ div#banners-home.widget-container a img {
     background-color: #FFF;
     }
 
-#lo-mas-recomendado .pane {
-    padding: 10px 6px;
-    }
-#lo-mas-recomendado .mas-vistos-dia {
-    padding-top:15px;
-}
 #lo-mas-recomendado .mas-vistos-dia h2 {
     padding-bottom:10px;
 }
@@ -980,7 +974,6 @@ div#banners-home.widget-container a img {
 .panes-masvistos {
     border: 1px solid #999;
     border-top: 0;
-    padding: 10px 6px;
     position:relative;
     }
 
