@@ -58,6 +58,9 @@
                 </div>
             </div>
 
+
+
+
             <div class="article-listing row" tal:define="secondary_list_raw python:articles['secondary'];
                                                          batcher context/@@batch_list_utils;
                                                          secondary_list python:batcher.two_per_iter_list(secondary_list_raw)">
@@ -105,7 +108,13 @@
                         </tal:notas>
                     </div>
                </tal:block>
-            </div>  
+               
+            </div>
+            <div id="more-articles" class="more-articles-section"><a  src=""
+                                        tal:attributes="href python:view.context.absolute_url() + '/@@more-articles-view'">Más Articulos </a></div> 
+                                    
+            
+            
         </div>
         <!-- agregamos la imagen thumb de la nota principal.. es usado para el tema para moviles -->
         <tal:multimedia tal:define="articles view/articles;

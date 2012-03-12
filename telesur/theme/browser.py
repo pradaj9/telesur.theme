@@ -10,6 +10,8 @@ from zope.annotation.interfaces import IAnnotations
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
+from Products.CMFPlone.PloneBatch import Batch
+
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
 
@@ -587,10 +589,11 @@ class LayoutHelper(grok.View):
         return section_index
 
     def articles(self, limit, genre='Current', all_articles=False,
-                       outstanding_optional=False, section=''):
+                       outstanding_optional=False, section='', batched=False, b_start=0):
 
         elements = {'outstanding': [], 'secondary': [], 'articles': []}
         catalog = getToolByName(self.context, 'portal_catalog')
+        
         section = self.section(section)
 
         #query build getting all the section news
@@ -598,7 +601,8 @@ class LayoutHelper(grok.View):
         query['object_provides'] = {'query': [INITF.__identifier__]}
         query['sort_on'] = 'effective'
         query['sort_order'] = 'reverse'
-        query['sort_limit'] = limit + 1
+        if not batched:
+            query['sort_limit'] = limit + 1
         query['genre'] = genre
         query['review_state'] = 'published'
 
@@ -619,7 +623,13 @@ class LayoutHelper(grok.View):
         existing = catalog.searchResults(query)
 
         if all_articles:
-            elements['articles'] = existing[:limit]
+            if batched:
+                if(len(existing) > b_start):
+                    elements['articles'] =  Batch(existing, limit, b_start)
+                else:
+                    elements['articles'] = []
+            else:
+                elements['articles'] = existing[:limit]
         else:
             #queremos dividir los objetos en outstanding y otros
             if (existing and section) or (existing and outstanding_optional):
@@ -634,10 +644,20 @@ class LayoutHelper(grok.View):
                 else:
                     elements['outstanding'].append(existing[0].getObject())
                     move = 1
-
-                elements['secondary'] = \
-                    filter(lambda nota: nota.UID != outstanding_UID,
-                           existing)[move: limit + move]
+                #batcheamos los objetos para paginacion
+                if batched:
+                    if b_start > limit:
+                        move = 0
+                    tmp_elements = filter(lambda nota: nota.UID != outstanding_UID,
+                        existing)[move:]
+                    if(len(existing) > b_start):
+                        elements['secondary'] =  Batch(tmp_elements, limit, b_start)
+                    else:
+                        elements['secondary'] = []
+                else:
+                    elements['secondary'] = \
+                        filter(lambda nota: nota.UID != outstanding_UID,
+                        existing)[move: limit + move]
 
             elif existing:
                 #no es una seccion, sino una vista global
@@ -673,7 +693,7 @@ class SectionView(grok.View):
 
         return section_index
 
-    def articles(self, limit=8, section=''):
+    def articles(self, limit=8, section='', batched=False):
         elements = self.layout_helper.articles(limit, genre='Current',
                                                section=section)
         return elements
@@ -706,7 +726,75 @@ class SectionView(grok.View):
             return view.has_files() > 0
         return False
 
+class MoreArticles(grok.View):
+    """Vista para traer mas articulos usando ajax.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('more-articles-view')
+    grok.template('more_articles')
+    grok.require('zope2.View')
 
+    def __init__(self, context, request):
+        super(MoreArticles, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                             name='layout-helper')
+    def update(self):
+        b_start = 8
+        limit = 8
+        kind = "Current"
+
+        if 'kind' in self.request.keys():
+            kind = self.request['kind']
+
+        if 'b_start' in self.request.keys():
+            b_start = int(self.request['b_start'])
+
+        if kind == "Opinion":
+            articles = self.layout_helper.articles(limit, genre='Opinion',
+                    all_articles=True, batched=True,
+                    b_start=b_start)
+            self.articles = articles['articles']
+        else:
+            articles =  self.layout_helper.articles(limit, genre=kind,
+                            batched=True, b_start=b_start)
+            self.articles = articles['secondary']
+        self.kind = kind
+        
+    
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+
+        return multimedia
+
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
+
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False 
+   
 class OpinionView(grok.View):
     """Vista para seccion opinion.
     """
