@@ -844,7 +844,8 @@ div#banners-home.widget-container a img {
 }
 
 .widget-with-tabs .recomendados {
-    width:298px;
+    width:300px;
+    overflow: hidden;
 }
 /***
 * Porltet lo mas recomendado tabs
