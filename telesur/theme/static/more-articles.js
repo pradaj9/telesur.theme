@@ -13,6 +13,10 @@ $(document).ready(function() {
         var kind = "Current";
         if($("#more-articles").hasClass("more-articles-opinion")) {
           kind = "Opinion"
+        } else if($("#more-articles").hasClass("more-articles-context")) {
+            kind = 'Background'
+        } else if($("#more-articles").hasClass("more-articles-interview")) {
+                kind = 'Interview'
         }
         $("#more-articles img").css("display", "inline");
         $.ajax({

@@ -81,6 +81,10 @@
                </tal:block>
             </div>
             
+            <div id="more-articles" class="more-articles-interview"><a  src=""
+                                        tal:attributes="href python:view.context.absolute_url() + '/@@more-articles-view'">Ver Más </a></div>
+            
+            
         </div>
 
     </tal:main-macro>

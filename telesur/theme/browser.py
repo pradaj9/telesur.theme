@@ -755,10 +755,23 @@ class MoreArticles(grok.View):
                     all_articles=True, batched=True,
                     b_start=b_start)
             self.articles = articles['articles']
-        else:
+        elif kind == "Current":
             articles =  self.layout_helper.articles(limit, genre=kind,
                             batched=True, b_start=b_start)
             self.articles = articles['secondary']
+
+        elif kind == "Interview":
+            articles = self.layout_helper.articles(limit, genre='Interview',
+                                        outstanding_optional=True, batched=True,
+                                        b_start=b_start)
+            self.articles = articles['secondary']
+
+        elif kind == "Background":
+            articles = self.layout_helper.articles(limit, genre='Background',
+                                        outstanding_optional=True, batched=True,
+                                        b_start=b_start)
+            self.articles = articles['secondary']
+            
         self.kind = kind
         
     
