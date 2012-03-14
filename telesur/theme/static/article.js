@@ -1,5 +1,4 @@
 jq(function($) {
-
     /**
     * Images scrollable gallery 
     **/

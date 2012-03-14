@@ -78,6 +78,7 @@
             css:content="#lo-mas" />
          <!-- Ultimos videos widget    -->
          <replace css:content-children="#lastest-videos-viewlet" css:theme="#scroller-seccion .most_viewed"/>
+         <append css:theme="#telesur-seccion-listing" css:content="#more-articles" />
     </rules>
 
 </rules>

@@ -9,6 +9,10 @@ from plone.app.testing import setRoles
 
 from telesur.theme.testing import INTEGRATION_TESTING
 
+JS = [
+    '++resource++telesur.theme/more-articles.js',
+    ]
+
 
 class InstallTest(unittest.TestCase):
 
@@ -26,6 +30,13 @@ class InstallTest(unittest.TestCase):
         for p in DEPENDENCIES:
             self.assertTrue(self.qi.isProductInstalled(p),
                             '%s not installed' % p)
+
+    def test_javascript_registry(self):
+        """JS are properly registered at install time.
+        """
+        portal_javascripts = self.portal.portal_javascripts
+        for js in JS:
+            self.assertTrue(js in portal_javascripts.getResourceIds())
 
 
 class UninstallTest(unittest.TestCase):
