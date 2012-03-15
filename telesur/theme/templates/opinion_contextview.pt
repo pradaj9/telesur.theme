@@ -83,7 +83,7 @@
             </div>
             
             <div id="more-articles" class="more-articles-context"><a  src=""
-                                        tal:attributes="href python:view.context.absolute_url() + '/@@more-articles-view'">Ver Más </a></div>
+                                        tal:attributes="href python:view.context.absolute_url() + '/@@more-articles-view'">Ver más </a></div>
             
         </div>
         <!-- agregamos la imagen thumb de la nota principal.. es usado para el tema para moviles -->
