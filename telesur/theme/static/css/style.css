@@ -200,7 +200,7 @@ h1 a {
 }
 
 .article-listing {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     }
 
 /*mas titulares*/
@@ -1368,4 +1368,5 @@ div.panes-social div.twitter-portlet {
 
 #more-articles {
     float: right;
+    cursor: pointer;
 }
