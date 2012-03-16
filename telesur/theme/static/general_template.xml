@@ -5,23 +5,23 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
 
-    <rules css:if-content=".template-login_form,
-                            body.template-folder_listing,
-                           .template-overview-controlpanel,
-                           .template-edit,
-                           .template-atct_edit,
-                           .portaltype-folder,
-                           .portaltype-plone-site,
-                           .template-mapa,
-                           .portaltype-topic,
-                           body[class*='template-collective.polls.poll'],
-                           body[class*='template-collective.nitf.content'],
-                           body[class*='template-telesur.contenttypes.program'],
-                           body[class*='template-telesur.contenttypes.edition'],
-                           .portaltype-telesur-contenttypes-program,
-                           .portaltype-telesur-contenttypes-edition,
-                           .template-manage-portlets,
-                           .portaltype-document">
+    <rules if-content="//*[@class='template-login_form'] |
+                       //*[@class='template-folder_listing'] | 
+                       //*[@class='template-overview-controlpanel'] | 
+                       //*[@class='template-edit'] | 
+                       //*[@class='template-atct_edit'] | 
+                       //*[@class='portaltype-folder'] | 
+                       //*[@class='portaltype-plone-site'] | 
+                       //*[@class='template-mapa'] | 
+                       //*[@class='portaltype-topic'] | 
+                       //*[@class='template-collective.polls.poll'] | 
+                       //*[@class='template-collective.nitf.content'] | 
+                       //*[@class='template-telesur.contenttypes.program'] | 
+                       //*[@class='template-telesur.contenttypes.edition'] | 
+                       //*[@class='portaltype-telesur-contenttypes-program'] | 
+                       //*[@class='portaltype-telesur-contenttypes-edition'] | 
+                       //*[@class='template-manage-portlets'] | 
+                       //*[@class='portaltype-document']">
         <theme href="general.html" />
 
         <drop css:content="#viewlet-above-content"/>
