@@ -14,10 +14,10 @@
                        //*[@class='portaltype-plone-site'] | 
                        //*[@class='template-mapa'] | 
                        //*[@class='portaltype-topic'] | 
-                       //*[@class='template-collective.polls.poll'] | 
-                       //*[@class='template-collective.nitf.content'] | 
-                       //*[@class='template-telesur.contenttypes.program'] | 
-                       //*[@class='template-telesur.contenttypes.edition'] | 
+                       //*[contains(@class,'template-collective.polls.poll')] | 
+                       //*[contains(@class,'template-collective.nitf.content')] | 
+                       //*[contains(@class,'template-telesur.contenttypes.program')] | 
+                       //*[contains(@class,'template-telesur.contenttypes.edition')] | 
                        //*[@class='portaltype-telesur-contenttypes-program'] | 
                        //*[@class='portaltype-telesur-contenttypes-edition'] | 
                        //*[@class='template-manage-portlets'] | 
