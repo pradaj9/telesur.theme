@@ -4,10 +4,10 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules css:if-content=".template-section-view,
-                           .template-opinion-view,
-                           .template-opinion-interview-view,
-                           .template-opinion-context-view"> 
+    <rules if-content="//*[contains(@class, 'template-section-view')] or
+                       //*[contains(@class, 'template-opinion-view')] or
+                       //*[contains(@class, 'template-opinion-interview-view')] or
+                       //*[contains(@class, 'template-opinion-context-view')]"> 
         <!-- 
           body[class*='template-folder_'],
           body.portaltype-folder,
