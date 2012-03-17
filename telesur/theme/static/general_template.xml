@@ -5,23 +5,23 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
 
-    <rules if-content="//*[@class='template-login_form'] |
-                       //*[@class='template-folder_listing'] | 
-                       //*[@class='template-overview-controlpanel'] | 
-                       //*[@class='template-edit'] | 
-                       //*[@class='template-atct_edit'] | 
-                       //*[@class='portaltype-folder'] | 
-                       //*[@class='portaltype-plone-site'] | 
-                       //*[@class='template-mapa'] | 
-                       //*[@class='portaltype-topic'] | 
-                       //*[contains(@class,'template-collective.polls.poll')] | 
-                       //*[contains(@class,'template-collective.nitf.content')] | 
-                       //*[contains(@class,'template-telesur.contenttypes.program')] | 
-                       //*[contains(@class,'template-telesur.contenttypes.edition')] | 
-                       //*[@class='portaltype-telesur-contenttypes-program'] | 
-                       //*[@class='portaltype-telesur-contenttypes-edition'] | 
-                       //*[@class='template-manage-portlets'] | 
-                       //*[@class='portaltype-document']">
+    <rules if-content="//*[contains(@class,'template-login_form')] or
+                       //*[contains(@class,'template-folder_listing')] or
+                       //*[contains(@class,'template-overview-controlpanel')] or
+                       //*[contains(@class,'template-edit')] or
+                       //*[contains(@class,'template-atct_edit')] or
+                       //*[contains(@class,'portaltype-folder')] or
+                       //*[contains(@class,'portaltype-plone-site')] or
+                       //*[contains(@class,'template-mapa')] or
+                       //*[contains(@class,'portaltype-topic')] or
+                       //*[contains(@class,'template-collective.polls.poll')] or
+                       //*[contains(@class,'template-collective.nitf.content')] or
+                       //*[contains(@class,'template-telesur.contenttypes.program')] or
+                       //*[contains(@class,'template-telesur.contenttypes.edition')] or
+                       //*[contains(@class,'portaltype-telesur-contenttypes-program')] or
+                       //*[contains(@class,'portaltype-telesur-contenttypes-edition')] or
+                       //*[contains(@class,'template-manage-portlets')] or
+                       //*[contains(@class,'portaltype-document')]">
         <theme href="general.html" />
 
         <drop css:content="#viewlet-above-content"/>
