@@ -50,6 +50,9 @@
                 <replace css:if-content=".nitf-content-listing .video-widget"
                     css:theme-children="#video-galery-container .scrollable-video-galery"
                     css:content=".nitf-content-listing .video-widget.not-principal" />
+                    <replace css:if-content=".nitf-content-listing .audio-widget"
+                        css:theme-children="#audio-galery-container .scrollable-video-galery"
+                        css:content=".nitf-content-listing .audio-widget.not-principal" />
 
                 <!-- nota description -->
                 <replace css:if-content="#content .article-description"

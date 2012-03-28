@@ -607,13 +607,14 @@ div#banners-home.widget-container a img {
     }
 
 /*video gallery*/
+#audio-galery-container,
 #video-galery-container {
     display: none;
     background-color: #FFF;
     padding: 10px 20px;
     border: 1px solid #D9D9D9;
     }
-
+#audio-galery-container .audio-widget,
 #video-galery-container .video-widget {
     border: medium none;
     padding: 0px;
@@ -631,6 +632,7 @@ div#banners-home.widget-container a img {
     }
 
 /*close, right and left*/
+#audio-galery-container a.close ,
 #video-galery-container a.close {
     background-image: url(++theme++telesur.theme/img/pb_close.png);
     position: absolute;
@@ -640,7 +642,7 @@ div#banners-home.widget-container a img {
     height: 30px;
     width: 30px;
     }
-
+#audio-galery-container a.browse,
 #video-galery-container a.browse {
     background: url("++theme++telesur.theme/img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 transparent;
     cursor: pointer;
@@ -652,28 +654,34 @@ div#banners-home.widget-container a img {
     width: 30px;
     }
 
+#audio-galery-container a.right,
 #video-galery-container a.right {
     background-position: 0 -30px;
     clear: right;
     margin-right: 0;
     }
 
+#audio-galery-container a.right:hover,
 #video-galery-container a.right:hover {
     background-position: -30px -30px;
     }
 
+#audio-galery-container a.right:active,
 #video-galery-container a.right:active {
     background-position: -60px -30px;
     }
 
+#audio-galery-container a.left,
 #video-galery-container a.left {
     margin-left: 0;
     }
 
+#audio-galery-container a.left:hover,
 #video-galery-container a.left:hover {
     background-position: -30px 0;
     }
 
+#audio-galery-container a.left:active,
 #video-galery-container a.left:active {
     background-position: -60px 0;
     }

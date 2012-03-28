@@ -68,8 +68,14 @@
                     <span class="counter empty"><span class="number-items">0</span></span>
                 </div>
 
+
+                <div class="audio-counter counter-element" tal:condition="json_url">
+                    <a class="counter" href="#audio-galery-container">
+                        <span class="number-items" tal:content="python:len(view.get_links())">0</span>
+                    </a>
+                </div>
                 <!--default empty version -->
-                <div class="audio-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
+                <div tal:condition="not:json_url" class="audio-counter counter-element"><span class="counter empty"><span class="number-items">0</span></span></div>
             </div>
         </div>
         <div class="breadcumb">
@@ -138,6 +144,29 @@
                                                 <a tal:condition="audio_link" class="download-audio" tal:attributes="href audio_link"></a>
                                             </div>
                                         </div>
+                                        
+                                        <!-- audio -->
+                                        <div class="audio-widget principal"
+                                            tal:condition="repeat/item/start">
+                                            <tal:video tal:define="audio_url python:video_api.get_audio_widget_url('', 340, {'archivo_url': link_api.get('archivo_url')})">
+                                                <script type="text/javascript" src=""
+                                                    tal:attributes="src string:${audio_url};"
+                                                    tal:content="nothing">
+                                                    Item Title
+                                                </script>
+                                            </tal:video>
+                                            <p class="discreet" tal:content="item_obj/Description"></p>
+                                            <div class="download-links" tal:define="video_link python:link_api.get('archivo_url');
+                                                                                    audio_link python:link_api.get('audio_url');">
+                                                <a tal:condition="video_link" class="download-video" tal:attributes="href video_link"></a>
+                                                <a tal:condition="audio_link" class="download-audio" tal:attributes="href audio_link"></a>
+                                            </div>
+                                        </div>
+                                        <!-- end audio -->
+                                        
+                                        
+                                        
+                                        
                                         <div class="video-widget not-principal">
                                             <tal:video tal:define="video_url_big python:video_api.get_video_widget_url('', 480, {'archivo_url': link_api.get('archivo_url')})">
                                                 <script type="text/javascript" src=""
@@ -148,6 +177,21 @@
                                             </tal:video>
                                             <img class="thumb-image" src="" tal:attributes="src string:${item_obj/absolute_url}/@@thumbnail_pequeno"/>
                                         </div>
+                                        
+                                        <!-- audio not pricipal -->
+                                        
+                                        <div class="audio-widget not-principal">
+                                            <tal:video tal:define="audio_url_big python:video_api.get_audio_widget_url('', 480, {'archivo_url': link_api.get('archivo_url')})">
+                                                <script type="text/javascript" src=""
+                                                    tal:attributes="src string:${audio_url_big};"
+                                                    tal:content="nothing">
+                                                    Item Title
+                                                </script>
+                                            </tal:video>
+                                            <img class="thumb-image" src="" tal:attributes="src string:${item_obj/absolute_url}/@@thumbnail_pequeno"/>
+                                        </div>
+                                        
+                                        <!-- end audio not principal -->
                                     </tal:isvideo>
                                 </tal:link>
                             </tal:islink>
