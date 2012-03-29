@@ -32,6 +32,16 @@
         directory="static"
         />
 
+        <browser:menuItems
+            for="*"
+            menu="plone_displayviews">
+            <browser:menuItem
+                title="Vista de portada"
+                action="home-view"
+                description=""
+                />
+        </browser:menuItems>
+    
     <browser:menuItems
         for="Products.CMFCore.interfaces.IFolderish"
         menu="plone_displayviews">
