@@ -5,6 +5,8 @@ import unittest2 as unittest
 from StringIO import StringIO
 
 from zope.app.file.tests.test_image import zptlogo
+from zope.component import getMultiAdapter
+from zope.component import queryMultiAdapter
 from zope.interface import directlyProvides
 
 from plone.app.customerize import registration
@@ -36,11 +38,12 @@ class BrowserLayerTest(unittest.TestCase):
         self.folder.invokeFactory('collective.nitf.content', 'n1')
         self.n1 = self.folder['n1']
 
-    def getViewByName(self, context, name):
-        try:
-            return context.restrictedTraverse(name)
-        except AttributeError:
-            return None
+    def test_nota_view_registered(self):
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('nota' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='nota')
+        self.assertTrue(view is not None)
 
     def test_views_registered(self):
         views = ['nota', 'folder_summary_view', 'schedule', 'live-signal', 'donde-distribucion']
@@ -49,9 +52,7 @@ class BrowserLayerTest(unittest.TestCase):
         self.assertEquals(set(views) - set(registered), set([]))
 
     def test_nota(self):
-        name = "@@nota"
-        view = self.getViewByName(self.n1, name)
-        self.assertTrue(view, u"%s has no view %s" % (self.n1, name))
+        view = getMultiAdapter((self.n1, self.request), name='nota')
 
         self.assertEquals(view.has_images(), 0)
         self.assertEquals(view.has_files(), 0)
@@ -69,39 +70,39 @@ class BrowserLayerTest(unittest.TestCase):
         self.assertEquals(view.getImage()['id'], 'foo')
 
     def test_folder_summary_view(self):
-        name = '@@folder_summary_view'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('folder_summary_view' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='nota')
+        self.assertTrue(view is not None)
 
     def test_schedule_view(self):
-        name = '@@schedule'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('schedule' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='schedule')
+        self.assertTrue(view is not None)
 
     def test_live_signal_view(self):
-        name = '@@live-signal'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('live-signal' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='live-signal')
+        self.assertTrue(view is not None)
 
     def test_donde_distribucion_view(self):
-        name = '@@donde-distribucion'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('donde-distribucion' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='donde-distribucion')
+        self.assertTrue(view is not None)
 
     def test_more_articles_view_exists(self):
-        name = '@@more-articles-view'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('more-articles-view' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='more-articles-view')
+        self.assertTrue(view is not None)
 
     def test_viewlets_registered(self):
         # TODO: implement test
