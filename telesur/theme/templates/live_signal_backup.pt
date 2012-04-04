@@ -24,10 +24,10 @@ var requiredRevision = 9;
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
-    <table id="telesur-live-signal-backup" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
-    <tr><td>
+    <table id="telesur-live-signal-backup" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255); margin-left: 200px;" >
+    <tr><td aling="center">
     <!--START embedcode - Telesur Live ULTRABASE-->
-	<iframe src="http://mblivebackup.telesur.ultrabase.net" width="100%" height="340" frameborder="0" name="envivo" id="envivoid">
+	<iframe src="http://mblivebackup.telesur.ultrabase.net" width="600" height="340" frameborder="0" name="envivo" id="envivoid" align="center">
 	<!--END embedcode - Telesur Live ULTRABASE-->
     </td></tr></table>
     </tal:main-macro>
