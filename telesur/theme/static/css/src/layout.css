@@ -734,7 +734,7 @@ body div {	 /* Eliminar todo el bloque */
 
 /* prev, next, prevPage and nextPage buttons */
 .btn-seguir-leyendo a.browse {
-    background:url(../img/scrollable/arrow/hori_large.png) no-repeat;
+    background:url(++theme++telesur.theme/img/scrollable/arrow/hori_large.png) no-repeat;
     display:block;
     width:30px;
     height:30px;
@@ -758,7 +758,7 @@ body div {	 /* Eliminar todo el bloque */
 /* up and down */
 .btn-seguir-leyendo a.up,
 .btn-seguir-leyendo a.down        { 
-    background:url(../img/scrollable/arrow/vert_large.png) no-repeat; 
+    background:url(++theme++telesur.theme/img/scrollable/arrow/vert_large.png) no-repeat; 
     float: none;
     margin: 10px 50px;
 }
