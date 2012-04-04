@@ -28,7 +28,7 @@ class BrowserLayerTest(unittest.TestCase):
         directlyProvides(self.request, ITelesurLayer)
 
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        
+
         self.portal.invokeFactory('Folder', 'test-folder')
         setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
@@ -95,20 +95,22 @@ class BrowserLayerTest(unittest.TestCase):
             self.n1.unrestrictedTraverse(name)
         except AttributeError:
             self.fail('%s has no view %s' % (self.n1, name))
-    
+
     def test_more_articles_view_exists(self):
         name = '@@more-articles-view'
         try:
             self.n1.unrestrictedTraverse(name)
         except AttributeError:
             self.fail('%s has no view %s' % (self.n1, name))
-    
+
     def test_viewlets_registered(self):
         # TODO: implement test
         pass
 
 NEWS_LENGTH = 20
 LIMIT = 8
+
+
 class MoreArticlesTest(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -117,9 +119,9 @@ class MoreArticlesTest(unittest.TestCase):
         name = '@@more-articles-view'
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        
+
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        
+
         directlyProvides(self.request, ITelesurLayer)
         self.workflowTool = getToolByName(self.portal, 'portal_workflow')
         self.workflowTool.setChainForPortalTypes(('collective.nitf.content',),
@@ -136,7 +138,7 @@ class MoreArticlesTest(unittest.TestCase):
     def test_more_articles_empty(self):
         self.view.update()
         self.assertEquals(len(self.view.articles), 0)
-             
+
     def test_limit(self):
         self.create_articles()
         self.view.update()
@@ -146,16 +148,16 @@ class MoreArticlesTest(unittest.TestCase):
             number = NEWS_LENGTH - LIMIT - 1
             if number > LIMIT:
                 number = LIMIT
-        self.assertEquals(len(self.view.articles), number)      
+        self.assertEquals(len(self.view.articles), number)
 
     def test_pagination(self):
         self.create_articles()
-        self.view.request['b_start'] = LIMIT*2
+        self.view.request['b_start'] = LIMIT * 2
         self.view.update()
         #LIMIT que trae originalmente menos 1 que va para outstanding
         number = 0
-        if NEWS_LENGTH > LIMIT*2:
-            number = NEWS_LENGTH - LIMIT*2 - 1
+        if NEWS_LENGTH > LIMIT * 2:
+            number = NEWS_LENGTH - LIMIT * 2 - 1
             if number > LIMIT:
                 number = LIMIT
         self.assertEquals(len(self.view.articles), number)
@@ -168,10 +170,11 @@ class MoreArticlesTest(unittest.TestCase):
 
     def create_articles(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        for i in range(1,NEWS_LENGTH):
+        for i in range(1, NEWS_LENGTH):
             self.portal.invokeFactory('collective.nitf.content', 'n%s' % i,
                 genre='Current', section=u'Deportes')
             self.workflowTool.doActionFor(self.portal['n%s' % i], 'publish')
-        
+
+
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
