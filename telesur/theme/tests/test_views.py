@@ -38,21 +38,12 @@ class BrowserLayerTest(unittest.TestCase):
         self.folder.invokeFactory('collective.nitf.content', 'n1')
         self.n1 = self.folder['n1']
 
-    def test_nota_view_registered(self):
+    def test_nota_view(self):
         registered = [v.name for v in registration.getViews(ITelesurLayer)]
         self.assertTrue('nota' in registered)
 
         view = queryMultiAdapter((self.n1, self.request), name='nota')
         self.assertTrue(view is not None)
-
-    def test_views_registered(self):
-        views = ['nota', 'folder_summary_view', 'schedule', 'live-signal', 'live-signal-backup', 'donde-distribucion']
-        registered = [v.name for v in registration.getViews(ITelesurLayer)]
-        # empty set only if all 'views' are 'registered'
-        self.assertEquals(set(views) - set(registered), set([]))
-
-    def test_nota(self):
-        view = getMultiAdapter((self.n1, self.request), name='nota')
 
         self.assertEquals(view.has_images(), 0)
         self.assertEquals(view.has_files(), 0)
@@ -90,13 +81,12 @@ class BrowserLayerTest(unittest.TestCase):
         view = queryMultiAdapter((self.n1, self.request), name='live-signal')
         self.assertTrue(view is not None)
 
-
     def test_live_signal_backup_view(self):
-        name = '@@live-signal-backup'
-        try:
-            self.n1.unrestrictedTraverse(name)
-        except AttributeError:
-            self.fail('%s has no view %s' % (self.n1, name))
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('live-signal-backup' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='live-signal-backup')
+        self.assertTrue(view is not None)
 
     def test_donde_distribucion_view(self):
         registered = [v.name for v in registration.getViews(ITelesurLayer)]
@@ -125,7 +115,6 @@ class MoreArticlesTest(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        name = '@@more-articles-view'
         self.portal = self.layer['portal']
         self.request = self.layer['request']
 
@@ -142,7 +131,7 @@ class MoreArticlesTest(unittest.TestCase):
         section_crit = self.section.addCriterion('section', 'ATSimpleStringCriterion')
         section_crit.setValue('Deportes')
         self.workflowTool.doActionFor(self.section, 'publish')
-        self.view = self.getViewByName(self.section, name)
+        self.view = getMultiAdapter((self.section, self.request), name='more-articles-view')
 
     def test_more_articles_empty(self):
         self.view.update()
@@ -170,12 +159,6 @@ class MoreArticlesTest(unittest.TestCase):
             if number > LIMIT:
                 number = LIMIT
         self.assertEquals(len(self.view.articles), number)
-
-    def getViewByName(self, context, name):
-        try:
-            return context.restrictedTraverse(name)
-        except AttributeError:
-            return None
 
     def create_articles(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
