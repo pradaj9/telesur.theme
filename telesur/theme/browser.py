@@ -593,7 +593,7 @@ class LayoutHelper(grok.View):
 
         elements = {'outstanding': [], 'secondary': [], 'articles': []}
         catalog = getToolByName(self.context, 'portal_catalog')
-        
+
         section = self.section(section)
 
         #query build getting all the section news
@@ -625,7 +625,7 @@ class LayoutHelper(grok.View):
         if all_articles:
             if batched:
                 if(len(existing) > b_start):
-                    elements['articles'] =  Batch(existing, limit, b_start)
+                    elements['articles'] = Batch(existing, limit, b_start)
                 else:
                     elements['articles'] = []
             else:
@@ -651,7 +651,7 @@ class LayoutHelper(grok.View):
                     tmp_elements = filter(lambda nota: nota.UID != outstanding_UID,
                         existing)[move:]
                     if(len(existing) > b_start):
-                        elements['secondary'] =  Batch(tmp_elements, limit, b_start)
+                        elements['secondary'] = Batch(tmp_elements, limit, b_start)
                     else:
                         elements['secondary'] = []
                 else:
@@ -726,6 +726,7 @@ class SectionView(grok.View):
             return view.has_files() > 0
         return False
 
+
 class MoreArticles(grok.View):
     """Vista para traer mas articulos usando ajax.
     """
@@ -739,6 +740,7 @@ class MoreArticles(grok.View):
         super(MoreArticles, self).__init__(context, request)
         self.layout_helper = getMultiAdapter((self.context, self.request),
                                              name='layout-helper')
+
     def update(self):
         b_start = 8
         limit = 8
@@ -756,7 +758,7 @@ class MoreArticles(grok.View):
                     b_start=b_start)
             self.articles = articles['articles']
         elif kind == "Current":
-            articles =  self.layout_helper.articles(limit, genre=kind,
+            articles = self.layout_helper.articles(limit, genre=kind,
                             batched=True, b_start=b_start)
             self.articles = articles['secondary']
 
@@ -771,10 +773,9 @@ class MoreArticles(grok.View):
                                         outstanding_optional=True, batched=True,
                                         b_start=b_start)
             self.articles = articles['secondary']
-            
+
         self.kind = kind
-        
-    
+
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
 
@@ -806,8 +807,9 @@ class MoreArticles(grok.View):
         view = getMultiAdapter((obj, self.request), name='nota')
         if view:
             return view.has_files() > 0
-        return False 
-   
+        return False
+
+
 class OpinionView(grok.View):
     """Vista para seccion opinion.
     """
@@ -920,6 +922,7 @@ class LiveSignal(grok.View):
     grok.template('live_signal')
     grok.require('zope2.View')
 
+
 class LiveSignalBackup(grok.View):
     """ Señal en vivo del canal ULTRABASE.
     """
@@ -928,7 +931,6 @@ class LiveSignalBackup(grok.View):
     grok.name('live-signal-backup')
     grok.template('live_signal_backup')
     grok.require('zope2.View')
-
 
 
 class LiveAudio(grok.View):
