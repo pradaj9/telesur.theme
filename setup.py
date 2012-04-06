@@ -33,11 +33,12 @@ setup(name='telesur.theme',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'plone.app.theming',
+        'plone.app.theming==1.0b9',
+        'experimental.cssselect==0.3',  # XXX: corrige problemas de rendimiento en Diazo
         'collective.nitf',
+        'collective.upload',
         'telesur.api',
         'z3c.jbot',
-        'collective.upload',
         ],
       extras_require={
         'test': ['plone.app.testing'],
