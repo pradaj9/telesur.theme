@@ -1378,3 +1378,12 @@ div.panes-social div.twitter-portlet {
     float: right;
     cursor: pointer;
 }
+
+/*drag and drop*/
+
+.template-home-view .ui-sortable-placeholder {
+    background-color:#9ad39d !important;
+    visibility:visible !important;
+    border:1px solid green;
+    margin:0 2px 2px 0;
+}

@@ -30,6 +30,9 @@ from plone.directives import dexterity
 
 import DateTime
 
+from plone.uuid.interfaces import IUUID
+from plone.app.uuid.utils import uuidToObject
+
 grok.templatedir("templates")
 
 
@@ -434,6 +437,106 @@ class ArticleControl(grok.View):
         return self
 
 
+class HomeSetOrder(grok.View):
+    grok.context(Interface)
+    grok.name('home-set-order')
+    grok.require('cmf.ModifyPortalContent')
+
+    def render(self, uuid, delta, key):
+        KEY = 'telesurtheme.homeview.order'
+        delta = int(delta)
+        order = getMultiAdapter((self.context, self.request),
+                                            name='home-view-order')
+        uuids = order.annotation[KEY][key]
+
+        if uuid in uuids:
+            index = uuids.index(uuid)
+            uuids.remove(uuid)
+        else:
+            index = 0
+
+        if index > delta:
+            uuids.insert(delta, uuid)
+        elif index < delta:
+            uuids.insert(delta, uuid)
+
+        order.annotation[KEY][key] = uuids
+
+        return self
+
+
+class HomeViewOrder(grok.View):
+    """controler for the order of news in the homeview layout"""
+    grok.context(Interface)
+    grok.name('home-view-order')
+    grok.require('cmf.ModifyPortalContent')
+
+    def __init__(self, context, request):
+        super(HomeViewOrder, self).__init__(context, request)
+        self.annotation = self.get_annotation()
+
+    def render(self):
+        return self
+
+    def get_annotation(self):
+        #check if we have an annotation in the site root with the proper key,
+        #if not, lets create one.
+        KEY = 'telesurtheme.homeview.order'
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        annotations = IAnnotations(portal)
+        if not KEY in annotations:
+            annotations[KEY] = {'primary': [], 'secondary': []}
+
+        return annotations
+
+    def set_annotation(self, key, value):
+        self.annotation['telesurtheme.homeview.order'][key] = value
+
+    def order(self, catalog_uuids, ordened_news):
+
+        if set(ordened_news) != set(catalog_uuids):
+            new_elements = []
+            old_elements = []
+            for uuid in catalog_uuids:
+                if uuid in ordened_news:
+                    old_elements.append(uuid)
+                else:
+                    new_elements.append(uuid)
+
+            #lets clean our ordened_news list
+            ordened_news = [x for x in ordened_news if x in old_elements]
+
+            procesed_news = new_elements + ordened_news
+        else:
+            procesed_news = ordened_news
+
+        return procesed_news
+
+    def primary_order(self, catalog_brain):
+        #obj => uuid list, then compare with the primary ordered list
+        primary = []
+        ordened_news = self.annotation['telesurtheme.homeview.order']['primary']
+        catalog_uuids = [IUUID(brain.getObject(), None) for brain in catalog_brain]
+
+        primary = self.order(catalog_uuids, ordened_news)
+
+        self.set_annotation('primary', primary)
+
+        return primary
+
+    def secondary_order(self, catalog_brain):
+        #obj => uuid list, then compare with the secondary ordered list
+        secondary = []
+        ordened_news = self.annotation['telesurtheme.homeview.order']['secondary']
+        catalog_uuids = [IUUID(brain.getObject(), None) for brain in catalog_brain]
+
+        secondary = self.order(catalog_uuids, ordened_news)
+
+        self.set_annotation('secondary', secondary)
+
+        return secondary
+
+
 class HomeView(grok.View):
     """Vista para la home.
     """
@@ -446,6 +549,8 @@ class HomeView(grok.View):
         super(HomeView, self).__init__(context, request)
         self.layout_helper = getMultiAdapter((self.context, self.request),
                                             name='layout-helper')
+        self.order = getMultiAdapter((self.context, self.request),
+                                            name='home-view-order')
 
     def get_multimedia(self, obj, thumb=False):
         multimedia = self.layout_helper.get_multimedia(obj, thumb)
@@ -466,6 +571,9 @@ class HomeView(grok.View):
         elements = catalog(object_provides=IPrimaryArticle.__identifier__,
                            sort_on='effective', sort_order='reverse')
 
+        primary = self.order.primary_order(elements)
+        elements = [(uuid, uuidToObject(uuid)) for uuid in primary]
+
         return elements
 
     def secondary(self, limit=6):
@@ -473,7 +581,11 @@ class HomeView(grok.View):
         elements = catalog(object_provides=ISecondaryArticle.__identifier__,
                            sort_on='effective', sort_order='reverse')
 
-        return elements[:limit]
+        elements = elements[:limit]
+        secondary = self.order.secondary_order(elements)
+        elements = [(uuid, uuidToObject(uuid)) for uuid in secondary]
+
+        return elements
 
     def has_videos(self, obj):
         """ Retorna verdadero si el objeto contiene al menos un vínculo a un

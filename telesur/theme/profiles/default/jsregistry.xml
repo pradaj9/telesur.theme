@@ -3,4 +3,8 @@
   <javascript cacheable="True" compression="none" cookable="True"
       enabled="True" expression=""
       id="++resource++telesur.theme/more-articles.js" inline="False"/>
+
+  <javascript authenticated="True" cacheable="True" compression="none" cookable="True"
+      enabled="True" expression=""
+      id="++resource++telesur.theme/homeview-order.js" inline="False"/>      
 </object>

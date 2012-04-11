@@ -308,6 +308,7 @@ body div {	 /* Eliminar todo el bloque */
 	display:block;
 	border-right:solid 1px #AC1206;
 	margin:0px;
+	background-color:#FFF;
 }
 .article-listing .news-row .end {
     border-right:medium none;
