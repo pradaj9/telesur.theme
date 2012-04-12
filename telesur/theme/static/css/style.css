@@ -1264,7 +1264,7 @@ div#banners-home.widget-container a img {
 /* formulario de suscripciones */
 
 #subscriptionform iframe {
-    margin-left: 10em;
+    margin-left: 10px;
     }
 
 .subscriptionform_background {
@@ -1272,6 +1272,13 @@ div#banners-home.widget-container a img {
     background-repeat: no-repeat;
     height: 548px;
     }
+	
+	.subscription_background_general {
+    background-image: url('++theme++telesur.theme/img/DisenoSuscripcion1024x500.jpg');
+    background-repeat: no-repeat;
+    height: 548px;
+    }
+	
 
 .subscriptionform_label {
     margin-left: 55px;
