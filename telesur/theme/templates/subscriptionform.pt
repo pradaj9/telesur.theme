@@ -27,7 +27,7 @@
 </div>
 
 <div tal:condition="not:view/processed_form"
-    class="subscriptionform_background">
+    class="">
 
   <table width="457" border="0" cellspacing="0" cellpadding="0">
     <form name="Principal" action="http://z4.imolko.com:80/zenkiu-war/index.htm" method="POST" onSubmit="return Validar();">
@@ -38,14 +38,12 @@
     <input name="tematica" type="hidden" value="3225" />
     <input name="pagOk" type="hidden" value=""
         tal:attributes="value string:${portal_url}/subscriptionform" />
-    <tr>
-        <td width="117" height="160"></td>
-    </tr>
+    
     <tr>
         <td width="117"><div class="subscriptionform_label">Correo:</div></td>
         <td width="340">
             <label>
-                <input name="correo" type="text" size="30" title="Introduzca el correo Electronico"  />
+                <input name="correo" type="text" size="25" title="Introduzca el correo Electronico"  />
             </label>
         </td>
     </tr>
@@ -53,7 +51,7 @@
         <td width="117"><div class="subscriptionform_label">Nombre:</div></td>
         <td width="340">
             <label>
-                <input name="$primer_nombre" type="text" size="30" maxlength="100" itle="Introduzca un Texto de maximo 100 caracteres" />
+                <input name="$primer_nombre" type="text" size="25" maxlength="100" itle="Introduzca un Texto de maximo 100 caracteres" />
             </label>
         </td>
     </tr>
@@ -61,7 +59,7 @@
         <td width="117"><div class="subscriptionform_label">Apellido:</div></td>
         <td width="340">
             <label>
-                <input name="$primer_apellido" type="text" size="30" title="Introduzca un Texto de maximo 100 caracteres" />
+                <input name="$primer_apellido" type="text" size="25" title="Introduzca un Texto de maximo 100 caracteres" />
             </label>
         </td>
     </tr>
@@ -370,7 +368,7 @@
         <td width="117"><div class="subscriptionform_label">Empresa:</div></td>
         <td width="340">
             <label>
-                <input name="$empresa" type="text" maxlength="100" size="30" title="Introduzca un Texto de maximo 100 caracteres" />
+                <input name="$empresa" type="text" maxlength="100" size="25" title="Introduzca un Texto de maximo 100 caracteres" />
             </label>
         </td>
     </tr>
