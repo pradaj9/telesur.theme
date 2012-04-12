@@ -6,6 +6,8 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="telesur.theme">
 <body>
+<link rel="stylesheet" type="text/css" media="screen" href=""
+      tal:attributes="href string:${portal_url}/++theme++telesur.theme/css/style.css" />
 
 <metal:title fill-slot="content-title">
     <h1 class="documentFirstHeading">
@@ -24,11 +26,12 @@
         dudes en escribirnos a nuestra dirección de correo:
         <a href="mailto:contactenos@telesurtv.net">contactenos@telesurtv.net</a>
     </p>
-
-    <div id="subscriptionform">
-        <iframe tal:attributes="src view/iframe_src"
-            width="473" scrolling="no" height="548" frameborder="0" src=""/>
-    </div>
+ <div id="subscriptionform" class="subscription_background_general">
+ <table width="1024" border="0" cellpadding="0" cellspacing="0" align="left">
+ <td width="443" align="left" valign="top"> <iframe tal:attributes="src view/iframe_src"
+            width="443" scrolling="no" style=" margin-top:200px; text-align:left;" height="320" frameborder="0" src=""/></td><td width="581" align="right" valign="top">&nbsp;</td>
+ </table>
+  </div>
 </metal:main>
 
 </body>
