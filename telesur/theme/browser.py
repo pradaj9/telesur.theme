@@ -4,8 +4,12 @@ from five import grok
 
 from zope.component import getMultiAdapter
 
+from zope.event import notify
+
 from zope.interface import Interface
 from zope.annotation.interfaces import IAnnotations
+
+from z3c.caching.purge import Purge
 
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
@@ -507,6 +511,9 @@ class HomeViewOrder(grok.View):
             ordened_news = [x for x in ordened_news if x in old_elements]
 
             procesed_news = new_elements + ordened_news
+
+            portal = getToolByName(self, 'portal_url').getPortalObject()
+            notify(Purge(portal))
         else:
             procesed_news = ordened_news
 
