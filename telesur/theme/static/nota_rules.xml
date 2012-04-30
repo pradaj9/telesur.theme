@@ -87,7 +87,24 @@
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">
           <after css:theme="#telesur-left-content #comentarios-nota > h2">
-              <p>Condiciones de uso: No se publicará en caso alguno material ofensivo, denigrante, fuera de contexto, que afecten la dignidad de una persona o un grupo social, que sean difamatorios, que inciten a violar leyes o a alterar el orden.</p>
+		      <script type="text/javascript">
+                 var win = null;
+function NewWindow(mypage,myname,w,h,scroll){
+LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
+settings =
+'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
+win = window.open(mypage,myname,settings)
+}
+
+              </script>
+            
+<table width="249" border="0">
+  <tr>
+    <td width="34"><a href="#"  onclick="NewWindow('++theme++telesur.theme/condiciones.html', 'Condiciones de Publicacion','500','590','yes'); return false;"><img src="++theme++telesur.theme/img/icon_comentarios.jpg"  width="34" height="34" border="0"  align="absmiddle"  /> </a></td>
+    <td width="335"><p style="margin-left:10px;"><a href="#"  onclick="NewWindow('++theme++telesur.theme/condiciones.html', 'Condiciones de Publicacion','500','590','yes'); return false;"> Ver condiciones de publicación</a></p></td>
+  </tr>
+</table>
               <div id="disqus_thread"></div>
               <script type="text/javascript">
                   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
