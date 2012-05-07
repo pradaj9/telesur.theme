@@ -19,10 +19,8 @@
                        //*[contains(@class,'template-telesur.contenttypes.program')] or
                        //*[contains(@class,'template-telesur.contenttypes.edition')] or
                        //*[contains(@class,'portaltype-telesur-contenttypes-program')] or
-                       
-//*[contains(@class,'portaltype-telesur-forums-forum')] or
-
-//*[contains(@class,'portaltype-telesur-forums-session')] or
+                       //*[contains(@class,'portaltype-telesur-forums-forum')] or
+                       //*[contains(@class,'portaltype-telesur-forums-session')] or
                        //*[contains(@class,'portaltype-telesur-contenttypes-edition')] or
                        //*[contains(@class,'template-manage-portlets')] or
                        //*[contains(@class,'portaltype-document')]">
