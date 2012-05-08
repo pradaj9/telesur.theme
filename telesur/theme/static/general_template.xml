@@ -30,7 +30,9 @@
         <theme href="general.html" />
 
         <drop css:content="#viewlet-above-content"/>
-        <drop css:content="#content .documentActions"/>
+        <rules if-content="not(//*[contains(@class,'portaltype-enlissue')])">
+            <drop css:content="#content .documentActions"/>
+        </rules>
 
         <rules css:if-content="body:not(.template-manage-portlets)">
           <replace
