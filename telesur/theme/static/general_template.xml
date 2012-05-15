@@ -19,17 +19,20 @@
                        //*[contains(@class,'template-telesur.contenttypes.program')] or
                        //*[contains(@class,'template-telesur.contenttypes.edition')] or
                        //*[contains(@class,'portaltype-telesur-contenttypes-program')] or
-                       
-//*[contains(@class,'portaltype-telesur-forums-forum')] or
-
-//*[contains(@class,'portaltype-telesur-forums-session')] or
+                       //*[contains(@class,'portaltype-telesur-forums-forum')] or
+                       //*[contains(@class,'portaltype-telesur-forums-session')] or
                        //*[contains(@class,'portaltype-telesur-contenttypes-edition')] or
                        //*[contains(@class,'template-manage-portlets')] or
-                       //*[contains(@class,'portaltype-document')]">
+                       //*[contains(@class,'portaltype-document')] or
+                       //*[contains(@class,'portaltype-easynewsletter')] or
+                       //*[contains(@class,'portaltype-enltemplate')] or
+                       //*[contains(@class,'portaltype-enlissue')]">
         <theme href="general.html" />
 
         <drop css:content="#viewlet-above-content"/>
-        <drop css:content="#content .documentActions"/>
+        <rules if-content="not(//*[contains(@class,'portaltype-enlissue')])">
+            <drop css:content="#content .documentActions"/>
+        </rules>
 
         <rules css:if-content="body:not(.template-manage-portlets)">
           <replace
