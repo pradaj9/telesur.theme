@@ -558,7 +558,7 @@ class CoversView(grok.View):
     grok.context(Interface)
     grok.name('covers-view')
     grok.layer(ITelesurLayer)
-    grok.require('zope2.View')
+    grok.require('cmf.ModifyPortalContent')
 
     def __init__(self, context, request):
         super(CoversView, self).__init__(context, request)
@@ -575,7 +575,7 @@ class CoversView(grok.View):
         if 'make_default' in self.request:
             make_default = self.request['make_default']
 
-        if remove and layout_id:
+        if remove:
             self.remove_layout(layout_id)
 
         if not(remove) and make_default and layout_id:
@@ -631,9 +631,12 @@ class CoversView(grok.View):
         self.request.response.redirect(view_url)
         return
 
-    def remove_layout(self, layout_id):
+    def remove_layout(self, layout_id=None):
         conf = self.layout_conf()[COVERS_KEYS]
-        del(conf['views'][layout_id])
+        if layout_id:
+            del(conf['views'][layout_id])
+        else:
+            del(conf['default_view'])
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)        
         return
@@ -675,7 +678,7 @@ class CoverElection(grok.View):
     grok.name('cover-election')
     grok.template('cover_election')
     grok.layer(ITelesurLayer)
-    grok.require('cmf.AddPortalContent')
+    grok.require('cmf.ModifyPortalContent')
 
     def __init__(self, context, request):
         super(CoverElection, self).__init__(context, request)        

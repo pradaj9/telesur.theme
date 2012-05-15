@@ -1,4 +1,5 @@
-<div class="cover-controls" tal:define="formaction view/request/formaction | nothing">
+<div class="cover-controls" tal:define="formaction view/request/formaction | nothing" 
+     tal:condition="python:modules['AccessControl'].getSecurityManager().checkPermission('cmf.ModifyPortalContent', context)">
     <script>
     var $ = jQuery.noConflict();
     </script>
@@ -29,9 +30,9 @@
                                     <li><a href="@@cover-general-event?formaction=create">Eventos generales</a></li>
                                 </ul>
                             </div>
-                            <span tal:define="default_view view/default_view">
+                            <p tal:define="default_view view/default_view">
                                 <span><b>Usando:</b></span><span tal:replace="view/default_view_title"></span>(<span tal:replace="view/default_view_type"></span>)
-                            </span>
+                            </p>
                         </li>
                     </ul>
                 </div>
