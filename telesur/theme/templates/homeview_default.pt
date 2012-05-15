@@ -16,8 +16,14 @@
     <tal:main-macro metal:define-macro="main" tal:define="video_api nocall:context/@@video_api">
 
         <div class="principal-articles-container row"
-             tal:define="outstanding view/outstanding">
-            <div class="main-article row" tal:condition="outstanding">
+             tal:define="outstanding view/outstanding;
+                         cover_layout view/cover_layout">
+            <div tal:replace="structure context/@@cover-controls"></div>
+            <div tal:condition="cover_layout">
+                <div tal:replace="structure view/set_cover_layout"></div>
+            </div>
+
+            <div class="main-article row" tal:condition="python:outstanding and not(cover_layout)">
                 <h1 class="title">
                     <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
                 </h1>

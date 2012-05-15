@@ -1,0 +1,96 @@
+<tal:block tal:define="outstanding python:view.outstanding;
+                       video_api nocall:context/@@video_api">
+<div class="main-article row" tal:condition="outstanding">
+    <h1 class="title">
+        <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
+    </h1>
+    <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding)">
+        <div class="video-widget">
+            <div>
+                <tal:video tal:condition="python:multimedia['type'] == 'video'">
+                    <script type="text/javascript" src=""
+                        tal:define="video_url python:video_api.get_video_widget_url('', 400, {'archivo_url': multimedia['url']})"                            
+                        tal:attributes="src string:${video_url};"
+                        tal:content="nothing">
+                        Item Title
+                    </script>
+                </tal:video>
+                <tal:image tal:condition="python:multimedia['type'] == 'image'"
+                           tal:define="img python:multimedia['url']">
+                    <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
+                </tal:image>
+                <p class="discreet" tal:content="python:multimedia['description']"></p>
+            </div>
+            <div>
+                <tal:image tal:define="img view/get_cover_image">
+                    <img tal:replace="structure python: path('nocall:img/tag')(scale='mini')" />
+                </tal:image>
+            </div>
+            
+        </div>
+    </div>
+    <div class="data-article-container cell">
+        <div class="description" tal:content="outstanding/description"></div>
+        <tal:multimedia>
+            <p class="media-icons iconos-portada">
+                <img style="margin: 0 5px" src="++theme++telesur.theme/videos.png" title="Esta nota contiene videos"
+                     tal:define="has_videos python:view.has_videos(outstanding)"
+                     tal:condition="has_videos" />
+                <img style="margin: 0 5px" src="++theme++telesur.theme/gallery.png" title="Esta nota contiene una galería de fotos"
+                     tal:define="has_gallery python:view.has_gallery(outstanding)"
+                     tal:condition="has_gallery" />
+                <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
+                     tal:define="has_atachments python:view.has_atachments(outstanding)"
+                     tal:condition="has_atachments" />
+            </p>                    
+        </tal:multimedia>
+        <div class="separator"></div>
+        <tal:related-items tal:define="related outstanding/relatedItems|nothing">
+            <div class="related-items" tal:condition="related">
+                <span class="title">Notas relacionadas</span>
+                <ul>
+                    <tal:block tal:repeat="nota_rel related">
+                    <li tal:condition="python:repeat['nota_rel'].index < 3">
+                        <a tal:content="nota_rel/to_object/Title" 
+                           tal:attributes="href nota_rel/to_object/absolute_url"></a>
+                    </li>
+                    </tal:block>
+                </ul>
+            </div>
+        </tal:related-items>
+        <tal:twitter tal:condition="view/get_cover_twitter" tal:define="hashtag view/get_cover_twitter">
+            <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+            <script type="text/javascript" tal:content="python:'var hashtag=\''+hashtag+'\''"></script>
+            <script type="text/javascript">
+            new TWTR.Widget({
+              version: 2,
+              type: 'search',
+              search: hashtag,
+              interval: 3000,
+              title: 'Twitter',
+              subject: hashtag,
+              width: 'auto',
+              height: 110,
+              theme: {
+                shell: {
+                  background: '#cf0c0a',
+                  color: '#ffffff'
+                },
+                tweets: {
+                  background: '#ffffff',
+                  color: '#000000',
+                  links: '#205c90'
+                }
+              },
+              features: {
+                scrollbar: false,
+                loop: false,
+                live: true,
+                behavior: 'default'
+              }
+            }).render().start();
+            </script>
+        </tal:twitter>
+    </div>
+</div>
+</tal:block>

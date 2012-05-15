@@ -1,0 +1,40 @@
+<div class="cover-controls">
+    <tal:block tal:condition="python: not('layout_id' in view.request)">
+    <h2>Controles de portadas</h2>
+    <div>
+        <h3>crear un tipo de portada:</h3>
+        <ul>
+            <li><a href="@@cover-election">Elecciones</a></li>
+            <li><a href="@@cover-sporting-event">Eventos Deportivos</a></li>
+            <li><a href="@@cover-special">Especiales</a></li>
+            <li><a href="@@cover-general-event">Eventos generales</a></li>
+        </ul>
+        <p tal:define="default_view view/default_view">
+            <span>Actualmente:</span><span tal:replace="view/default_view_title"></span>(<span tal:replace="view/default_view_type"></span>)
+        </p>
+    </div>
+    <div class="drafts" tal:define="drafts view/drafts">
+        <h3>Draft activos</h3>
+        <table border="1" tal:condition="drafts">
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo</th>
+            </tr>
+            <tr tal:repeat="draft drafts">
+                <td><a tal:attributes="href python:'?layout_id='+str(draft)" tal:content="python:drafts[draft]['draft_title']">nombre</a></td>
+                <td><span tal:content="python:drafts[draft]['type']">tipo</span></td>
+            </tr>
+        </table>
+        <span tal:condition="not:drafts">Sin drafts activos</span>
+    </div>
+    </tal:block>
+    <tal:block tal:condition="python:'layout_id' in view.request">
+    <div class="draft-bar">
+        <span>DRAFT</span>
+        <a class="delete" href="" 
+            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&delete=1'">Borrar</a>
+        <a class="publish" href="" 
+            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&make_default=1'">Usar Draft</a>
+    </div>
+    </tal:block>
+</div>

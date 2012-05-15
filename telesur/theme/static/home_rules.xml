@@ -4,7 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules css:if-content="body.template-home-view">
+    <rules if-content="//body[contains(@class,'template-home-view')]">
         <theme href="home-scroll.html" />
         
         <!-- drop all the articule boxes -->
@@ -13,6 +13,10 @@
         <!-- edit bar first element inside telesur-middle -->
         <before css:theme-children="#telesur-middle"
             css:content="#edit-bar" />
+            
+        <!-- cover controls elements -->
+        <replace css:theme-children="#telesur-left-content-big .cover-controls"
+                 css:content=".cover-controls" />
 
         <!-- main article "outstanding" video or image -->
         <replace css:theme-children=".main-article .media-container"
@@ -21,14 +25,8 @@
         <replace css:theme-children=".articles-data .title"
                  css:content-children=".principal-articles-container .main-article h1" />            
         <!-- main new "outstanding" descrption -->
-        <replace css:theme-children=".data-article-container .description"
-                 css:content-children=".principal-articles-container .description" />      
-
-        <!-- related items -->
-        <replace css:theme=".related-items" css:content=".related-items"/>
-        
-        <!--media icons -->
-        <replace css:theme=".media-icons" css:content=".media-icons"/>        
+        <replace css:theme-children=".data-article-container"
+                 css:content-children=".data-article-container" />
 
         <!-- articles "principal" listing -->
         <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>
@@ -40,7 +38,7 @@
         <after css:theme-children="#telesur-right-sidebar-small"
             css:content="#lo-mas" />
 
-        <replace css:if-content="#telesur-titulares" 
+        <replace if-content="//*[@id='telesur-titulares']" 
                  css:content="#telesur-titulares"
                  css:theme="#mas-titulares-widget"/>                           
 

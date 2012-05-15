@@ -316,6 +316,7 @@ class LastestVideosWidget(grok.Viewlet):
             seccionUrl = "&seccion_plone=" + titleId
             self.url += seccionUrl
 
+
 class SiteDate(grok.Viewlet):
     grok.context(Interface)
     grok.layer(ITelesurLayer)

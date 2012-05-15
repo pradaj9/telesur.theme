@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        <form tal:attributes="action python:context.absolute_url() +'/@@cover-election'" method="post" enctype="multipart/form-data">
+            <div class="field">        
+                <label for="draft-title">Título del draft</label>
+                <div class="formHelp" id="title_help"></div>                
+                <input name="draft-title" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/draft-title | nothing"/>
+            </div>
+            <div class="field">        
+                <label for="outstanding-new">URL de noticia destacada</label>
+                <div class="formHelp" id="title_help"></div>                
+                <input name="outstanding-new" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/outstanding-new | nothing"/>
+            </div>            
+            <div class="field">        
+                <label for="hashtag-twitter">Hashtag Twitter</label>
+                <div class="formHelp" id="title_help"></div>                
+                <input name="hashtag-twitter" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/hashtag-twitter | nothing"/>
+            </div>
+            <div class="field">
+                <label for="uploadfile">Imagen de encuestas</label>
+                <div class="formHelp" id="title_help"></div>                
+                <div class="widget">
+                  <input type="file" name="uploadfile" id="uploadfile" size="15">
+                </div>
+            </div>
+            
+            <div class="formControls">                        
+                <input name="form.buttons.save" class="submit-widget button-field context" value="Guardar" type="submit">
+                <input name="form.buttons.cancel" class="submit-widget button-field standalone" value="Cancelar" type="submit">
+            </div>
+        </form>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
