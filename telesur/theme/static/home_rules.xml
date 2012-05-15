@@ -15,7 +15,7 @@
             css:content="#edit-bar" />
             
         <!-- cover controls elements -->
-        <replace css:theme-children="#telesur-left-content-big .cover-controls"
+        <replace css:theme-children=".cover-controls"
                  css:content=".cover-controls" />
 
         <!-- main article "outstanding" video or image -->

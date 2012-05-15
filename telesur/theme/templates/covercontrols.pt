@@ -1,40 +1,82 @@
-<div class="cover-controls">
-    <tal:block tal:condition="python: not('layout_id' in view.request)">
-    <h2>Controles de portadas</h2>
-    <div>
-        <h3>crear un tipo de portada:</h3>
-        <ul>
-            <li><a href="@@cover-election">Elecciones</a></li>
-            <li><a href="@@cover-sporting-event">Eventos Deportivos</a></li>
-            <li><a href="@@cover-special">Especiales</a></li>
-            <li><a href="@@cover-general-event">Eventos generales</a></li>
-        </ul>
-        <p tal:define="default_view view/default_view">
-            <span>Actualmente:</span><span tal:replace="view/default_view_title"></span>(<span tal:replace="view/default_view_type"></span>)
-        </p>
-    </div>
-    <div class="drafts" tal:define="drafts view/drafts">
-        <h3>Draft activos</h3>
-        <table border="1" tal:condition="drafts">
-            <tr>
-                <th>Nombre</th>
-                <th>Tipo</th>
-            </tr>
-            <tr tal:repeat="draft drafts">
-                <td><a tal:attributes="href python:'?layout_id='+str(draft)" tal:content="python:drafts[draft]['draft_title']">nombre</a></td>
-                <td><span tal:content="python:drafts[draft]['type']">tipo</span></td>
-            </tr>
-        </table>
-        <span tal:condition="not:drafts">Sin drafts activos</span>
+<div class="cover-controls" tal:define="formaction view/request/formaction | nothing">
+    <script>
+    var $ = jQuery.noConflict();
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+    var jq17 = jQuery.noConflict();
+    </script>
+    <link rel="stylesheet" href="/++theme++telesur.theme/covers/bootstrap.min.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="/++theme++telesur.theme/covers/bootstrap.min.js"></script>
+
+    <tal:block tal:condition="python: not('layout_id' in view.request) and not('create' == formaction)">
+    <div class="cover-control-bar alert alert-success">
+        <div class="navbar-inner">
+            <div class="container">
+                <h3 class="brand" href="#">Controles de portadas</h3>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li>
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
+                                Crear un tipo de portada:
+                                <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@@cover-election?formaction=create">Elecciones</a></li>
+                                    <li><a href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a></li>
+                                    <li><a href="@@cover-special?formaction=create">Especiales</a></li>
+                                    <li><a href="@@cover-general-event?formaction=create">Eventos generales</a></li>
+                                </ul>
+                            </div>
+                            <span tal:define="default_view view/default_view">
+                                <span><b>Usando:</b></span><span tal:replace="view/default_view_title"></span>(<span tal:replace="view/default_view_type"></span>)
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="drafts" tal:define="drafts view/drafts">
+            <h3>Draft existentes</h3>
+            <table class="table table-striped table-bordered table-condensed" tal:condition="drafts">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Accion</th>                    
+                </tr>
+                <tr tal:repeat="draft drafts">
+                    <td><a tal:attributes="href python:'?layout_id='+str(draft)" tal:content="python:drafts[draft]['draft_title']">nombre</a></td>
+                    <td><span tal:content="python:drafts[draft]['type']">tipo</span></td>
+                    <td>
+                        <a class="btn btn-success"
+                           tal:attributes="href python:'@@cover-election?layout_id='+str(draft)+'&formaction=edit'">Editar</a>
+                        <a class="btn btn-danger"
+                           tal:attributes="href python:'@@covers-view?layout_id='+str(draft)+'&remove=1'">Borrar</a>
+                    </td>
+                </tr>
+            </table>
+            <p tal:condition="not:drafts">Sin drafts activos</p>
+        </div>
     </div>
     </tal:block>
-    <tal:block tal:condition="python:'layout_id' in view.request">
-    <div class="draft-bar">
-        <span>DRAFT</span>
-        <a class="delete" href="" 
-            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&delete=1'">Borrar</a>
-        <a class="publish" href="" 
+
+    <tal:block tal:condition="python:'layout_id' in view.request and not('create' == formaction)">
+    <div class="cover-control-bar draft alert">
+        <h3>DRAFT</h3>
+        <a class="publish btn btn-primary btn-large" href="" 
             tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&make_default=1'">Usar Draft</a>
+        <a class="edit btn btn-success btn-large" href="" 
+            tal:attributes="href python:'@@cover-election?layout_id='+view.request['layout_id']+'&formaction=edit'">Editar Draft</a>
+        <a class="delete btn btn-danger btn-large" href="" 
+            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&remove=1'">Borrar</a>
     </div>
     </tal:block>
+
+    <tal:create tal:condition="python:'create' == formaction">
+    <div class="cover-control-bar create alert alert-info">
+        <h3>CREAR draft</h3>
+    </div>
+    </tal:create>
 </div>

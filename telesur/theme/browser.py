@@ -604,7 +604,7 @@ class CoversView(grok.View):
         conf = self.layout_conf()[COVERS_KEYS]
         layout = {}
         if layout_id:
-            layout = conf['views'][uuid.UUID(layout_id)]
+            layout = conf['views'][layout_id]
         else:
             layout = conf['default_view']
         return layout
@@ -621,7 +621,7 @@ class CoversView(grok.View):
 
     def make_default(self, layout_id):
         conf = self.layout_conf()[COVERS_KEYS]
-        uuid_layout_id = uuid.UUID(layout_id)
+        uuid_layout_id = layout_id
         draft = conf['views'][uuid_layout_id]
         if draft:
             conf['default_view'] = draft
@@ -629,6 +629,13 @@ class CoversView(grok.View):
 
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
+        return
+
+    def remove_layout(self, layout_id):
+        conf = self.layout_conf()[COVERS_KEYS]
+        del(conf['views'][layout_id])
+        view_url = self.context.absolute_url()
+        self.request.response.redirect(view_url)        
         return
 
 
@@ -643,6 +650,7 @@ class CoverControls(grok.View):
         covers_view = getMultiAdapter((self.context, self.request),
                                             name='covers-view')
         self.covers_conf = covers_view.layout_conf()[COVERS_KEYS]
+
 
     def default_view(self):
         self.default_view_title = 'por defecto'
@@ -679,13 +687,18 @@ class CoverElection(grok.View):
         if self.request.method == 'POST':
             covers_view = getMultiAdapter((self.context, self.request),
                                             name='covers-view')
-            data = OOBTree({'type':'election', 
-                    'draft_title':'',
-                    'outstanding_new':'',
-                    'image':'', 
-                    'twitter_hashtag':'',
-                    'outstanding_new_uid':''})
-            layout_id = uuid.uuid4()
+            layout_id = ''
+            if 'layout_id' in self.request and self.request['layout_id']:
+                layout_id = self.request['layout_id']
+                data = covers_view.get_layout(layout_id)
+            else:
+                data = OOBTree({'type':'election', 
+                        'draft_title':'',
+                        'outstanding_new':'',
+                        'image':'', 
+                        'twitter_hashtag':'',
+                        'outstanding_new_uid':''})
+                layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
                 data['draft_title'] = self.request['draft-title']
@@ -697,7 +710,7 @@ class CoverElection(grok.View):
                 data['outstanding_new_uid'] = uid
 
             namechooser = INameChooser(self.context)
-            if 'uploadfile' in self.request:
+            if 'uploadfile' in self.request and self.request['uploadfile']:
                 uploadfile = self.request['uploadfile']
                 id_name = namechooser.chooseName(uploadfile.filename, self.context)
                 name_index = 0
@@ -714,9 +727,13 @@ class CoverElection(grok.View):
 
             if 'hashtag-twitter' in self.request:
                 data['twitter_hashtag'] = self.request['hashtag-twitter']
+
             #lets create the draft
             covers_view.add_layout(layout_id, data)
-        elif 'layout_id' in self.request:
+            view_url = self.context.absolute_url()
+            self.request.response.redirect(view_url)
+
+        elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
             covers_view = getMultiAdapter((self.context, self.request),
                                             name='covers-view')
             layout_id = self.request['layout_id']
@@ -725,6 +742,7 @@ class CoverElection(grok.View):
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['hashtag-twitter'] = data['twitter_hashtag']
+            self.request['image'] = data['image']
             
         return self.template.render(self)
 
@@ -741,7 +759,6 @@ class CoverElectionLayout(grok.View):
         self.layout_helper = getMultiAdapter((self.context, self.request),
                                             name='layout-helper')        
 
-        cover = {}
         layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
 
         cover_view = getMultiAdapter((self.context, self.request),
