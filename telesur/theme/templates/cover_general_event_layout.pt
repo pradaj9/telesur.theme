@@ -2,9 +2,6 @@
                        video_api nocall:context/@@video_api">
 <div class="main-article row general-event-layout" tal:condition="outstanding">
     <div class="articles-data row">
-        <h1 class="title">
-            <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
-        </h1>
         <div class="media-container cell" tal:define="multimedia python:view.get_multimedia(outstanding)">
             <div class="video-widget">
                 <div>
@@ -31,6 +28,9 @@
             </div>
         </div>
         <div class="data-article-container cell">
+            <h1 class="title">
+                <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
+            </h1>        
             <div class="description" tal:content="outstanding/description"></div>
             <tal:multimedia>
                 <p class="media-icons iconos-portada">

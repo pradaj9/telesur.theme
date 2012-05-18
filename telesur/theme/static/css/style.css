@@ -386,6 +386,12 @@ div#banners-home.widget-container a img {
     max-width:700px;
 }
 
+/*evento general*/
+.general-event-layout .data-article-container .title {
+    font-size:22px;
+    padding-left:0px;
+}
+
 /***
 * SECCIONES
 ***/
