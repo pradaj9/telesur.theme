@@ -348,6 +348,39 @@ div#banners-home.widget-container a img {
     margin-bottom:10px;
 }
 
+/*portadas*/
+/*sporting event /special*/
+#telesur-middle .sporting-event-layout .related-items-list,
+#telesur-middle .special-layout .related-items-list {
+    list-style:none;
+}
+.sporting-event-layout .related-items,
+.special-layout .related-items {
+    margin-left:0px;
+}
+.sporting-event-layout .related-items-list a,
+.special-layout .related-items-list a,
+.sporting-event-layout .related-items-list img,
+.special-layout .related-items-list img {
+    float:left;
+}
+.sporting-event-layout .related-items-list a img,
+.special-layout .related-items-list a img {
+    padding-right:4px;
+    width:128px;
+}
+
+/*special*/
+.special-layout {
+    padding-top:0px !important;
+}
+.special-layout .banner{
+    overflow:hidden;
+}
+.special-layout .banner img {
+    max-width:700px;
+}
+
 /***
 * SECCIONES
 ***/

@@ -27,7 +27,10 @@
         <!-- main new "outstanding" descrption -->
         <!-- <replace css:theme-children=".data-article-container"
                  css:content-children=".data-article-container" /> -->
-        <replace css:theme-children=".main-article .articles-data" css:content-children=".main-article .articles-data"/>
+      <copy attributes="class"
+        css:theme=".main-article"
+        css:content=".main-article" />                 
+        <replace css:theme=".main-article .articles-data" css:content=".main-article .articles-data"/>
         <!-- articles "principal" listing -->
         <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>
 
