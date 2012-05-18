@@ -33,15 +33,15 @@
                         <span class="title">Notas relacionadas</span>
                         <ul class="related-items-list">
                             <tal:block tal:repeat="nota_rel related">
-                        <li tal:condition="python:repeat['nota_rel'].index < 2">
-                            <a tal:define="image python:view.get_multimedia(nota_rel.to_object, True)" 
-                               tal:attributes="href nota_rel/to_object/absolute_url">
-                               <tal:image tal:condition="python:image['url']">
-                                <img src="" tal:replace="structure python:image['url'].tag(scale='thumb')" />
-                               </tal:image>
-                               <span tal:content="nota_rel/to_object/Title"></span>
-                               </a>
-                        </li>
+                            <li tal:condition="python:repeat['nota_rel'].index < 2">
+                                <a tal:define="image python:view.get_multimedia(nota_rel.to_object, True)" 
+                                   tal:attributes="href nota_rel/to_object/absolute_url">
+                                   <tal:image tal:condition="python:image['url']">
+                                    <img src="" tal:replace="structure python:image['url'].tag(scale='thumb')" />
+                                   </tal:image>
+                                   <span tal:content="nota_rel/to_object/Title"></span>
+                                   </a>
+                            </li>
                             </tal:block>
                         </ul>
                     </div>

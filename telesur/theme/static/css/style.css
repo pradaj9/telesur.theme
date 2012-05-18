@@ -351,21 +351,26 @@ div#banners-home.widget-container a img {
 /*portadas*/
 /*sporting event /special*/
 #telesur-middle .sporting-event-layout .related-items-list,
-#telesur-middle .special-layout .related-items-list {
+#telesur-middle .special-layout .related-items-list,
+#telesur-middle .general-event-layout .related-items-list {
     list-style:none;
 }
 .sporting-event-layout .related-items,
-.special-layout .related-items {
+.special-layout .related-items,
+.general-event-layout .related-items {
     margin-left:0px;
 }
 .sporting-event-layout .related-items-list a,
 .special-layout .related-items-list a,
+.general-event-layout .related-items-list a,
 .sporting-event-layout .related-items-list img,
-.special-layout .related-items-list img {
+.special-layout .related-items-list img,
+.general-event-layout .related-items-list img {
     float:left;
 }
 .sporting-event-layout .related-items-list a img,
-.special-layout .related-items-list a img {
+.special-layout .related-items-list a img,
+.general-event-layout .related-items-list a img {
     padding-right:4px;
     width:128px;
 }
