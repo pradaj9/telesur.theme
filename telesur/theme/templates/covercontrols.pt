@@ -9,32 +9,29 @@
     </script>
     <link rel="stylesheet" href="/++theme++telesur.theme/covers/bootstrap.min.css" type="text/css" media="screen"/>
     <script type="text/javascript" src="/++theme++telesur.theme/covers/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/++theme++telesur.theme/covers/cover.js"></script>
+    
 
+    <tal:variables tal:define="default_view view/default_view">
     <tal:block tal:condition="python: not('layout_id' in view.request) and not('create' == formaction)">
-    <div class="cover-control-bar alert alert-success">
+    <div class="cover-control-bar well">
         <div class="navbar-inner">
             <div class="container">
-                <h3 class="brand" href="#">Controles de portadas</h3>
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li>
-                            <div class="btn-group">
-                                <a href="#" class="btn btn-primary dropdown-toggle btn-large" data-toggle="dropdown">
-                                Crear un tipo de portada:
-                                <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@@cover-election?formaction=create">Elecciones</a></li>
-                                    <li><a href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a></li>
-                                    <li><a href="@@cover-special?formaction=create">Especiales</a></li>
-                                    <li><a href="@@cover-general-event?formaction=create">Eventos generales</a></li>
-                                </ul>
-                            </div>
-                            <p tal:define="default_view view/default_view">
-                                <span><b>Usando:</b></span><span tal:replace="view/default_view_title"></span>(<span tal:replace="view/default_view_type"></span>)
-                            </p>
-                        </li>
-                    </ul>
+                <h3 class="brand" href="#">Portadas</h3>
+                <div>
+                    <span>
+                    <b>Crear un tipo de portada:</b>
+                    </span>
+                    <p>
+                        <a class="btn" href="@@cover-election?formaction=create">Elecciones</a>
+                        <a class="btn" href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a>
+                        <a class="btn" href="@@cover-special?formaction=create">Especiales</a>
+                        <a class="btn" href="@@cover-general-event?formaction=create">Eventos generales</a>
+                    <p> 
+                    <span>
+                        <span>Usando actualmente:</span><span tal:replace="view/default_view_title"></span><span class="label label-info"  tal:content="view/default_view_type"></span>
+                        <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?remove=1'" class="btn btn-danger">remover</a>
+                    </span>                                
                 </div>
             </div>
         </div>
@@ -49,10 +46,10 @@
                 </tr>
                 <tr tal:repeat="draft drafts">
                     <td><a tal:attributes="href python:'?layout_id='+str(draft)" tal:content="python:drafts[draft]['draft_title']">nombre</a></td>
-                    <td><span tal:content="python:drafts[draft]['type']">tipo</span></td>
+                    <td><span tal:content="python:view.conf[drafts[draft]['type']]['friendly-name']">tipo</span></td>
                     <td>
                         <a class="btn btn-success"
-                           tal:attributes="href python:'@@cover-election?layout_id='+str(draft)+'&formaction=edit'">Editar</a>
+                           tal:attributes="href python:'@@'+ view.get_edit_view(drafts[draft]['type']) +'?layout_id='+str(draft)+'&formaction=edit'">Editar</a>
                         <a class="btn btn-danger"
                            tal:attributes="href python:'@@covers-view?layout_id='+str(draft)+'&remove=1'">Borrar</a>
                     </td>
@@ -64,14 +61,14 @@
     </tal:block>
 
     <tal:block tal:condition="python:'layout_id' in view.request and not('create' == formaction)">
-    <div class="cover-control-bar draft alert">
+    <div class="cover-control-bar draft alert" tal:define="layout_id python:view.request['layout_id']">
         <h3>DRAFT</h3>
         <a class="publish btn btn-primary btn-large" href="" 
-            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&make_default=1'">Usar Draft</a>
+            tal:attributes="href python:'@@covers-view?layout_id='+layout_id+'&make_default=1'">Usar Draft</a>
         <a class="edit btn btn-success btn-large" href="" 
-            tal:attributes="href python:'@@cover-election?layout_id='+view.request['layout_id']+'&formaction=edit'">Editar Draft</a>
+            tal:attributes="href python:'@@'+ view.get_edit_view(layout_id=layout_id) +'?layout_id='+layout_id+'&formaction=edit'">Editar Draft</a>
         <a class="delete btn btn-danger btn-large" href="" 
-            tal:attributes="href python:'@@covers-view?layout_id='+view.request['layout_id']+'&remove=1'">Borrar</a>
+            tal:attributes="href python:'@@covers-view?layout_id='+layout_id+'&remove=1'">Borrar</a>
     </div>
     </tal:block>
 
@@ -80,4 +77,5 @@
         <h3>CREAR draft</h3>
     </div>
     </tal:create>
+    </tal:variables>
 </div>

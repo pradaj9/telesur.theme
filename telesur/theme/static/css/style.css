@@ -151,6 +151,11 @@ h1 a {
     color: #AC1206;
     }
 
+.articles-data .new-data {
+    width:670px;
+    margin-left:-685px;
+}
+
 .main-article .articles-carousel .article-item {
     float: left;
     width: 166px;

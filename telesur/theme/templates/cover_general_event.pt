@@ -10,7 +10,7 @@
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
         <div tal:replace="structure context/@@cover-controls"></div>    
-        <form tal:attributes="action python:context.absolute_url() +'/@@cover-election'" method="post" enctype="multipart/form-data"  class="well">
+        <form tal:attributes="action python:context.absolute_url() +'/@@cover-general-event'" method="post" enctype="multipart/form-data"  class="well">
             <div class="field">        
                 <label for="draft-title">Título del draft</label>
                 <span class="help-block"></span>
@@ -39,7 +39,7 @@
                        tal:attributes="value request/topic | nothing">
                 <input name="topic-slug" type="hidden"
                        tal:attributes="value request/topic-slug | nothing">
-            </div>
+            </div>            
             <div class="field">
                 <label for="uploadfile">Imagen de encuestas</label>
                 <span class="help-block"></span>

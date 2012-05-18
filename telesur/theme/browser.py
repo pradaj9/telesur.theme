@@ -586,7 +586,7 @@ class HomeView(grok.View):
     def set_cover_layout(self):
         cover_data = self.cover_layout()
         cover_type = cover_data['type']
-        view_name = config.COVERS_VIEWS[cover_type]
+        view_name = config.COVERS_VIEWS[cover_type]['layout']
         view = getMultiAdapter((self.context, self.request), 
                                 name=view_name)
         return view()

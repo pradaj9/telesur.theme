@@ -59,39 +59,6 @@
                     </ul>
                 </div>
             </tal:related-items>
-            <tal:twitter tal:condition="view/get_cover_twitter" tal:define="hashtag view/get_cover_twitter">
-                <script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
-                <script type="text/javascript" tal:content="python:'var hashtag=\''+hashtag+'\''"></script>
-                <script type="text/javascript">
-                new TWTR.Widget({
-                  version: 2,
-                  type: 'search',
-                  search: hashtag,
-                  interval: 3000,
-                  title: 'Twitter',
-                  subject: hashtag,
-                  width: 'auto',
-                  height: 110,
-                  theme: {
-                    shell: {
-                      background: '#cf0c0a',
-                      color: '#ffffff'
-                    },
-                    tweets: {
-                      background: '#ffffff',
-                      color: '#000000',
-                      links: '#205c90'
-                    }
-                  },
-                  features: {
-                    scrollbar: false,
-                    loop: false,
-                    live: true,
-                    behavior: 'default'
-                  }
-                }).render().start();
-                </script>
-            </tal:twitter>
         </div>
     </div>
 </div>

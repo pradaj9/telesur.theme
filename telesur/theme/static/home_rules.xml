@@ -19,15 +19,15 @@
                  css:content=".cover-controls" />
 
         <!-- main article "outstanding" video or image -->
-        <replace css:theme-children=".main-article .media-container"
-                 css:content=".video-widget" />
+        <!-- <replace css:theme-children=".main-article .media-container"
+                 css:content=".video-widget" />-->
         <!-- main article "outstanding" title -->
-        <replace css:theme-children=".articles-data .title"
-                 css:content-children=".principal-articles-container .main-article h1" />            
+        <!--<replace css:theme-children=".articles-data .title"
+                 css:content-children=".principal-articles-container .main-article h1" /> -->
         <!-- main new "outstanding" descrption -->
-        <replace css:theme-children=".data-article-container"
-                 css:content-children=".data-article-container" />
-
+        <!-- <replace css:theme-children=".data-article-container"
+                 css:content-children=".data-article-container" /> -->
+        <replace css:theme-children=".main-article .articles-data" css:content-children=".main-article .articles-data"/>
         <!-- articles "principal" listing -->
         <replace css:theme-children=".articles-carousel-wrapper" css:content-children=".articles-carousel-wrapper"/>
 

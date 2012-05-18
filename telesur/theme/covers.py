@@ -103,7 +103,7 @@ class CoversView(grok.View):
         if layout_id:
             del(conf['views'][layout_id])
         else:
-            del(conf['default_view'])
+            conf['default_view'] = OOBTree()
         view_url = self.context.absolute_url()
         self.request.response.redirect(view_url)
         return
@@ -120,6 +120,7 @@ class CoverControls(grok.View):
         covers_view = getMultiAdapter((self.context, self.request),
                                             name='covers-view')
         self.covers_conf = covers_view.layout_conf()[config.COVERS_KEYS]
+        self.conf = config.COVERS_VIEWS
 
     def default_view(self):
         self.default_view_title = 'por defecto'
@@ -128,7 +129,13 @@ class CoverControls(grok.View):
         df = self.covers_conf['default_view']
         if df:
             self.default_view_title = df['draft_title']
-            self.default_view_type = df['type']
+            self.default_view_type = self.conf[df['type']]['friendly-name']
+
+    def get_edit_view(self, view_type=None, layout_id=None):
+        if layout_id:
+            view_type = self.covers_conf['views'][layout_id]['type']
+        edit = self.conf[view_type]['edit']
+        return edit
 
     def drafts(self):
         drafts = []
@@ -166,7 +173,9 @@ class CoverElection(grok.View):
                         'outstanding_new': '',
                         'image': '',
                         'twitter_hashtag': '',
-                        'outstanding_new_uid': ''})
+                        'outstanding_new_uid': '',
+                        'topic':'',
+                        'topic_slug':''})
                 layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
@@ -203,6 +212,11 @@ class CoverElection(grok.View):
             if 'hashtag-twitter' in self.request:
                 data['twitter_hashtag'] = self.request['hashtag-twitter']
 
+            if 'topic' in self.request:
+                data['topic'] = self.request['topic']
+
+            if 'topic-slug' in self.request:
+                data['topic_slug'] = self.request['topic-slug']
             #lets create the draft
             covers_view.add_layout(layout_id, data)
             view_url = self.context.absolute_url()
@@ -218,6 +232,277 @@ class CoverElection(grok.View):
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
+            self.request['topic'] = data['topic']
+            self.request['topic-slug'] = data['topic_slug']
+
+        return self.template.render(self)
+
+
+class CoverSportingEvent(grok.View):
+    grok.context(Interface)
+    grok.name('cover-sporting-event')
+    grok.template('cover_sporting_event')
+    grok.layer(ITelesurLayer)
+    grok.require('cmf.ModifyPortalContent')
+
+    def __init__(self, context, request):
+        super(CoverSportingEvent, self).__init__(context, request)
+        self.cover_id = ''
+        if self.cover_id in self.request:
+            self.cover_id = self.request['cover_id']
+
+    def __call__(self):
+        if self.request.method == 'POST':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = ''
+            if 'layout_id' in self.request and self.request['layout_id']:
+                layout_id = self.request['layout_id']
+                data = covers_view.get_layout(layout_id)
+            else:
+                data = OOBTree({'type': 'sporting-event',
+                        'draft_title': '',
+                        'outstanding_new': '',
+                        'image': '',
+                        'outstanding_new_uid': '',
+                        'topic':'',
+                        'topic_slug':''})
+                layout_id = str(uuid.uuid4())
+
+            if 'draft-title' in self.request:
+                data['draft_title'] = self.request['draft-title']
+
+            if 'outstanding-new' in self.request:
+                data['outstanding_new'] = self.request['outstanding-new']
+                path = urlparse(self.request['outstanding-new']).path
+                uid = ''
+                try:
+                    path = self.context.restrictedTraverse(path)
+                except KeyError:
+                    path = ''
+                if path:
+                    uid = IUUID(path)
+                data['outstanding_new_uid'] = uid
+
+            namechooser = INameChooser(self.context)
+            if 'uploadfile' in self.request and self.request['uploadfile']:
+                uploadfile = self.request['uploadfile']
+                id_name = namechooser.chooseName(uploadfile.filename, self.context)
+                name_index = 0
+                while name_index < 100:
+                    try:
+                        self.context.invokeFactory('Image', id=id_name, file=self.request['uploadfile'])
+                        self.context[id_name].reindexObject()
+                        data['image'] = self.context[id_name].UID()
+                        name_index = 100
+                    except:
+                        pass
+                    name_index = name_index + 1
+                    id_name = id_name + '-' + str(name_index)
+
+            if 'topic' in self.request:
+                data['topic'] = self.request['topic']
+
+            if 'topic-slug' in self.request:
+                data['topic_slug'] = self.request['topic-slug']                    
+
+            #lets create the draft
+            covers_view.add_layout(layout_id, data)
+            view_url = self.context.absolute_url()
+            self.request.response.redirect(view_url)
+
+        elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = self.request['layout_id']
+            data = covers_view.get_layout(layout_id)
+            #lets craft the request with form variables
+            self.request['draft-title'] = data['draft_title']
+            self.request['outstanding-new'] = data['outstanding_new']
+            self.request['image'] = data['image']
+            self.request['topic'] = data['topic']
+            self.request['topic-slug'] = data['topic_slug']            
+
+        return self.template.render(self)
+
+
+class CoverSpecial(grok.View):
+    grok.context(Interface)
+    grok.name('cover-special')
+    grok.template('cover_special')
+    grok.layer(ITelesurLayer)
+    grok.require('cmf.ModifyPortalContent')
+
+    def __init__(self, context, request):
+        super(CoverSpecial, self).__init__(context, request)
+        self.cover_id = ''
+        if self.cover_id in self.request:
+            self.cover_id = self.request['cover_id']
+
+    def __call__(self):
+        if self.request.method == 'POST':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = ''
+            if 'layout_id' in self.request and self.request['layout_id']:
+                layout_id = self.request['layout_id']
+                data = covers_view.get_layout(layout_id)
+            else:
+                data = OOBTree({'type': 'special',
+                        'draft_title': '',
+                        'outstanding_new': '',
+                        'image': '',
+                        'outstanding_new_uid': '',
+                        'topic':'',
+                        'topic_slug':''})
+                layout_id = str(uuid.uuid4())
+
+            if 'draft-title' in self.request:
+                data['draft_title'] = self.request['draft-title']
+
+            if 'outstanding-new' in self.request:
+                data['outstanding_new'] = self.request['outstanding-new']
+                path = urlparse(self.request['outstanding-new']).path
+                uid = ''
+                try:
+                    path = self.context.restrictedTraverse(path)
+                except KeyError:
+                    path = ''
+                if path:
+                    uid = IUUID(path)
+                data['outstanding_new_uid'] = uid
+
+            namechooser = INameChooser(self.context)
+            if 'uploadfile' in self.request and self.request['uploadfile']:
+                uploadfile = self.request['uploadfile']
+                id_name = namechooser.chooseName(uploadfile.filename, self.context)
+                name_index = 0
+                while name_index < 100:
+                    try:
+                        self.context.invokeFactory('Image', id=id_name, file=self.request['uploadfile'])
+                        self.context[id_name].reindexObject()
+                        data['image'] = self.context[id_name].UID()
+                        name_index = 100
+                    except:
+                        pass
+                    name_index = name_index + 1
+                    id_name = id_name + '-' + str(name_index)
+
+            if 'topic' in self.request:
+                data['topic'] = self.request['topic']
+
+            if 'topic-slug' in self.request:
+                data['topic_slug'] = self.request['topic-slug']                    
+
+            #lets create the draft
+            covers_view.add_layout(layout_id, data)
+            view_url = self.context.absolute_url()
+            self.request.response.redirect(view_url)
+
+        elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = self.request['layout_id']
+            data = covers_view.get_layout(layout_id)
+            #lets craft the request with form variables
+            self.request['draft-title'] = data['draft_title']
+            self.request['outstanding-new'] = data['outstanding_new']
+            self.request['image'] = data['image']
+            self.request['topic'] = data['topic']
+            self.request['topic-slug'] = data['topic_slug']            
+
+        return self.template.render(self)
+
+
+class CoverGeneralEvent(grok.View):
+    grok.context(Interface)
+    grok.name('cover-general-event')
+    grok.template('cover_general_event')
+    grok.layer(ITelesurLayer)
+    grok.require('cmf.ModifyPortalContent')
+
+    def __init__(self, context, request):
+        super(CoverGeneralEvent, self).__init__(context, request)
+        self.cover_id = ''
+        if self.cover_id in self.request:
+            self.cover_id = self.request['cover_id']
+
+    def __call__(self):
+        if self.request.method == 'POST':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = ''
+            if 'layout_id' in self.request and self.request['layout_id']:
+                layout_id = self.request['layout_id']
+                data = covers_view.get_layout(layout_id)
+            else:
+                data = OOBTree({'type': 'general-event',
+                        'draft_title': '',
+                        'outstanding_new': '',
+                        'image': '',
+                        'twitter_hashtag': '',
+                        'outstanding_new_uid': '',
+                        'topic':'',
+                        'topic_slug':''})
+                layout_id = str(uuid.uuid4())
+
+            if 'draft-title' in self.request:
+                data['draft_title'] = self.request['draft-title']
+
+            if 'outstanding-new' in self.request:
+                data['outstanding_new'] = self.request['outstanding-new']
+                path = urlparse(self.request['outstanding-new']).path
+                uid = ''
+                try:
+                    path = self.context.restrictedTraverse(path)
+                except KeyError:
+                    path = ''
+                if path:
+                    uid = IUUID(path)
+                data['outstanding_new_uid'] = uid
+
+            namechooser = INameChooser(self.context)
+            if 'uploadfile' in self.request and self.request['uploadfile']:
+                uploadfile = self.request['uploadfile']
+                id_name = namechooser.chooseName(uploadfile.filename, self.context)
+                name_index = 0
+                while name_index < 100:
+                    try:
+                        self.context.invokeFactory('Image', id=id_name, file=self.request['uploadfile'])
+                        self.context[id_name].reindexObject()
+                        data['image'] = self.context[id_name].UID()
+                        name_index = 100
+                    except:
+                        pass
+                    name_index = name_index + 1
+                    id_name = id_name + '-' + str(name_index)
+
+            if 'topic' in self.request:
+                data['topic'] = self.request['topic']
+
+            if 'topic-slug' in self.request:
+                data['topic_slug'] = self.request['topic-slug']                    
+
+            if 'hashtag-twitter' in self.request:
+                data['twitter_hashtag'] = self.request['hashtag-twitter']
+
+            #lets create the draft
+            covers_view.add_layout(layout_id, data)
+            view_url = self.context.absolute_url()
+            self.request.response.redirect(view_url)
+
+        elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
+            covers_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+            layout_id = self.request['layout_id']
+            data = covers_view.get_layout(layout_id)
+            #lets craft the request with form variables
+            self.request['draft-title'] = data['draft_title']
+            self.request['outstanding-new'] = data['outstanding_new']
+            self.request['hashtag-twitter'] = data['twitter_hashtag']
+            self.request['image'] = data['image']
+            self.request['topic'] = data['topic']
+            self.request['topic-slug'] = data['topic_slug']            
 
         return self.template.render(self)
 
@@ -231,6 +516,181 @@ class CoverElectionLayout(grok.View):
 
     def __init__(self, context, request):
         super(CoverElectionLayout, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                            name='layout-helper')
+
+        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
+
+        cover_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+        self.cover = cover_view.get_layout(layout_id)
+
+        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
+
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+        return multimedia
+
+    def get_cover_image(self):
+        img = uuidToObject(self.cover['image'])
+        return img
+
+    def get_cover_twitter(self):
+        hashtag = self.cover['twitter_hashtag']
+        return hashtag
+
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
+
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
+
+
+class CoverSportingEventLayout(grok.View):
+    grok.context(Interface)
+    grok.name('cover-sporting-event-layout')
+    grok.template('cover_sporting_event_layout')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def __init__(self, context, request):
+        super(CoverSportingEventLayout, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                            name='layout-helper')
+
+        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
+
+        cover_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+        self.cover = cover_view.get_layout(layout_id)
+
+        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
+
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+        return multimedia
+
+    def get_cover_image(self):
+        img = uuidToObject(self.cover['image'])
+        return img
+
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
+
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
+
+
+class CoverSpecialLayout(grok.View):
+    grok.context(Interface)
+    grok.name('cover-special-layout')
+    grok.template('cover_special_layout')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def __init__(self, context, request):
+        super(CoverSpecialLayout, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                            name='layout-helper')
+
+        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
+
+        cover_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+        self.cover = cover_view.get_layout(layout_id)
+
+        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
+
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+        return multimedia
+
+    def get_cover_image(self):
+        img = uuidToObject(self.cover['image'])
+        return img
+
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
+
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
+
+
+class CoverGeneralEventLayout(grok.View):
+    grok.context(Interface)
+    grok.name('cover-general-event-layout')
+    grok.template('cover_general_event_layout')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def __init__(self, context, request):
+        super(CoverGeneralEventLayout, self).__init__(context, request)
         self.layout_helper = getMultiAdapter((self.context, self.request),
                                             name='layout-helper')
 
