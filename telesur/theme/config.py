@@ -20,5 +20,5 @@ COVERS_VIEWS = {'election': {
                     'layout': 'cover-general-event-layout',
                     'edit': 'cover-general-event',
                     'friendly-name': 'Eventos generales'
-                    }                    
+                    }
                 }

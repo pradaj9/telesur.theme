@@ -52,7 +52,8 @@ class CoversView(grok.View):
         return ''
 
     def layout_conf(self):
-        #we check if the annotation exist, if not, we should create an empty one
+        #we check if the annotation exist, if not, we should create an empty
+        #one
         annotations = IAnnotations(aq_base(self.context), None)
         if not config.COVERS_KEYS in annotations:
             layout = OOBTree()
@@ -174,8 +175,8 @@ class CoverElection(grok.View):
                         'image': '',
                         'twitter_hashtag': '',
                         'outstanding_new_uid': '',
-                        'topic':'',
-                        'topic_slug':''})
+                        'topic': '',
+                        'topic_slug': ''})
                 layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
@@ -265,8 +266,8 @@ class CoverSportingEvent(grok.View):
                         'outstanding_new': '',
                         'image': '',
                         'outstanding_new_uid': '',
-                        'topic':'',
-                        'topic_slug':''})
+                        'topic': '',
+                        'topic_slug': ''})
                 layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
@@ -304,7 +305,7 @@ class CoverSportingEvent(grok.View):
                 data['topic'] = self.request['topic']
 
             if 'topic-slug' in self.request:
-                data['topic_slug'] = self.request['topic-slug']                    
+                data['topic_slug'] = self.request['topic-slug']
 
             #lets create the draft
             covers_view.add_layout(layout_id, data)
@@ -321,7 +322,7 @@ class CoverSportingEvent(grok.View):
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['image'] = data['image']
             self.request['topic'] = data['topic']
-            self.request['topic-slug'] = data['topic_slug']            
+            self.request['topic-slug'] = data['topic_slug']
 
         return self.template.render(self)
 
@@ -353,8 +354,8 @@ class CoverSpecial(grok.View):
                         'outstanding_new': '',
                         'image': '',
                         'outstanding_new_uid': '',
-                        'topic':'',
-                        'topic_slug':''})
+                        'topic': '',
+                        'topic_slug': ''})
                 layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
@@ -392,7 +393,7 @@ class CoverSpecial(grok.View):
                 data['topic'] = self.request['topic']
 
             if 'topic-slug' in self.request:
-                data['topic_slug'] = self.request['topic-slug']                    
+                data['topic_slug'] = self.request['topic-slug']
 
             #lets create the draft
             covers_view.add_layout(layout_id, data)
@@ -409,7 +410,7 @@ class CoverSpecial(grok.View):
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['image'] = data['image']
             self.request['topic'] = data['topic']
-            self.request['topic-slug'] = data['topic_slug']            
+            self.request['topic-slug'] = data['topic_slug']
 
         return self.template.render(self)
 
@@ -442,8 +443,8 @@ class CoverGeneralEvent(grok.View):
                         'image': '',
                         'twitter_hashtag': '',
                         'outstanding_new_uid': '',
-                        'topic':'',
-                        'topic_slug':''})
+                        'topic': '',
+                        'topic_slug': ''})
                 layout_id = str(uuid.uuid4())
 
             if 'draft-title' in self.request:
@@ -481,7 +482,7 @@ class CoverGeneralEvent(grok.View):
                 data['topic'] = self.request['topic']
 
             if 'topic-slug' in self.request:
-                data['topic_slug'] = self.request['topic-slug']                    
+                data['topic_slug'] = self.request['topic-slug']
 
             if 'hashtag-twitter' in self.request:
                 data['twitter_hashtag'] = self.request['hashtag-twitter']
@@ -502,7 +503,7 @@ class CoverGeneralEvent(grok.View):
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
             self.request['topic'] = data['topic']
-            self.request['topic-slug'] = data['topic_slug']            
+            self.request['topic-slug'] = data['topic_slug']
 
         return self.template.render(self)
 

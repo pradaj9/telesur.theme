@@ -1,4 +1,4 @@
-<div class="cover-controls" tal:define="formaction view/request/formaction | nothing" 
+<div class="cover-controls" tal:define="formaction view/request/formaction | nothing"
      tal:condition="python:modules['AccessControl'].getSecurityManager().checkPermission('cmf.ModifyPortalContent', context)">
     <script>
     var $ = jQuery.noConflict();
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/++theme++telesur.theme/covers/bootstrap.min.css" type="text/css" media="screen"/>
     <script type="text/javascript" src="/++theme++telesur.theme/covers/bootstrap.min.js"></script>
     <script type="text/javascript" src="/++theme++telesur.theme/covers/cover.js"></script>
-    
+
 
     <tal:variables tal:define="default_view view/default_view">
     <tal:block tal:condition="python: not('layout_id' in view.request) and not('create' == formaction)">
@@ -27,11 +27,11 @@
                         <a class="btn" href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a>
                         <a class="btn" href="@@cover-special?formaction=create">Especiales</a>
                         <a class="btn" href="@@cover-general-event?formaction=create">Eventos generales</a>
-                    <p> 
+                    <p>
                     <span>
                         <span>Usando actualmente:</span><span tal:replace="view/default_view_title"></span><span class="label label-info"  tal:content="view/default_view_type"></span>
                         <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?remove=1'" class="btn btn-danger">remover</a>
-                    </span>                                
+                    </span>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Tipo</th>
-                    <th>Accion</th>                    
+                    <th>Accion</th>
                 </tr>
                 <tr tal:repeat="draft drafts">
                     <td><a tal:attributes="href python:'?layout_id='+str(draft)" tal:content="python:drafts[draft]['draft_title']">nombre</a></td>
@@ -60,17 +60,23 @@
     </div>
     </tal:block>
 
-    <tal:block tal:condition="python:'layout_id' in view.request and not('create' == formaction)">
+    <tal:block tal:condition="python:'layout_id' in view.request and not('create' == formaction) and not('edit' == formaction)">
     <div class="cover-control-bar draft alert" tal:define="layout_id python:view.request['layout_id']">
         <h3>DRAFT</h3>
-        <a class="publish btn btn-primary btn-large" href="" 
+        <a class="publish btn btn-primary btn-large" href=""
             tal:attributes="href python:'@@covers-view?layout_id='+layout_id+'&make_default=1'">Usar Draft</a>
-        <a class="edit btn btn-success btn-large" href="" 
+        <a class="edit btn btn-success btn-large" href=""
             tal:attributes="href python:'@@'+ view.get_edit_view(layout_id=layout_id) +'?layout_id='+layout_id+'&formaction=edit'">Editar Draft</a>
-        <a class="delete btn btn-danger btn-large" href="" 
+        <a class="delete btn btn-danger btn-large" href=""
             tal:attributes="href python:'@@covers-view?layout_id='+layout_id+'&remove=1'">Borrar</a>
     </div>
     </tal:block>
+
+    <tal:edit tal:condition="python:'edit' == formaction">
+    <div class="cover-control-bar create alert alert-info">
+        <h3>EDITAR draft</h3>
+    </div>
+    </tal:edit>
 
     <tal:create tal:condition="python:'create' == formaction">
     <div class="cover-control-bar create alert alert-info">
