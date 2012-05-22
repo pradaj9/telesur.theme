@@ -1084,6 +1084,16 @@ class LiveSignalBackup(grok.View):
     grok.require('zope2.View')
 
 
+class LiveSignalAlternative(grok.View):
+    """ Señal en vivo Alterna del canal ULTRABASE.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('live-signal-alternative')
+    grok.template('live_signal_alternative')
+    grok.require('zope2.View')
+
+
 class LiveAudio(grok.View):
     """ Audio en vivo del canal.
     """
