@@ -88,6 +88,13 @@ class BrowserLayerTest(unittest.TestCase):
         view = queryMultiAdapter((self.n1, self.request), name='live-signal-backup')
         self.assertTrue(view is not None)
 
+    def test_live_signal_alternative_view(self):
+        registered = [v.name for v in registration.getViews(ITelesurLayer)]
+        self.assertTrue('live-signal-alternative' in registered)
+
+        view = queryMultiAdapter((self.n1, self.request), name='live-signal-alternative')
+        self.assertTrue(view is not None)
+
     def test_donde_distribucion_view(self):
         registered = [v.name for v in registration.getViews(ITelesurLayer)]
         self.assertTrue('donde-distribucion' in registered)
