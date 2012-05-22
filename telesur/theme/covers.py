@@ -17,7 +17,7 @@ from plone.app.uuid.utils import uuidToObject
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme import config
 
-grok.templatedir("templates")
+grok.templatedir("covers")
 
 
 class CoversView(grok.View):
@@ -173,6 +173,7 @@ class CoverElection(grok.View):
                         'draft_title': '',
                         'outstanding_new': '',
                         'image': '',
+                        'image_link':'',
                         'twitter_hashtag': '',
                         'outstanding_new_uid': '',
                         'topic': '',
@@ -210,6 +211,9 @@ class CoverElection(grok.View):
                     name_index = name_index + 1
                     id_name = id_name + '-' + str(name_index)
 
+            if 'image-link' in self.request:
+                data['image_link'] = self.request['image-link']
+
             if 'hashtag-twitter' in self.request:
                 data['twitter_hashtag'] = self.request['hashtag-twitter']
 
@@ -233,6 +237,7 @@ class CoverElection(grok.View):
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
+            self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
             self.request['topic-slug'] = data['topic_slug']
 
@@ -265,6 +270,7 @@ class CoverSportingEvent(grok.View):
                         'draft_title': '',
                         'outstanding_new': '',
                         'image': '',
+                        'image_link':'',
                         'outstanding_new_uid': '',
                         'topic': '',
                         'topic_slug': ''})
@@ -301,6 +307,9 @@ class CoverSportingEvent(grok.View):
                     name_index = name_index + 1
                     id_name = id_name + '-' + str(name_index)
 
+            if 'image-link' in self.request:
+                data['image_link'] = self.request['image-link']
+
             if 'topic' in self.request:
                 data['topic'] = self.request['topic']
 
@@ -321,6 +330,7 @@ class CoverSportingEvent(grok.View):
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['image'] = data['image']
+            self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
             self.request['topic-slug'] = data['topic_slug']
 
@@ -353,6 +363,7 @@ class CoverSpecial(grok.View):
                         'draft_title': '',
                         'outstanding_new': '',
                         'image': '',
+                        'image_link':'',
                         'outstanding_new_uid': '',
                         'topic': '',
                         'topic_slug': ''})
@@ -389,6 +400,9 @@ class CoverSpecial(grok.View):
                     name_index = name_index + 1
                     id_name = id_name + '-' + str(name_index)
 
+            if 'image-link' in self.request:
+                data['image_link'] = self.request['image-link']
+
             if 'topic' in self.request:
                 data['topic'] = self.request['topic']
 
@@ -409,6 +423,7 @@ class CoverSpecial(grok.View):
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['image'] = data['image']
+            self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
             self.request['topic-slug'] = data['topic_slug']
 
@@ -441,6 +456,7 @@ class CoverGeneralEvent(grok.View):
                         'draft_title': '',
                         'outstanding_new': '',
                         'image': '',
+                        'image_link':'',
                         'twitter_hashtag': '',
                         'outstanding_new_uid': '',
                         'topic': '',
@@ -478,6 +494,9 @@ class CoverGeneralEvent(grok.View):
                     name_index = name_index + 1
                     id_name = id_name + '-' + str(name_index)
 
+            if 'image-link' in self.request:
+                data['image_link'] = self.request['image-link']
+
             if 'topic' in self.request:
                 data['topic'] = self.request['topic']
 
@@ -502,6 +521,7 @@ class CoverGeneralEvent(grok.View):
             self.request['outstanding-new'] = data['outstanding_new']
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
+            self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
             self.request['topic-slug'] = data['topic_slug']
 

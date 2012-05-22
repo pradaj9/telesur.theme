@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<body>
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+        <div tal:replace="structure context/@@cover-controls"></div>    
+        <form tal:attributes="action python:context.absolute_url() +'/@@cover-election'" method="post" enctype="multipart/form-data"  class="well">
+            <div class="field">        
+                <label for="draft-title">Título del draft</label>
+                <span class="help-block"></span>
+                <input name="draft-title" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/draft-title | nothing"/>
+            </div>
+            <div class="field">        
+                <label for="outstanding-new">URL de noticia destacada</label>
+                <span class="help-block"></span>                
+                <input name="outstanding-new" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/outstanding-new | nothing"/>
+            </div>            
+            <div class="field">        
+                <label for="hashtag-twitter">Hashtag Twitter</label>
+                <span class="help-block"></span>
+                <input name="hashtag-twitter" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/hashtag-twitter | nothing"/>
+            </div>
+            <div class="field">        
+                <label for="topic">Tema de videos</label>
+                <span class="help-block"></span>
+                <input class="typeahead" name="topic" type="text" data-provide="typeahead" 
+                       tal:attributes="value request/topic | nothing"/>
+                <input name="topic-slug" type="hidden"
+                       tal:attributes="value request/topic-slug | nothing"/>
+            </div>
+            <div class="field">
+                <label for="uploadfile">Imagen de encuestas</label>
+                <span class="help-block"></span>
+                <div class="widget">
+                  <input type="file" name="uploadfile" id="uploadfile" size="15"/>
+                </div>
+            </div>
+            <div class="field">
+                <label for="image-link">Link donde apuntara la imagen</label>
+                <span class="help-block"></span>
+                <input name="image-link" value="" type="text"
+                       class="text-widget textline-field"
+                       tal:attributes="value request/image-link | nothing"/>
+            </div>
+            
+            <div class="formControls form-actions">
+                <input name="formaction" value="edit" type="hidden" 
+                       tal:attributes="value python:view.request['formaction'] if 'formaction' in view.request else 'create'"/>
+                <input name="layout_id" value="" type="hidden" 
+                       tal:attributes="value python:view.request['layout_id'] if 'layout_id' in view.request else ''"/>
+                <button name="form.buttons.save" class="btn btn-primary" value="Guardar" type="submit">Guardar</button>
+                <button name="form.buttons.cancel" class="btn" value="Cancelar" type="submit">Cancelar</button>
+            </div>
+        </form>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
