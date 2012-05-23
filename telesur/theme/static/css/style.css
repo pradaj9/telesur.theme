@@ -1532,8 +1532,9 @@ div.panes-social div.twitter-portlet {
     WIDE VIDEO WIDGET
 */
 .wide-video-widget {
-    width:700px;
+    width:100%;
     padding-top:20px;
+    margin:0px auto;
 }
 .wide-video-widget .title {
     padding:5px 10px 5px 0;
@@ -1558,7 +1559,7 @@ div.panes-social div.twitter-portlet {
 }
 .wide-video-widget .videos .video {
     float:left;
-    width:225px;
+    width:33%;
 }
 .wide-video-widget .wide-videos-wrapper {
     clear: both;

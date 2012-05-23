@@ -136,7 +136,8 @@ $(document).ready(function() {
         var url_query = 'http://multimedia.tlsur.net/api/clip/';
         var query = {
             'detalle':'basico',
-            'tema':video_slug
+            'tema':video_slug,
+            'limit': 3
         }
 
         $.ajax({
@@ -146,14 +147,12 @@ $(document).ready(function() {
             success: function(data){
                 //create markup
                 $(data).each(function(i, video_obj){
-                    if (i < 3){
-                        var video_markup = videos_dom.clone();
-                        video_markup.find('a').attr('href', video_obj.navegador_url);
-                        video_markup.find('img').attr('src', video_obj.thumbnail_pequeno);
-                        video_markup.find('.video-title').html(video_obj.titulo);
+                    var video_markup = videos_dom.clone();
+                    video_markup.find('a').attr('href', video_obj.navegador_url);
+                    video_markup.find('img').attr('src', video_obj.thumbnail_pequeno);
+                    video_markup.find('.video-title').html(video_obj.titulo);
 
-                        $('.wide-videos-wrapper').append(video_markup);
-                    }
+                    $('.wide-videos-wrapper').append(video_markup);
                 });
             }
         });
