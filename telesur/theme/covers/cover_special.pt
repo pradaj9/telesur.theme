@@ -22,8 +22,11 @@
                 <label for="outstanding-new">URL de noticia destacada</label>
                 <span class="help-block"></span>
                 <input name="outstanding-new" value="" type="text"
-                       class="text-widget textline-field"
+                       class="text-widget textline-field typeahead-news" data-provide="typeahead"
+                       autocomplete="off"
                        tal:attributes="value request/outstanding-new | nothing"/>
+                <input name="outstanding-new-uid" type="hidden"
+                       tal:attributes="value request/outstanding-new-uid | nothing"/> 
             </div>
             <div class="field">        
                 <label for="topic">Tema de videos</label>

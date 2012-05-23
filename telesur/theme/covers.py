@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import uuid
+import json
 from urlparse import urlparse
 
 from Acquisition import aq_base
@@ -13,6 +14,9 @@ from zope.interface import Interface
 
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
+from Products.CMFCore.utils import getToolByName
+
+from collective.nitf.content import INITF
 
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme import config
@@ -185,14 +189,17 @@ class CoverElection(grok.View):
 
             if 'outstanding-new' in self.request:
                 data['outstanding_new'] = self.request['outstanding-new']
-                path = urlparse(self.request['outstanding-new']).path
-                uid = ''
-                try:
-                    path = self.context.restrictedTraverse(path)
-                except KeyError:
-                    path = ''
-                if path:
-                    uid = IUUID(path)
+                if 'outstanding-new-uid' in self.request:
+                    uid = self.request['outstanding-new-uid']
+                else:
+                    path = urlparse(self.request['outstanding-new']).path
+                    uid = ''
+                    try:
+                        path = self.context.restrictedTraverse(path)
+                    except KeyError:
+                        path = ''
+                    if path:
+                        uid = IUUID(path)
                 data['outstanding_new_uid'] = uid
 
             namechooser = INameChooser(self.context)
@@ -235,6 +242,7 @@ class CoverElection(grok.View):
             #lets craft the request with form variables
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
+            self.request['outstanding-new-uid'] = data['outstanding_new_uid']
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
             self.request['image-link'] = data['image_link']
@@ -281,14 +289,17 @@ class CoverSportingEvent(grok.View):
 
             if 'outstanding-new' in self.request:
                 data['outstanding_new'] = self.request['outstanding-new']
-                path = urlparse(self.request['outstanding-new']).path
-                uid = ''
-                try:
-                    path = self.context.restrictedTraverse(path)
-                except KeyError:
-                    path = ''
-                if path:
-                    uid = IUUID(path)
+                if 'outstanding-new-uid' in self.request:
+                    uid = self.request['outstanding-new-uid']
+                else:
+                    path = urlparse(self.request['outstanding-new']).path
+                    uid = ''
+                    try:
+                        path = self.context.restrictedTraverse(path)
+                    except KeyError:
+                        path = ''
+                    if path:
+                        uid = IUUID(path)
                 data['outstanding_new_uid'] = uid
 
             namechooser = INameChooser(self.context)
@@ -329,6 +340,7 @@ class CoverSportingEvent(grok.View):
             #lets craft the request with form variables
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
+            self.request['outstanding-new-uid'] = data['outstanding_new_uid']            
             self.request['image'] = data['image']
             self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
@@ -374,14 +386,17 @@ class CoverSpecial(grok.View):
 
             if 'outstanding-new' in self.request:
                 data['outstanding_new'] = self.request['outstanding-new']
-                path = urlparse(self.request['outstanding-new']).path
-                uid = ''
-                try:
-                    path = self.context.restrictedTraverse(path)
-                except KeyError:
-                    path = ''
-                if path:
-                    uid = IUUID(path)
+                if 'outstanding-new-uid' in self.request:
+                    uid = self.request['outstanding-new-uid']
+                else:
+                    path = urlparse(self.request['outstanding-new']).path
+                    uid = ''
+                    try:
+                        path = self.context.restrictedTraverse(path)
+                    except KeyError:
+                        path = ''
+                    if path:
+                        uid = IUUID(path)
                 data['outstanding_new_uid'] = uid
 
             namechooser = INameChooser(self.context)
@@ -422,6 +437,7 @@ class CoverSpecial(grok.View):
             #lets craft the request with form variables
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
+            self.request['outstanding-new-uid'] = data['outstanding_new_uid']            
             self.request['image'] = data['image']
             self.request['image-link'] = data['image_link']
             self.request['topic'] = data['topic']
@@ -468,14 +484,17 @@ class CoverGeneralEvent(grok.View):
 
             if 'outstanding-new' in self.request:
                 data['outstanding_new'] = self.request['outstanding-new']
-                path = urlparse(self.request['outstanding-new']).path
-                uid = ''
-                try:
-                    path = self.context.restrictedTraverse(path)
-                except KeyError:
-                    path = ''
-                if path:
-                    uid = IUUID(path)
+                if 'outstanding-new-uid' in self.request:
+                    uid = self.request['outstanding-new-uid']
+                else:
+                    path = urlparse(self.request['outstanding-new']).path
+                    uid = ''
+                    try:
+                        path = self.context.restrictedTraverse(path)
+                    except KeyError:
+                        path = ''
+                    if path:
+                        uid = IUUID(path)
                 data['outstanding_new_uid'] = uid
 
             namechooser = INameChooser(self.context)
@@ -519,6 +538,7 @@ class CoverGeneralEvent(grok.View):
             #lets craft the request with form variables
             self.request['draft-title'] = data['draft_title']
             self.request['outstanding-new'] = data['outstanding_new']
+            self.request['outstanding-new-uid'] = data['outstanding_new_uid']            
             self.request['hashtag-twitter'] = data['twitter_hashtag']
             self.request['image'] = data['image']
             self.request['image-link'] = data['image_link']
@@ -762,3 +782,44 @@ class CoverGeneralEventLayout(grok.View):
         if view:
             return view.has_files() > 0
         return False
+
+
+class NewsListSearch(grok.View):
+    grok.context(Interface)
+    grok.name('news-list-search')
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def update(self):
+
+        if 'text' in self.request:
+            catalog = getToolByName(self.context, 'portal_catalog')            
+            #query build getting all the section news
+            limit = 10;
+            query = {}
+            query['object_provides'] = {'query': [INITF.__identifier__]}
+            query['sort_on'] = 'effective'
+            query['sort_order'] = 'reverse'
+            query['sort_limit'] = limit
+
+            self.existing = catalog.searchResults(query)
+
+    def process_query(self, query):
+        
+        q = {}
+        for brain in query:
+            obj = brain.getObject()
+            uuid = IUUID(obj, None)
+            q[str(uuid)] = {
+                'title': obj.title, 
+                'url':obj.absolute_url(),
+                'uuid':str(uuid)
+            }
+        return q
+
+    def render(self):
+        result = self.process_query(self.existing)
+        if result:
+            result = json.dumps(result)
+
+        return result
