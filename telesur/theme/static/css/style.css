@@ -1468,7 +1468,7 @@ div.panes-social div.twitter-portlet {
 /*
     MINI VIDEO WIDGET
 */
-.videos {
+.mini-video-widget .videos {
     overflow:hidden;
     width:195px;
 }
@@ -1485,45 +1485,84 @@ div.panes-social div.twitter-portlet {
     position:relative;
     left:0px;
 }
-.videos .video {
+.mini-video-widget .videos .video {
     width:195px;
     float:left;
 }
-.videos .video span {
+.mini-video-widget .videos .video span {
     display:block;
     font-size:13px;
     padding-top:5px;
 }
 
-.video .video-link {
+.mini-video-widget .video .video-link {
     display:block;
     text-align:center;
     /*width:90%;
     margin:0px auto;*/
 }
-.video img {
+.mini-video-widget .video img {
     max-width:100%;
 }
-.widget-controls {
+.mini-video-widget .widget-controls {
     float:left;
     width:100%;
     padding:0  0 5px 0;
 }
-.widget-controls .left,
-.widget-controls .right {
+.mini-video-widget .widget-controls .left,
+.mini-video-widget .widget-controls .right {
     width:20px;
     height:20px;
     display:inline-block;
     position:relative;
     cursor:pointer;
 }
-.widget-controls .left {
+.mini-video-widget .widget-controls .left {
     background:url("++theme++telesur.theme/img/arrow-left.png") scroll no-repeat 0 0 transparent;
     float:left;
     left:5px;
 }
-.widget-controls .right {
+.mini-video-widget .widget-controls .right {
     background:url("++theme++telesur.theme/img/arrow-right.png") scroll no-repeat 0 0 transparent;
     float:right;
     right:5px;
+}
+
+/*
+    WIDE VIDEO WIDGET
+*/
+.wide-video-widget {
+    width:700px;
+    padding-top:20px;
+}
+.wide-video-widget .title {
+    padding:5px 10px 5px 0;
+    margin:0px;
+    background: none repeat-x scroll 0 0 #CF0C0A;
+    color:#FFF;
+    text-align:right;
+}
+.wide-video-widget .videos {
+    width:100%;
+    float:left;
+    padding:15px 0px;
+    background-color:#444;
+}
+.wide-video-widget .video-link img {
+    float:left;
+    padding-right:5px;
+}
+.wide-video-widget .video-title {
+    font-size:13px;
+    color:#FFF;
+}
+.wide-video-widget .videos .video {
+    float:left;
+    width:225px;
+}
+.wide-video-widget .wide-videos-wrapper {
+    clear: both;
+    float: left;
+    margin: 0 auto;
+    padding: 0 12.5px;
 }
