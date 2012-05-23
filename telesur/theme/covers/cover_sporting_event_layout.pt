@@ -24,10 +24,17 @@
                 </div>
                 <div>
                     <tal:image tal:define="img view/get_cover_image">
+                    <div class="cell cover-pos-0 cover-content-half-width cover-image">                    
                         <a href="" tal:attributes="href view/cover/image_link" tal:omit-tag="not:view/cover/image_link">
-                            <img tal:replace="structure python: path('nocall:img/tag')(scale='mini')" />
+                            <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
                         </a>
+                    <div>                        
                     </tal:image>
+                    <tal:videowidget tal:condition="view/cover/topic_slug">
+                    <div class="cell cover-pos-half cover-content-half-width">
+                        <a class="mini-video-widget-launch" tal:attributes="data-slug view/cover/topic_slug"></a>
+                    </div>
+                    </tal:videowidget>
                 </div>
                 
             </div>

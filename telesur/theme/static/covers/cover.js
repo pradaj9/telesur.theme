@@ -22,4 +22,7 @@ jq17(document).ready(function() {
             console.log(obj, source_slugs[obj]);
         }
     });
+    
+    //news autocomplete
+
 });

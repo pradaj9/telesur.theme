@@ -1443,3 +1443,87 @@ div.panes-social div.twitter-portlet {
     border:1px solid green;
     margin:0 2px 2px 0;
 }
+
+
+/*
+    COVER
+*/
+.twtr-widget {
+    float:right;
+}
+.cover-image img {
+    width:195px;
+    height:auto;
+}
+.cover-content-half-width {
+    width:195px;
+}
+.cover-pos-half {
+    margin-left:-195px;
+}
+.cover-pos-0 {
+    margin-left:-400px;
+}
+
+/*
+    MINI VIDEO WIDGET
+*/
+.videos {
+    overflow:hidden;
+    width:195px;
+}
+.mini-video-widget {
+}
+
+.mini-video-widget .title {
+    background: none repeat-x scroll 0 0 #CF0C0A;
+    color: #FFFFFF;
+    padding: 5px 10px;
+}
+.mini-videos-wrapper {
+    width:2000em;
+    position:relative;
+    left:0px;
+}
+.videos .video {
+    width:195px;
+    float:left;
+}
+.videos .video span {
+    display:block;
+    font-size:13px;
+    padding-top:5px;
+}
+
+.video .video-link {
+    display:block;
+    text-align:center;
+    /*width:90%;
+    margin:0px auto;*/
+}
+.video img {
+    max-width:100%;
+}
+.widget-controls {
+    float:left;
+    width:100%;
+    padding:0  0 5px 0;
+}
+.widget-controls .left,
+.widget-controls .right {
+    width:20px;
+    height:20px;
+    display:inline-block;
+    position:relative;
+    cursor:pointer;
+}
+.widget-controls .left {
+    background:url("++theme++telesur.theme/img/arrow-left.png") scroll no-repeat 0 0 transparent;
+    float:left;
+    left:5px;
+}
+.widget-controls .right {
+    background:url("++theme++telesur.theme/img/arrow-right.png") scroll no-repeat 0 0 transparent;
+    float:right;
+    right:5px;
+}

@@ -39,4 +39,79 @@ $(document).ready(function() {
             carousel.scrollable({size:4, items: '.carousel-dummy'});
         }        
     }
+
+    //video widget
+    if ($('.mini-video-widget-launch')[0] != undefined) {
+        var video_slug = $('.mini-video-widget-launch').attr('data-slug');
+        
+        var videos_dom = $('<div class="video">\
+                                <a href="" class="video-link" target="_blank"><img src=""/>\
+                                <span class="video-title"></span></a>\
+                            </div>');
+        if (video_slug) {
+            //lets create the widget, its almost safe, we have an slug. 
+            //The worst case scenario is not data returned from the api.. 
+            $('.mini-video-widget-launch').before(
+                '<div class="mini-video-widget">\
+                    <h3 class="title">Videos</h3>\
+                    <div class="videos">\
+                        <div class="mini-videos-wrapper">\
+                        </div>\
+                    </div>\
+                    <div class="widget-controls">\
+                        <a class="left"></a>\
+                        <a class="right"></a>\
+                    </div>\
+                </div>'
+            );
+        }
+        var url_query = 'http://multimedia.tlsur.net/api/clip/';
+        var query = {
+            'detalle':'basico',
+            'tema':video_slug
+        }
+
+        $.ajax({
+            dataType: "jsonp",
+            url: url_query,
+            data: query,
+            success: function(data){
+                //create markup
+                $(data).each(function(i, video_obj){
+                    console.log(video_obj);
+                    var video_markup = videos_dom.clone();
+                    video_markup.find('a').attr('href', video_obj.navegador_url);
+                    video_markup.find('img').attr('src', video_obj.thumbnail_mediano);
+                    video_markup.find('.video-title').html(video_obj.titulo);
+
+                    $('.mini-videos-wrapper').append(video_markup);
+                });
+                
+                //widget setup
+                var videos = $('.mini-videos-wrapper').find('.video');
+                var step_width =  videos.width();
+                var step = 0;
+                var videos_length = videos.length;
+                console.log('videos length', videos_length);
+                $('.widget-controls .left').click(function(){
+                    var v = $(this).parent('.widget-controls').siblings('.videos');
+                    step--;
+                    if (step >= 0){
+                        v.animate({scrollLeft: step_width * step});
+                    } else {
+                        step++;
+                    }
+                });
+                $('.widget-controls .right').click(function(){
+                    var v = $(this).parent('.widget-controls').siblings('.videos');
+                    step++;
+                    if ( step < videos_length ){
+                        v.animate({scrollLeft: step_width * step});
+                    } else {
+                        step--;
+                    }
+                });
+            }
+        });
+    }
 });

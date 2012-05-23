@@ -173,7 +173,7 @@ class CoverElection(grok.View):
                         'draft_title': '',
                         'outstanding_new': '',
                         'image': '',
-                        'image_link':'',
+                        'image_link': '',
                         'twitter_hashtag': '',
                         'outstanding_new_uid': '',
                         'topic': '',

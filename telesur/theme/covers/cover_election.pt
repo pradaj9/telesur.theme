@@ -35,7 +35,7 @@
             <div class="field">        
                 <label for="topic">Tema de videos</label>
                 <span class="help-block"></span>
-                <input class="typeahead" name="topic" type="text" data-provide="typeahead" 
+                <input class="typeahead" name="topic" type="text" data-provide="typeahead"  autocomplete="off"
                        tal:attributes="value request/topic | nothing"/>
                 <input name="topic-slug" type="hidden"
                        tal:attributes="value request/topic-slug | nothing"/>
