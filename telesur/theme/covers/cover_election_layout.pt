@@ -1,6 +1,6 @@
 <tal:block tal:define="outstanding python:view.outstanding;
                        video_api nocall:context/@@video_api">
-<div class="main-article row" tal:condition="outstanding">
+<div class="main-article row election-event-layout" tal:condition="outstanding">
     <div class="articles-data row">
         <h1 class="title">
             <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>

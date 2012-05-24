@@ -348,50 +348,6 @@ div#banners-home.widget-container a img {
     margin-bottom:10px;
 }
 
-/*portadas*/
-/*sporting event /special*/
-#telesur-middle .sporting-event-layout .related-items-list,
-#telesur-middle .special-layout .related-items-list,
-#telesur-middle .general-event-layout .related-items-list {
-    list-style:none;
-}
-.sporting-event-layout .related-items,
-.special-layout .related-items,
-.general-event-layout .related-items {
-    margin-left:0px;
-}
-.sporting-event-layout .related-items-list a,
-.special-layout .related-items-list a,
-.general-event-layout .related-items-list a,
-.sporting-event-layout .related-items-list img,
-.special-layout .related-items-list img,
-.general-event-layout .related-items-list img {
-    float:left;
-}
-.sporting-event-layout .related-items-list a img,
-.special-layout .related-items-list a img,
-.general-event-layout .related-items-list a img {
-    padding-right:4px;
-    width:128px;
-}
-
-/*special*/
-.special-layout {
-    padding-top:0px !important;
-}
-.special-layout .banner{
-    overflow:hidden;
-}
-.special-layout .banner img {
-    max-width:700px;
-}
-
-/*evento general*/
-.general-event-layout .data-article-container .title {
-    font-size:22px;
-    padding-left:0px;
-}
-
 /***
 * SECCIONES
 ***/
@@ -1448,6 +1404,67 @@ div.panes-social div.twitter-portlet {
 /*
     COVER
 */
+
+/*portadas*/
+/*sporting event /special*/
+#telesur-middle .sporting-event-layout .related-items-list,
+#telesur-middle .special-layout .related-items-list,
+#telesur-middle .general-event-layout .related-items-list {
+    list-style:none;
+}
+.election-event-layout .related-items,
+.sporting-event-layout .related-items,
+.special-layout .related-items,
+.general-event-layout .related-items {
+    margin-left:0px;
+}
+
+.sporting-event-layout .related-items-list a,
+.special-layout .related-items-list a,
+.general-event-layout .related-items-list a,
+.sporting-event-layout .related-items-list img,
+.special-layout .related-items-list img,
+.general-event-layout .related-items-list img {
+    float:left;
+}
+.sporting-event-layout .related-items-list a img,
+.special-layout .related-items-list a img,
+.general-event-layout .related-items-list a img {
+    padding-right:4px;
+    width:128px;
+}
+
+.data-article-container .related-items .title {
+    font-size: 18px;
+    padding-left: 0px;
+    color: #AC1206;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+}
+
+/*special*/
+.special-layout {
+    padding-top:0px !important;
+}
+.special-layout .banner{
+    overflow:hidden;
+}
+.special-layout .banner img {
+    max-width:700px;
+}
+.special-layout h1.title {
+    padding-left:0px;
+}
+
+/*election*/
+#telesur-container .election-event-layout .related-items ul {
+    margin-left:20px;
+}
+/*general event*/
+.general-event-layout h1.title {
+    padding-left:0px;
+}
+
 .twtr-widget {
     float:right;
 }

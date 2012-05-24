@@ -57,7 +57,7 @@
             <div class="separator"></div>
             <tal:related-items tal:define="related outstanding/relatedItems|nothing">
                 <div class="related-items" tal:condition="related">
-                    <span class="title">Notas relacionadas</span>
+                    <h3 class="title">Notas relacionadas</h3>
                     <ul class="related-items-list">
                         <tal:block tal:repeat="nota_rel related">
                         <li tal:condition="python:repeat['nota_rel'].index < 2">
