@@ -62,7 +62,7 @@
 
     <tal:block tal:condition="python:'layout_id' in view.request and not('create' == formaction) and not('edit' == formaction)">
     <div class="cover-control-bar draft alert" tal:define="layout_id python:view.request['layout_id']">
-        <h3>DRAFT</h3>
+        <h1>DRAFT:  <span tal:content="python:view.covers_conf['views'][layout_id]['draft_title']"></span></h1>
         <a class="publish btn btn-primary btn-large" href=""
             tal:attributes="href python:'@@covers-view?layout_id='+layout_id+'&make_default=1'">Usar Draft</a>
         <a class="edit btn btn-success btn-large" href=""

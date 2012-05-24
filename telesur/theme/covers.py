@@ -230,9 +230,12 @@ class CoverElection(grok.View):
             if 'topic-slug' in self.request:
                 data['topic_slug'] = self.request['topic-slug']
             #lets create the draft
-            covers_view.add_layout(layout_id, data)
+            cover_data  = covers_view.add_layout(layout_id, data)
+
+            #craft the redirect url
             view_url = self.context.absolute_url()
-            self.request.response.redirect(view_url)
+            draft_url = view_url + '?layout_id='+ str(layout_id)
+            self.request.response.redirect(draft_url)
 
         elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
             covers_view = getMultiAdapter((self.context, self.request),
@@ -328,9 +331,12 @@ class CoverSportingEvent(grok.View):
                 data['topic_slug'] = self.request['topic-slug']
 
             #lets create the draft
-            covers_view.add_layout(layout_id, data)
+            cover_data  = covers_view.add_layout(layout_id, data)
+
+            #craft the redirect url
             view_url = self.context.absolute_url()
-            self.request.response.redirect(view_url)
+            draft_url = view_url + '?layout_id='+ str(layout_id)
+            self.request.response.redirect(draft_url)
 
         elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
             covers_view = getMultiAdapter((self.context, self.request),
@@ -425,9 +431,12 @@ class CoverSpecial(grok.View):
                 data['topic_slug'] = self.request['topic-slug']
 
             #lets create the draft
-            covers_view.add_layout(layout_id, data)
+            cover_data  = covers_view.add_layout(layout_id, data)
+
+            #craft the redirect url
             view_url = self.context.absolute_url()
-            self.request.response.redirect(view_url)
+            draft_url = view_url + '?layout_id='+ str(layout_id)
+            self.request.response.redirect(draft_url)
 
         elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
             covers_view = getMultiAdapter((self.context, self.request),
@@ -526,9 +535,12 @@ class CoverGeneralEvent(grok.View):
                 data['twitter_hashtag'] = self.request['hashtag-twitter']
 
             #lets create the draft
-            covers_view.add_layout(layout_id, data)
+            cover_data  = covers_view.add_layout(layout_id, data)
+
+            #craft the redirect url
             view_url = self.context.absolute_url()
-            self.request.response.redirect(view_url)
+            draft_url = view_url + '?layout_id='+ str(layout_id)
+            self.request.response.redirect(draft_url)
 
         elif 'layout_id' in self.request and self.request['formaction'] == 'edit':
             covers_view = getMultiAdapter((self.context, self.request),
