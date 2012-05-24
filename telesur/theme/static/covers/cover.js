@@ -1,4 +1,14 @@
 jq17(document).ready(function() {
+    //managment overlays
+    if ($('.administrar-portadas')[0] !== undefined){
+        $('.administrar-portadas .link-overlay').prepOverlay(
+            {
+                subtype: 'ajax',
+                filter: '.cover-control-bar'
+            }
+        );
+    }
+
     //topic autocomplete
     var source_jsonp = [];
     var source_slugs= {};

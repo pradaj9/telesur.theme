@@ -13,11 +13,11 @@
 
 
     <tal:variables tal:define="default_view view/default_view">
-    <tal:block tal:condition="python: not('layout_id' in view.request) and not('create' == formaction)">
-    <div class="cover-control-bar well">
+    <tal:block tal:condition="python: 'admin_portadas' in view.request">
+    <div class="cover-control-bar">
+        <h1 class="brand" href="#">Administrar Portadas</h1>
         <div class="navbar-inner">
             <div class="container">
-                <h3 class="brand" href="#">Portadas</h3>
                 <div>
                     <span>
                     <b>Crear un tipo de portada:</b>
