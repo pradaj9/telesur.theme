@@ -548,7 +548,70 @@ class CoverGeneralEvent(grok.View):
         return self.template.render(self)
 
 
-class CoverElectionLayout(grok.View):
+class BaseLayout(grok.View):
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.require('zope2.View')
+
+    def __init__(self, context, request):
+        super(BaseLayout, self).__init__(context, request)
+        self.layout_helper = getMultiAdapter((self.context, self.request),
+                                            name='layout-helper')
+
+        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
+
+        cover_view = getMultiAdapter((self.context, self.request),
+                                            name='covers-view')
+        self.cover = cover_view.get_layout(layout_id)
+
+        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
+
+    def has_videos(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
+        video en el sistema multimedia.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            # FIXME: debemos comprobar que los links son vínculos al sistema
+            # multimedia
+            return view.has_links() > 0
+        return False
+
+    def has_gallery(self, obj):
+        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
+        una galería.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_images() > 1
+        return False
+
+    def has_atachments(self, obj):
+        """ Retorna verdadero si el objeto contiene al menos un archivo.
+        """
+        view = getMultiAdapter((obj, self.request), name='nota')
+        if view:
+            return view.has_files() > 0
+        return False
+
+    def get_multimedia(self, obj, thumb=False):
+        multimedia = self.layout_helper.get_multimedia(obj, thumb)
+        return multimedia
+
+    def get_cover_image(self):
+        img = ''
+        if 'image' in self.cover:
+            img = uuidToObject(self.cover['image'])
+        return img
+
+    def get_cover_twitter(self):
+        hashtag = ''
+        if 'twitter_hashtag' in self.cover:
+            hashtag = self.cover['twitter_hashtag']
+        return hashtag
+
+
+class CoverElectionLayout(BaseLayout):
     grok.context(Interface)
     grok.name('cover-election-layout')
     grok.template('cover_election_layout')
@@ -557,59 +620,9 @@ class CoverElectionLayout(grok.View):
 
     def __init__(self, context, request):
         super(CoverElectionLayout, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request),
-                                            name='layout-helper')
-
-        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
-
-        cover_view = getMultiAdapter((self.context, self.request),
-                                            name='covers-view')
-        self.cover = cover_view.get_layout(layout_id)
-
-        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
-
-    def get_multimedia(self, obj, thumb=False):
-        multimedia = self.layout_helper.get_multimedia(obj, thumb)
-        return multimedia
-
-    def get_cover_image(self):
-        img = uuidToObject(self.cover['image'])
-        return img
-
-    def get_cover_twitter(self):
-        hashtag = self.cover['twitter_hashtag']
-        return hashtag
-
-    def has_videos(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
-        video en el sistema multimedia.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            # FIXME: debemos comprobar que los links son vínculos al sistema
-            # multimedia
-            return view.has_links() > 0
-        return False
-
-    def has_gallery(self, obj):
-        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
-        una galería.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_images() > 1
-        return False
-
-    def has_atachments(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un archivo.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_files() > 0
-        return False
 
 
-class CoverSportingEventLayout(grok.View):
+class CoverSportingEventLayout(BaseLayout):
     grok.context(Interface)
     grok.name('cover-sporting-event-layout')
     grok.template('cover_sporting_event_layout')
@@ -618,55 +631,9 @@ class CoverSportingEventLayout(grok.View):
 
     def __init__(self, context, request):
         super(CoverSportingEventLayout, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request),
-                                            name='layout-helper')
-
-        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
-
-        cover_view = getMultiAdapter((self.context, self.request),
-                                            name='covers-view')
-        self.cover = cover_view.get_layout(layout_id)
-
-        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
-
-    def get_multimedia(self, obj, thumb=False):
-        multimedia = self.layout_helper.get_multimedia(obj, thumb)
-        return multimedia
-
-    def get_cover_image(self):
-        img = uuidToObject(self.cover['image'])
-        return img
-
-    def has_videos(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
-        video en el sistema multimedia.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            # FIXME: debemos comprobar que los links son vínculos al sistema
-            # multimedia
-            return view.has_links() > 0
-        return False
-
-    def has_gallery(self, obj):
-        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
-        una galería.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_images() > 1
-        return False
-
-    def has_atachments(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un archivo.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_files() > 0
-        return False
 
 
-class CoverSpecialLayout(grok.View):
+class CoverSpecialLayout(BaseLayout):
     grok.context(Interface)
     grok.name('cover-special-layout')
     grok.template('cover_special_layout')
@@ -675,55 +642,9 @@ class CoverSpecialLayout(grok.View):
 
     def __init__(self, context, request):
         super(CoverSpecialLayout, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request),
-                                            name='layout-helper')
-
-        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
-
-        cover_view = getMultiAdapter((self.context, self.request),
-                                            name='covers-view')
-        self.cover = cover_view.get_layout(layout_id)
-
-        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
-
-    def get_multimedia(self, obj, thumb=False):
-        multimedia = self.layout_helper.get_multimedia(obj, thumb)
-        return multimedia
-
-    def get_cover_image(self):
-        img = uuidToObject(self.cover['image'])
-        return img
-
-    def has_videos(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
-        video en el sistema multimedia.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            # FIXME: debemos comprobar que los links son vínculos al sistema
-            # multimedia
-            return view.has_links() > 0
-        return False
-
-    def has_gallery(self, obj):
-        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
-        una galería.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_images() > 1
-        return False
-
-    def has_atachments(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un archivo.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_files() > 0
-        return False
 
 
-class CoverGeneralEventLayout(grok.View):
+class CoverGeneralEventLayout(BaseLayout):
     grok.context(Interface)
     grok.name('cover-general-event-layout')
     grok.template('cover_general_event_layout')
@@ -732,56 +653,6 @@ class CoverGeneralEventLayout(grok.View):
 
     def __init__(self, context, request):
         super(CoverGeneralEventLayout, self).__init__(context, request)
-        self.layout_helper = getMultiAdapter((self.context, self.request),
-                                            name='layout-helper')
-
-        layout_id = self.request['layout_id'] if 'layout_id' in self.request else None
-
-        cover_view = getMultiAdapter((self.context, self.request),
-                                            name='covers-view')
-        self.cover = cover_view.get_layout(layout_id)
-
-        self.outstanding = uuidToObject(self.cover['outstanding_new_uid'])
-
-    def get_multimedia(self, obj, thumb=False):
-        multimedia = self.layout_helper.get_multimedia(obj, thumb)
-        return multimedia
-
-    def get_cover_image(self):
-        img = uuidToObject(self.cover['image'])
-        return img
-
-    def get_cover_twitter(self):
-        hashtag = self.cover['twitter_hashtag']
-        return hashtag
-
-    def has_videos(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un vínculo a un
-        video en el sistema multimedia.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            # FIXME: debemos comprobar que los links son vínculos al sistema
-            # multimedia
-            return view.has_links() > 0
-        return False
-
-    def has_gallery(self, obj):
-        """ Retorna verdadero si el objeto contiene más de una imagen, o sea,
-        una galería.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_images() > 1
-        return False
-
-    def has_atachments(self, obj):
-        """ Retorna verdadero si el objeto contiene al menos un archivo.
-        """
-        view = getMultiAdapter((obj, self.request), name='nota')
-        if view:
-            return view.has_files() > 0
-        return False
 
 
 class NewsListSearch(grok.View):
