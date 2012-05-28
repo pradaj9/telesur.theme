@@ -1,5 +1,5 @@
 <div class="cover-controls" tal:define="formaction view/request/formaction | nothing"
-     tal:condition="python:modules['AccessControl'].getSecurityManager().checkPermission('telesur.theme.coverAddable', context)">
+     tal:condition="python:view.can_manage_covers()">
     <script>
     var $ = jQuery.noConflict();
     </script>

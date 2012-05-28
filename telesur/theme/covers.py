@@ -11,6 +11,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.container.interfaces import INameChooser
 from zope.interface import Interface
+from zope.security import checkPermission
 
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
@@ -141,6 +142,10 @@ class CoverControls(grok.View):
             view_type = self.covers_conf['views'][layout_id]['type']
         edit = self.conf[view_type]['edit']
         return edit
+
+    def can_manage_covers(self):
+        can_manage = checkPermission('telesur.theme.coverAddable', self.context)
+        return can_manage
 
     def drafts(self):
         drafts = []
