@@ -11,7 +11,8 @@
     <five:registerPackage package="." initialize=".initialize" />
 
     <includeDependencies package="." />
-    
+
+    <include file="permissions.zcml" />
     <grok:grok package="." />
 
     <include package="z3c.jbot" file="meta.zcml" />

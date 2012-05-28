@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="telesur.forums">
+
+    <permission
+        id="telesur.theme.coverAddable"
+        title="telesur.theme: Can Create Covers"
+        />
+
+</configure>
