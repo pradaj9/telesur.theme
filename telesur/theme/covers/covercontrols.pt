@@ -19,9 +19,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <div>
-                    <span>
-                    <b>Crear un tipo de portada:</b>
-                    </span>
+                    <h3>Crear un tipo de portada:</h3>
                     <p>
                         <a class="btn" href="@@cover-election?formaction=create">Elecciones</a>
                         <a class="btn" href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a>
