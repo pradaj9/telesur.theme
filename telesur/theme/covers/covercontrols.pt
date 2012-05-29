@@ -1,5 +1,5 @@
 <div class="cover-controls" tal:define="formaction view/request/formaction | nothing"
-     tal:condition="python:modules['AccessControl'].getSecurityManager().checkPermission('cmf.ModifyPortalContent', context)">
+     tal:condition="python:view.can_manage_covers()">
     <script>
     var $ = jQuery.noConflict();
     </script>
@@ -19,9 +19,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <div>
-                    <span>
-                    <b>Crear un tipo de portada:</b>
-                    </span>
+                    <h3>Crear un tipo de portada:</h3>
                     <p>
                         <a class="btn" href="@@cover-election?formaction=create">Elecciones</a>
                         <a class="btn" href="@@cover-sporting-event?formaction=create">Eventos Deportivos</a>
@@ -30,7 +28,7 @@
                     <p>
                     <span>
                         <span>Usando actualmente:</span><span tal:replace="view/default_view_title"></span><span class="label label-info"  tal:content="view/default_view_type"></span>
-                        <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?remove=1'" class="btn btn-danger">remover</a>
+                        <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?layout_id=''&remove=1'" class="btn btn-danger">remover</a>
                     </span>
                 </div>
             </div>

@@ -11,10 +11,12 @@ from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.container.interfaces import INameChooser
 from zope.interface import Interface
+from zope.security import checkPermission
 
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 
 from collective.nitf.content import INITF
 
@@ -51,6 +53,22 @@ class CoversView(grok.View):
 
         if not(remove) and make_default and layout_id:
             self.make_default(layout_id)
+
+        if not(remove):
+            # Returns workflow state object
+            default = self.get_layout()
+            if default:
+                uid = default['outstanding_new_uid']
+                wf = getToolByName(self.context, 'portal_workflow')
+                obj = uuidToObject(uid)
+                if obj:
+                    status = wf.getInfoFor(obj, 'review_state')
+                    
+                    if status != 'published':
+                        try:
+                            wf.doActionFor(obj, "publish")
+                        except WorkflowException:
+                            pass
 
     def render(self):
         return ''
@@ -100,18 +118,21 @@ class CoversView(grok.View):
             del(conf['views'][uuid_layout_id])
 
         view_url = self.context.absolute_url()
+
         self.request.response.redirect(view_url)
         return
 
     def remove_layout(self, layout_id=None):
         conf = self.layout_conf()[config.COVERS_KEYS]
+
         if layout_id:
             del(conf['views'][layout_id])
         else:
             conf['default_view'] = OOBTree()
         view_url = self.context.absolute_url()
+
         self.request.response.redirect(view_url)
-        return
+        return 
 
 
 class CoverControls(grok.View):
@@ -141,6 +162,10 @@ class CoverControls(grok.View):
             view_type = self.covers_conf['views'][layout_id]['type']
         edit = self.conf[view_type]['edit']
         return edit
+
+    def can_manage_covers(self):
+        can_manage = checkPermission('telesur.theme.coverAddable', self.context)
+        return can_manage
 
     def drafts(self):
         drafts = []
