@@ -11,19 +11,6 @@
     <tal:main-macro metal:define-macro="main">
     <table id="telesur-live-signal" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
     <tr><td>
-    <div align="right" style="padding:10px 0;">
-        <script type="text/javascript">
-        var win = null;
-        function NewWindow(mypage,myname,w,h,scroll){
-        LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
-        TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
-        settings =
-        'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
-        win = window.open(mypage,myname,settings)
-        }
-        </script>      
-        <a href="#" onclick="NewWindow('++theme++telesur.theme/ayuda.html', 'Ayuda - Preguntas más frecuentes','500','590','yes'); return false;">Ayuda - Preguntas más frecuentes</a>
-    </div>
     <!--START embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd-->
     <div id="visionplayer_185" align="center"></div>
     <script type="text/javascript" src="http://embeddedplayer.visionip.tv/embed/185?w=&h=" >
