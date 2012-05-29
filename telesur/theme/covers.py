@@ -16,6 +16,7 @@ from zope.security import checkPermission
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
 from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.WorkflowCore import WorkflowException
 
 from collective.nitf.content import INITF
 
@@ -101,6 +102,19 @@ class CoversView(grok.View):
             del(conf['views'][uuid_layout_id])
 
         view_url = self.context.absolute_url()
+        
+        #we have to publish the principal new
+        obj = uuidToObject(draft['outstanding_new_uid'])
+        wf = getToolByName(self.context, "portal_workflow")
+        # Returns workflow state object
+        status = wf.getInfoFor(obj, 'review_state')
+        
+        if status != 'published':
+            try:
+                wf.doActionFor(obj, "publish")
+            except WorkflowException:
+                pass
+
         self.request.response.redirect(view_url)
         return
 
