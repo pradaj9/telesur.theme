@@ -28,7 +28,7 @@
                     <p>
                     <span>
                         <span>Usando actualmente:</span><span tal:replace="view/default_view_title"></span><span class="label label-info"  tal:content="view/default_view_type"></span>
-                        <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?remove=1'" class="btn btn-danger">remover</a>
+                        <a tal:condition="python:view.default_view_type !='por defecto'" href="" tal:attributes="href python:context.absolute_url()+'/@@covers-view?layout_id=''&remove=1'" class="btn btn-danger">remover</a>
                     </span>
                 </div>
             </div>

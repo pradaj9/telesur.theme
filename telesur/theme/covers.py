@@ -54,19 +54,21 @@ class CoversView(grok.View):
         if not(remove) and make_default and layout_id:
             self.make_default(layout_id)
 
-        # Returns workflow state object
-        default = self.get_layout()
-        uid = default['outstanding_new_uid']
-        wf = getToolByName(self.context, 'portal_workflow')
-        obj = uuidToObject(uid)
-        if obj:
-            status = wf.getInfoFor(obj, 'review_state')
-            
-            if status != 'published':
-                try:
-                    wf.doActionFor(obj, "publish")
-                except WorkflowException:
-                    pass
+        if not(remove):
+            # Returns workflow state object
+            default = self.get_layout()
+            if default:
+                uid = default['outstanding_new_uid']
+                wf = getToolByName(self.context, 'portal_workflow')
+                obj = uuidToObject(uid)
+                if obj:
+                    status = wf.getInfoFor(obj, 'review_state')
+                    
+                    if status != 'published':
+                        try:
+                            wf.doActionFor(obj, "publish")
+                        except WorkflowException:
+                            pass
 
     def render(self):
         return ''
@@ -122,13 +124,15 @@ class CoversView(grok.View):
 
     def remove_layout(self, layout_id=None):
         conf = self.layout_conf()[config.COVERS_KEYS]
+
         if layout_id:
             del(conf['views'][layout_id])
         else:
             conf['default_view'] = OOBTree()
         view_url = self.context.absolute_url()
+
         self.request.response.redirect(view_url)
-        return
+        return 
 
 
 class CoverControls(grok.View):
