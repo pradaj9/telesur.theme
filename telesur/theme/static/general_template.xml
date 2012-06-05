@@ -26,6 +26,8 @@
                        //*[contains(@class,'portaltype-document')] or
                        //*[contains(@class,'portaltype-easynewsletter')] or
                        //*[contains(@class,'portaltype-enltemplate')] or
+                       //*[contains(@class,'portaltype-telesur-reportero-ireport')] or
+                       //*[contains(@class,'portaltype-telesur-reportero-anonreport')] or
                        //*[contains(@class,'portaltype-enlissue')]">
         <theme href="general.html" />
 
@@ -38,7 +40,14 @@
           <replace
             css:theme-children=".no-columns .content-placeholder"
             css:content-children="#portal-column-content" />
-
+            
+            <!-- if we are in soy reportero  -->
+            <rules css:if-content=".portaltype-telesur-reportero-anonreport">
+              <rules if-content="//*[@id='anon-personalbar']">
+              <!-- quitamos todos los elementos de la UI que no queremos -->
+              <drop css:content="#edit-bar"/>
+              </rules>
+            </rules>
           <!-- if we are in programas -->
           <rules css:if-content=".portaltype-telesur-contenttypes-program">
             <!-- quitamos todos los elementos de la UI que no queremos -->
