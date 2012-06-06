@@ -124,6 +124,8 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
       <xi:include href="nota_rules_mobile.xml" />
       <xi:include href="seccion_mobile_rules.xml" />
       <xi:include href="portada_mobile_rules.xml" />
+      <!-- ANALYTICS -->
+      <after css:content="#analytics" css:theme="footer"/>
       <replace theme="/html/head/title"
           content="html/head/title" />
 
