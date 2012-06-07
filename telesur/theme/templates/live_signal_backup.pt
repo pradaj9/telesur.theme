@@ -26,6 +26,19 @@ var requiredRevision = 9;
     <tal:main-macro metal:define-macro="main">
     <table id="telesur-live-signal-backup" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255); margin-left: 200px;" >
     <tr><td aling="center">
+    <div align="right" style="padding:10px 0;">
+        <script type="text/javascript">
+        var win = null;
+        function NewWindow(mypage,myname,w,h,scroll){
+        LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+        TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
+        settings =
+        'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
+        win = window.open(mypage,myname,settings)
+        }
+        </script>      
+        <a href="#" onclick="NewWindow('++theme++telesur.theme/ayuda.html', 'Ayuda - Preguntas más frecuentes','500','200','yes'); return false;">Ayuda</a>
+    </div>
     <!--START embedcode - Telesur Live ULTRABASE-->
 	<iframe src="http://mblivebackup.telesur.ultrabase.net" width="600" height="340" frameborder="0" name="envivo" id="envivoid" align="center">
 	<!--END embedcode - Telesur Live ULTRABASE-->
