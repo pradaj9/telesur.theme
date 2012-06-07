@@ -13,14 +13,14 @@
         <form tal:attributes="action python:context.absolute_url() +'/@@cover-election'" method="post" enctype="multipart/form-data"  class="well">
             <div class="field">        
                 <label for="draft-title">Título del draft</label>
-                <span class="help-block"></span>
+                <span class="help-block">título descriptivo para diferenciar el draft (no es el título de la noticia)</span>
                 <input name="draft-title" value="" type="text"
                        class="text-widget textline-field"
                        tal:attributes="value request/draft-title | nothing"/>
             </div>
             <div class="field">        
                 <label for="outstanding-new">URL de noticia destacada</label>
-                <span class="help-block"></span>                
+                <span class="help-block">Empiece a escribir el título y abajo aparecerá una lista de posibles noticias a seleccionar</span>                
                 <input name="outstanding-new" value="" type="text"
                        class="text-widget textline-field typeahead-news" data-provide="typeahead"
                        autocomplete="off"
@@ -30,14 +30,14 @@
             </div>            
             <div class="field">        
                 <label for="hashtag-twitter">Hashtag Twitter</label>
-                <span class="help-block"></span>
+                <span class="help-block">Hashtag por el cual filtrar la temática en el widget de twitter, preferentemente debe incluir el #</span>
                 <input name="hashtag-twitter" value="" type="text"
                        class="text-widget textline-field"
                        tal:attributes="value request/hashtag-twitter | nothing"/>
             </div>
             <div class="field">        
                 <label for="topic">Tema de videos</label>
-                <span class="help-block"></span>
+                <span class="help-block">Empiece a escribir la temática y abajo aparecerá una lista de posibles opciones a seleccionar (el sistema de temáticas es externo, por lo que puede tener una pequeña demora en responder)</span>
                 <input class="typeahead" name="topic" type="text" data-provide="typeahead"  autocomplete="off"
                        tal:attributes="value request/topic | nothing"/>
                 <input name="topic-slug" type="hidden"
@@ -45,14 +45,14 @@
             </div>
             <div class="field">
                 <label for="uploadfile">Imagen de encuestas</label>
-                <span class="help-block"></span>
+                <span class="help-block">Ancho (máximo) y recomendado 195px, alto recomendado 220px, si la imagen supera esas medidas, sera escalada</span>
                 <div class="widget">
                   <input type="file" name="uploadfile" id="uploadfile" size="15"/>
                 </div>
             </div>
             <div class="field">
                 <label for="image-link">Link donde apuntara la imagen</label>
-                <span class="help-block"></span>
+                <span class="help-block">Link externo o local, donde la imagen de encuesta apuntara si se hace click sobre la misma</span>
                 <input name="image-link" value="" type="text"
                        class="text-widget textline-field"
                        tal:attributes="value request/image-link | nothing"/>
