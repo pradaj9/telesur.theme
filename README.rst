@@ -42,7 +42,7 @@ Descargas
 =========
 
 Usted puede encontrar la versión de desarrollo del paquete ``telesur.theme``
-en el `repositorio desarrollotv`_ en Github.com.
+en el `repositorio teleSUR`_ en Github.com.
 
 Autor(es) Original(es)
 ======================
@@ -64,15 +64,15 @@ Colaboraciones impresionantes
 
 * Leonardo J .Caballero G. aka macagua
 
-* flecox
+* Gonzalo Almeida aka flecox
 
 * mimoga08
 
 Para una lista actualizada de todo los colaboradores visite:
-https://github.com/desarrollotv/telesur.theme/contributors
+https://github.com/teleSUR/telesur.theme/contributors
 
 .. _Diazo: http://pypi.python.org/pypi/diazo
 .. _sitio Web de teleSUR: http://telesurtv.net/
 .. _sitio web Video teleSUR: http://multimedia.telesurtv.net/
-.. _repositorio desarrollotv: https://github.com/desarrollotv/telesur.theme
+.. _repositorio teleSUR: https://github.com/teleSUR/telesur.theme
 
