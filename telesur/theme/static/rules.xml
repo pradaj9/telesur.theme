@@ -17,7 +17,7 @@
         <!-- in section opinion we don't have to show ultimos videos section -->
         <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> --> 
         <!-- facebook portlet -->
-        <replace css:theme-children=".facebook.pane" css:content=".facebookWallPortlet" />
+        <!-- <replace css:theme-children=".facebook.pane" css:content=".facebookWallPortlet" /> -->
         <!-- Ultimas Noticias -->
         <replace css:theme="#ultimas-noticias" css:if-content=".portlet-latest-nitf">
             <div id="telesur-ultimas-noticias">
