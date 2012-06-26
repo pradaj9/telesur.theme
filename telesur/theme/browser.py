@@ -36,6 +36,7 @@ import DateTime
 
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
+from plone.i18n.normalizer import idnormalizer
 
 from telesur.theme import config
 
@@ -380,6 +381,9 @@ class ArticleControl(grok.View):
 
         context.reindexObject(idxs=['object_provides'])
 
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        notify(Purge(portal))
+
     def mark_primary(self, element):
 
         if self.already_marked(element, 'primary'):
@@ -402,6 +406,9 @@ class ArticleControl(grok.View):
 
         context.reindexObject(idxs=['object_provides'])
 
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        notify(Purge(portal))
+
     def mark_secondary(self, element):
 
         if self.already_marked(element, 'secondary'):
@@ -415,6 +422,9 @@ class ArticleControl(grok.View):
             noLongerProvides(context, iface)
 
         context.reindexObject(idxs=['object_provides'])
+
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        notify(Purge(portal))
 
     def mark_section(self, element):
 
@@ -439,6 +449,19 @@ class ArticleControl(grok.View):
 
         alsoProvides(context, ISectionArticle)
         context.reindexObject(idxs=['object_provides'])
+
+        # Purgo la vista de la sección.
+        portal = getToolByName(self, 'portal_url').getPortalObject()
+        section = idnormalizer.normalize(context.section, 'es')
+        notify(Purge(portal.noticias[section]))
+        # En caso de que la sección se latinoamerica, tambien invalidamos el
+        # cache de <site>/noticias ya que latinoamerica es la sección por
+        # defecto para este folder.
+        if section == 'latinoamerica':
+            notify(Purge(portal.noticias))
+        # Tambien se purga la página principal del sitio, por que las noticias
+        # que son principal de sección aparecen en portada.
+        notify(Purge(portal))
 
     def render(self):
         return self

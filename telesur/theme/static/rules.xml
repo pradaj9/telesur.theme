@@ -5,7 +5,7 @@
     xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <notheme if="$ajax_load"/>
-    <rules css:if-content="#visual-portal-wrapper" if="not($host = $mobile_host)">
+    <rules css:if-content="#visual-portal-wrapper" if="not($mobile_host)">
         <xi:include href="common_rules.xml" />
         <xi:include href="home_rules.xml" />
         <xi:include href="seccion_rules.xml" />
@@ -17,7 +17,7 @@
         <!-- in section opinion we don't have to show ultimos videos section -->
         <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> --> 
         <!-- facebook portlet -->
-        <replace css:theme-children=".facebook.pane" css:content=".facebookWallPortlet" />
+        <!-- <replace css:theme-children=".facebook.pane" css:content=".facebookWallPortlet" /> -->
         <!-- Ultimas Noticias -->
         <replace css:theme="#ultimas-noticias" css:if-content=".portlet-latest-nitf">
             <div id="telesur-ultimas-noticias">
@@ -120,7 +120,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
     </rules>
 
     <!-- MOBILE THEME -->
-    <rules css:if-content="#visual-portal-wrapper" if="$host = $mobile_host">
+    <rules css:if-content="#visual-portal-wrapper" if="$mobile_host">
       <xi:include href="nota_rules_mobile.xml" />
       <xi:include href="seccion_mobile_rules.xml" />
       <xi:include href="portada_mobile_rules.xml" />
