@@ -18,7 +18,7 @@
           <rules>
             <replace css:theme=".pubdate" css:content=".pubdate" method="raw" />
           </rules>
-  
+
           <!-- author -->
           <rules css:if-content=".nitfByline">
             <replace css:theme="#byline .author" css:content=".nitfByline .author" />
@@ -87,7 +87,7 @@
         <!-- only load discus IF the user is not anon XXX maybe better in a diazo property in the manifest.cfg? =) -->
         <rules if-content="//*[@id='anon-personalbar']">
           <after css:theme="#telesur-left-content #comentarios-nota > h2">
-		      <script type="text/javascript">
+              <script type="text/javascript">
                  var win = null;
 function NewWindow(mypage,myname,w,h,scroll){
 LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
@@ -98,7 +98,7 @@ win = window.open(mypage,myname,settings)
 }
 
               </script>
-            
+
 <table width="249" border="0">
   <tr>
     <td width="34"><a href="#"  onclick="NewWindow('++theme++telesur.theme/condiciones.html', 'Condiciones de Publicacion','500','590','yes'); return false;"><img src="++theme++telesur.theme/img/icon_comentarios.jpg"  width="34" height="34" border="0"  align="absmiddle"  /> </a></td>
