@@ -75,6 +75,8 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
         <drop if-content="not(//*[@id='related-items'])"
             css:theme="#notas-relacionadas" />
         <drop css:theme="#telesur-left-content div.comentario-individual" />
+        <drop if-content="//*[@id='related-items']"
+            css:content="#related-items" />
         <!--
         <after css:theme="#telesur-left-content #comentarios-nota > h2"
             css:content="#viewlet-below-content div.discusion" />
