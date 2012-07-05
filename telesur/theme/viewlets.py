@@ -8,7 +8,6 @@ from zope.interface import alsoProvides
 from zope.interface import Interface
 from zope.component import getMultiAdapter
 from zope.security import checkPermission
-from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import NavtreeQueryBuilder
@@ -265,7 +264,7 @@ class LiveSignalLinkViewlet(grok.Viewlet):
     grok.viewletmanager(IPortalFooter)
 
     def update(self):
-        site = getSite()
+        site = getToolByName(self.context, 'portal_url').getPortalObject()
         self.url = ""
         if site and 'el-canal' in site.keys() and \
             'senal-en-vivo' in site['el-canal'].keys():
