@@ -26,7 +26,7 @@
     </div>
     <!--START embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd-->
     <div id="visionplayer_185" align="center"></div>
-    <script type="text/javascript" src="http://embeddedplayer.visionip.tv/embed/185?w=&h=" >
+    <script type="text/javascript" src="http://embeddedplayer.visionip.tv/embed/185?w=450&h=350">
     </script>
     <!--END embedcode - Telesur Live and Telesur Radio - 24 June 2011 - Powered by VisionIPTV Ltd--> 
     </td></tr></table>
