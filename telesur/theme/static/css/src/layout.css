@@ -318,6 +318,11 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-left-content-big .special-layout ul li a img {
     padding-right:10px;
 }
+
+#telesur-left-content-big .general-event-layout div.video-widget div,
+#telesur-left-content-big .sporting-event-layout div.video-widget div {
+    padding-bottom:15px;
+}
 .article-listing .news-row{
     padding-bottom:15px;
     margin-top:15px;
