@@ -295,7 +295,25 @@ body div {	 /* Eliminar todo el bloque */
 	border:none;
 	font-size:11px;
 }
+#telesur-left-content-big div.banner {
+    padding-bottom:15px;
+}
+#telesur-left-content-big .special-layout div.articles-data {
+    padding:0px;
+}
+#telesur-left-content-big .special-layout .related-items {
+    margin:0px;
+}
 
+#telesur-left-content-big .special-layout .related-items ul.related-items-list {
+    width:256px;
+}
+#telesur-left-content-big .special-layout ul li a {
+    padding-bottom:15px;
+}
+#telesur-left-content-big .special-layout ul li a img {
+    padding-right:10px;
+}
 .article-listing .news-row{
     padding-bottom:15px;
     margin-top:15px;
