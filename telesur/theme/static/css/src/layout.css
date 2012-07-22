@@ -305,12 +305,14 @@ body div {	 /* Eliminar todo el bloque */
     margin:0px;
 }
 
+#telesur-left-content-big .sporting-event-layout .related-items ul.related-items-list,
 #telesur-left-content-big .special-layout .related-items ul.related-items-list {
     width:256px;
 }
 #telesur-left-content-big .special-layout ul li a {
     padding-bottom:15px;
 }
+#telesur-left-content-big .sporting-event-layout ul li a img,
 #telesur-left-content-big .special-layout ul li a img {
     padding-right:10px;
 }
