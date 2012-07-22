@@ -318,10 +318,10 @@ body div {	 /* Eliminar todo el bloque */
 #telesur-left-content-big .special-layout ul li a img {
     padding-right:10px;
 }
-#telesur-left-content-big .election-event-layout div.video-widget div,
-#telesur-left-content-big .general-event-layout div.video-widget div,
-#telesur-left-content-big .sporting-event-layout div.video-widget div {
-    padding-bottom:15px;
+#telesur-left-content-big .election-event-layout .video-widget .discreet,
+#telesur-left-content-big .general-event-layout .video-widget .discreet,
+#telesur-left-content-big .sporting-event-layout .video-widget .discreet {
+    padding-bottom:10px;
 }
 .article-listing .news-row{
     padding-bottom:15px;
