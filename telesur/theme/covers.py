@@ -705,6 +705,7 @@ class NewsListSearch(grok.View):
             #query build getting all the section news
             limit = 10;
             query = {}
+            query['Title'] =  self.request.form['text']
             query['object_provides'] = {'query': [INITF.__identifier__]}
             query['sort_on'] = 'effective'
             query['sort_order'] = 'reverse'
