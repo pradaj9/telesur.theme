@@ -295,6 +295,11 @@ class SubSectionList(grok.Viewlet):
             self.data = buildFolderTree(tab, obj=tab, query=query, strategy=strategy)
         else:
             self.data = {}
+        
+    def is_default_link(self, subtab):
+        oid = subtab.get('id', None)
+        portal_type = subtab.get('portal_type', None)
+        return oid == "default" and  portal_type == "Link"
 
 class LastestVideosWidget(grok.Viewlet):
     grok.context(Interface)
