@@ -11,6 +11,8 @@ from zope.annotation.interfaces import IAnnotations
 
 from z3c.caching.purge import Purge
 
+from plonetheme.sunburst.browser.interfaces import IThemeSpecific
+
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
@@ -18,6 +20,8 @@ from Products.CMFPlone.PloneBatch import Batch
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
+from collective.nitf.browser import AddForm
+from collective.nitf.browser import EditForm as EditBase
 
 from telesur.theme.interfaces import ITelesurLayer
 from telesur.theme.interfaces import IOutstandingArticle
@@ -93,6 +97,44 @@ class NITF_View(View):
                                                          timeofday)
 
         return self.date
+
+
+class AddFormView(AddForm):
+    grok.context(INITF)
+    grok.name('collective.nitf.content')
+    grok.layer(IThemeSpecific)
+
+    def update(self):
+        super(AddFormView, self).update()
+        # import pdb;pdb.set_trace()
+        # iterate over fieldsets
+        for group in self.groups:
+            # HACK: we need to update criteria of the ObjPathSourceBinder here
+            # as we want to list only relatable content types
+            if 'IRelatedItems.relatedItems' in group.widgets.keys():
+                widget = group.widgets['IRelatedItems.relatedItems']
+                criteria = widget.source.selectable_filter.criteria
+                criteria['portal_type'] = ['collective.nitf.content',]
+                                    # sort_on='effective',
+                                    # sort_order='reverse',
+
+
+class EditForm(EditBase):
+    """ Default view looks like a News Item.
+    """
+    grok.context(INITF)
+    grok.layer(IThemeSpecific)
+
+    def update(self):
+        super(EditForm, self).update()
+        # iterate over fieldsets
+        for group in self.groups:
+            # HACK: we need to update criteria of the ObjPathSourceBinder here
+            # as we want to list only relatable content types
+            if 'IRelatedItems.relatedItems' in group.widgets.keys():
+                widget = group.widgets['IRelatedItems.relatedItems']
+                criteria = widget.source.selectable_filter.criteria
+                criteria['portal_type'] = ['collective.nitf.content',]
 
 
 class Media(dexterity.DisplayForm):
