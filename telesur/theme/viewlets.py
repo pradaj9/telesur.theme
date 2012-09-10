@@ -319,6 +319,10 @@ class LastestVideosWidget(grok.Viewlet):
             titleId = idnormalizer.normalize(tab.title, 'es')
             seccionUrl = "&seccion_plone=" + titleId
             self.url += seccionUrl
+        elif tab.title == "Noticias":
+            titleId = "latinoamerica"
+            seccionUrl = "&seccion_plone=" + titleId
+            self.url += seccionUrl
 
 
 class SiteDate(grok.Viewlet):
