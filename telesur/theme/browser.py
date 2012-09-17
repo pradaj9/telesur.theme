@@ -495,7 +495,9 @@ class ArticleControl(grok.View):
         # Purgo la vista de la sección.
         portal = getToolByName(self, 'portal_url').getPortalObject()
         section = idnormalizer.normalize(context.section, 'es')
-        notify(Purge(portal.noticias[section]))
+
+        notify(Purge(getattr(portal.noticias, section, None)))
+        #notify(Purge(portal.noticias[section]))
         # En caso de que la sección se latinoamerica, tambien invalidamos el
         # cache de <site>/noticias ya que latinoamerica es la sección por
         # defecto para este folder.
