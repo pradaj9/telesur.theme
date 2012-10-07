@@ -34,7 +34,9 @@
     <rules if-content="//*[@id='anon-personalbar']">
       <after css:theme="#logo-telesur">
       <div class="full-banner ad-legend-left">
-        <img src="++theme++telesur.theme/img/venezueladecide.jpg" />
+        <a href="http://exwebserv.telesurtv.net/secciones/afondo/especiales/Venezuela_Decide2012/">
+          <img src="++theme++telesur.theme/img/venezueladecide.jpg" />
+        </a>
       </div>
       </after>
 
