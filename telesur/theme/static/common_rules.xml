@@ -33,11 +33,8 @@
     <!-- zona superior 1 -->
     <rules if-content="//*[@id='anon-personalbar']">
       <after css:theme="#logo-telesur">
-      <div class="full-banner ad-legend-left">
-          <a href="http://exwebserv.telesurtv.net/secciones/afondo/especiales/Venezuela_Decide2012/"> 	  	
-          <img src="++theme++telesur.theme/img/venezueladecide.jpg" /> 	  	
-
-         </a>
+      <div class="full-banner ad-legend-left">	  	
+          <img src="++theme++telesur.theme/img/banner_documental_hasta_la_victoria.jpg" /> 	  	
       </div>
       </after>
 

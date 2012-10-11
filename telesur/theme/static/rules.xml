@@ -145,56 +145,5 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
     <drop css:theme=".ad-legend-top"/>
 
     <drop css:theme="#banners-home"/>
-    <append css:theme="#telesur-right-sidebar">
-            <div class="widget-container">
-                <a href="http://exwebserv.telesurtv.net/secciones/afondo/especiales/Venezuela_Decide2012/">
-                    <img src="++theme++telesur.theme/img/esp_vzla_2012.jpg" />
-                </a>
-            </div>
-            <div class="widget-container">
-                <a href="http://blogs.telesurtv.net/">
-                    <img src="++theme++telesur.theme/img/blog-Telesur.jpg" />
-                </a>
-            </div>
-            <div class="widget-container">
-                <a href="http://exwebserv.telesurtv.net/secciones/pforos/listado.php">
-                    <img src="++theme++telesur.theme/img/foros-telesur.jpg" />
-                </a>
-            </div>
-        </append>
-    <append css:theme="#telesur-right-sidebar-small">
-            <div class="widget-container">
-                <a href="http://exwebserv.telesurtv.net/secciones/afondo/especiales/Venezuela_Decide2012/">
-                    <img src="++theme++telesur.theme/img/esp_vzla_2012.jpg" />
-                </a>
-            </div>
-            <div class="widget-container">
-                <a href="http://blogs.telesurtv.net/">
-                    <img src="++theme++telesur.theme/img/blog-Telesur.jpg" />
-                </a>
-            </div>
-            <div class="widget-container">
-                <a href="http://exwebserv.telesurtv.net/secciones/pforos/listado.php">
-                    <img src="++theme++telesur.theme/img/foros-telesur.jpg" />
-                </a>
-            </div>
-        </append>
-    <append css:theme="#ultimos-sidebar">
-        <div class="widget-container">
-            <a href="http://exwebserv.telesurtv.net/secciones/afondo/especiales/Venezuela_Decide2012/">
-                <img src="++theme++telesur.theme/img/esp_vzla_2012.jpg" />
-            </a>
-        </div>
-        <div class="widget-container">
-            <a href="http://blogs.telesurtv.net/">
-                <img src="++theme++telesur.theme/img/blog-Telesur.jpg" />
-            </a>
-        </div>
-        <div class="widget-container">
-            <a href="http://exwebserv.telesurtv.net/secciones/pforos/listado.php">
-                <img src="++theme++telesur.theme/img/foros-telesur.jpg" />
-            </a>
-        </div>
-    </append>
     
 </rules>
