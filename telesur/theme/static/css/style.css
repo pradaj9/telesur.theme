@@ -26,6 +26,12 @@
 @import "src/tabs-opinion.css";
 @import "src/tabs-redesociales.css";
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
 /*GENERAL*/
 .separator {
     clear: both;

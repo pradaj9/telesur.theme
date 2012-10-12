@@ -33,8 +33,10 @@
     <!-- zona superior 1 -->
     <rules if-content="//*[@id='anon-personalbar']">
       <after css:theme="#logo-telesur">
-      <div class="full-banner ad-legend-left">	  	
-          <img src="++theme++telesur.theme/img/banner_documental_hasta_la_victoria.jpg" /> 	  	
+      <div class="full-banner ad-legend-left">
+          <iframe width="468" height="60" frameborder="0" scrolling="no" src="http://ad.openmultimedia.biz/telesur/C/">
+            <img src="++theme++telesur.theme/img/banner_documental_hasta_la_victoria.jpg" />
+          </iframe>	  		  	
       </div>
       </after>
 
