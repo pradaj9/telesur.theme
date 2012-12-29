@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="telesur.theme">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+	<table id="telesur-live-audio-movipbox" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
+		<tr>
+			<td valign="top" align="center">
+				<script type="text/javascript" src="http://movipbox-web.streamguys.net/telesuraudio/swfobject.js"></script>
+				<fieldset id="container" style="width:990px; height:229px; border:1px solid #919191;">
+				<div align="center" id="player">This text will be replaced</div>       
+				<script type="text/javascript">
+				var so = new SWFObject('http://movipbox-web.streamguys.net/telesuraudio/player.swf','mpl','200','21','9');
+				so.addParam('allowscriptaccess','always');
+				so.addParam('allowfullscreen','true');
+				so.addParam('flashvars',
+				'&file=telesuraudio'+
+				'&streamer=rtmp://edg.ord.movipbox2.streamguys.net/telesuraudio' +
+				'&type=rtmp' +
+				'&autostart=true' +
+				'&stretching=uniform');
+				so.write('player');
+				</script>
+				<br />
+				<p align="center" style="font-size:12px;font-family:Arial;"><b>Audio en Vivo teleSUR en Dispositivos M&oacute;viles</b></p>
+				<p align="center">
+					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesuraudio/telesuraudio">
+						<img border="0" src="++theme++telesur.theme/img/bbrr.JPG" width="103" height="45">
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;					
+					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesuraudio/telesuraudio">
+						<img border="0" src="++theme++telesur.theme/img/Android.JPG" width="103" height="45">
+					</a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="http://edg.ord.movipbox2.streamguys.net/telesuraudio/telesuraudio/playlist.m3u8">
+						<img border="0" src="++theme++telesur.theme/img/iPhone.JPG" width="103" height="45">
+					</a>
+				</p>
+				<p>&nbsp;</p>
+				</fieldset>
+			</td>
+		</tr>
+	</table>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>

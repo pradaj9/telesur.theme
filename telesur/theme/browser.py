@@ -1170,6 +1170,24 @@ class LiveAudio(grok.View):
     grok.template('live_audio')
     grok.require('zope2.View')
 
+class LiveSignalmovIPbox(grok.View):
+    """ Señal en vivo del canal movIPbox.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('live-signal-movipbox')
+    grok.template('live_signal_movipbox')
+    grok.require('zope2.View')
+
+class LiveAudiomovIPbox(grok.View):
+    """ Audio en vivo del canal movIPbox.
+    """
+    grok.context(Interface)
+    grok.layer(ITelesurLayer)
+    grok.name('live-audio-movipbox')
+    grok.template('live_audio_movipbox')
+    grok.require('zope2.View')
+
 
 class BatchListUtils(grok.View):
     grok.context(Interface)

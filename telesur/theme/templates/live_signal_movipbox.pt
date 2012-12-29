@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="telesur.theme">
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+	<table id="telesur-live-signal-movipbox" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
+		<tr>
+			<td aling="center">
+				<!--START embedcode - Telesur Live movIPbox-->
+				<iframe src = "http://flash.telepuertovirtual.tv/telesurtv/" width="1024" height="650" frameborder="0" name="envivomov" id="envivoidmov" align="center"></iframe>
+				<!--END embedcode - Telesur Live movIPbox-->
+			</td>
+		</tr>
+	</table>
+    </tal:main-macro>
+</metal:main>
+</body>
+</html>
