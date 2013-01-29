@@ -26,8 +26,8 @@
                        //*[contains(@class,'portaltype-document')] or
                        //*[contains(@class,'portaltype-easynewsletter')] or
                        //*[contains(@class,'portaltype-enltemplate')] or
-                       //*[contains(@class,'portaltype-telesur-reportero-ireport')] or
-                       //*[contains(@class,'portaltype-telesur-reportero-anonreport')] or
+                       //*[contains(@class,'portaltype-openmultimedia-reporter-ireport')] or
+                       //*[contains(@class,'portaltype-openmultimedia-reporter-anonreport')] or
                        //*[contains(@class,'portaltype-enlissue')]">
         <theme href="general.html" />
 
