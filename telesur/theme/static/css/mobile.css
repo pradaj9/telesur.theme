@@ -38,8 +38,14 @@ h3 {
     margin:auto;
 }
 
+header {
+    background: url("../img/header-bg.jpg") no-repeat scroll right top #3C608C;
+}
+
 header img {
-    width:100%;
+    height: 150px;
+    margin-left: 115px;
+    text-align: center;
 }
 
 header #telesur-topbar {
@@ -119,7 +125,7 @@ header #telesur-topbar {
     color: #000000;
     padding: 10px;
     background: url("../img/mobile/bottombar-sep.png") no-repeat scroll center bottom transparent;
-}    
+}
 
 #portal-mobile-subglobalnav li a.selected {
     -moz-box-shadow: inset 0 0 15px 2px #3d403f;
@@ -165,11 +171,11 @@ header #telesur-topbar {
 }
 
 footer {
-    background-color: #1a82f7; 
+    background-color: #1a82f7;
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#307ea3), to(#caf1fe));
     background: -webkit-linear-gradient(top, #307ea3, #caf1fe);
-    background: -moz-linear-gradient(top, #307ea3, #caf1fe); /* IE 10 */ 
-    background: -ms-linear-gradient(top, #307ea3, #caf1fe); /* Opera 11.10+ */ 
+    background: -moz-linear-gradient(top, #307ea3, #caf1fe); /* IE 10 */
+    background: -ms-linear-gradient(top, #307ea3, #caf1fe); /* Opera 11.10+ */
     background: -o-linear-gradient(top, #307ea3, #caf1fe);
     text-align: center;
     padding-top: 20px;
