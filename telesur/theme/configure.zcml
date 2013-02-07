@@ -17,8 +17,8 @@
 
     <include package="z3c.jbot" file="meta.zcml" />
 
-    <!--<browser:jbot
-        directory="jbot" /> -->
+    <browser:jbot
+        directory="jbot" />
 
     <genericsetup:registerProfile
         name="default"
