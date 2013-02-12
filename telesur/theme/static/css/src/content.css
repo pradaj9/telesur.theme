@@ -212,6 +212,19 @@ td {
 	color:#B40200;
 	text-decoration:none;
 }
+.mas_especiales{
+	font-size:10px;
+	color:#B40200;
+	font-family:Arial, Helvetica, sans-serif;
+	text-decoration:none;
+	text-align:right;;
+	margin:15px 0 5px 0;
+}
+
+.mas_especiales a {
+	color:#B40200;
+	text-decoration:none;
+}
 .sigue-leyendo a {
 	width:109px;
 	height:23px;
