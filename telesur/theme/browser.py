@@ -342,6 +342,13 @@ class ArticleControl(grok.View):
 
     security.declarePublic('can_be_promoted')
     security.declarePublic('is_published')
+    security.declarePublic('is_marked')
+
+    def is_marked(self):
+        for marker in ('outstanding', 'primary', 'secondary'):
+            if self.already_marked(self.context, marker):
+                return True
+        return False
 
     def is_published(self):
         workflowTool = getToolByName(self.context, 'portal_workflow')
