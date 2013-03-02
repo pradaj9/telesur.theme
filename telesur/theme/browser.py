@@ -8,6 +8,7 @@ from zope.event import notify
 
 from zope.interface import Interface
 from zope.annotation.interfaces import IAnnotations
+from zope.lifecycleevent import ObjectModifiedEvent
 
 from z3c.caching.purge import Purge
 
@@ -342,6 +343,13 @@ class ArticleControl(grok.View):
 
     security.declarePublic('can_be_promoted')
     security.declarePublic('is_published')
+    security.declarePublic('is_marked')
+
+    def is_marked(self):
+        for marker in ('outstanding', 'primary', 'secondary'):
+            if self.already_marked(self.context, marker):
+                return True
+        return False
 
     def is_published(self):
         workflowTool = getToolByName(self.context, 'portal_workflow')
@@ -401,6 +409,9 @@ class ArticleControl(grok.View):
                 element.reindexObject(idxs=['object_provides'])
 
             element.reindexObject(idxs=['object_provides'])
+            # Disparo un evento sobre el objeto para que se purge las secciones
+            # y portadas desde el handler del policy.
+            notify(ObjectModifiedEvent(element))
 
     def mark_outstanding(self, element):
 
@@ -492,20 +503,9 @@ class ArticleControl(grok.View):
         alsoProvides(context, ISectionArticle)
         context.reindexObject(idxs=['object_provides'])
 
-        # Purgo la vista de la sección.
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        section = idnormalizer.normalize(context.section, 'es')
-
-        notify(Purge(getattr(portal.noticias, section, None)))
-        #notify(Purge(portal.noticias[section]))
-        # En caso de que la sección se latinoamerica, tambien invalidamos el
-        # cache de <site>/noticias ya que latinoamerica es la sección por
-        # defecto para este folder.
-        if section == 'latinoamerica':
-            notify(Purge(portal.noticias))
-        # Tambien se purga la página principal del sitio, por que las noticias
-        # que son principal de sección aparecen en portada.
-        notify(Purge(portal))
+        # Disparo un evento sobre el objeto para que se purge desde
+        # el handler del policy.
+        notify(ObjectModifiedEvent(element))
 
     def render(self):
         return self

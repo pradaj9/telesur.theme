@@ -2,6 +2,18 @@
 <object name="portal_actions" meta_type="Plone Actions Tool">
  <object name="object_buttons" meta_type="CMF Action Category">
 
+  <object name="desmarcar_nota" meta_type="CMF Action">
+   <property name="title">Desmarcar nota</property>
+   <property name="description"></property>
+   <property name="url_expr">string:${object_url}/@@unmark-article</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:object.portal_type == 'collective.nitf.content' and path('object/@@article-control').is_marked()</property>
+   <property name="permissions">
+    <element value="Modify portal content"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+
   <object name="nota_destacada" meta_type="CMF Action">
    <property name="title">Marcar como nota destacada</property>
    <property name="description"></property>
@@ -14,7 +26,7 @@
    </property>
    <property name="visible">True</property>
   </object>
-  
+
   <object name="nota_principal" meta_type="CMF Action">
    <property name="title">Marcar como nota principal</property>
    <property name="description"></property>
@@ -53,6 +65,6 @@
    </property>
    <property name="visible">True</property>
   </object>
-  
+
  </object>
 </object>
