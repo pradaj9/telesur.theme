@@ -9,11 +9,60 @@
 
 <metal:main fill-slot="main">
     <tal:main-macro metal:define-macro="main">
-	<table id="telesur-live-signal-movipbox" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);">
+	<table id="telesur-live-signal-movipbox" cellspacing="0" cellpadding="0" align="center" style="border: 0px solid rgb(102, 0, 255);" width="1024">
 		<tr>
 			<td aling="center">
 				<!--START embedcode - Telesur Live movIPbox-->
-				<iframe src = "http://flash.telepuertovirtual.tv/telesurtv/" width="1024" height="650" frameborder="0" name="envivomov" id="envivoidmov" align="center"></iframe>
+				<script type="text/javascript" src="++theme++telesur.theme/scripts/swfobject.js"></script>
+				<div align="center" width="1024" height="600" style="border:1px solid #BEBDBD; padding:10px;">
+					<div align="center" id="player">Escribanos a: contactenos@telesurtv.net</div>
+					<script type="text/javascript">
+					var so = new SWFObject('++theme++telesur.theme/player.swf','mpl','480','360','9');
+					so.addParam('allowscriptaccess','always');
+					so.addParam('allowfullscreen','true');
+
+					// List of flashvars: http://code.longtailvideo.com/trac/wiki/FlashVars#Fileproperties
+					// JW Player4 Wizard: http://www.longtailvideo.com/support/jw-player-setup-wizard
+					//
+					so.addParam('flashvars',//This flashvar contains the name of the RTMP stream to check/load.
+					// The value set for livestream.file= should bethe same as the streamName you enter in your encoder
+					// The following streamName value should match the streamName from your encoder
+					// This value can be anything you choose as long as the value here matches the vlaue you put in your encoder
+					// If you are broadcasting using RTP protocol (Quicktime Broadcaster or Wirecast) simply add the .sdp file extension to the end of streamName.
+					'plugins=livestream-1&livestream.file=telesurweb.stream'+
+					//RTMP server to pull the stream from (e.g. rtmp://myserver.com/live-app).
+					'&livestream.streamer=rtmp://movipbox.streamguys.com/telesurweb' +
+					//This flashvar indicates the placeholding image associated with the livestream. 
+					//It is shown when the live stream ends. It should typically say something like "thanks for watching".
+					// This may also be used to insert a sponsor's logo & will look best when the player dimensions match the image dimensions
+					'&livestream.image=++theme++telesur.theme/img/LogoTelesur.jpg' +
+					//Message to show in the display when polling the livestream.
+					'&livestream.message=Verificando por TELESURTV en Vivo' +
+					// Interval in seconds for polling the livestream
+					'&livestream.interval =5' +
+					'&type=rtmp' +
+					'&controlbar=bottom' +
+					'&skin=++theme++telesur.theme/player.swf' +
+					'&stretching=uniform');
+
+					so.write('player');
+					</script>
+					<hr />
+					<div align="center"><strong>Acceso Móviles Celulares</strong></div>
+					<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
+					<strong>
+					<font color="#FFFFFF">
+					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles">
+					<img border="0" src="++theme++telesur.theme/img/bbrr.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></strong></span></p>
+					<p align="center"><span><strong><font color="#FFFFFF">
+					<a href="http://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles/playlist.m3u8">
+					<img border="0" src="++theme++telesur.theme/img/iPhone.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles">
+					<img border="0" src="++theme++telesur.theme/img/Android.JPG" width="103" height="45"></a></font></strong></span></p>
+					<p align="center"><span><strong><font color="#FFFFFF">TELESURTV - En Vivo<br>
+					</font>
+					</strong>
+				</div>
 				<!--END embedcode - Telesur Live movIPbox-->
 			</td>
 		</tr>
