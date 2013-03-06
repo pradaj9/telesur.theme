@@ -77,6 +77,17 @@ h1 a {
     width: auto;
     }
 
+
+.flag {
+    background: url("++theme++telesur.theme/img/BANDERA.png") no-repeat scroll 0 0 transparent;
+    height: 140px;
+    left: -21px;
+    position: absolute;
+    top: -23px;
+    width: 160px;
+    z-index: 10;
+}
+
 /***
 * HOME
 ***/

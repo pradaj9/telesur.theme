@@ -160,8 +160,9 @@ body.section-1 #telesur-subheader #menu ul#subnav-1 a, body.section-2 #telesur-s
 	font-size:10px;
 	text-transform:uppercase;
     top:10px;
-    left:10px;
+    left:140px;
     position:absolute;
+    z-index: 11;
 }
 #telesur-header .idiomas span {
     float:left;
