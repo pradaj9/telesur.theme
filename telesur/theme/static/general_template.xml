@@ -28,6 +28,7 @@
                        //*[contains(@class,'portaltype-enltemplate')] or
                        //*[contains(@class,'portaltype-openmultimedia-reporter-ireport')] or
                        //*[contains(@class,'portaltype-openmultimedia-reporter-anonreport')] or
+                       //*[contains(@class,'portaltype-telesur-specialreport-folder')] or
                        //*[contains(@class,'portaltype-enlissue')]">
         <theme href="general.html" />
 
@@ -40,7 +41,7 @@
           <replace
             css:theme-children=".no-columns .content-placeholder"
             css:content-children="#portal-column-content" />
-            
+
             <!-- if we are in soy reportero  -->
             <rules css:if-content=".portaltype-telesur-reportero-anonreport">
               <rules if-content="//*[@id='anon-personalbar']">
@@ -62,14 +63,14 @@
             css:theme-children=".no-columns .content-placeholder"
             css:content-children="#portal-columns" />
         </rules>
-        
+
         <!-- IF we are in the edit view of nitf -->
         <rules css:if-content="body[class*='template-collective.nitf.content']">
           <after css:theme="#footer-wrapper">
             <script src="++theme++telesur.theme/character-counter.js" type="text/javascript"></script>
           </after>
-        </rules>     
-        
+        </rules>
+
     </rules>
 
 </rules>

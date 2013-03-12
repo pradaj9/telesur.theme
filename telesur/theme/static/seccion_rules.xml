@@ -7,16 +7,16 @@
     <rules if-content="//*[contains(@class, 'template-section-view')] or
                        //*[contains(@class, 'template-opinion-view')] or
                        //*[contains(@class, 'template-opinion-interview-view')] or
-                       //*[contains(@class, 'template-opinion-context-view')]"> 
-        <!-- 
+                       //*[contains(@class, 'template-opinion-context-view')]">
+        <!--
           body[class*='template-folder_'],
           body.portaltype-folder,
           body.portaltype-topic,
           body.template-manage-content-rules.portaltype-plone-site,
-        -->                           
+        -->
         <theme href="seccion.html" />
         <!--<rules css:if-content="body:not([class*='template-section-view'])">
-            <rules css:if-content="body[class*='template-collective.nitf.content'], 
+            <rules css:if-content="body[class*='template-collective.nitf.content'],
                                    body[class*='template-collective.polls.poll']">
                 <drop attributes="class" css:content="#portal-column-content" />
                 <replace
@@ -38,7 +38,7 @@
                 css:content="#edit-bar" />
             <replace css:theme-children=".telesur-left-content > div.breadcumb-categoria"
                 css:content-children=".section-name" />
-            
+
             <!-- video o imagen -->
             <replace css:theme-children="#nota-titular .video-image-container"
                 css:content=".video-widget" />
@@ -49,10 +49,10 @@
             <replace
                 css:theme="#nota-titular .description-container .description"
                 css:content=".principal-articles-container .description" />
-                
+
             <!--media icons -->
             <replace css:theme=".media-icons" css:content=".media-icons"/>
-            <replace css:theme-children=".article-listing" css:content-children=".article-listing"/>                            
+            <replace css:theme-children=".article-listing" css:content-children=".article-listing"/>
 
           <!-- esto modifica la lista de ultimos videos de seccion si y solo si
                la vista encontro un id de seccion valido -->
@@ -72,7 +72,7 @@
         <rules css:if-content=".template-opinion-context-view">
             <after css:theme="#nota-titular .description-container .description" css:content=".main-article .autor"/>
             <drop css:theme=".telesur-full-column"/>
-        </rules>          
+        </rules>
 
         <after css:theme-children="#ultimos-sidebar"
             css:content="#lo-mas" />
