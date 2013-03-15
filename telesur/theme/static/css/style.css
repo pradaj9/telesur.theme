@@ -139,7 +139,7 @@ h1 a {
 
 .related-items .title {
     padding-left: 0px;
-}    
+}
 
 .category-data .category {
     color: #AC1206;
@@ -342,7 +342,7 @@ h1 a {
 }
 #telesur-middle .related-items li {
     color:#AC1206;
-    display: list-item;    
+    display: list-item;
 }
 #telesur-middle .related-items li a {
     color:#000;
@@ -371,7 +371,7 @@ div#banners-home.widget-container a img {
 #nota-titular h1 a {
     color: #000;
     }
-    
+
 #nota-titular .subtitle {
     padding-left:15px;
     padding-top:10px;
@@ -415,7 +415,7 @@ div#banners-home.widget-container a img {
     height: 18px;
     float: right;
     }
-    
+
 .template-nota #byline,
 .template-opinion #byline {
     font-weight:bold;
@@ -591,7 +591,7 @@ div#banners-home.widget-container a img {
 #images .info p {
     color:#FFF;
     line-height: 1em;
-    padding: 5px 10px;    
+    padding: 5px 10px;
 }
 .navibuttons {
     padding-top:15px;
@@ -718,7 +718,7 @@ div#banners-home.widget-container a img {
 .scrollable-video-galery .active {
     border: 1px solid #000;
     }
-    
+
 /*media*/
 .template-media h2{
     margin-bottom: 15px;
@@ -1283,13 +1283,13 @@ div#banners-home.widget-container a img {
     background-repeat: no-repeat;
     height: 548px;
     }
-	
+
 	.subscription_background_general {
     background-image: url('++theme++telesur.theme/img/DisenoSuscripcion1024x500.jpg');
     background-repeat: no-repeat;
     height: 548px;
     }
-	
+
 
 .subscriptionform_label {
     margin-left: 55px;
@@ -1411,15 +1411,15 @@ div.panes-social div.twitter-portlet {
     COVER
 */
 
-.election-event-layout, 
-.general-event-layout, 
+.election-event-layout,
+.general-event-layout,
 .special-layout,
 .sporting-event-layout {
     border:medium none;
 }
 
-.election-event-layout .articles-data, 
-.general-event-layout .articles-data, 
+.election-event-layout .articles-data,
+.general-event-layout .articles-data,
 .special-layout .articles-data,
 .sporting-event-layout .articles-data {
     border:1px solid #b9b9b9;
