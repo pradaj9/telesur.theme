@@ -6,5 +6,9 @@
 
   <javascript authenticated="True" cacheable="True" compression="none" cookable="True"
       enabled="True" expression=""
-      id="++resource++telesur.theme/homeview-order.js" inline="False"/>      
+      id="++resource++telesur.theme/homeview-order.js" inline="False"/>
+
+  <javascript
+      id="http://widgets.openmultimedia.biz/player/omplayer.telesur.js"
+      cacheable="False" compression="none" cookable="False" />
 </object>
