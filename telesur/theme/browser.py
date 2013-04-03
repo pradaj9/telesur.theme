@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from persistent.mapping import PersistentMapping
+
 from AccessControl import ClassSecurityInfo
 from five import grok
-
 from zope.component import getMultiAdapter
 
 from zope.event import notify
@@ -535,6 +536,7 @@ class HomeSetOrder(grok.View):
             uuids.insert(delta, uuid)
 
         order.annotation[KEY][key] = uuids
+        notify(Purge(self.context))
 
         return self
 
@@ -559,7 +561,7 @@ class HomeViewOrder(grok.View):
         portal = getToolByName(self, 'portal_url').getPortalObject()
         annotations = IAnnotations(portal)
         if not KEY in annotations:
-            annotations[KEY] = {'primary': [], 'secondary': []}
+            annotations[KEY] = PersistentMapping({'primary': [], 'secondary': []})
 
         return annotations
 
