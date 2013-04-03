@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from five import grok
-
+import transaction
 from zope.component import getMultiAdapter
 
 from zope.event import notify
@@ -535,6 +535,9 @@ class HomeSetOrder(grok.View):
             uuids.insert(delta, uuid)
 
         order.annotation[KEY][key] = uuids
+
+        transaction.commit()
+        self.context._p_jar.sync()
 
         return self
 
