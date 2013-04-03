@@ -1,7 +1,13 @@
 $(document).ready(function() {
+
+  //codigo para mostrar ads como pop up en laportada
+  if($(".template-home-view").length) {
+    $.getScript('http://ad.openmultimedia.biz/telesur/H/?interstitial=1&_='+Math.floor(Math.random()*1001));
+  }
+
   var urlAjax = $("#more-articles a").attr("href");
   $("#more-articles").append("<img src='++resource++telesur.theme/img/loading.gif' />");
-  
+
   $("#more-articles img").css("display", "none");
   $("#more-articles img").css("margin-bottom", "-6px");
   $("#more-articles a").data("b_start", "8");
