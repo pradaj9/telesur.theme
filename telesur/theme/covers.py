@@ -10,8 +10,11 @@ from five import grok
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.container.interfaces import INameChooser
+from zope.event import notify
 from zope.interface import Interface
 from zope.security import checkPermission
+
+from z3c.caching.purge import Purge
 
 from plone.uuid.interfaces import IUUID
 from plone.app.uuid.utils import uuidToObject
@@ -35,6 +38,7 @@ class CoversView(grok.View):
 
     def __init__(self, context, request):
         super(CoversView, self).__init__(context, request)
+        purge = False
 
         layout_id = ''
         if 'layout_id' in self.request:
@@ -50,9 +54,11 @@ class CoversView(grok.View):
 
         if remove:
             self.remove_layout(layout_id)
+            purge = True
 
         if not(remove) and make_default and layout_id:
             self.make_default(layout_id)
+            purge = True
 
         if not(remove):
             # Returns workflow state object
@@ -69,6 +75,8 @@ class CoversView(grok.View):
                             wf.doActionFor(obj, "publish")
                         except WorkflowException:
                             pass
+        if purge:
+            notify(Purge(self.context))
 
     def render(self):
         return ''
