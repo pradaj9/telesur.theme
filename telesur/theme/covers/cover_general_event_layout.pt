@@ -7,7 +7,7 @@
                 <div>
                     <tal:video tal:condition="python:multimedia['type'] == 'video'">
                         <script type="text/javascript" src=""
-                            tal:define="video_url python:video_api.get_video_widget_url('', 400, {'archivo_url': multimedia['url']})"                            
+                            tal:define="video_url python:video_api.get_video_widget_url('', 400, {'archivo_url': multimedia['url']})"
                             tal:attributes="src string:${video_url};"
                             tal:content="nothing">
                             Item Title
@@ -21,25 +21,25 @@
                 </div>
                 <div>
                     <tal:image tal:define="img view/get_cover_image">
-                    <div class="cell cover-pos-0 cover-content-half-width cover-image">                    
+                    <div class="cell cover-pos-0 cover-content-half-width cover-image">
                         <a href="" tal:attributes="href view/cover/image_link" tal:omit-tag="not:view/cover/image_link">
                             <img tal:replace="structure python: path('nocall:img/tag')(scale='preview')" />
                         </a>
-                    <div>                        
+                    </div>
                     </tal:image>
                     <tal:videowidget tal:condition="view/cover/topic_slug">
                     <div class="cell cover-pos-half cover-content-half-width">
                         <a class="mini-video-widget-launch" tal:attributes="data-slug view/cover/topic_slug"></a>
                     </div>
-                    </tal:videowidget>                    
+                    </tal:videowidget>
                 </div>
-                
+
             </div>
         </div>
         <div class="data-article-container cell">
             <h1 class="title">
                 <a tal:attributes="href outstanding/absolute_url" tal:content="outstanding/Title"></a>
-            </h1>        
+            </h1>
             <div class="description" tal:content="outstanding/description"></div>
             <tal:multimedia>
                 <p class="media-icons iconos-portada">
@@ -52,7 +52,7 @@
                     <img style="margin: 0 5px" src="++theme++telesur.theme/attachments.png" title="Esta nota contiene archivos adjuntos"
                          tal:define="has_atachments python:view.has_atachments(outstanding)"
                          tal:condition="has_atachments" />
-                </p>                    
+                </p>
             </tal:multimedia>
             <div class="separator"></div>
             <tal:related-items tal:define="related outstanding/relatedItems|nothing">
@@ -61,7 +61,7 @@
                     <ul class="related-items-list">
                         <tal:block tal:repeat="nota_rel related">
                         <li tal:condition="python:repeat['nota_rel'].index < 2">
-                            <a tal:define="image python:view.get_multimedia(nota_rel.to_object, True)" 
+                            <a tal:define="image python:view.get_multimedia(nota_rel.to_object, True)"
                                tal:attributes="href nota_rel/to_object/absolute_url">
                                <tal:image tal:condition="python:image['url'] ">
                                     <tal:url tal:condition="python:image['type'] == 'thumb'">
