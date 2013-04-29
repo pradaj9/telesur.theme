@@ -18,7 +18,8 @@ from plonetheme.sunburst.browser.interfaces import IThemeSpecific
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
-from Products.CMFPlone.PloneBatch import Batch
+#from Products.CMFPlone.PloneBatch import Batch
+from plone.batching import Batch
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF
@@ -633,7 +634,7 @@ class HomeView(grok.View):
 
     def render(self):
         self.covers_view = getMultiAdapter((self.context, self.request),
-                                            name='covers-view')        
+                                            name='covers-view')
         layout_conf = self.covers_view.layout_conf()[config.COVERS_KEYS]
         template = grok.PageTemplateFile('templates/homeview_default.pt')
 
@@ -656,7 +657,7 @@ class HomeView(grok.View):
         cover_data = self.cover_layout()
         cover_type = cover_data['type']
         view_name = config.COVERS_VIEWS[cover_type]['layout']
-        view = getMultiAdapter((self.context, self.request), 
+        view = getMultiAdapter((self.context, self.request),
                                 name=view_name)
         return view()
 
@@ -821,8 +822,6 @@ class LayoutHelper(grok.View):
         query['object_provides'] = {'query': [INITF.__identifier__]}
         query['sort_on'] = 'effective'
         query['sort_order'] = 'reverse'
-        if not batched:
-            query['sort_limit'] = limit + 1
         query['genre'] = genre
         query['review_state'] = 'published'
 
@@ -841,11 +840,10 @@ class LayoutHelper(grok.View):
             outstanding['section'] = section
 
         existing = catalog.searchResults(query)
-
         if all_articles:
             if batched:
-                if(len(existing) > b_start):
-                    elements['articles'] = Batch(existing, limit, b_start)
+                if(len(existing) > (b_start-1)*limit):
+                    elements['articles'] = Batch.fromPagenumber(items=existing, pagesize=limit, pagenumber=b_start)
                 else:
                     elements['articles'] = []
             else:
@@ -870,8 +868,8 @@ class LayoutHelper(grok.View):
                         move = 0
                     tmp_elements = filter(lambda nota: nota.UID != outstanding_UID,
                         existing)[move:]
-                    if(len(existing) > b_start):
-                        elements['secondary'] = Batch(tmp_elements, limit, b_start)
+                    if(len(existing) > (b_start-1)*limit):
+                        elements['secondary'] = Batch.fromPagenumber(items=tmp_elements, pagesize=limit, pagenumber=b_start)
                     else:
                         elements['secondary'] = []
                 else:
@@ -950,6 +948,7 @@ class SectionView(grok.View):
 class MoreArticles(grok.View):
     """Vista para traer mas articulos usando ajax.
     """
+
     grok.context(Interface)
     grok.layer(ITelesurLayer)
     grok.name('more-articles-view')
@@ -976,23 +975,24 @@ class MoreArticles(grok.View):
             articles = self.layout_helper.articles(limit, genre='Opinion',
                     all_articles=True, batched=True,
                     b_start=b_start)
-            self.articles = articles['articles']
+
+            self.articles = [article for article in articles['articles']]
         elif kind == "Current":
             articles = self.layout_helper.articles(limit, genre=kind,
                             batched=True, b_start=b_start)
-            self.articles = articles['secondary']
+            self.articles = [article for article in articles['secondary']]
 
         elif kind == "Interview":
             articles = self.layout_helper.articles(limit, genre='Interview',
                                         outstanding_optional=True, batched=True,
                                         b_start=b_start)
-            self.articles = articles['secondary']
+            self.articles = [article for article in articles['secondary']]
 
         elif kind == "Background":
             articles = self.layout_helper.articles(limit, genre='Background',
                                         outstanding_optional=True, batched=True,
                                         b_start=b_start)
-            self.articles = articles['secondary']
+            self.articles = [article for article in articles['secondary']]
 
         self.kind = kind
 
