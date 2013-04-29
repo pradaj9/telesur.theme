@@ -15,7 +15,6 @@ $(document).ready(function() {
   $("#more-articles a").removeAttr("href");
   $("#more-articles a").click(function(){
         var b_start = parseInt($("#more-articles a").data("b_start"), 10);
-        console.log(b_start);
         var limit = parseInt($("#more-articles a").data("limit"), 10);
         var kind = "Current";
         if($("#more-articles").hasClass("more-articles-opinion")) {
