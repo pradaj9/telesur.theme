@@ -17,7 +17,7 @@
 				<div align="center" width="1024" height="600" style="border:1px solid #BEBDBD; padding:10px;">
 					<div align="center" id="player">Escribanos a: contactenos@telesurtv.net</div>
 					<script type="text/javascript">
-					var so = new SWFObject('++theme++telesur.theme/player.swf','mpl','480','360','9');
+					var so = new SWFObject('++theme++telesur.theme/player.swf','mpl','512','384','9');
 					so.addParam('allowscriptaccess','always');
 					so.addParam('allowfullscreen','true');
 
@@ -31,13 +31,13 @@
 					// If you are broadcasting using RTP protocol (Quicktime Broadcaster or Wirecast) simply add the .sdp file extension to the end of streamName.
 					'plugins=livestream-1&livestream.file=telesurweb.stream'+
 					//RTMP server to pull the stream from (e.g. rtmp://myserver.com/live-app).
-					'&livestream.streamer=rtmp://movipbox.streamguys.com/telesurweb' +
+					'&livestream.streamer=rtmp://50.31.166.98/telesur' +
 					//This flashvar indicates the placeholding image associated with the livestream. 
 					//It is shown when the live stream ends. It should typically say something like "thanks for watching".
 					// This may also be used to insert a sponsor's logo & will look best when the player dimensions match the image dimensions
 					'&livestream.image=++theme++telesur.theme/img/LogoTelesur.jpg' +
 					//Message to show in the display when polling the livestream.
-					'&livestream.message=Verificando por TELESURTV en Vivo' +
+					'&livestream.message=Verificando por teleSUR en Vivo' +
 					// Interval in seconds for polling the livestream
 					'&livestream.interval =5' +
 					'&type=rtmp' +
@@ -52,12 +52,12 @@
 					<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
 					<strong>
 					<font color="#FFFFFF">
-					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles">
+					<a href="rtsp://50.31.166.98/telesur-moviles/telesur-moviles.stream">
 					<img border="0" src="++theme++telesur.theme/img/bbrr.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></strong></span></p>
 					<p align="center"><span><strong><font color="#FFFFFF">
-					<a href="http://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles/playlist.m3u8">
+					<a href="http://50.31.166.98/telesur-moviles/telesur-moviles.stream/playlist.m3u8">
 					<img border="0" src="++theme++telesur.theme/img/iPhone.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="rtsp://edg.ord.movipbox2.streamguys.net/telesur-moviles/telesur-moviles">
+					<a href="rtsp://50.31.166.98/telesur-moviles/telesur-moviles.stream">
 					<img border="0" src="++theme++telesur.theme/img/Android.JPG" width="103" height="45"></a></font></strong></span></p>
 					<p align="center"><span><strong><font color="#FFFFFF">TELESURTV - En Vivo<br>
 					</font>
