@@ -31,7 +31,7 @@
 					// If you are broadcasting using RTP protocol (Quicktime Broadcaster or Wirecast) simply add the .sdp file extension to the end of streamName.
 					'plugins=livestream-1&livestream.file=telesurweb.stream'+
 					//RTMP server to pull the stream from (e.g. rtmp://myserver.com/live-app).
-					'&livestream.streamer=rtmp://50.31.166.98/telesur' +
+					'&livestream.streamer=rtmp://movipbox2.streamguys.com/telesurweb' +
 					//This flashvar indicates the placeholding image associated with the livestream. 
 					//It is shown when the live stream ends. It should typically say something like "thanks for watching".
 					// This may also be used to insert a sponsor's logo & will look best when the player dimensions match the image dimensions
@@ -52,12 +52,12 @@
 					<p align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
 					<strong>
 					<font color="#FFFFFF">
-					<a href="rtsp://50.31.166.98/telesur-moviles/telesur-moviles.stream">
+					<a href="rtsp://movipbox2.streamguys.com/telesur-moviles/telesur-moviles.stream">
 					<img border="0" src="++theme++telesur.theme/img/bbrr.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></strong></span></p>
 					<p align="center"><span><strong><font color="#FFFFFF">
-					<a href="http://50.31.166.98/telesur-moviles/telesur-moviles.stream/playlist.m3u8">
+					<a href="rtsp://movipbox2.streamguys.com/telesur-moviles/telesur-moviles.stream/playlist.m3u8">
 					<img border="0" src="++theme++telesur.theme/img/iPhone.JPG" width="103" height="45"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="rtsp://50.31.166.98/telesur-moviles/telesur-moviles.stream">
+					<a href="rtsp://movipbox2.streamguys.com/telesur-moviles/telesur-moviles.stream">
 					<img border="0" src="++theme++telesur.theme/img/Android.JPG" width="103" height="45"></a></font></strong></span></p>
 					<p align="center"><span><strong><font color="#FFFFFF">TELESURTV - En Vivo<br>
 					</font>
