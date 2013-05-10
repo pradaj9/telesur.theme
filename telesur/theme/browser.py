@@ -18,8 +18,7 @@ from plonetheme.sunburst.browser.interfaces import IThemeSpecific
 from Products.CMFCore.interfaces import IFolderish
 from Products.CMFCore.utils import getToolByName
 
-#from Products.CMFPlone.PloneBatch import Batch
-from plone.batching import Batch
+from Products.CMFPlone.PloneBatch import Batch
 
 from collective.nitf.browser import View
 from collective.nitf.content import INITF

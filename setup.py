@@ -37,7 +37,6 @@ setup(name='telesur.theme',
         'collective.nitf',
         'collective.upload',
         'telesur.api',
-        'plone.batching',
         'z3c.jbot',
         ],
       extras_require={
