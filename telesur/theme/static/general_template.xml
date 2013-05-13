@@ -29,7 +29,6 @@
                        //*[contains(@class,'portaltype-openmultimedia-reporter-ireport')] or
                        //*[contains(@class,'portaltype-openmultimedia-reporter-anonreport')] or
                        //*[contains(@class,'portaltype-telesur-specialreport-folder')] or
-                       //*[contains(@class,'portaltype-telesur-specialreport')] or
                        //*[contains(@class,'portaltype-enlissue')]">
         <theme href="general.html" />
 

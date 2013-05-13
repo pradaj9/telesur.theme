@@ -13,9 +13,10 @@
         <!--<xi:include href="programs.xml" />-->
         <xi:include href="program_grid_rules.xml"/>
         <xi:include href="general_template.xml"/>
+        <xi:include href="special_rules.xml"/>
 
         <!-- in section opinion we don't have to show ultimos videos section -->
-        <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> --> 
+        <!-- <drop css:if-content="body.section-opinion" css:theme="#scroller-seccion" /> -->
         <!-- facebook portlet -->
         <!-- <replace css:theme-children=".facebook.pane" css:content=".facebookWallPortlet" /> -->
         <!-- Ultimas Noticias -->
@@ -93,7 +94,7 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
 
         <!-- if we are anon, remove the user bar -->
         <rules if-content="//*[@id='anon-personalbar']">
-          <drop css:content="#portal-personaltools-wrapper"/>        
+          <drop css:content="#portal-personaltools-wrapper"/>
         </rules>
         <!-- if we are authenticated, then don't show comments, special, map or the colophone -->
         <rules if-content="not(//*[@id='anon-personalbar'])">
@@ -139,11 +140,11 @@ template-edit portaltype-collective-polls-poll section-encuesta-test -->
     <replace css:theme="#portal-mobile-subglobalnav"  css:content="#portal-mobile-subglobalnav" />
     <!-- footer year change -->
     <replace css:theme="#mobile-year"  css:content="#mobile-footer-year" />
-    
-    <drop css:theme=".especiales"/> 	  	
+
+    <drop css:theme=".especiales"/>
 
     <drop css:theme=".ad-legend-top"/>
 
     <drop css:theme="#banners-home"/>
-    
+
 </rules>
