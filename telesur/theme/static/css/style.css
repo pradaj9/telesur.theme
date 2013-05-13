@@ -1606,3 +1606,12 @@ div.panes-social div.twitter-portlet {
     margin: 0 auto;
     padding: 0 12.5px;
 }
+
+#below-portlet-wrapper .portletWrapper {
+    float:left;
+    width: 22.75%;
+}
+
+#below-portlet-wrapper .managePortletsLink {
+    clear:both;
+}

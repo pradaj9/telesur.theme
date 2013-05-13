@@ -1,0 +1,52 @@
+<rules
+    xmlns="http://namespaces.plone.org/diazo"
+    xmlns:css="http://namespaces.plone.org/diazo/css"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <rules if-content="//*[contains(@class,'portaltype-telesur-specialreport')]">
+        <theme href="special_template.html" />
+
+        <drop css:content="#viewlet-above-content"/>
+        <rules if-content="not(//*[contains(@class,'portaltype-enlissue')])">
+            <drop css:content="#content .documentActions"/>
+        </rules>
+        <!-- tiene portleta la derecha pero no a la izquierda -->
+        <rules if-content="not(//*[contains(@id,'portal-column-one')])">
+        <rules css:if-content="#portal-column-two .portletWrapper">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-columns" />
+        </rules>
+      </rules>
+
+       <!-- tiene portleta la izquierda pero no a la derecha -->
+      <rules if-content="not(//*[contains(@id,'portal-column-two')])">
+        <rules css:if-content="#portal-column-one .portletWrapper">
+          <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-column-content" />
+          <replace css:content-children="#portal-column-one" css:theme="#below-portlet"/>
+        </rules>
+      </rules>
+
+      <!-- No tiene portlets -->
+      <rules if-content="not(//*[contains(@id,'portal-column-two')]) and not(//*[contains(@id,'portal-column-two')])">
+        <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-columns" />
+      </rules>
+      <!-- tiene los dos portlets -->
+      <rules if-content="(//*[contains(@id,'portal-column-two')]) and (//*[contains(@id,'portal-column-two')])">
+        <replace
+            css:theme-children=".no-columns .content-placeholder"
+            css:content-children="#portal-columns" />
+      </rules>
+
+
+
+
+
+    </rules>
+
+</rules>
