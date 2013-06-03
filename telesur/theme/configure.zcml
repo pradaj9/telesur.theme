@@ -42,7 +42,7 @@
                 description=""
                 />
         </browser:menuItems>
-    
+
     <browser:menuItems
         for="Products.CMFCore.interfaces.IFolderish"
         menu="plone_displayviews">
@@ -91,6 +91,16 @@
         layer=".interfaces.ITelesurLayer"
         template="templates/footer.pt"
         permission="zope.Public"
+        />
+
+    <!-- The cutomized search box -->
+    <browser:viewlet
+        name="plone.searchbox"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        template="viewlets/searchbox.pt"
+        layer=".interfaces.ITelesurLayer"
+        class="plone.app.layout.viewlets.common.SearchBoxViewlet"
+        permission="zope2.View"
         />
 
 </configure>
