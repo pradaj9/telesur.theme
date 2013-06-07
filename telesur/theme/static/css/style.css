@@ -1386,12 +1386,6 @@ p.iconos-portada span.icono {
     padding-right: 5px;
 }
 
-/* Comunidad social */
-div.panes-social div.twitter-portlet {
-    background-color:#cf0c0a;
-}
-
-
 #more-articles {
     float: right;
     cursor: pointer;
